@@ -1,6 +1,8 @@
 #include "Window.h"
 #include <iostream>
 
+#include "glm/glm.hpp";
+
 namespace engine {
 	namespace graphics {
 
