@@ -20,6 +20,8 @@ int main()
 		if (window.isMouseButtonPressed(GLFW_MOUSE_BUTTON_1))
 			std::cout << "button pressed." << std::endl;
 
+		std::cout << window.getMouseX() << ", " << window.getMouseY() << std::endl;
+
 		// to delete!
 		glBegin(GL_QUADS);
 		glVertex2f(-0.5f, -0.5f);

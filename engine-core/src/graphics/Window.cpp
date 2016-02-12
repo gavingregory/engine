@@ -4,12 +4,7 @@
 namespace engine {
 	namespace graphics {
 
-		bool Window::m_Keys[MAX_KEYS];
-		bool Window::m_MouseButtons[MAX_BUTTONS];
-		double Window::mx;
-		double Window::my;
-
-		Window::Window(const char* title, int width, int height)
+		Window::Window(const char* title, const int width, const int height)
 			: m_Title(title), m_Width(width), m_Height(height)
 		{
 			if (!init())
@@ -45,6 +40,7 @@ namespace engine {
 			glfwSetWindowSizeCallback(m_Window, window_resize);
 			glfwSetKeyCallback(m_Window, key_callback);
 			glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
+			glfwSetCursorPosCallback(m_Window, cursor_position_callback);
 
 			if (glewInit() != GLEW_OK) {
 				std::cout << "Could not init GLEW" << std::endl;
@@ -67,7 +63,9 @@ namespace engine {
 
 		void window_resize(GLFWwindow* window, int width, int height)
 		{
-			// TODO: as this function is not a member of the class, it does not update m_Width and m_Height
+			Window* win = (Window*)glfwGetWindowUserPointer(window);
+			win->m_Width = width;
+			win->m_Height = height;
 			glViewport(0, 0, width, height);
 		}
 
@@ -81,13 +79,19 @@ namespace engine {
 			win->m_MouseButtons[button] = action != GLFW_RELEASE;
 		}
 
-		bool Window::isKeyPressed(unsigned int keycode) {
+		void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
+			Window* win = (Window*)glfwGetWindowUserPointer(window);
+			win->m_MouseX = xpos;
+			win->m_MouseY = ypos;
+		}
+
+		bool Window::isKeyPressed(const unsigned int keycode) const {
 			if (keycode >= MAX_KEYS)
 				return false;
 			return m_Keys[keycode];
 		}
 
-		bool Window::isMouseButtonPressed(unsigned int button) {
+		bool Window::isMouseButtonPressed(const unsigned int button) const {
 			if (button >= MAX_BUTTONS)
 				return false;
 			return m_MouseButtons[button];
