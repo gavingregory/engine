@@ -1,4 +1,5 @@
 #pragma once
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 namespace engine {
@@ -15,7 +16,12 @@ namespace engine {
       Window(const char* title, int width, int height);
       ~Window();
       void update();
+	  void clear() const;
 	  bool closed() const;
+
+	  inline int getWidth() const { return m_Width; }
+	  inline int getHeight() const { return m_Height; }
+
     };
   }
 }
