@@ -1,0 +1,10 @@
+.vs/
+Output-Build.txt
+bin/
+engine-core/engine-core.vcxproj
+engine-core/engine-core.vcxproj.filters
+engine-core/engine-core.vcxproj.user
+engine.opensdf
+engine.sdf
+engine.sln
+lib.zip
