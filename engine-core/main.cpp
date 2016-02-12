@@ -15,6 +15,11 @@ int main()
 	{
 		window.clear();
 
+		if (window.isKeyPressed(GLFW_KEY_A))
+			std::cout << "pressed." << std::endl;
+		if (window.isMouseButtonPressed(GLFW_MOUSE_BUTTON_1))
+			std::cout << "button pressed." << std::endl;
+
 		// to delete!
 		glBegin(GL_QUADS);
 		glVertex2f(-0.5f, -0.5f);
