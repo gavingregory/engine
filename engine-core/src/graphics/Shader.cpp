@@ -84,11 +84,11 @@ namespace engine {
 		}
 
 		void Shader::setUniform2f(const GLchar* name, const glm::vec2& vec) {
-			glUniform2fv(getUniformLocation(name), 2, &vec[0]);
+			glUniform2f(getUniformLocation(name), vec[0], vec[1]);
 		}
 
 		void Shader::setUniform3f(const GLchar* name, const glm::vec3& vec) {
-			glUniform3fv(getUniformLocation(name), 3, &vec[0]);
+			glUniform3f(getUniformLocation(name), vec[0], vec[1], vec[2]);
 		}
 
 		void Shader::setUniform4f(const GLchar* name, const glm::vec4& vec) {
