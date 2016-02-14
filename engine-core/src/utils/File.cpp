@@ -6,6 +6,7 @@ namespace engine {
 	namespace utils {
 
 		std::string File::ReadTextFile(const char* filePath) {
+			//TODO: throw error if file doesn't exist
 			std::ifstream f(filePath);
 			std::string line;
 			std::string s;
