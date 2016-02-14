@@ -54,51 +54,47 @@ int main()
 		  1.0f,-1.0f, 1.0f
 		};
 	static const GLfloat vertices_triangle[] = {
-	  -1.0f, -1.0f, 0.0f,
-	   1.0f, -1.0f, 0.0f,
-	   0.0f,  1.0f, 0.0f,
+	  -1.0f, -1.0f, -5.0f,
+	   1.0f, -1.0f, -5.0f,
+	   0.0f,  1.0f, -5.0f,
 	 };
 
-	GLuint VertexArrayID;
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
+	GLfloat vertices[] =
+	{
+		0, 0, 0,
+		8, 0, 0,
+		0, 3, 0,
+		0, 3, 0,
+		8, 3, 0,
+		8, 0, 0
+	};
 
-	// This will identify our vertex buffer
-	GLuint vertexbuffer;
-	// Generate 1 buffer, put the resulting identifier in vertexbuffer
-	glGenBuffers(1, &vertexbuffer);
-	// The following commands will talk about our 'vertexbuffer' buffer
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	// Give our vertices to OpenGL.
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_triangle), vertices_triangle, GL_STATIC_DRAW);
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(0);
 
-	glm::mat4 ortho = glm::ortho(0.0f, 16.0f, 0.0f, 9.0f);
-	glm::mat4 proj = glm::perspectiveFov(90.0f, 50.0f, 50.0f, -5.0f, -100.0f);
+	glm::mat4 ortho = glm::ortho(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
 
 	Shader shader("src/shaders/BasicVert.glsl", "src/shaders/BasicFrag.glsl");
 	shader.enable();
-	//shader.setUniformMat4("projection", proj);
-	//shader.setUniformMat4("model", glm::scale(glm::vec3(0.1f, 0.1f, 0.1f)));
+	shader.setUniformMat4("pr_matrix", ortho);
+	shader.setUniformMat4("ml_matrix", glm::translate(glm::vec3(4, 3, 0)));
 
+	shader.setUniform2f("light_pos", glm::vec2(4.0f, 1.5f));
+	shader.setUniform4f("colour", glm::vec4(0.2f, 0.3f, 0.8f, 1.0f));
+
+	//glm::mat4 ortho = glm::ortho(-1.f, 1.f, -1.f, 1.f);
+	//glm::mat4 proj = glm::perspectiveFov(60.0f, 50.0f, 50.0f, -5.0f, -100.0f);
+	
 	while (!window.closed())
 	{
 		window.clear();
-
-		// 1rst attribute buffer : vertices
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		glVertexAttribPointer(
-			   0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-			   3,                  // size
-			  GL_FLOAT,           // type
-			   GL_FALSE,           // normalized?
-			   0,                  // stride
-			    (void*)0            // array buffer offset
-			);
-		// Draw the triangle !
-		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
-		glDisableVertexAttribArray(0);
-
+		std::cout << window.getMouseX() << " " << window.getMouseY() << std::endl;
+		shader.setUniform2f("light_pos", glm::vec2((float)(window.getMouseX() * 16.0f / 960.0f), (float)(9.0f - window.getMouseY() * 9.0f / 540.0f)));
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 		window.update();
 	}
 

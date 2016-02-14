@@ -9,6 +9,6 @@ in vec4 pos;
 
 void main()
 {
-	//float intensity = 1.0 / length(pos.xy - light_pos);
-	color = vec4(1.0,1.0,0,1);
+	float intensity = 1.0 / length(pos.xy - light_pos);
+	gl_FragColor = colour * intensity;
 }
