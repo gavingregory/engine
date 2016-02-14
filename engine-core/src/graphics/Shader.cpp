@@ -7,6 +7,7 @@ namespace engine {
 		Shader::Shader(const char* vertexPath, const char* fragmentPath)
 			: m_VertexPath(vertexPath), m_FragmentPath(fragmentPath) {
 			m_ShaderId = load();
+			std::cout << m_ShaderId << std::endl;
 		}
 
 		Shader::~Shader() {
@@ -19,10 +20,13 @@ namespace engine {
 			GLuint vertex = glCreateShader(GL_VERTEX_SHADER);
 			GLuint fragment = glCreateShader(GL_FRAGMENT_SHADER);
 
-			const char* vertSrc = engine::utils::File::ReadTextFile(m_VertexPath).c_str();
-			const char* fragSrc = engine::utils::File::ReadTextFile(m_FragmentPath).c_str();
+			std::string vertexString = engine::utils::File::ReadTextFile(m_VertexPath);
+			std::string fragmentString = engine::utils::File::ReadTextFile(m_FragmentPath);
 
-			glShaderSource(vertex, 1, &vertSrc, NULL);
+			const char* vertexSrc = vertexString.c_str();
+			const char* fragmentSrc = fragmentString.c_str();
+
+			glShaderSource(vertex, 1, &vertexSrc, NULL);
 			glCompileShader(vertex);
 
 			GLint result;
@@ -39,7 +43,7 @@ namespace engine {
 				// TODO: throw error?
 			}
 
-			glShaderSource(fragment, 1, &fragSrc, NULL);
+			glShaderSource(fragment, 1, &fragmentSrc, NULL);
 
 			glCompileShader(fragment);
 
