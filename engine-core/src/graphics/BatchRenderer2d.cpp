@@ -26,7 +26,7 @@ namespace engine {
 			glVertexAttribPointer(SHADER_COLOUR_INDEX, RENDERER_COMPONENTS_VEC4, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(RENDERER_COMPONENTS_VEC3 * sizeof(GLfloat)));
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-			GLushort indices[RENDERER_INDICES_SIZE];
+			GLuint* indices = new GLuint[RENDERER_INDICES_SIZE];
 			
 			int offset = 0;
 
@@ -43,6 +43,9 @@ namespace engine {
 
 			m_IBO = new IndexBuffer(indices, RENDERER_INDICES_SIZE);
 			glBindVertexArray(0);
+
+			// should this be here?
+			delete indices;
 		}
 
 		void BatchRenderer2d::begin() {
@@ -84,7 +87,7 @@ namespace engine {
 			glBindVertexArray(m_VAO);
 			m_IBO->bind();
 
-			glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_SHORT, NULL);
+			glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_INT, NULL);
 
 			m_IBO->unbind();
 			glBindVertexArray(0);

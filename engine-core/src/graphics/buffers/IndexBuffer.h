@@ -9,6 +9,8 @@ namespace engine {
 		{
 		public:
 			IndexBuffer(GLushort* data, GLsizei count);
+			IndexBuffer(GLuint* data, GLsizei count);
+
 			virtual ~IndexBuffer();
 
 			inline GLuint getCount() const { return m_Count;  }
