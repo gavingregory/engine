@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Renderer2d.h"
+#include "StaticSprite.h"
 #include <glm/ext.hpp> // to_string(v)!
 #include <deque>
 
@@ -15,7 +16,7 @@ namespace engine {
 			void submit(const Renderable2d* renderable) override;
 			void flush() override;
 		private:
-			std::deque<const Renderable2d*> m_RenderQueue;
+			std::deque<const StaticSprite*> m_RenderQueue;
 		};
 
 	}

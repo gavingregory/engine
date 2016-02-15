@@ -11,7 +11,9 @@ namespace engine {
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0); // unbind
 		}
 
-		IndexBuffer::~IndexBuffer() {}
+		IndexBuffer::~IndexBuffer() {
+			glDeleteBuffers(1, &m_BufferId);
+		}
 
 		void IndexBuffer::bind() const {
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_BufferId);

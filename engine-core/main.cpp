@@ -12,6 +12,8 @@
 #include "src/graphics/Renderer2d.h"
 #include "src/graphics/SimpleRenderer2d.h"
 
+#include "src/graphics/StaticSprite.h"
+
 int main()
 {
 	using namespace engine;
@@ -27,8 +29,10 @@ int main()
 	shader.setUniformMat4("pr_matrix", ortho);
 	shader.setUniformMat4("ml_matrix", glm::translate(glm::vec3(4,3,0)));
 
-	Renderable2d sprite(glm::vec3(5, 5, 0), glm::vec2(4, 4), glm::vec4(1, 0, 1, 1), shader);
-	Renderable2d sprite2(glm::vec3(7, 1, 0), glm::vec2(2, 3), glm::vec4(0.2f, 0, 1, 1), shader);
+	StaticSprite sprite(5,5, 4,4, glm::vec4(1,0,1,1), shader);
+
+	StaticSprite sprite2(7, 1, 2,3, glm::vec4(0.2f, 0, 1, 1), shader);
+
 
 	SimpleRenderer2d renderer;
 

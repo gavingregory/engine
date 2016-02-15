@@ -13,7 +13,9 @@ namespace engine {
 		}
 
 
-		Buffer::~Buffer() {}
+		Buffer::~Buffer() {
+			glDeleteBuffers(1, &m_BufferId);
+		}
 
 		void Buffer::bind() const {
 			glBindBuffer(GL_ARRAY_BUFFER, m_BufferId);

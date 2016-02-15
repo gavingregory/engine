@@ -9,21 +9,21 @@ namespace engine {
 		SimpleRenderer2d::~SimpleRenderer2d() {}
 
 		void SimpleRenderer2d::submit(const Renderable2d* renderable) {
-			m_RenderQueue.push_back(renderable);
+			m_RenderQueue.push_back((StaticSprite*)renderable);
 		}
 		
 		void SimpleRenderer2d::flush() {
 			while (!m_RenderQueue.empty())
 			{
-				const Renderable2d* renderable = m_RenderQueue.front();
-				renderable->getVAO()->bind();
-				renderable->getIBO()->bind();
+				const StaticSprite* sprite = m_RenderQueue.front();
+				sprite->getVAO()->bind();
+				sprite->getIBO()->bind();
 
-				renderable->getShader().setUniformMat4("ml_matrix", glm::translate(renderable->getPosition()));
-				glDrawElements(GL_TRIANGLES, renderable->getIBO()->getCount(), GL_UNSIGNED_SHORT, nullptr);
+				sprite->getShader().setUniformMat4("ml_matrix", glm::translate(sprite->getPosition()));
+				glDrawElements(GL_TRIANGLES, sprite->getIBO()->getCount(), GL_UNSIGNED_SHORT, nullptr);
 
-				renderable->getIBO()->unbind();
-				renderable->getVAO()->unbind();
+				sprite->getIBO()->unbind();
+				sprite->getVAO()->unbind();
 
 				m_RenderQueue.pop_front();
 			}
