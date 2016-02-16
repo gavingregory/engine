@@ -14,12 +14,15 @@
 
 #include <time.h>
 
+#include "src/utils/Timer.h"
+
 #define BATCH_RENDERER 1
 
 int main()
 {
 	using namespace engine;
 	using namespace graphics;
+	using namespace utils;
 
 	Window window("Engine", 960, 540);
 	// glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -66,6 +69,10 @@ int main()
 
 	shader.setUniform2f("light_pos", glm::vec2(4.0f, 1.5f));
 	shader.setUniform4f("colour", glm::vec4(0.2f, 0.3f, 0.8f, 1.0f));
+	
+	Timer time;
+	float timer = 0;
+	unsigned int frames = 0;
 
 	while (!window.closed())
 	{
@@ -82,8 +89,15 @@ int main()
 		renderer.end();
 #endif
 		renderer.flush();
-		printf("Sprites: %d\n", sprites.size());
 		window.update();
+
+		frames++;
+		if (time.elapsed() - timer > 1.0f)
+		{
+			timer += 1.0f;
+			printf("%d fps\n", frames);
+			frames = 0;
+		}
 	}
 
 	return 0;
