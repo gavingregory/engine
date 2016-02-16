@@ -10,7 +10,7 @@ namespace engine {
 
 		struct VertexData {
 			glm::vec3 vertex;
-			glm::vec4 colour;
+			unsigned int colour;
 		};
 
 		class Renderable2d

@@ -23,7 +23,7 @@ namespace engine {
 			glEnableVertexAttribArray(SHADER_VERTEX_INDEX);
 			glEnableVertexAttribArray(SHADER_COLOUR_INDEX);
 			glVertexAttribPointer(SHADER_VERTEX_INDEX, RENDERER_COMPONENTS_VEC3, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)RENDERER_NO_OFFSET);
-			glVertexAttribPointer(SHADER_COLOUR_INDEX, RENDERER_COMPONENTS_VEC4, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(RENDERER_COMPONENTS_VEC3 * sizeof(GLfloat)));
+			glVertexAttribPointer(SHADER_COLOUR_INDEX, RENDERER_COMPONENTS_VEC4, GL_UNSIGNED_BYTE, GL_TRUE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, VertexData::colour)));
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 			GLuint* indices = new GLuint[RENDERER_INDICES_SIZE];
@@ -59,20 +59,27 @@ namespace engine {
 			const glm::vec2& size = renderable->getSize();
 			const glm::vec4& colour = renderable->getColour();
 
+			int r = colour.r * 255.0f;
+			int g = colour.g * 255.0f;
+			int b = colour.b * 255.0f;
+			int a = colour.a * 255.0f;
+
+			unsigned int c = a << 24 | b << 16 | g << 8 | r;
+
 			m_Buffer->vertex = position;
-			m_Buffer->colour = colour;
+			m_Buffer->colour = c;
 			m_Buffer++;
 
 			m_Buffer->vertex = glm::vec3(position.x, position.y + size.y, position.z);
-			m_Buffer->colour = colour;
+			m_Buffer->colour = c;
 			m_Buffer++;
 
 			m_Buffer->vertex = glm::vec3(position.x + size.x, position.y + size.y, position.z);
-			m_Buffer->colour = colour;
+			m_Buffer->colour = c;
 			m_Buffer++;
 
 			m_Buffer->vertex = glm::vec3(position.x + size.x, position.y, position.z);;
-			m_Buffer->colour = colour;
+			m_Buffer->colour = c;
 			m_Buffer++;
 			
 			m_IndexCount += 6;

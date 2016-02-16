@@ -7,19 +7,16 @@ namespace engine {
 	namespace graphics {
 
 		Window::Window(const char* title, const int width, const int height)
-			: m_Title(title), m_Width(width), m_Height(height)
-		{
+			: m_Title(title), m_Width(width), m_Height(height) {
 			if (!init())
 				glfwTerminate();
 		}
 
-		Window::~Window()
-		{
+		Window::~Window() {
 			glfwTerminate();
 		}
 
-		void Window::update()
-		{
+		void Window::update() {
 			GLenum error = glGetError();
 			if (error != GL_NO_ERROR)
 				std::cout << "OpenGL Error: " << error << std::endl;
@@ -28,8 +25,7 @@ namespace engine {
 			glfwSwapBuffers(m_Window);
 		}
 
-		bool Window::init()
-		{
+		bool Window::init() {
 			if (!glfwInit())
 			{
 				std::cout << "Failed to init GLFW" << std::endl;
@@ -47,6 +43,7 @@ namespace engine {
 			glfwSetKeyCallback(m_Window, key_callback);
 			glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 			glfwSetCursorPosCallback(m_Window, cursor_position_callback);
+			// glfwSwapInterval(0.0f); // disable vsync
 
 			if (glewInit() != GLEW_OK) {
 				std::cout << "Could not init GLEW" << std::endl;
@@ -58,17 +55,15 @@ namespace engine {
 			return true;
 		}
 
-		bool Window::closed() const
-		{
+		bool Window::closed() const {
 			return glfwWindowShouldClose(m_Window) == 1;
 		}
-		void Window::clear() const
-		{
+
+		void Window::clear() const {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}
 
-		void window_resize(GLFWwindow* window, int width, int height)
-		{
+		void window_resize(GLFWwindow* window, int width, int height) {
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
 			win->m_Width = width;
 			win->m_Height = height;
