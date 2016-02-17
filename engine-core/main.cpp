@@ -65,6 +65,8 @@ int main()
 			ml_matrix *= translate(vec3(0, 0, -0.01));
 		if (window.isKeyPressed(GLFW_KEY_E))
 			ml_matrix *= translate(vec3(0, 0, 0.01));
+		if (window.isScrolled())
+			ml_matrix *= translate(vec3(0, 0, window.getScrollOffsetY()));
 
 		glUniform2f(glGetUniformLocation(shader->GetShaderProgram(), "light_pos"), window.getMouseX() *20 / window.getHeight(), window.getMouseY() *20 / window.getWidth());
 		glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "pr_matrix"), 1, false, value_ptr(projection));

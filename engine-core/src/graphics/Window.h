@@ -20,10 +20,13 @@ namespace engine {
 	  bool m_Keys[MAX_KEYS];
 	  bool m_MouseButtons[MAX_BUTTONS];
 	  double m_MouseX, m_MouseY;
+	  float m_ScrollOffsetX, m_ScrollOffsetY;
 	  friend static void window_resize(GLFWwindow* window, int width, int height);
 	  friend static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	  friend static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	  friend static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
+	  friend static void scroll_callback(GLFWwindow* window, double xOffset, double yOffset);
+
 
     public:
       Window(const char* title, const int width, const int height);
@@ -38,8 +41,12 @@ namespace engine {
 	  inline int getMouseX() const { return m_MouseX; }
 	  inline int getMouseY() const { return m_MouseY; }
 
+	  inline float getScrollOffsetX() const { return m_ScrollOffsetX; }
+	  inline float getScrollOffsetY() const { return m_ScrollOffsetY; }
+
 	  bool isKeyPressed(const unsigned int keycode) const;
 	  bool isMouseButtonPressed(const unsigned int keycode) const;
+	  bool isScrolled();
 
     };
   }

@@ -21,19 +21,21 @@ namespace engine {
 			if (error != GL_NO_ERROR)
 				std::cout << "OpenGL Error: " << error << std::endl;
 
+			// reset scroll variables
+			m_ScrollOffsetX /= 10;
+			m_ScrollOffsetY /= 10;
+
 			glfwPollEvents();
 			glfwSwapBuffers(m_Window);
 		}
 
 		bool Window::init() {
-			if (!glfwInit())
-			{
+			if (!glfwInit()) {
 				std::cout << "Failed to init GLFW" << std::endl;
 				return false;
 			}
 			m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
-			if (!m_Window)
-			{
+			if (!m_Window) {
 				std::cout << "Failed to create GLFW window" << std::endl;
 				return false;
 			}
@@ -43,6 +45,7 @@ namespace engine {
 			glfwSetKeyCallback(m_Window, key_callback);
 			glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 			glfwSetCursorPosCallback(m_Window, cursor_position_callback);
+			glfwSetScrollCallback(m_Window, scroll_callback);
 			// glfwSwapInterval(0.0f); // disable vsync
 
 			if (glewInit() != GLEW_OK) {
@@ -71,6 +74,12 @@ namespace engine {
 			std::cout << "Window Resized: " << width << ", " << height << std::endl;
 		}
 
+		void scroll_callback(GLFWwindow* window, double xOffset, double yOffset) {
+			Window* win = (Window*)glfwGetWindowUserPointer(window);
+			win->m_ScrollOffsetX = (float)xOffset;
+			win->m_ScrollOffsetY = (float)yOffset;
+		}
+
 		void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
 			win->m_Keys[key] = action != GLFW_RELEASE;
@@ -97,6 +106,12 @@ namespace engine {
 			if (button >= MAX_BUTTONS)
 				return false;
 			return m_MouseButtons[button];
+		}
+
+		bool Window::isScrolled() {
+			if (abs(m_ScrollOffsetX) > 0.00001 || abs(m_ScrollOffsetY) > 0.00001)
+				return true;
+			return false;
 		}
 
 	}
