@@ -31,8 +31,8 @@ int main()
 
 	glm::mat4 ml_matrix = glm::translate(glm::vec3(0, 0, -5));
 
+	Mesh* mesh = Mesh::GenerateTriangle();
 	//Mesh* mesh = Mesh::LoadMeshFile("src/meshes/cube.asciimesh");
-	Mesh* mesh = Mesh::LoadMeshFile("src/meshes/cube.asciimesh");
 	
 	Shader* shader = new Shader("src/shaders/BasicVert.glsl", "src/shaders/BasicFrag.glsl");
 	RenderObject o(mesh, shader, NULL, "texture");

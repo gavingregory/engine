@@ -4,9 +4,9 @@ uniform mat4 ml_matrix = mat4(1.0);
 uniform mat4 vw_matrix = mat4(1.0); 
 uniform mat4 pr_matrix; 
 
-in  vec3 position;
-in  vec2 texCoord;
-in  vec4 colour;  
+in vec3 position;
+in vec2 texCoord;
+in vec4 colour;
 
 out Vertex{		
 	vec2 texCoord;	
