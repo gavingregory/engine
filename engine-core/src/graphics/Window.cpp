@@ -68,6 +68,7 @@ namespace engine {
 			win->m_Width = width;
 			win->m_Height = height;
 			glViewport(0, 0, width, height);
+			std::cout << "Window Resized: " << width << ", " << height << std::endl;
 		}
 
 		void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {

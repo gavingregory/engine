@@ -31,6 +31,8 @@ public:
 	void GenerateNormals();
 
 	static Mesh* GenerateTriangle();
+	static Mesh* GenerateQuad(const float width, const float height, const glm::vec4 colour);
+	static Mesh* GenerateCircle(const float r, const float count, const glm::vec4 colour);
 	static Mesh* LoadMeshFile(const string &filename);
 
 	GLuint	type;	//Primitive type for this mesh (GL_TRIANGLES...etc)

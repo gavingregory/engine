@@ -99,6 +99,77 @@ Mesh* Mesh::GenerateTriangle()	{
 	return m;
 }
 
+
+
+
+#define PI  3.141592653589793238463
+glm::vec3 rotateVector(glm::vec3 v, float degrees) {
+	double rad = degrees * (PI / 180);
+	double ca = cos(rad);
+	double sa = sin(rad);
+	return glm::vec3(
+		(v.x*ca) - (v.y*sa),
+		(v.x*sa) + (v.y*ca),
+		0);
+}
+
+
+Mesh* Mesh::GenerateQuad(const float width, const float height, const glm::vec4 colour) {
+	Mesh* m = new Mesh();
+	m->numVertices = 4;
+	m->type = GL_QUADS;
+	m->vertices = new glm::vec3[m->numVertices];
+	m->textureCoords = new glm::vec2[m->numVertices];
+	m->colours = new glm::vec4[m->numVertices];
+
+	float half_width = width / 2;
+	float half_height = height / 2;
+
+	m->vertices[0] = glm::vec3(-half_width,  half_height, 0.0f);
+	m->vertices[1] = glm::vec3( half_width,  half_height, 0.0f);
+	m->vertices[2] = glm::vec3( half_width, -half_height,  0.0f);
+	m->vertices[3] = glm::vec3(-half_width, -half_height, 0.0f);
+
+	for (int i = 0; i < 4; i++)
+		m->colours[i] = colour;
+
+	m->textureCoords[0] = glm::vec2(0.0f, 1.0f);
+	m->textureCoords[1] = glm::vec2(0.0f, 0.0f);
+	m->textureCoords[2] = glm::vec2(1.0f, 1.0f);
+	m->textureCoords[3] = glm::vec2(1.0f, 0.0f);
+
+
+
+	m->BufferData();
+
+	return m;
+}
+
+Mesh* Mesh::GenerateCircle(const float r, const float count, const glm::vec4 colour) {
+	Mesh*m = new Mesh();
+	m->numVertices = count + 2;
+
+	m->type = GL_TRIANGLE_FAN;
+
+	m->colours  = new glm::vec4[m->numVertices];
+	m->vertices = new glm::vec3[m->numVertices];
+
+	m->vertices[0] = glm::vec3(0.0f, 0.0f, 0.0f);
+	m->colours[0] = colour;
+
+	glm::vec3 v = glm::vec3(0, r, 0);
+	float angle = 360.0f / count;
+	for (int i = 1; i <= count+1; i++) {
+		m->vertices[i] = v;
+		m->colours[i] = colour;
+		v = rotateVector(v, angle);
+	}
+
+	m->BufferData();
+
+	return m;
+}
+
 Mesh* Mesh::LoadMeshFile(const string &filename) {
 	ifstream f(filename);
 

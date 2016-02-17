@@ -17,35 +17,59 @@
 
 #define BATCH_RENDERER 1
 
+#define WIDTH 800
+#define HEIGHT 600
+
 int main()
 {
 	using namespace engine;
 	using namespace graphics;
 	using namespace utils;
+	using namespace glm;
 
-	Window window("Engine", 960, 540);
-	// glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	Window window("Engine", WIDTH, HEIGHT);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	glm::mat4 ortho = glm::ortho(0.0f, 16.0f, 0.0f, 9.0f, -100.0f, 100.0f);
-	glm::mat4 projection = glm::perspective(45.0f, 960.0f / 540.0f, 1.0f, 100.0f);
+	mat4 ortho = glm::ortho(0.0f, 20.0f, 0.0f, 20.0f, -100.0f, 100.0f);
+	mat4 projection = glm::perspective(70.0f, (float) window.getWidth() / window.getHeight(), 1.0f, 1000.0f);
 
-	glm::mat4 ml_matrix = glm::translate(glm::vec3(0, 0, -5));
+	mat4 ml_matrix = translate(vec3(0, 0, -2));
+	mat4 vw_matrix = translate(vec3(0, 0, -25));
 
-	Mesh* mesh = Mesh::GenerateTriangle();
+	//Mesh* mesh = Mesh::GenerateCircle(0.5f, 30, vec4(1, 0, 0, 1));
+	Mesh* tableMesh = Mesh::GenerateQuad(15,10, vec4(0.0f,1.f,0.0f,1));
+	Mesh* ballMesh = Mesh::GenerateCircle(0.1f, 30, vec4(1.f, 0.0f, 0.0f, 1));
 	//Mesh* mesh = Mesh::LoadMeshFile("src/meshes/cube.asciimesh");
 	
 	Shader* shader = new Shader("src/shaders/BasicVert.glsl", "src/shaders/BasicFrag.glsl");
-	RenderObject o(mesh, shader, NULL, "texture");
+	RenderObject tableObject(tableMesh, shader, NULL, "texture");
+	RenderObject ballObject(ballMesh, shader, NULL, "texture");
 	Renderer renderer = Renderer();
 
-	renderer.AddRenderObject(o);
+	renderer.AddRenderObject(ballObject);
+	renderer.AddRenderObject(tableObject);
 
 	while (!window.closed()) {
 		window.clear();
-		ml_matrix *= glm::rotate(0.0001f, glm::vec3(0, 0, 1));
-		ml_matrix *= glm::rotate(0.0001f, glm::vec3(0, 1, 0));
-		glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "pr_matrix"), 1, false, glm::value_ptr(projection));
-		glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "ml_matrix"), 1, false, glm::value_ptr(ml_matrix));
+		projection = glm::perspective(70.0f, (float)window.getWidth() / window.getHeight(), 1.0f, 1000.0f);
+		//vw_matrix *= rotate(0.0001f, vec3(1, 0, 0));
+		if (window.isKeyPressed(GLFW_KEY_W))
+			ml_matrix *= translate(vec3(0, 0.01, 0));
+		if (window.isKeyPressed(GLFW_KEY_S))
+			ml_matrix *= translate(vec3(0, -0.01, 0));
+		if (window.isKeyPressed(GLFW_KEY_A))
+			ml_matrix *= translate(vec3(-0.01, 0, 0));
+		if (window.isKeyPressed(GLFW_KEY_D))
+			ml_matrix *= translate(vec3(0.01, 0, 0));
+		if (window.isKeyPressed(GLFW_KEY_Q))
+			ml_matrix *= translate(vec3(0, 0, -0.01));
+		if (window.isKeyPressed(GLFW_KEY_E))
+			ml_matrix *= translate(vec3(0, 0, 0.01));
+
+		glUniform2f(glGetUniformLocation(shader->GetShaderProgram(), "light_pos"), window.getMouseX() *20 / window.getHeight(), window.getMouseY() *20 / window.getWidth());
+		glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "pr_matrix"), 1, false, value_ptr(projection));
+		glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "ml_matrix"), 1, false, value_ptr(ml_matrix));
+		glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "vw_matrix"), 1, false, value_ptr(vw_matrix));
 		renderer.UpdateScene(1.0f);
 		renderer.RenderScene();
 		window.update();
