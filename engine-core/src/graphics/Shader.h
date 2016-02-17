@@ -1,40 +1,57 @@
+/******************************************************************************
+Class:Shader
+Implements:
+Author:Rich Davison	<richard.davison4@newcastle.ac.uk>
+Description:VERY simple class to encapsulate GLSL shader loading, linking,
+and binding. Useful additions to this class would be overloaded functions to
+replace the glUniformxx functions in external code, and possibly a map to store
+uniform names and their resulting bindings.
+
+-_-_-_-_-_-_-_,------,
+_-_-_-_-_-_-_-|   /\_/\   NYANYANYAN
+-_-_-_-_-_-_-~|__( ^ .^) /
+_-_-_-_-_-_-_-""  ""
+
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
-#include <vector>
+
+#include <string>
 #include <iostream>
-#include <GL/glew.h>
-#include "../utils/File.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <fstream>
 
-namespace engine {
-	namespace graphics {
+#include "GL/glew.h"
+#include "renderers/Mesh.h"
 
-		class Shader
-		{
-		public:
-			Shader(const char* vertexPath, const char* fragmentPath);
-			virtual ~Shader();
+enum ShaderStage {
+	SHADER_VERTEX = 0,
+	SHADER_FRAGMENT,
+	SHADER_GEOMETRY,
+	SHADER_TCS,
+	SHADER_TES,
+	SHADER_MAX
+};
 
-			inline GLuint getShader() const { return m_ShaderId; }
+using namespace std;
+class Shader {
+public:
+	Shader(string vertex, string fragment, string geometry = "", string tcs = "", string tes = "");
+	~Shader();
+	inline GLuint GetShaderProgram() const { return program; }
+	inline bool	ShaderLinked() const { return linkSuccess; }
+	bool LinkProgram();
+	inline bool UsingDefaultShader() const { return usingBackupShader; }
 
-			GLint getUniformLocation(const GLchar* name);
+protected:
+	bool LoadShaderFile(string from, string &into);
+	GLuint GenerateShader(string from, GLenum type);
+	void SetDefaultAttributes();
+	void LoadDefaultShader();
+	GLuint objects[SHADER_MAX];
+	GLuint program;
+	bool loadSuccess;
+	bool linkSuccess;
+	bool usingBackupShader;
+};
 
-			void setUniformMat4(const GLchar* name, const glm::mat4& matrix);
-			void setUniform1f(const GLchar* name, const float f);
-			void setUniform2f(const GLchar* name, const glm::vec2& vec);
-			void setUniform3f(const GLchar* name, const glm::vec3& vec);
-			void setUniform4f(const GLchar* name, const glm::vec4& vec);
-			void setUniform1i(const GLchar* name, const GLint integer);
-
-			void enable();
-			void disable();
-		private:
-			GLuint m_ShaderId;
-			const char* m_VertexPath;
-			const char* m_FragmentPath;
-			GLuint load();
-		};
-
-	}
-}

@@ -45,7 +45,7 @@ namespace engine {
 			glBindVertexArray(0);
 
 			// should this be here?
-			delete indices;
+			delete[] indices;
 		}
 
 		void BatchRenderer2d::begin() {

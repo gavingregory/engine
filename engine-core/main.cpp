@@ -110,7 +110,6 @@ int main()
 		renderer.submit(&sprite);
 		renderer.submit(&spriteBall);
 
-
 #if BATCH_RENDERER
 		renderer.end();
 #endif

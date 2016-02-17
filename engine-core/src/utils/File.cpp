@@ -1,20 +1,22 @@
 #include "File.h"
-#include <fstream>
-#include <iostream>
 
 namespace engine {
 	namespace utils {
 
-		std::string File::ReadTextFile(const char* filePath) {
-			//TODO: throw error if file doesn't exist
+		bool File::ReadTextFile(const char* filePath, std::string& into) {
 			std::ifstream f(filePath);
 			std::string line;
 			std::string s;
-			if (f.is_open())
+			if (f.is_open()) {
 				while (getline(f, line))
 					s.append(line + '\n');
-			f.close();
-			return s;
+				f.close();
+				return true;
+			}
+			else {
+				f.close();
+				return false;
+			}
 		}
 	}
 }
