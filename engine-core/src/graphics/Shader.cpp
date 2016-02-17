@@ -59,7 +59,7 @@ could have some system that deletes and constructs shaders at runtime
 (such as a button to reload all your shaders - this can be a time saver!)
 
 */
-Shader::~Shader(void) {
+Shader::~Shader() {
 	if (program) {
 		for (int i = 0; i < SHADER_MAX; ++i) {
 			if (objects[i]) {
@@ -115,8 +115,9 @@ will return a string telling you about what warnings and errors it found.
 */
 GLuint	Shader::GenerateShader(string from, GLenum type) {
 	cout << "Compiling Shader " << from << endl;
+
 	string load;
-	if (!engine::utils::File::ReadTextFile(from.c_str(), load)) {
+	if (!LoadShaderFile(from, load)) {
 		cout << "Compiling failed! File not found!" << endl;
 		loadSuccess = false;
 		return 0;
