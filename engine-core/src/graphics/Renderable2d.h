@@ -28,6 +28,8 @@ namespace engine {
 			inline const glm::vec3& getPosition() const { return m_Position; }
 			inline const glm::vec2& getSize() const { return m_Size; }
 			inline const glm::vec4& getColour() const { return m_Colour; }
+
+			inline void setPosition(const glm::vec3 position) { m_Position = position; }
 		};
 
 	}
