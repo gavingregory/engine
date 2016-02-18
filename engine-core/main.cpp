@@ -3,10 +3,6 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
-#include "src/graphics/buffers/buffer.h"
-#include "src/graphics/buffers/indexbuffer.h"
-#include "src/graphics/buffers/vertexarray.h"
-
 #include <time.h>
 
 #include "src/utils/Timer.h"
@@ -15,7 +11,7 @@
 #include "src/graphics/renderers/RenderObject.h"
 #include "src/graphics/renderers/Renderer.h"
 
-#define BATCH_RENDERER 1
+#include "src/graphics/Entity.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -46,8 +42,9 @@ int main()
 	RenderObject ballObject(ballMesh, shader, NULL, "texture");
 	Renderer renderer = Renderer();
 
-	renderer.AddRenderObject(ballObject);
-	renderer.AddRenderObject(tableObject);
+	Entity e(vec3(), vec3(), vec3(), ballObject);
+	
+	renderer.AddRenderObject(e.getRenderObject());
 
 	while (!window.closed()) {
 		window.clear();
