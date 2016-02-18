@@ -1,6 +1,8 @@
 .vs/
 Output-Build.txt
 bin/
+Debug/
+engine-core/Debug/
 engine-core/engine-core.vcxproj
 engine-core/engine-core.vcxproj.filters
 engine-core/engine-core.vcxproj.user
@@ -8,3 +10,4 @@ engine.opensdf
 engine.sdf
 engine.sln
 lib.zip
+engine.v12.suo
