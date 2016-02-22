@@ -1,7 +1,8 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include "renderers/RenderObject.h"
+#include "RenderObject.h"
+#include "Renderer.h"
 
 namespace engine {
 	namespace graphics {
@@ -20,9 +21,9 @@ namespace engine {
 			inline RenderObject getRenderObject() const { return renderObject; }
 
 			virtual void update(float dt);
-			virtual void render();
+			virtual void render(Renderer* renderer);
 
-		private:
+		protected:
 			vec3* position;
 			vec3* acceleration;
 			vec3* velocity;

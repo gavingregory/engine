@@ -23,7 +23,7 @@ Shader::Shader(string vFile, string fFile, string gFile, string tcsFile, string 
 	linkSuccess = true;
 	loadSuccess = true;
 
-	program = glCreateProgram();
+	shaderId = glCreateProgram();
 	objects[SHADER_VERTEX] = GenerateShader(vFile, GL_VERTEX_SHADER);
 	objects[SHADER_FRAGMENT] = GenerateShader(fFile, GL_FRAGMENT_SHADER);
 	objects[SHADER_GEOMETRY] = 0;
@@ -42,7 +42,7 @@ Shader::Shader(string vFile, string fFile, string gFile, string tcsFile, string 
 
 	for (int i = 0; i < SHADER_MAX; ++i) {
 		if (objects[i]) {
-			glAttachShader(program, objects[i]);
+			glAttachShader(shaderId, objects[i]);
 		}
 	}
 
@@ -60,14 +60,14 @@ could have some system that deletes and constructs shaders at runtime
 
 */
 Shader::~Shader() {
-	if (program) {
+	if (shaderId) {
 		for (int i = 0; i < SHADER_MAX; ++i) {
 			if (objects[i]) {
-				glDetachShader(program, objects[i]);
+				glDetachShader(shaderId, objects[i]);
 				glDeleteShader(objects[i]);
 			}
 		}
-		glDeleteProgram(program);
+		glDeleteProgram(shaderId);
 	}
 }
 
@@ -156,15 +156,15 @@ bool Shader::LinkProgram() {
 		cout << "Can't link program, one or more shader objects have failed!" << endl;
 		return false;
 	}
-	glLinkProgram(program);
+	glLinkProgram(shaderId);
 
 	GLint status;
-	glGetProgramiv(program, GL_LINK_STATUS, &status);
+	glGetProgramiv(shaderId, GL_LINK_STATUS, &status);
 
 	if (status == GL_FALSE) {
 		cout << "Linking failed! Error log as follows:" << endl;
 		char error[2048];
-		glGetProgramInfoLog(program, sizeof(error), NULL, error);
+		glGetProgramInfoLog(shaderId, sizeof(error), NULL, error);
 		cout << error << endl;
 		return false;
 	}
@@ -194,9 +194,37 @@ attributes
 
 */
 void	Shader::SetDefaultAttributes() {
-	glBindAttribLocation(program, VERTEX_BUFFER, "position");
-	glBindAttribLocation(program, COLOUR_BUFFER, "colour");
-	glBindAttribLocation(program, NORMAL_BUFFER, "normal");
-	glBindAttribLocation(program, TANGENT_BUFFER, "tangent");
-	glBindAttribLocation(program, TEXTURE_BUFFER, "texCoord");
+	glBindAttribLocation(shaderId, VERTEX_BUFFER, "position");
+	glBindAttribLocation(shaderId, COLOUR_BUFFER, "colour");
+	glBindAttribLocation(shaderId, NORMAL_BUFFER, "normal");
+	glBindAttribLocation(shaderId, TANGENT_BUFFER, "tangent");
+	glBindAttribLocation(shaderId, TEXTURE_BUFFER, "texCoord");
+}
+
+GLint Shader::getUniformLocation(const GLchar* name) {
+	return glGetUniformLocation(shaderId, name);
+}
+
+void Shader::setUniformMat4(const GLchar* name, const glm::mat4& matrix) {
+	glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
+void Shader::setUniform1f(const GLchar* name, const float f) {
+	glUniform1f(getUniformLocation(name), f);
+}
+
+void Shader::setUniform2f(const GLchar* name, const glm::vec2& vec) {
+	glUniform2f(getUniformLocation(name), vec[0], vec[1]);
+}
+
+void Shader::setUniform3f(const GLchar* name, const glm::vec3& vec) {
+	glUniform3f(getUniformLocation(name), vec[0], vec[1], vec[2]);
+}
+
+void Shader::setUniform4f(const GLchar* name, const glm::vec4& vec) {
+	glUniform4f(getUniformLocation(name), vec[0], vec[1], vec[2], vec[3]);
+}
+
+void Shader::setUniform1i(const GLchar* name, const GLint integer) {
+	glUniform1i(getUniformLocation(name), integer);
 }

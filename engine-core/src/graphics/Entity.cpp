@@ -19,13 +19,12 @@ namespace engine {
 			delete acceleration;
 		}
 
-		void Entity::update(float dt) {
-			renderObject.Update(dt);
+		void Entity::update(float msec) {
+			renderObject.Update(msec);
 		}
 
-		void Entity::render() {
-			//TODO: should this be here?
-			renderObject.Draw();
+		void Entity::render(Renderer* renderer) {
+			renderer->Render(renderObject);
 		}
 
 	}

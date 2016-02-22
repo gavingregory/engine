@@ -46,6 +46,7 @@ namespace engine {
 			glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 			glfwSetCursorPosCallback(m_Window, cursor_position_callback);
 			glfwSetScrollCallback(m_Window, scroll_callback);
+			glClearColor(0.5f, 0.1f, 0.4f, 1.0f);
 			// glfwSwapInterval(0.0f); // disable vsync
 
 			if (glewInit() != GLEW_OK) {

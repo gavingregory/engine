@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include "Mesh.h"
-#include "../Shader.h"
+#include "Shader.h"
 
 class RenderObject	{
 public:
