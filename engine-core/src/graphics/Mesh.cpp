@@ -145,7 +145,7 @@ Mesh* Mesh::GenerateQuad(const float width, const float height, const glm::vec4 
 	return m;
 }
 
-Mesh* Mesh::GenerateCircle(const float r, const float count, const glm::vec4 colour) {
+Mesh* Mesh::GenerateCircle(const float r, const int count, const glm::vec4 colour) {
 	Mesh*m = new Mesh();
 	m->numVertices = count + 2;
 

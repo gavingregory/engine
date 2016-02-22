@@ -23,10 +23,15 @@ int main()
 	using namespace glm;
 
 	GameManager* g = new GameManager();
-	Mesh* mesh = Mesh::GenerateTriangle(); //Mesh::GenerateCircle(5, 10, glm::vec4(1,1,1,1));
+	Mesh* triMesh = Mesh::GenerateTriangle(); //Mesh::GenerateCircle(5, 10, glm::vec4(1,1,1,1));
+	Mesh* ballMesh = Mesh::GenerateCircle(1, 10, vec4(1, 1, 1, 1));
 	Shader* shader = new Shader("src/shaders/BasicVert.glsl", "src/shaders/BasicFrag.glsl");
-	RenderObject ballObject(mesh, shader, NULL, "");
+	RenderObject triObject(triMesh, shader, NULL, "");
+	g->addEntity(new Entity(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 0, 0), triObject));
+
+	RenderObject ballObject(ballMesh, shader, NULL, "");
 	g->addEntity(new Entity(vec3(0, 0, -10), vec3(0, 0, 0), vec3(0, 0, 0), ballObject));
+
 	g->run();
 
 //	mat4 ortho = glm::ortho(0.0f, 20.0f, 0.0f, 20.0f, -100.0f, 100.0f);
