@@ -20,7 +20,7 @@ namespace engine {
 		}
 
 		void Entity::update(float msec) {
-			renderObject.SetModelMatrix(glm::translate(glm::vec3(10, 10, 0)));
+			renderObject.SetModelMatrix(glm::translate(*this->position));
 			renderObject.Update(msec);
 		}
 

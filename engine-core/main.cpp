@@ -24,13 +24,13 @@ int main()
 
 	GameManager* g = new GameManager();
 	Mesh* triMesh = Mesh::GenerateTriangle(); //Mesh::GenerateCircle(5, 10, glm::vec4(1,1,1,1));
-	Mesh* ballMesh = Mesh::GenerateCircle(1, 10, vec4(1, 1, 1, 1));
+	Mesh* ballMesh = Mesh::GenerateCircle(0.5, 40, vec4(1, 1, 1, 1));
 	Shader* shader = new Shader("src/shaders/BasicVert.glsl", "src/shaders/BasicFrag.glsl");
 	RenderObject triObject(triMesh, shader);
 	g->addEntity(new Entity(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 0, 0), triObject));
 
 	RenderObject ballObject(ballMesh, shader);
-	g->addEntity(new Entity(vec3(0, 0, -10), vec3(0, 0, 0), vec3(0, 0, 0), ballObject));
+	g->addEntity(new Entity(vec3(10, 10, -10), vec3(0, 0, 0), vec3(0, 0, 0), ballObject));
 
 	g->run();
 
