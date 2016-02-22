@@ -19,7 +19,6 @@ namespace engine {
 			void AddRenderObject(RenderObject &r);
 		protected:
 			std::vector<RenderObject*> renderObjects;
-			void UpdateShaderMatrices(GLuint shaderId);
 		};
 
 

@@ -25,8 +25,8 @@ namespace engine {
 		void GameManager::run() {
 			while (!window.closed()) {
 				window.clear();
-				//for (int i = 0; i < entities.size(); i++)
-				//	entities[i]->update(timer.GetTimedMS());
+				for (int i = 0; i < entities.size(); i++)
+					entities[i]->update(timer.GetTimedMS());
 				for (int i = 0; i < entities.size(); i++)
 					entities[i]->render(&renderer);
 				window.update();

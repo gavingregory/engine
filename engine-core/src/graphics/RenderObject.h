@@ -29,6 +29,8 @@ public:
 
 	virtual void Draw() const;
 
+	void UpdateShaderMatrices();
+
 	void AddChild(RenderObject &child) {
 		children.push_back(&child);
 		child.parent = this;
