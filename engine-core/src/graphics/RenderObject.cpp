@@ -8,13 +8,11 @@ RenderObject::RenderObject(void) {
 	parent  = NULL;
 }
 
-RenderObject::RenderObject(Mesh*m, Shader*s, GLuint t, string tName) {
+RenderObject::RenderObject(Mesh*m, Shader*s) {
 	mesh	= m;
 	shader	= s;
 	texture = vector<GLuint>();
 	textureName = vector<string>();
-	texture.push_back(t);
-	textureName.push_back(tName);
 	parent  = NULL;
 }
 
