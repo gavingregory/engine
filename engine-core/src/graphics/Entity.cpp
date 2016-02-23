@@ -23,12 +23,13 @@ namespace engine {
 		void Entity::update(float msec) {
 
 			if (Window::WindowPointer->isMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
-				*acceleration = vec3(-0.0001f, 0.0f, 0.0f);
-				*velocity = vec3(0.001f, 0.0f, 0.0f);
+				*acceleration = vec3(-0.001f, 0.0f, 0.0f);
+				*velocity = vec3(0.1f, 0.0f, 0.0f);
 			}
 
-			*velocity = Physics::displacement(*velocity, *acceleration, msec);
-			*position += *velocity;
+			*velocity = Physics::updateVelocity(*velocity, *acceleration, msec);
+			
+			*position += Physics::updateDisplacement(*velocity, *acceleration, msec);
 
 			// slow down
 			if ((*velocity).x < 0.0001f && (*velocity).y < 0.0001f && (*velocity).z < 0.0001f) {

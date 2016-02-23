@@ -6,12 +6,16 @@ namespace engine {
 		Physics::Physics() {}
 		Physics::~Physics() {}
 
-		glm::vec3 Physics::displacement(glm::vec3 initialVelocity, glm::vec3 acceleration, float time) {
+		vec3 Physics::updateVelocity(vec3 initialVelocity, vec3 acceleration, float time) {
 			return initialVelocity + (acceleration*time);
 		}
 
-		glm::vec3 Physics::displacementOther(glm::vec3 initialVelocity, glm::vec3 acceleration, float time) {
+		vec3 Physics::updateDisplacement(vec3 initialVelocity, vec3 acceleration, float time) {
 			return (initialVelocity*time) + (0.5f*acceleration*time*time);
+		}
+
+		vec3 Physics::semiImplicitEulerIntegration(vec3 initialVelocity, vec3 initialAcceleration, float dt) {
+			return vec3(0);
 		}
 
 	}
