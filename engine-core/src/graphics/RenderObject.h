@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include <vector>
+#include <map>
 #include "Mesh.h"
 #include "Shader.h"
 
@@ -24,6 +25,9 @@ public:
 
 	inline void SetModelMatrix(glm::mat4 mat) { modelMatrix = mat; }
 	glm::mat4 GetModelMatrix() const { return modelMatrix; }
+
+
+	void pushUniformVec4(string name, glm::vec4 u) { m_UniformVec4.insert(std::pair<string, glm::vec4>(name, u)); }
 
 	virtual void Update(float msec);
 
@@ -56,6 +60,9 @@ protected:
 
 	RenderObject*			parent;
 	vector<RenderObject*>	children;
+
+	// a map of vector 4 uniforms
+	map<string, glm::vec4> m_UniformVec4;
 
 };
 

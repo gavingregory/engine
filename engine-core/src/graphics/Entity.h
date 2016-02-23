@@ -14,7 +14,7 @@ namespace engine {
 		{
 		public:
 			Entity();
-			Entity(vec3 position, vec3 velocity, vec3 acceleration, RenderObject o);
+			Entity(vec3 position, vec3 velocity, vec3 acceleration, RenderObject o, string name);
 			virtual ~Entity();
 
 			inline vec3* getPosition() const { return position; }
@@ -26,6 +26,7 @@ namespace engine {
 			virtual void render(Renderer* renderer);
 
 		protected:
+			string name;
 			vec3* position;
 			vec3* acceleration;
 			vec3* velocity;

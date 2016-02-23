@@ -1,18 +1,18 @@
-#include "Ball.h"
+#include "BallEntity.h"
 
-Ball::Ball()
-	: Entity(glm::vec3(0), glm::vec3(0), glm::vec3(0), RenderObject()) {
-
-}
-
-Ball::Ball(glm::vec3 position, glm::vec3 velocity, glm::vec3 acceleration, RenderObject o)
-	: Entity(position, velocity, acceleration, o) {
+BallEntity::BallEntity()
+	: Entity(glm::vec3(0), glm::vec3(0), glm::vec3(0), RenderObject(), "ball") {
 
 }
 
-Ball::~Ball() {}
+BallEntity::BallEntity(glm::vec3 position, glm::vec3 velocity, glm::vec3 acceleration, RenderObject o, string name, glm::vec4 colour)
+	: Entity(position, velocity, acceleration, o, name) {
+	renderObject.pushUniformVec4("col", colour);
+}
 
-void Ball::update(float msec) {
+BallEntity::~BallEntity() {}
+
+void BallEntity::update(float msec) {
 	if (engine::graphics::Window::WindowPointer->isMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
 		*acceleration = glm::vec3(-0.001f, 0.0f, 0.0f);
 		*velocity = glm::vec3(0.1f, 0.0f, 0.0f);
