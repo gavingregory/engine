@@ -4,32 +4,32 @@ namespace engine {
 	namespace graphics {
 
 		GameManager::GameManager()
-			: window(Window(TITLE, WIDTH, HEIGHT)){
-			renderer = Renderer();
-			physicsManager = PhysicsManager();
-			entities = vector<Entity*>();
+			: m_Window(Window(TITLE, WIDTH, HEIGHT)){
+			m_Renderer = Renderer();
+			m_PhysicsManager = PhysicsManager();
+			m_Entities = vector<Entity*>();
 		}
 
 		GameManager::~GameManager() {
-			if (!entities.empty()) {
-				for (int i = 0; i < entities.size(); i++) {
-					delete entities[i];
+			if (!m_Entities.empty()) {
+				for (int i = 0; i < m_Entities.size(); i++) {
+					delete m_Entities[i];
 				}
 			}
 		}
 		
 		void GameManager::addEntity(Entity* e) {
-			entities.push_back(e);
+			m_Entities.push_back(e);
 		}
 
 		void GameManager::run() {
-			while (!window.closed()) {
-				window.clear();
-				for (int i = 0; i < entities.size(); i++)
-					entities[i]->update(timer.GetTimedMS());
-				for (int i = 0; i < entities.size(); i++)
-					entities[i]->render(&renderer);
-				window.update();
+			while (!m_Window.closed()) {
+				m_Window.clear();
+				for (int i = 0; i < m_Entities.size(); i++)
+					m_Entities[i]->update(m_Timer.GetTimedMS());
+				for (int i = 0; i < m_Entities.size(); i++)
+					m_Entities[i]->render(&m_Renderer);
+				m_Window.update();
 			}
 		}
 	}

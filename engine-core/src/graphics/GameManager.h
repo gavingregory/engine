@@ -5,7 +5,6 @@
 #include "Renderer.h"
 #include "Entity.h"
 #include "../utils/GameTimer.h"
-#include "Camera.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -23,12 +22,15 @@ namespace engine {
 
 			void addEntity(Entity* e);
 			void run();
+
+			inline Window getWindow() { return m_Window; }
+
 		private:
-			Window window;
-			PhysicsManager physicsManager;
-			Renderer renderer;
-			vector<Entity*> entities;
-			GameTimer timer;
+			Window m_Window;
+			PhysicsManager m_PhysicsManager;
+			Renderer m_Renderer;
+			vector<Entity*> m_Entities;
+			GameTimer m_Timer;
 		};
 
 	}

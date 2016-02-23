@@ -30,7 +30,7 @@ int main()
 	g->addEntity(new Entity(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 0, 0), triObject));
 
 	RenderObject ballObject(ballMesh, shader);
-	g->addEntity(new Entity(vec3(10, 10, -10), vec3(0, 0, 0), vec3(0, 0, 0), ballObject));
+	g->addEntity(new Entity(vec3(10, 10, -10), vec3(0.005f, 0, 0), vec3(-0.0001f, 0, 0), ballObject));
 
 	g->run();
 

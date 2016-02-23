@@ -4,14 +4,15 @@
 
 namespace engine {
 	namespace physics {
+		using namespace glm;
 
 		class Physics
 		{
 		public:
 			Physics();
 			virtual ~Physics();
-			static glm::vec3 displacement(glm::vec3 initialVelocity, glm::vec3 acceleration, float time);
-			static glm::vec3 displacementOther(glm::vec3 initialVelocity, glm::vec3 acceleration, float time);
+			static vec3 displacement(vec3 initialVelocity, vec3 acceleration, float time);
+			static vec3 displacementOther(vec3 initialVelocity, vec3 acceleration, float time);
 		};
 
 	}

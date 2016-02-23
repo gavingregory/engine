@@ -20,6 +20,15 @@ namespace engine {
 		}
 
 		void Entity::update(float msec) {
+			*velocity = Physics::displacement(*velocity, *acceleration, msec);
+			*position += *velocity;
+
+			// slow down
+			if ((*velocity).x < 0.0001f && (*velocity).y < 0.0001f && (*velocity).z < 0.0001f) {
+				*acceleration = vec3(0);
+				*velocity = vec3(0);
+			}
+
 			renderObject.SetModelMatrix(glm::translate(*this->position));
 			renderObject.Update(msec);
 		}

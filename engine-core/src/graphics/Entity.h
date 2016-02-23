@@ -3,10 +3,12 @@
 #include <glm/glm.hpp>
 #include "RenderObject.h"
 #include "Renderer.h"
+#include "../physics/Physics.h"
 
 namespace engine {
 	namespace graphics {
 		using namespace glm;
+		using namespace engine::physics;
 
 		class Entity
 		{
