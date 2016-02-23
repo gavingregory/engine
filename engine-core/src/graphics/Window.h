@@ -48,6 +48,7 @@ namespace engine {
 	  bool isMouseButtonPressed(const unsigned int keycode) const;
 	  bool isScrolled();
 
+	  static Window* WindowPointer;
     };
   }
 }

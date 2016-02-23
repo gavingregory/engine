@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Window.h"
 
 namespace engine {
 	namespace graphics {
@@ -20,6 +21,12 @@ namespace engine {
 		}
 
 		void Entity::update(float msec) {
+
+			if (Window::WindowPointer->isMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
+				*acceleration = vec3(-0.0001f, 0.0f, 0.0f);
+				*velocity = vec3(0.001f, 0.0f, 0.0f);
+			}
+
 			*velocity = Physics::displacement(*velocity, *acceleration, msec);
 			*position += *velocity;
 

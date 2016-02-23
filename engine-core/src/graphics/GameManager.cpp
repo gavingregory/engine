@@ -8,6 +8,7 @@ namespace engine {
 			m_Renderer = Renderer();
 			m_PhysicsManager = PhysicsManager();
 			m_Entities = vector<Entity*>();
+			Window::WindowPointer = &m_Window;
 		}
 
 		GameManager::~GameManager() {
@@ -16,6 +17,7 @@ namespace engine {
 					delete m_Entities[i];
 				}
 			}
+			Window::WindowPointer = nullptr;
 		}
 		
 		void GameManager::addEntity(Entity* e) {

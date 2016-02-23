@@ -23,8 +23,6 @@ namespace engine {
 			void addEntity(Entity* e);
 			void run();
 
-			inline Window getWindow() { return m_Window; }
-
 		private:
 			Window m_Window;
 			PhysicsManager m_PhysicsManager;

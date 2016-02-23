@@ -1,10 +1,8 @@
-#include "src/graphics/Window.h"
-#include "src/graphics/Shader.h"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
-
 #include <time.h>
 
+#include "src/graphics/Shader.h"
 #include "src/physics/Physics.h"
 #include "src/graphics/RenderObject.h"
 #include "src/graphics/Renderer.h"
@@ -30,7 +28,7 @@ int main()
 	g->addEntity(new Entity(vec3(0, 5, -10), vec3(0, 0, 0), vec3(0, 0, 0), triObject));
 
 	RenderObject ballObject(ballMesh, shader);
-	g->addEntity(new Entity(vec3(10, 10, -10), vec3(0.005f, 0, 0), vec3(-0.0001f, 0, 0), ballObject));
+	g->addEntity(new Entity(vec3(10, 10, -10), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject));
 
 	g->run();
 

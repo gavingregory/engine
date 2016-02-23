@@ -6,6 +6,8 @@
 namespace engine {
 	namespace graphics {
 
+		Window* Window::WindowPointer;
+
 		Window::Window(const char* title, const int width, const int height)
 			: m_Title(title), m_Width(width), m_Height(height) {
 			if (!init())
