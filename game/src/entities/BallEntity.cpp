@@ -14,8 +14,8 @@ BallEntity::~BallEntity() {}
 
 void BallEntity::update(float msec) {
 	if (engine::graphics::Window::WindowPointer->isMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
-		*acceleration = glm::vec3(-0.001f, 0.0f, 0.0f);
-		*velocity = glm::vec3(0.1f, 0.0f, 0.0f);
+		*acceleration = glm::vec3(-0.01f, 0.0f, 0.0f);
+		*velocity = glm::vec3(0.8f, 0.0f, 0.0f);
 	}
 
 	*velocity = engine::graphics::Physics::updateVelocity(*velocity, *acceleration, msec);
