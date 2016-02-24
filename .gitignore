@@ -6,6 +6,9 @@ engine-core/Debug/
 engine-core/engine-core.vcxproj
 engine-core/engine-core.vcxproj.filters
 engine-core/engine-core.vcxproj.user
+game/game.vcxproj
+game/game.vcxproj.filters
+game/game.vcxproj.user
 engine.opensdf
 engine.sdf
 engine.sln

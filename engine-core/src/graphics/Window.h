@@ -1,6 +1,9 @@
 #pragma once
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+
+#include <iostream>
 
 #define MAX_KEYS 1024
 #define MAX_BUTTONS 32
@@ -40,6 +43,15 @@ namespace engine {
 
 	  inline int getMouseX() const { return m_MouseX; }
 	  inline int getMouseY() const { return m_MouseY; }
+
+	  // gets a vector of the mouse position relative to the last time you called this function
+	  glm::vec2 getMouseOffset() const {
+		  static glm::vec2 previous = glm::vec2(m_MouseX, m_MouseY);
+		  glm::vec2 offset = previous - glm::vec2(m_MouseX, m_MouseY);
+		  previous = glm::vec2(m_MouseX, m_MouseY);
+		  std::cout << offset.x << ", " << offset.y << std::endl;
+		  return offset;
+	  }
 
 	  inline float getScrollOffsetX() const { return m_ScrollOffsetX; }
 	  inline float getScrollOffsetY() const { return m_ScrollOffsetY; }

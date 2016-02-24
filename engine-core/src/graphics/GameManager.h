@@ -1,10 +1,11 @@
 #pragma once
 
-#include "../graphics/Window.h"
 #include "PhysicsManager.h"
 #include "Renderer.h"
 #include "RenderObject.h"
 #include "../utils/GameTimer.h"
+#include "../input/InputHandler.h"
+#include "Camera.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -21,6 +22,7 @@ namespace engine {
 			virtual ~GameManager();
 
 			void addRenderObject(RenderObject* e);
+			void setInputHandler(InputHandler* i) { m_InputHandler = i; }
 			void run();
 
 		private:
@@ -29,6 +31,8 @@ namespace engine {
 			Renderer m_Renderer;
 			vector<RenderObject*> m_RenderObjects;
 			GameTimer m_Timer;
+			InputHandler* m_InputHandler;
+			Camera* m_Camera;
 		};
 
 	}

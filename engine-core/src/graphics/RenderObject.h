@@ -5,6 +5,7 @@
 #include <map>
 #include "Mesh.h"
 #include "Shader.h"
+#include "Camera.h"
 
 class RenderObject	{
 public:

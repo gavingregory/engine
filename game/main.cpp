@@ -8,6 +8,7 @@
 #include "../engine-core/src/graphics/Renderer.h"
 #include "../engine-core/src/graphics/GameManager.h"
 #include "../engine-core/src/graphics/Mesh.h"
+#include "src/input/SnookerInput.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -72,6 +73,7 @@ int main()
 	using namespace glm;
 
 	GameManager* g = new GameManager();
+	g->setInputHandler(new SnookerInput());
 
 	Mesh* tableMesh = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0.0f, 1.0f, 0.0f, 1.0f));
 	Mesh* cueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 1.000f, 1.000f)); // cue
@@ -111,28 +113,6 @@ int main()
 	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED12_BALL_X,  RED12_BALL_Y, BALL_RADIUS))); // red12
 	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED13_BALL_X,  RED13_BALL_Y, BALL_RADIUS))); // red13
 	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED14_BALL_X,  RED14_BALL_Y, BALL_RADIUS))); // red14
-
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
-	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
 
 	g->run();
 

@@ -1,5 +1,7 @@
 #include "RenderObject.h"
 
+using namespace engine::graphics;
+
 RenderObject::RenderObject(void) {
 	mesh	= NULL;
 	shader	= NULL;
@@ -43,9 +45,7 @@ void RenderObject::UpdateShaderMatrices() {
 	for (std::map<string, glm::vec4>::iterator it = m_UniformVec4.begin(); it != m_UniformVec4.end(); ++it)
 		glUniform4f(glGetUniformLocation(shader->GetShaderProgram(), (it->first).c_str()), it->second.x, it->second.y, it->second.z, it->second.w);
 
-	glm::mat4 pr_matrix = glm::ortho(-180.0f, 180.0f, -180.0f, 180.0f, -100.0f, 100.0f); //glm::perspective(60.0f, 800.0f/600.0f, 1.0f, 100.0f);
-	glm::mat4 vw_matrix = glm::mat4(1.0f);
 	glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "ml_matrix"), 1, GL_FALSE, glm::value_ptr(worldTransform));
-	glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "vw_matrix"), 1, GL_FALSE, glm::value_ptr(vw_matrix));
-	glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "pr_matrix"), 1, GL_FALSE, glm::value_ptr(pr_matrix));
+	glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "vw_matrix"), 1, GL_FALSE, glm::value_ptr(Camera::vw_matrix));
+	glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "pr_matrix"), 1, GL_FALSE, glm::value_ptr(Camera::pr_matrix));
 }
