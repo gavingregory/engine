@@ -7,10 +7,7 @@
 #include "../engine-core/src/graphics/RenderObject.h"
 #include "../engine-core/src/graphics/Renderer.h"
 #include "../engine-core/src/graphics/GameManager.h"
-#include "../engine-core/src/graphics/Entity.h"
 #include "../engine-core/src/graphics/Mesh.h"
-#include "src/entities/BallEntity.h"
-#include "src/entities/TableEntity.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -31,40 +28,67 @@ int main()
 	using namespace glm;
 
 	GameManager* g = new GameManager();
-	Mesh* triMesh = Mesh::GenerateTriangle(); //Mesh::GenerateCircle(5, 10, glm::vec4(1,1,1,1));
-	Mesh* ballMesh = Mesh::GenerateCircle(2.625f, 30, vec4(1, 1, 1, 1));
-	Shader* defaultShader = new Shader("res/shader/BasicVert.glsl", "res/shader/BasicFrag.glsl");
-	Shader* ballShader = new Shader("res/shader/ball.vert", "res/shader/ball.frag");
-	RenderObject triObject(triMesh, defaultShader);
-	g->addEntity(new Entity(vec3(1, 10, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), triObject, "triangle"));
-
-	RenderObject ballObject(ballMesh, ballShader);
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "cueball", vec4(1.0f,1.0f,1.0f,1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(BLACK_BALL_X, BLACK_BALL_Y, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "blackball", vec4(0.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "pinkball", vec4(1.0f, 0.412f, 0.706f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(BLUE_BALL_X, BLUE_BALL_Y, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "blueball", vec4(0, 0, 0.804f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "greenball", vec4(0.0f, 0.392f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "brownball", vec4(0.647f, 0.165f, 0.165f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "yellowball", vec4(1.0f, 1.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball00", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball01", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball02", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball03", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball04", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball05", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball06", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball07", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball08", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball09", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball10", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball11", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball12", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball13", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	g->addEntity((Entity*)new BallEntity(vec3(1, 5, -30), vec3(0.001f, 0, 0), vec3(-0.0001f, 0, 0), ballObject, "redball14", vec4(1.0f, 0.0f, 0.0f, 1.0f)));
 
 	Mesh* tableMesh = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0.0f, 1.0f, 0.0f, 1.0f));
+	Mesh* cueMesh = Mesh::GenerateCircle(2.625f, 30, vec4(1.000f, 1.000f, 1.000f, 1.000f)); // cue
+	Mesh* blackMesh = Mesh::GenerateCircle(2.625f, 30, vec4(0.000f, 0.000f, 0.000f, 1.000f)); // black
+	Mesh* pinkMesh = Mesh::GenerateCircle(2.625f, 30, vec4(1.000f, 0.412f, 0.706f, 1.000f)); // pink
+	Mesh* blueMesh = Mesh::GenerateCircle(2.625f, 30, vec4(0.118f, 0.565f, 1.000f, 1.000f)); // blue
+	Mesh* yellowMesh = Mesh::GenerateCircle(2.625f, 30, vec4(1.000f, 1.000f, 0.000f, 1.000f)); // yellow
+	Mesh* brownMesh = Mesh::GenerateCircle(2.625f, 30, vec4(0.545f, 0.271f, 0.075f, 1.000f)); // brown
+	Mesh* greenMesh = Mesh::GenerateCircle(2.625f, 30, vec4(0.596f, 0.984f, 0.596f, 1.000f)); // green
+	Mesh* redMesh = Mesh::GenerateCircle(2.625f, 30, vec4(1.000f, 0.000f, 0.000f, 1.000f)); // red
+
+	Shader* defaultShader = new Shader("res/shader/BasicVert.glsl", "res/shader/BasicFrag.glsl");
+
 	RenderObject tableObject(tableMesh, defaultShader);
-	g->addEntity((Entity*)new TableEntity(vec3(5, 5, -30), vec3(0), vec3(0), tableObject, "table"));
+	
+	g->addRenderObject(&tableObject);
+
+	tableObject.AddChild(new RenderObject(   cueMesh, defaultShader, vec3(1, 1, 1))); // cue
+	tableObject.AddChild(new RenderObject( blackMesh, defaultShader, vec3(1, 1, 1))); // black
+	tableObject.AddChild(new RenderObject(  pinkMesh, defaultShader, vec3(1, 1, 1))); // pink
+	tableObject.AddChild(new RenderObject(  blueMesh, defaultShader, vec3(1, 1, 1))); // blue
+	tableObject.AddChild(new RenderObject(yellowMesh, defaultShader, vec3(1, 1, 1))); // yellow
+	tableObject.AddChild(new RenderObject( brownMesh, defaultShader, vec3(1, 1, 1))); // brown
+	tableObject.AddChild(new RenderObject (greenMesh, defaultShader, vec3(1, 1, 1))); // green
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red00
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red01
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red02
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red03
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red04
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red05
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red06
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red07
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red08
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red09
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red10
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red11
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red12
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red13
+	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3(1, 1, 1))); // red14
+
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
+	//tableObject.AddChild(RenderObject(ballMesh, defaultShader, vec3(1, 5, -30)));
 
 	g->run();
 

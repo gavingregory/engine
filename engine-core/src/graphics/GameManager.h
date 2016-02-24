@@ -3,7 +3,7 @@
 #include "../graphics/Window.h"
 #include "PhysicsManager.h"
 #include "Renderer.h"
-#include "Entity.h"
+#include "RenderObject.h"
 #include "../utils/GameTimer.h"
 
 #define WIDTH 800
@@ -20,14 +20,14 @@ namespace engine {
 			GameManager();
 			virtual ~GameManager();
 
-			void addEntity(Entity* e);
+			void addRenderObject(RenderObject* e);
 			void run();
 
 		private:
 			Window m_Window;
 			PhysicsManager m_PhysicsManager;
 			Renderer m_Renderer;
-			vector<Entity*> m_Entities;
+			vector<RenderObject*> m_RenderObjects;
 			GameTimer m_Timer;
 		};
 

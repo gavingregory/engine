@@ -11,22 +11,24 @@ namespace engine {
 		Renderer::~Renderer() { }
 
 		void Renderer::RenderScene() {
-			for (std::vector<RenderObject*>::iterator i = renderObjects.begin(); i != renderObjects.end(); ++i) {
-				Render(*(*i));
-			}
 		}
 
-		void Renderer::Render(RenderObject &o) {
-			glUseProgram(o.GetShader()->GetShaderProgram());
-			o.UpdateShaderMatrices();
+		void Renderer::Render(RenderObject* o) {
+			glUseProgram(o->GetShader()->GetShaderProgram());
+			o->UpdateShaderMatrices();
 
 			// transparency stuff
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 			//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-			o.Draw();
+			o->Draw();
 			//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+			vector<RenderObject*> children = *(o->getChildren());
+			
+			for (int i = 0; i < children.size(); i++)
+				Render(children[i]);
 		}
 
 		void Renderer::UpdateScene(float msec) {

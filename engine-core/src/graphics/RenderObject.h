@@ -10,43 +10,32 @@ class RenderObject	{
 public:
 	RenderObject();
 	RenderObject(Mesh* m, Shader* s);
+	RenderObject(Mesh* m, Shader* s, glm::vec3 pos);
 	~RenderObject();
-
 	Mesh* GetMesh() const { return mesh; }
 	void SetMesh(Mesh*m) { mesh = m; }
-
 	inline Shader* GetShader() const { return shader; }
 	inline void SetShader(Shader*s) { shader = s; }
-
 	inline string GetTextureNames(int index) const { return textureName[index]; }
 	inline GLuint GetTextures(int index) const { return texture[index]; }
 	inline int GetTexturesSize() const { return texture.size();  }
 	inline void pushTexture(GLuint texture, string tName) { this->texture.push_back(texture); this->textureName.push_back(tName); }
-
 	inline void SetModelMatrix(glm::mat4 mat) { modelMatrix = mat; }
-	glm::mat4 GetModelMatrix() const { return modelMatrix; }
-
-
+	inline glm::mat4 GetModelMatrix() const { return modelMatrix; }
 	void pushUniformVec4(string name, glm::vec4 u) { m_UniformVec4.insert(std::pair<string, glm::vec4>(name, u)); }
-
 	virtual void Update(float msec);
-
 	virtual void Draw() const;
 
 	void UpdateShaderMatrices();
 
-	void AddChild(RenderObject &child) {
-		children.push_back(&child);
-		child.parent = this;
+	void AddChild(RenderObject* child) {
+		children.push_back(child);
+		child->parent = this;
 	}
 
-	glm::mat4 GetWorldTransform() const {
-		return worldTransform;
-	}
+	vector<RenderObject*>* getChildren() { return &children; }
 
-	const vector<RenderObject*>& GetChildren() const  {
-		return children;
-	}
+	inline glm::mat4 GetWorldTransform() const { return worldTransform; }
 
 protected:
 	Mesh*	mesh;

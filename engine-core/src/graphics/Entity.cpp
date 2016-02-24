@@ -16,7 +16,6 @@ namespace engine {
 			this->name = name;
 		}
 
-
 		Entity::~Entity() {
 			delete position;
 			delete velocity;

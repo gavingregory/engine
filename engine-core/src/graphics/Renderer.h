@@ -14,7 +14,7 @@ namespace engine {
 			Renderer();
 			~Renderer();
 			virtual void RenderScene();
-			virtual void Render(RenderObject &o);
+			virtual void Render(RenderObject* o);
 			virtual void UpdateScene(float msec);
 			void AddRenderObject(RenderObject &r);
 		protected:
