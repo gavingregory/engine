@@ -1,8 +1,7 @@
 #pragma once
 
-#include "PhysicsManager.h"
 #include "Renderer.h"
-#include "RenderObject.h"
+#include "Entity.h"
 #include "../utils/GameTimer.h"
 #include "../input/InputHandler.h"
 #include "Camera.h"
@@ -21,15 +20,14 @@ namespace engine {
 			GameManager();
 			virtual ~GameManager();
 
-			void addRenderObject(RenderObject* e);
+			void addEntity(Entity* e);
 			void setInputHandler(InputHandler* i) { m_InputHandler = i; }
 			void run();
 
 		private:
 			Window m_Window;
-			PhysicsManager m_PhysicsManager;
-			Renderer m_Renderer;
-			vector<RenderObject*> m_RenderObjects;
+			Renderer* m_Renderer;
+			vector<Entity*> m_Entities;
 			GameTimer m_Timer;
 			InputHandler* m_InputHandler;
 			Camera* m_Camera;

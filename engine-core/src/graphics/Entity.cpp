@@ -3,32 +3,29 @@
 
 namespace engine {
 	namespace graphics {
-		//TODO: allocate memory in array or something
-		Entity::Entity()
-			: position(new vec3(0)), velocity(new vec3(0)), acceleration(new vec3(0)) {
-			renderObject = RenderObject();
-			name = "";
-		}
 
-		Entity::Entity(vec3 position, vec3 velocity, vec3 acceleration, RenderObject o, string name)
-			: position(new vec3(position)), velocity(new vec3(velocity)), acceleration(new vec3(acceleration)) {
-			renderObject = o;
-			this->name = name;
+		Entity::Entity(vec3 position, vec3 velocity, vec3 acceleration, Mesh* mesh, Shader* shader, string name) {
+			m_RenderObject = new RenderObject(mesh, shader);
+			m_PhysicsObject = new PhysicsObject(position, velocity, acceleration, m_RenderObject);
+			m_Name = name;
 		}
 
 		Entity::~Entity() {
-			delete position;
-			delete velocity;
-			delete acceleration;
+			if (m_RenderObject) delete m_RenderObject;
+			if (m_PhysicsObject) delete m_PhysicsObject;
 		}
 
 		void Entity::update(float msec) {
-			renderObject.SetModelMatrix(glm::translate(*this->position));
-			renderObject.Update(msec);
+			m_PhysicsObject->update(msec);
+			m_RenderObject->Update(msec); // do i need this?
 		}
 
 		void Entity::render(Renderer* renderer) {
-			renderer->Render(renderObject);
+			renderer->Render(m_RenderObject);
+		}
+
+		void Entity::addChild(Entity* e) {
+			this->m_RenderObject->AddChild(e->m_RenderObject);
 		}
 	}
 }

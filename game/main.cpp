@@ -75,44 +75,46 @@ int main()
 	GameManager* g = new GameManager();
 	g->setInputHandler(new SnookerInput());
 
-	Mesh* tableMesh = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0.0f, 1.0f, 0.0f, 1.0f));
-	Mesh* cueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 1.000f, 1.000f)); // cue
-	Mesh* blackMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.000f, 0.000f, 0.000f, 1.000f)); // black
-	Mesh* pinkMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.412f, 0.706f, 1.000f)); // pink
-	Mesh* blueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.118f, 0.565f, 1.000f, 1.000f)); // blue
-	Mesh* yellowMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 0.000f, 1.000f)); // yellow
-	Mesh* brownMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.545f, 0.271f, 0.075f, 1.000f)); // brown
-	Mesh* greenMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.596f, 0.984f, 0.596f, 1.000f)); // green
-	Mesh* redMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.000f, 0.000f, 1.000f)); // red
+	Mesh* tableMesh  = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0.0f, 1.0f, 0.0f, 0.5f));
+	Mesh* cueMesh    = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 1.000f, 0.500f)); // cue
+	Mesh* blackMesh  = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.000f, 0.000f, 0.000f, 0.500f)); // black
+	Mesh* pinkMesh   = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.412f, 0.706f, 0.500f)); // pink
+	Mesh* blueMesh   = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.118f, 0.565f, 1.000f, 0.500f)); // blue
+	Mesh* yellowMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 0.000f, 0.500f)); // yellow
+	Mesh* brownMesh  = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.545f, 0.271f, 0.075f, 0.500f)); // brown
+	Mesh* greenMesh  = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.596f, 0.984f, 0.596f, 0.500f)); // green
+	Mesh* redMesh    = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.000f, 0.000f, 0.500f)); // red
 
 	Shader* defaultShader = new Shader("res/shader/BasicVert.glsl", "res/shader/BasicFrag.glsl");
 
 	RenderObject tableObject(tableMesh, defaultShader);
 	
-	g->addRenderObject(&tableObject);
+	Entity* table = new Entity(vec3(0), vec3(0), vec3(0), tableMesh, defaultShader, "table");
 
-	tableObject.AddChild(new RenderObject(   cueMesh, defaultShader, vec3(1, 1, 1))); // cue
-	tableObject.AddChild(new RenderObject( blackMesh, defaultShader, vec3( BLACK_BALL_X,  BLACK_BALL_Y, BALL_RADIUS))); // black
-	tableObject.AddChild(new RenderObject(  pinkMesh, defaultShader, vec3(  PINK_BALL_X,   PINK_BALL_Y, BALL_RADIUS))); // pink
-	tableObject.AddChild(new RenderObject(  blueMesh, defaultShader, vec3(  BLUE_BALL_X,   BLUE_BALL_Y, BALL_RADIUS))); // blue
-	tableObject.AddChild(new RenderObject(yellowMesh, defaultShader, vec3(YELLOW_BALL_X, YELLOW_BALL_Y, BALL_RADIUS))); // yellow
-	tableObject.AddChild(new RenderObject( brownMesh, defaultShader, vec3( BROWN_BALL_X,  BROWN_BALL_Y, BALL_RADIUS))); // brown
-	tableObject.AddChild(new RenderObject (greenMesh, defaultShader, vec3( GREEN_BALL_X,  GREEN_BALL_Y, BALL_RADIUS))); // green
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED00_BALL_X,  RED00_BALL_Y, BALL_RADIUS))); // red00
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED01_BALL_X,  RED01_BALL_Y, BALL_RADIUS))); // red01
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED02_BALL_X,  RED02_BALL_Y, BALL_RADIUS))); // red02
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED03_BALL_X,  RED03_BALL_Y, BALL_RADIUS))); // red03
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED04_BALL_X,  RED04_BALL_Y, BALL_RADIUS))); // red04
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED05_BALL_X,  RED05_BALL_Y, BALL_RADIUS))); // red05
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED06_BALL_X,  RED06_BALL_Y, BALL_RADIUS))); // red06
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED07_BALL_X,  RED07_BALL_Y, BALL_RADIUS))); // red07
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED08_BALL_X,  RED08_BALL_Y, BALL_RADIUS))); // red08
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED09_BALL_X,  RED09_BALL_Y, BALL_RADIUS))); // red09
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED10_BALL_X,  RED10_BALL_Y, BALL_RADIUS))); // red10
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED11_BALL_X,  RED11_BALL_Y, BALL_RADIUS))); // red11
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED12_BALL_X,  RED12_BALL_Y, BALL_RADIUS))); // red12
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED13_BALL_X,  RED13_BALL_Y, BALL_RADIUS))); // red13
-	tableObject.AddChild(new RenderObject(   redMesh, defaultShader, vec3( RED14_BALL_X,  RED14_BALL_Y, BALL_RADIUS))); // red14
+	g->addEntity(table);
+
+	table->addChild(new Entity(vec3(0), vec3(0), vec3(0), cueMesh, defaultShader, "cueBall"));
+	table->addChild(new Entity(vec3( BLACK_BALL_X,  BLACK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),  blackMesh, defaultShader, "blackBall"));
+	table->addChild(new Entity(vec3(  PINK_BALL_X,   PINK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),   pinkMesh, defaultShader, "pinkBall"));
+	table->addChild(new Entity(vec3(  BLUE_BALL_X,   BLUE_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),   blueMesh, defaultShader, "blueBall"));
+	table->addChild(new Entity(vec3(YELLOW_BALL_X, YELLOW_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), yellowMesh, defaultShader, "yellowBall"));
+	table->addChild(new Entity(vec3( BROWN_BALL_X,  BROWN_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),  brownMesh, defaultShader, "brownBall"));
+	table->addChild(new Entity(vec3( GREEN_BALL_X,  GREEN_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),  greenMesh, defaultShader, "greenBall"));
+	table->addChild(new Entity(vec3( RED00_BALL_X,  RED00_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall01"));
+	table->addChild(new Entity(vec3( RED01_BALL_X,  RED01_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall02"));
+	table->addChild(new Entity(vec3( RED02_BALL_X,  RED02_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall03"));
+	table->addChild(new Entity(vec3( RED03_BALL_X,  RED03_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall04"));
+	table->addChild(new Entity(vec3( RED04_BALL_X,  RED04_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall05"));
+	table->addChild(new Entity(vec3( RED05_BALL_X,  RED05_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall06"));
+	table->addChild(new Entity(vec3( RED06_BALL_X,  RED06_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall07"));
+	table->addChild(new Entity(vec3( RED07_BALL_X,  RED07_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall08"));
+	table->addChild(new Entity(vec3( RED08_BALL_X,  RED08_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall09"));
+	table->addChild(new Entity(vec3( RED09_BALL_X,  RED09_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall10"));
+	table->addChild(new Entity(vec3( RED10_BALL_X,  RED10_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall11"));
+	table->addChild(new Entity(vec3( RED11_BALL_X,  RED11_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall12"));
+	table->addChild(new Entity(vec3( RED12_BALL_X,  RED12_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall13"));
+	table->addChild(new Entity(vec3( RED13_BALL_X,  RED13_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall14"));
+	table->addChild(new Entity(vec3( RED14_BALL_X,  RED14_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, "redBall15"));
 
 	g->run();
 

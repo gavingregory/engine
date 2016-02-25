@@ -10,6 +10,7 @@ game/game.vcxproj
 game/game.vcxproj.filters
 game/game.vcxproj.user
 engine.opensdf
+engine.VC.opendb
 engine.sdf
 engine.sln
 lib.zip

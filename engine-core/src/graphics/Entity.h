@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include "RenderObject.h"
+#include "PhysicsObject.h"
 #include "Renderer.h"
 #include "../physics/Physics.h"
 
@@ -13,24 +14,24 @@ namespace engine {
 		class Entity
 		{
 		public:
-			Entity();
-			Entity(vec3 position, vec3 velocity, vec3 acceleration, RenderObject o, string name);
+			Entity(vec3 p, vec3 v, vec3 a, Mesh* m, Shader* s, string n);
 			virtual ~Entity();
 
-			inline vec3* getPosition() const { return position; }
-			inline vec3* getAcceleration() const { return acceleration; }
-			inline vec3* getVelocity() const { return velocity; }
-			inline RenderObject getRenderObject() const { return renderObject; }
+			inline vec3 getPosition() const { return m_PhysicsObject->m_Position; }
+			inline vec3 getAcceleration() const { return m_PhysicsObject->m_Acceleration; }
+			inline vec3 getVelocity() const { return m_PhysicsObject->m_Velocity; }
+			inline RenderObject* getRenderObject() const { return m_RenderObject; }
+			inline PhysicsObject* getPhysicsObject() const { return m_PhysicsObject; }
 
 			virtual void update(float dt);
 			virtual void render(Renderer* renderer);
 
+			void addChild(Entity* e);
+
 		protected:
-			string name;
-			vec3* position;
-			vec3* acceleration;
-			vec3* velocity;
-			RenderObject renderObject;
+			string m_Name;
+			RenderObject* m_RenderObject;
+			PhysicsObject* m_PhysicsObject;
 		};
 
 	}

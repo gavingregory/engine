@@ -5,9 +5,8 @@ namespace engine {
 
 		GameManager::GameManager()
 			: m_Window(Window(TITLE, WIDTH, HEIGHT)){
-			m_Renderer = Renderer();
-			m_PhysicsManager = PhysicsManager();
-			m_RenderObjects = vector<RenderObject*>();
+			m_Renderer = new Renderer();
+			m_Entities = vector<Entity*>();
 			m_InputHandler = nullptr;
 			Window::WindowPointer = &m_Window;
 			m_Camera = new Camera(0, 270.0f, glm::vec3(0, 0, 300));
@@ -16,18 +15,16 @@ namespace engine {
 		}
 
 		GameManager::~GameManager() {
-			if (!m_RenderObjects.empty()) {
-				for (int i = 0; i < m_RenderObjects.size(); i++) {
-					delete m_RenderObjects[i];
-				}
-			}
 			Window::WindowPointer = nullptr;
 			if (m_InputHandler) delete m_InputHandler;
 			if (m_Camera) delete m_Camera;
+			if (m_Renderer) delete m_Renderer;
+			for (int i = 0; i < m_Entities.size(); i++)
+				delete m_Entities[i];
 		}
 		
-		void GameManager::addRenderObject(RenderObject* o) {
-			m_RenderObjects.push_back(o);
+		void GameManager::addEntity(Entity* e) {
+			m_Entities.push_back(e);
 		}
 
 		void GameManager::run() {
@@ -42,10 +39,10 @@ namespace engine {
 
 				if (m_InputHandler) m_InputHandler->handleInput(msec);
 
-				for (int i = 0; i < m_RenderObjects.size(); i++)
-					m_RenderObjects[i]->Update(msec);
-				for (int i = 0; i < m_RenderObjects.size(); i++)
-					m_Renderer.Render(m_RenderObjects[i]);
+				for (int i = 0; i < m_Entities.size(); i++)
+					m_Entities[i]->update(msec);
+				for (int i = 0; i < m_Entities.size(); i++)
+					m_Entities[i]->render(m_Renderer);
 				m_Window.update();
 			}
 		}
