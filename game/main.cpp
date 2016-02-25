@@ -4,11 +4,11 @@
 
 #include "../engine-core/src/graphics/Shader.h"
 #include "../engine-core/src/physics/Physics.h"
+#include "src/input/SnookerInput.h"
 #include "../engine-core/src/graphics/RenderObject.h"
 #include "../engine-core/src/graphics/Renderer.h"
 #include "../engine-core/src/graphics/GameManager.h"
 #include "../engine-core/src/graphics/Mesh.h"
-#include "src/input/SnookerInput.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -73,7 +73,9 @@ int main()
 	using namespace glm;
 
 	GameManager* g = new GameManager();
-	g->setInputHandler(new SnookerInput());
+	SnookerInput* input = new SnookerInput();
+	g->setInputHandler(input);
+
 
 	Mesh* tableMesh  = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0.0f, 1.0f, 0.0f, 0.5f));
 	Mesh* cueMesh    = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 1.000f, 0.500f)); // cue
@@ -87,13 +89,16 @@ int main()
 
 	Shader* defaultShader = new Shader("res/shader/BasicVert.glsl", "res/shader/BasicFrag.glsl");
 
-	RenderObject tableObject(tableMesh, defaultShader);
-	
 	Entity* table = new Entity(vec3(0), vec3(0), vec3(0), tableMesh, defaultShader, "table");
 
 	g->addEntity(table);
 
-	table->addChild(new Entity(vec3(0), vec3(0), vec3(0), cueMesh, defaultShader, "cueBall"));
+	Entity* cueBall = new Entity(vec3(0), vec3(0), vec3(0), cueMesh, defaultShader, "cueBall");
+	table->addChild(cueBall);
+	
+
+	input->setCueBall(cueBall->getPhysicsObject());
+	
 	table->addChild(new Entity(vec3( BLACK_BALL_X,  BLACK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),  blackMesh, defaultShader, "blackBall"));
 	table->addChild(new Entity(vec3(  PINK_BALL_X,   PINK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),   pinkMesh, defaultShader, "pinkBall"));
 	table->addChild(new Entity(vec3(  BLUE_BALL_X,   BLUE_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),   blueMesh, defaultShader, "blueBall"));

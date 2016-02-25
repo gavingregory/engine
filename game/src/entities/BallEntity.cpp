@@ -1,14 +1,7 @@
 #include "BallEntity.h"
 
-BallEntity::BallEntity()
-	: Entity(glm::vec3(0), glm::vec3(0), glm::vec3(0), RenderObject(), "ball") {
-
-}
-
-BallEntity::BallEntity(glm::vec3 position, glm::vec3 velocity, glm::vec3 acceleration, RenderObject o, string name, glm::vec4 colour)
-	: Entity(position, velocity, acceleration, o, name) {
-	renderObject.pushUniformVec4("col", colour);
-}
+BallEntity::BallEntity(glm::vec3 position, glm::vec3 velocity, glm::vec3 acceleration, Mesh* mesh, Shader* shader, string name)
+	: Entity(position, velocity, acceleration, mesh, shader, name) { }
 
 BallEntity::~BallEntity() {}
 

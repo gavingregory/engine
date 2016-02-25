@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include "Window.h"
 
 namespace engine {
 	namespace graphics {

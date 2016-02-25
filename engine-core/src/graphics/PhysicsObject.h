@@ -18,7 +18,9 @@ namespace engine {
 			PhysicsObject(vec3 position, vec3 velocity, vec3 acceleration, RenderObject* renderObject);
 			virtual ~PhysicsObject();
 			void update(float msec);
+			void applyForce(vec3 velocity);
 		private:
+			inline void updateRenderObject();
 			vec3 m_Position;
 			vec3 m_Velocity;
 			vec3 m_Acceleration;

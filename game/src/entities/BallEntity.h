@@ -6,8 +6,7 @@
 class BallEntity : engine::graphics::Entity
 {
 public:
-	BallEntity();
-	BallEntity(glm::vec3 position, glm::vec3 velocity, glm::vec3 acceleration, RenderObject o, string name, glm::vec4 colour);
+	BallEntity(glm::vec3 position, glm::vec3 velocity, glm::vec3 acceleration, Mesh* mesh, Shader* shader, string name);
 	virtual ~BallEntity();
 	void update(float msec) override;
 };
