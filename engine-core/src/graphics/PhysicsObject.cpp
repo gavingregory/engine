@@ -19,7 +19,7 @@ namespace engine {
 
 		void PhysicsObject::update(float msec) {
 			m_Velocity = Physics::updateVelocity(m_Velocity, m_Acceleration, msec);
-			m_Position = Physics::updateDisplacement(m_Velocity, m_Acceleration, msec);
+			m_Position += m_Velocity; //= Physics::updateDisplacement(m_Velocity, m_Acceleration, msec);
 			updateRenderObject();
 		}
 
@@ -28,7 +28,7 @@ namespace engine {
 		}
 
 		void PhysicsObject::applyForce(vec3 velocity) {
-			m_Velocity *= velocity;
+			m_Velocity += velocity;
 		}
 
 		PhysicsObject::~PhysicsObject() {}

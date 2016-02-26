@@ -93,12 +93,9 @@ int main()
 
 	g->addEntity(table);
 
-	Entity* cueBall = new Entity(vec3(0), vec3(0), vec3(0), cueMesh, defaultShader, "cueBall");
+	Entity* cueBall = new Entity(vec3(0,0,1), vec3(0.0f,0.0f,0.0f), vec3(0.0f, 0.0f, 0.0f), cueMesh, defaultShader, "cueBall");
 	table->addChild(cueBall);
-	
-
 	input->setCueBall(cueBall->getPhysicsObject());
-	
 	table->addChild(new Entity(vec3( BLACK_BALL_X,  BLACK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),  blackMesh, defaultShader, "blackBall"));
 	table->addChild(new Entity(vec3(  PINK_BALL_X,   PINK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),   pinkMesh, defaultShader, "pinkBall"));
 	table->addChild(new Entity(vec3(  BLUE_BALL_X,   BLUE_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),   blueMesh, defaultShader, "blueBall"));

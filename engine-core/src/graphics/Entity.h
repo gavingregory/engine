@@ -32,6 +32,8 @@ namespace engine {
 			string m_Name;
 			RenderObject* m_RenderObject;
 			PhysicsObject* m_PhysicsObject;
+			Entity* parent;
+			vector<Entity*> children;
 		};
 
 	}
