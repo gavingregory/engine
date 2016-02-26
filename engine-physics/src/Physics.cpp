@@ -22,11 +22,16 @@ namespace engine {
 		}
 
 		void Physics::implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt) {
-			
+			velocity = velocity + acceleration * dt;
+			position += updateDisplacement(velocity, acceleration, dt) + (velocity * dt);
 		}
 
 		void Physics::semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt) {
-			
+			vec3 newvelocity = velocity + (acceleration * dt);
+			vec3 displacement = updateDisplacement(velocity, acceleration, dt);
+			vec3 newdisplacement = displacement + (newvelocity * dt);
+			position += newdisplacement;
+			velocity = newvelocity;
 		}
 
 	}

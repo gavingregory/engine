@@ -18,7 +18,7 @@ void SnookerInput::handleInput(float msec) {
 	int state = glfwGetKey(glfwWindow, GLFW_KEY_ENTER);
 	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_ENTER]) { 
 		m_KeysHeld[GLFW_KEY_ENTER] = true;
-		m_CueBall->applyForce(vec3(0.3f, 0.3f, 0.0f), vec3(-0.001, -0.001, 0));
+		m_CueBall->applyForce(vec3(0.1f, 0.1f, 0.0f), vec3(-0.0001, -0.0001, 0.0f));
 	}
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_ENTER] = false;

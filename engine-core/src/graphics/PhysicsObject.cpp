@@ -18,12 +18,7 @@ namespace engine {
 		}
 
 		void PhysicsObject::update(float msec) {
-			
-			Physics::explicitEuler(m_Position, m_Velocity, m_Acceleration, msec);
-			
-			//m_Velocity = Physics::updateVelocity(m_Velocity, m_Acceleration, msec);
-			//m_Position += m_Velocity; //= Physics::updateDisplacement(m_Velocity, m_Acceleration, msec);
-
+			Physics::semiImplicitEuler(m_Position, m_Velocity, m_Acceleration, msec);
 			// stop an object
 			if (m_Velocity.x < 0.00001f && m_Velocity.y < 0.00001f && m_Velocity.z < 0.00001f) {
 				m_Velocity.x = 0; m_Velocity.y = 0; m_Velocity.z = 0; m_Acceleration.x = 0; m_Acceleration.y = 0; m_Acceleration.z = 0;

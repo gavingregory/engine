@@ -12,7 +12,7 @@ namespace engine {
 			Window::WindowPointer = &m_Window;
 			m_Camera = new Camera(0.0f, 0.0f, glm::vec3(0, 0, 300));
 			Camera::vw_matrix = m_Camera->BuildViewMatrix();
-			Camera::pr_matrix = glm::perspective(45.0f, 800.0f / (float)600, 1.0f, 1000.0f);//glm::(-180.0f, 180.0f, -180.0f, 180.0f, -100.0f, 100.0f);
+			Camera::pr_matrix = glm::perspective(45.0f, 800.0f / 600.0f, 1.0f, 1000.0f);
 		}
 
 		GameManager::~GameManager() {
