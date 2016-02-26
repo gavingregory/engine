@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include "../physics/Physics.h"	
+#include "../../../engine-physics/src/Physics.h"
 #include "RenderObject.h"
 
 namespace engine {

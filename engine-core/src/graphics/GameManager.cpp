@@ -6,6 +6,7 @@ namespace engine {
 		GameManager::GameManager()
 			: m_Window(Window(TITLE, WIDTH, HEIGHT)){
 			m_Renderer = new Renderer();
+			m_Audio = new Audio();
 			m_Entities = vector<Entity*>();
 			m_InputHandler = nullptr;
 			Window::WindowPointer = &m_Window;

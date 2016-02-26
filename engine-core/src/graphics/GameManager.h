@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "../utils/GameTimer.h"
 #include "../input/InputHandler.h"
+#include "../../../engine-audio/src/Audio.h"
 #include "Camera.h"
 
 #define WIDTH 800
@@ -30,6 +31,7 @@ namespace engine {
 			vector<Entity*> m_Entities;
 			GameTimer m_Timer;
 			InputHandler* m_InputHandler;
+			Audio* m_Audio;
 			Camera* m_Camera;
 		};
 

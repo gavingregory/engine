@@ -3,7 +3,7 @@
 #include <time.h>
 
 #include "../engine-core/src/graphics/Shader.h"
-#include "../engine-core/src/physics/Physics.h"
+#include "../../../engine-physics/src/Physics.h"
 #include "src/input/SnookerInput.h"
 #include "../engine-core/src/graphics/RenderObject.h"
 #include "../engine-core/src/graphics/Renderer.h"
@@ -62,9 +62,6 @@
 #define RED14_BALL_X RED13_BALL_X
 #define RED14_BALL_Y RED13_BALL_Y - (BALL_RADIUS*2)
 
-
-
-
 int main()
 {
 	using namespace engine;
@@ -75,7 +72,6 @@ int main()
 	GameManager* g = new GameManager();
 	SnookerInput* input = new SnookerInput();
 	g->setInputHandler(input);
-
 
 	Mesh* tableMesh  = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0.0f, 1.0f, 0.0f, 0.5f));
 	Mesh* cueMesh    = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 1.000f, 0.500f)); // cue
