@@ -24,11 +24,6 @@ namespace engine {
 			//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			o->Draw();
 			//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-			vector<RenderObject*> children = *(o->getChildren());
-			
-			for (int i = 0; i < children.size(); i++)
-				Render(children[i]);
 		}
 
 		void Renderer::UpdateScene(float msec) {

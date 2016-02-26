@@ -67,6 +67,11 @@ Audio::Audio()
 	//start stream
 	err = Pa_StartStream(stream);
 	if (err != paNoError) std::cout << err << std::endl;
+
+	// stop stream
+	err = Pa_StopStream(stream);
+	if (err != paNoError) std::cout << err << std::endl;
+
 }
 
 

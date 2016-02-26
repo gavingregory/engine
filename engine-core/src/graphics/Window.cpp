@@ -44,9 +44,9 @@ namespace engine {
 			glfwMakeContextCurrent(m_Window);
 			glfwSetWindowUserPointer(m_Window, this);
 			glfwSetWindowSizeCallback(m_Window, window_resize);
-			glfwSetKeyCallback(m_Window, key_callback);
 			glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 			glfwSetCursorPosCallback(m_Window, cursor_position_callback);
+			glfwSetInputMode(m_Window, GLFW_STICKY_KEYS, 1); // set sticky keys to ON, so that when we POLL the key presses we don't miss a key press
 			glfwSetScrollCallback(m_Window, scroll_callback);
 			glClearColor(0.5f, 0.1f, 0.4f, 1.0f);
 			// glfwSwapInterval(0.0f); // disable vsync
@@ -83,11 +83,6 @@ namespace engine {
 			win->m_ScrollOffsetY = (float)yOffset;
 		}
 
-		void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-			Window* win = (Window*)glfwGetWindowUserPointer(window);
-			win->m_Keys[key] = action != GLFW_RELEASE;
-		}
-
 		void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
 			win->m_MouseButtons[button] = action != GLFW_RELEASE;
@@ -97,12 +92,6 @@ namespace engine {
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
 			win->m_MouseX = xpos;
 			win->m_MouseY = ypos;
-		}
-
-		bool Window::isKeyPressed(const unsigned int keycode) const {
-			if (keycode >= MAX_KEYS)
-				return false;
-			return m_Keys[keycode];
 		}
 
 		bool Window::isMouseButtonPressed(const unsigned int button) const {

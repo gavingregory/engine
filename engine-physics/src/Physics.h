@@ -13,7 +13,9 @@ namespace engine {
 			virtual ~Physics();
 			static vec3 updateVelocity(vec3 initialVelocity, vec3 acceleration, float time);
 			static vec3 updateDisplacement(vec3 initialVelocity, vec3 acceleration, float time);
-			static vec3 semiImplicitEulerIntegration(vec3 initialVelocity, vec3 initialAcceleration, float dt);
+			static void explicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
+			static void implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
+			static void semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
 		};
 
 	}

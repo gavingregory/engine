@@ -18,8 +18,16 @@ namespace engine {
 		}
 
 		void PhysicsObject::update(float msec) {
-			m_Velocity = Physics::updateVelocity(m_Velocity, m_Acceleration, msec);
-			m_Position += m_Velocity; //= Physics::updateDisplacement(m_Velocity, m_Acceleration, msec);
+			
+			Physics::explicitEuler(m_Position, m_Velocity, m_Acceleration, msec);
+			
+			//m_Velocity = Physics::updateVelocity(m_Velocity, m_Acceleration, msec);
+			//m_Position += m_Velocity; //= Physics::updateDisplacement(m_Velocity, m_Acceleration, msec);
+
+			// stop an object
+			if (m_Velocity.x < 0.00001f && m_Velocity.y < 0.00001f && m_Velocity.z < 0.00001f) {
+				m_Velocity.x = 0; m_Velocity.y = 0; m_Velocity.z = 0; m_Acceleration.x = 0; m_Acceleration.y = 0; m_Acceleration.z = 0;
+			}
 			updateRenderObject();
 		}
 
@@ -27,8 +35,9 @@ namespace engine {
 			m_RenderObject->SetModelMatrix(glm::translate(m_Position));
 		}
 
-		void PhysicsObject::applyForce(vec3 velocity) {
+		void PhysicsObject::applyForce(vec3 velocity, vec3 acceleration) {
 			m_Velocity += velocity;
+			m_Acceleration += acceleration;
 		}
 
 		PhysicsObject::~PhysicsObject() {}

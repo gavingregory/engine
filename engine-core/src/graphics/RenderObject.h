@@ -30,11 +30,8 @@ public:
 	void UpdateShaderMatrices();
 
 	void AddChild(RenderObject* child) {
-		children.push_back(child);
 		child->parent = this;
 	}
-
-	vector<RenderObject*>* getChildren() { return &children; }
 
 	inline glm::mat4 GetWorldTransform() const { return worldTransform; }
 
@@ -49,7 +46,6 @@ protected:
 	glm::mat4 worldTransform;
 
 	RenderObject*			parent;
-	vector<RenderObject*>	children;
 
 	// a map of vector 4 uniforms
 	map<string, glm::vec4> m_UniformVec4;

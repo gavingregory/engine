@@ -14,8 +14,19 @@ namespace engine {
 			return (initialVelocity*time) + (0.5f*acceleration*time*time);
 		}
 
-		vec3 Physics::semiImplicitEulerIntegration(vec3 initialVelocity, vec3 initialAcceleration, float dt) {
-			return vec3(0);
+		void Physics::explicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt) {
+			vec3 newvelocity = velocity + (acceleration * dt);
+			vec3 displacement = updateDisplacement(newvelocity, acceleration, dt);
+			position += displacement;
+			velocity = newvelocity;
+		}
+
+		void Physics::implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt) {
+			
+		}
+
+		void Physics::semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt) {
+			
 		}
 
 	}

@@ -6,6 +6,9 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
+
+#define MAX_KEYS 1024
+
 class SnookerInput : public InputHandler
 {
 public:
@@ -14,6 +17,7 @@ public:
 	void handleInput(float msec) override;
 	inline void setCueBall(engine::graphics::PhysicsObject* cueBall) { m_CueBall = cueBall; }
 private:
+	bool m_KeysHeld[MAX_KEYS];
 	engine::graphics::PhysicsObject* m_CueBall;
 };
 

@@ -5,7 +5,6 @@
 
 #include <iostream>
 
-#define MAX_KEYS 1024
 #define MAX_BUTTONS 32
 
 namespace engine {
@@ -20,12 +19,10 @@ namespace engine {
 
 	  bool init();
 
-	  bool m_Keys[MAX_KEYS];
 	  bool m_MouseButtons[MAX_BUTTONS];
 	  double m_MouseX, m_MouseY;
 	  float m_ScrollOffsetX, m_ScrollOffsetY;
 	  friend static void window_resize(GLFWwindow* window, int width, int height);
-	  friend static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	  friend static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	  friend static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 	  friend static void scroll_callback(GLFWwindow* window, double xOffset, double yOffset);
@@ -44,6 +41,8 @@ namespace engine {
 	  inline int getMouseX() const { return m_MouseX; }
 	  inline int getMouseY() const { return m_MouseY; }
 
+	  GLFWwindow* getGlfwWindow() { return m_Window; }
+
 	  // gets a vector of the mouse position relative to the last time you called this function
 	  glm::vec2 getMouseOffset() const {
 		  static glm::vec2 previous = glm::vec2(m_MouseX, m_MouseY);
@@ -56,7 +55,6 @@ namespace engine {
 	  inline float getScrollOffsetX() const { return m_ScrollOffsetX; }
 	  inline float getScrollOffsetY() const { return m_ScrollOffsetY; }
 
-	  bool isKeyPressed(const unsigned int keycode) const;
 	  bool isMouseButtonPressed(const unsigned int keycode) const;
 	  bool isScrolled();
 
