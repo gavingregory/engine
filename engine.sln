@@ -6,19 +6,29 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-core", "engine-core\engine-core.vcxproj", "{7F48A190-124A-49E4-8FB0-A7ABEFDFBE85}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E78CB02E-ACCE-48AF-9D8F-F103AC4467A1} = {E78CB02E-ACCE-48AF-9D8F-F103AC4467A1}
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245} = {FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}
 		{563055BB-3D66-4335-B60A-93AE189A91C4} = {563055BB-3D66-4335-B60A-93AE189A91C4}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game\game.vcxproj", "{CED10A13-C267-42BB-93D7-3AC5D2FEF109}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E78CB02E-ACCE-48AF-9D8F-F103AC4467A1} = {E78CB02E-ACCE-48AF-9D8F-F103AC4467A1}
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245} = {FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}
 		{7F48A190-124A-49E4-8FB0-A7ABEFDFBE85} = {7F48A190-124A-49E4-8FB0-A7ABEFDFBE85}
 		{563055BB-3D66-4335-B60A-93AE189A91C4} = {563055BB-3D66-4335-B60A-93AE189A91C4}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-physics", "engine-physics\engine-physics.vcxproj", "{E78CB02E-ACCE-48AF-9D8F-F103AC4467A1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245} = {FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-audio", "engine-audio\engine-audio.vcxproj", "{563055BB-3D66-4335-B60A-93AE189A91C4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245} = {FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-common", "engine-common\engine-common.vcxproj", "{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +80,16 @@ Global
 		{563055BB-3D66-4335-B60A-93AE189A91C4}.Release|x64.Build.0 = Release|x64
 		{563055BB-3D66-4335-B60A-93AE189A91C4}.Release|x86.ActiveCfg = Release|Win32
 		{563055BB-3D66-4335-B60A-93AE189A91C4}.Release|x86.Build.0 = Release|Win32
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Debug|x64.ActiveCfg = Debug|x64
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Debug|x64.Build.0 = Debug|x64
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Debug|x86.ActiveCfg = Debug|Win32
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Debug|x86.Build.0 = Debug|Win32
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Release|Any CPU.ActiveCfg = Release|Win32
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Release|x64.ActiveCfg = Release|x64
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Release|x64.Build.0 = Release|x64
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Release|x86.ActiveCfg = Release|Win32
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

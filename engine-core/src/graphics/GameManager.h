@@ -6,6 +6,7 @@
 #include "../input/InputHandler.h"
 #include "../../../engine-audio/src/Audio.h"
 #include "../../../engine-physics/src/CollisionManager.h"
+#include "../../../engine-common/src/system/SubSystem.h"
 #include "Camera.h"
 #include <stack>
 
@@ -16,6 +17,8 @@
 namespace engine {
 	namespace graphics {
 		using namespace utils;
+		using namespace system;
+		using namespace audio;
 
 		class GameManager
 		{
@@ -34,7 +37,7 @@ namespace engine {
 			vector<Entity*> m_Entities;
 			GameTimer m_Timer;
 			InputHandler* m_InputHandler;
-			Audio* m_Audio;
+			SubSystem* m_Audio;
 			Camera* m_Camera;
 		};
 

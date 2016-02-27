@@ -6,7 +6,10 @@ namespace engine {
 		GameManager::GameManager()
 			: m_Window(Window(TITLE, WIDTH, HEIGHT)){
 			m_Renderer = new Renderer();
+			
 			m_Audio = new Audio();
+			if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
+			
 			m_Entities = vector<Entity*>();
 			m_InputHandler = nullptr;
 			Window::WindowPointer = &m_Window;
