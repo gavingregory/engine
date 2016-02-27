@@ -5,6 +5,8 @@
 class CollisionManager
 {
 public:
-	static bool Detect(Circle* left, Circle* right);
+	CollisionManager();
+	virtual ~CollisionManager();
+	bool detect(Circle* left, Circle* right);
 };
 

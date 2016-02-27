@@ -22,6 +22,7 @@ namespace engine {
 			inline vec3 getVelocity() const { return m_PhysicsObject->m_Velocity; }
 			inline RenderObject* getRenderObject() const { return m_RenderObject; }
 			inline PhysicsObject* getPhysicsObject() const { return m_PhysicsObject; }
+			inline string getName() const { return m_Name; }
 
 			virtual void update(float dt);
 			virtual void render(Renderer* renderer);

@@ -48,8 +48,8 @@ namespace engine {
 				for (int i = 0; i < m_Entities.size(); i++)
 					for (int j = 0; j < m_Entities.size(); j++)
 						if (i != j) {
-							if (Collision::Detect((Circle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), (Circle*)m_Entities[j]->getPhysicsObject()->getCollisionShape()))
-								std::cout << "something" << std::endl;
+							if (m_CollisionManager->detect((Circle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), (Circle*)m_Entities[j]->getPhysicsObject()->getCollisionShape()))
+								std::cout << "Collision between " + m_Entities[i]->getName() << " and " << m_Entities[j]->getName() << std::endl;
 						}
 
 				// RENDER

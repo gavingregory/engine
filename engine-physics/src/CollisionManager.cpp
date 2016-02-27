@@ -1,7 +1,12 @@
 #include "CollisionManager.h"
 
+CollisionManager::CollisionManager() {}
 
-bool CollisionManager::Detect(Circle* left, Circle* right) {
+
+CollisionManager::~CollisionManager() {}
+
+
+bool CollisionManager::detect(Circle* left, Circle* right) {
 	if (left == nullptr || right == nullptr) return false;
 	float distance = glm::distance(*left->getPositionPtr(), *right->getPositionPtr());
 	if (distance < left->get_radius() || distance < right->get_radius())

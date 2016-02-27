@@ -1,8 +1,6 @@
 #ifndef COLLISION_SHAPE_H
 #define COLLISION_SHAPE_H
 
-#include "Visitor.h"
-#include "SingleVisitor.h"
 #include <glm/glm.hpp>
 
 //

@@ -5,7 +5,7 @@
 #include "../utils/GameTimer.h"
 #include "../input/InputHandler.h"
 #include "../../../engine-audio/src/Audio.h"
-#include "../../../engine-physics/src/Collision.h"
+#include "../../../engine-physics/src/CollisionManager.h"
 #include "Camera.h"
 #include <stack>
 
@@ -30,6 +30,7 @@ namespace engine {
 		private:
 			Window m_Window;
 			Renderer* m_Renderer;
+			CollisionManager* m_CollisionManager;
 			vector<Entity*> m_Entities;
 			GameTimer m_Timer;
 			InputHandler* m_InputHandler;

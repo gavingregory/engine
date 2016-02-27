@@ -121,13 +121,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Collision.cpp" />
+    <ClCompile Include="src\CollisionManager.cpp" />
     <ClCompile Include="src\collision\Circle.cpp" />
     <ClCompile Include="src\collision\Shape.cpp" />
     <ClCompile Include="src\Physics.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Collision.h" />
+    <ClInclude Include="src\CollisionManager.h" />
     <ClInclude Include="src\collision\Circle.h" />
     <ClInclude Include="src\collision\Shape.h" />
     <ClInclude Include="src\Physics.h" />
