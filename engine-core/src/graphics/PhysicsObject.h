@@ -24,6 +24,7 @@ namespace engine {
 			inline Shape* getCollisionShape() const { return m_CollisionShape; }
 			inline void setCollisionShape(Shape* collisionShape) { m_CollisionShape = collisionShape;  }
 			inline vec3* getPositionPtr() { return &m_Position; }
+			inline vec3* getVelocityPtr() { return &m_Velocity; }
 		private:
 			inline void updateRenderObject();
 			vec3 m_Position;

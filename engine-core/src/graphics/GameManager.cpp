@@ -55,18 +55,19 @@ namespace engine {
 					for (int j = 0; j < m_Entities.size(); j++) {
 						if (i != j) {
 							if (m_CollisionManager->detect((Circle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), (Circle*)m_Entities[j]->getPhysicsObject()->getCollisionShape())) {
+								Physics::resolveCollision(m_Entities[i]->getPhysicsObject()->getVelocityPtr(), 1, m_Entities[j]->getPhysicsObject()->getVelocityPtr(), 1);
 								std::cout << "Collision between " + m_Entities[i]->getName() << " and " << m_Entities[j]->getName() << std::endl;
-								if (!playing) m_Audio->play();
-								playing = true;
-								collision = true;
+								//if (!playing) m_Audio->play();
+								//playing = true;
+								//collision = true;
 							}
 						}
 					}
 				}
 
-				if (!collision && playing) {
-					m_Audio->stop(); playing = false;
-				}
+				//if (!collision && playing) {
+				//	m_Audio->stop(); playing = false;
+				//}
 
 				// RENDER
 				for (int i = 0; i < m_Entities.size(); i++)

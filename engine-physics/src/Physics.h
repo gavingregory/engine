@@ -16,6 +16,8 @@ namespace engine {
 			static void explicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
 			static void implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
 			static void semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
+			
+			static void resolveCollision(vec3* velocity1, float firstMass, vec3* velocity2, float secondMass);
 		};
 
 	}

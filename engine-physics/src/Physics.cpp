@@ -34,5 +34,26 @@ namespace engine {
 			velocity = newvelocity;
 		}
 
+		void Physics::resolveCollision(vec3* firstBall, float firstMass, vec3* secondBall, float secondMass) {
+			//float newVelX1 = (firstBall->x * (firstMass - secondMass) + (2 * secondMass * secondBall->x)) / (firstMass + secondMass);
+			//float newVelY1 = (firstBall->y * (firstMass - secondMass) + (2 * secondMass * secondBall->y)) / (firstMass + secondMass);
+			//float newVelZ1 = (firstBall->z * (firstMass - secondMass) + (2 * secondMass * secondBall->z)) / (firstMass + secondMass);
+			//float newVelX2 = (secondBall->x * (secondMass - firstMass) + (2 * firstMass * firstBall->x)) / (firstMass + secondMass);
+			//float newVelY2 = (secondBall->y * (secondMass - firstMass) + (2 * firstMass * firstBall->y)) / (firstMass + secondMass);
+			//float newVelZ2 = (secondBall->z * (secondMass - firstMass) + (2 * firstMass * firstBall->z)) / (firstMass + secondMass);
+			//firstBall->x = newVelX1;
+			//firstBall->y = newVelY1;
+			//firstBall->z = newVelZ1;
+			//secondBall->x = newVelX2;
+			//secondBall->y = newVelY2;
+			//secondBall->z = newVelZ2;
+			firstBall->x = 0.0f;
+			firstBall->y = 0.0f;
+			firstBall->z = 0.0f;
+			secondBall->x = 0.0f;
+			secondBall->y = 0.0f;
+			secondBall->z = 0.0f;
+		}
+
 	}
 }
