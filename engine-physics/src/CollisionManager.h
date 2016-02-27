@@ -2,7 +2,7 @@
 
 #include "collision\Circle.h"
 
-class Collision
+class CollisionManager
 {
 public:
 	static bool Detect(Circle* left, Circle* right);
