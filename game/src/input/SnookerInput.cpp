@@ -22,4 +22,27 @@ void SnookerInput::handleInput(float msec) {
 	}
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_ENTER] = false;
+
+	// handle the 'o' key
+	state = glfwGetKey(glfwWindow, GLFW_KEY_O);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_O]) {
+		m_KeysHeld[GLFW_KEY_O] = true;
+		m_Audio->play();
+	}
+	else if (state == GLFW_RELEASE)
+		m_KeysHeld[GLFW_KEY_O] = false;
+
+
+	// handle the 'p' key
+	state = glfwGetKey(glfwWindow, GLFW_KEY_P);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_P]) {
+		m_KeysHeld[GLFW_KEY_P] = true;
+		m_Audio->stop();
+	}
+	else if (state == GLFW_RELEASE)
+		m_KeysHeld[GLFW_KEY_P] = false;
+
+
+
+
 }

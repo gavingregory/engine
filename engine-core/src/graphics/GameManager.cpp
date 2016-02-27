@@ -4,12 +4,12 @@ namespace engine {
 	namespace graphics {
 
 		GameManager::GameManager()
-			: m_Window(Window(TITLE, WIDTH, HEIGHT)){
+			: m_Window(Window(TITLE, WIDTH, HEIGHT)) {
 			m_Renderer = new Renderer();
-			
+
 			m_Audio = new Audio();
 			if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
-			
+
 			m_Entities = vector<Entity*>();
 			m_InputHandler = nullptr;
 			Window::WindowPointer = &m_Window;
@@ -26,7 +26,7 @@ namespace engine {
 			for (int i = 0; i < m_Entities.size(); i++)
 				delete m_Entities[i];
 		}
-		
+
 		void GameManager::addEntity(Entity* e) {
 			m_Entities.push_back(e);
 		}
@@ -35,7 +35,7 @@ namespace engine {
 
 			while (!m_Window.closed()) {
 				m_Window.clear();
-				
+
 				float msec = m_Timer.GetTimedMS();
 
 				// update camera
@@ -48,12 +48,25 @@ namespace engine {
 				for (int i = 0; i < m_Entities.size(); i++)
 					m_Entities[i]->update(msec);
 
-				for (int i = 0; i < m_Entities.size(); i++)
-					for (int j = 0; j < m_Entities.size(); j++)
+				bool collision = false;
+				bool playing = false;
+
+				for (int i = 0; i < m_Entities.size(); i++) {
+					for (int j = 0; j < m_Entities.size(); j++) {
 						if (i != j) {
-							if (m_CollisionManager->detect((Circle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), (Circle*)m_Entities[j]->getPhysicsObject()->getCollisionShape()))
+							if (m_CollisionManager->detect((Circle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), (Circle*)m_Entities[j]->getPhysicsObject()->getCollisionShape())) {
 								std::cout << "Collision between " + m_Entities[i]->getName() << " and " << m_Entities[j]->getName() << std::endl;
+								if (!playing) m_Audio->play();
+								playing = true;
+								collision = true;
+							}
 						}
+					}
+				}
+
+				if (!collision && playing) {
+					m_Audio->stop(); playing = false;
+				}
 
 				// RENDER
 				for (int i = 0; i < m_Entities.size(); i++)

@@ -28,6 +28,7 @@ namespace engine {
 
 			void addEntity(Entity* e);
 			void setInputHandler(InputHandler* i) { m_InputHandler = i; }
+			Audio* getAudio() const { return m_Audio; }
 			void run();
 
 		private:
@@ -37,7 +38,7 @@ namespace engine {
 			vector<Entity*> m_Entities;
 			GameTimer m_Timer;
 			InputHandler* m_InputHandler;
-			SubSystem* m_Audio;
+			Audio* m_Audio;
 			Camera* m_Camera;
 		};
 

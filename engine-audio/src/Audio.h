@@ -13,9 +13,13 @@ namespace engine {
 		public:
 			Audio();
 			~Audio();
-			virtual bool init() { return 0; }
-			virtual bool destroy() { return 0; }
-			virtual bool update(float msec) { return 0; }
+			virtual bool init();
+			virtual bool destroy();
+			virtual void update(float msec);
+			void play();
+			void stop();
+		private:
+			PaStream *m_Stream;
 		};
 	}
 }

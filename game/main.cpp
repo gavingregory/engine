@@ -94,6 +94,7 @@ int main()
 	Entity* cueBall = new BallEntity(vec3(0,0,BALL_RADIUS), vec3(0.0f,0.0f,0.0f), vec3(0.0f, 0.0f, 0.0f), cueMesh, defaultShader, BALL_RADIUS, "cueBall");
 	g->addEntity(cueBall);
 	input->setCueBall(cueBall->getPhysicsObject());
+	input->setAudio(g->getAudio());
 	table->addChild(new BallEntity(vec3( BLACK_BALL_X,  BLACK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),  blackMesh, defaultShader, BALL_RADIUS, "blackBall"));
 	table->addChild(new BallEntity(vec3(  PINK_BALL_X,   PINK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),   pinkMesh, defaultShader, BALL_RADIUS, "pinkBall"));
 	table->addChild(new BallEntity(vec3(  BLUE_BALL_X,   BLUE_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),   blueMesh, defaultShader, BALL_RADIUS, "blueBall"));

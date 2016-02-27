@@ -1,14 +1,14 @@
 #include "Audio.h"
 
+typedef struct
+{
+	float left_phase;
+	float right_phase;
+} paTestData;
+
 namespace engine {
 	namespace audio {
 
-		typedef struct
-		{
-			float left_phase;
-			float right_phase;
-		}
-		paTestData;
 		/* This routine will be called by the PortAudio engine when audio is needed.
 		It may called at interrupt level on some machines so don't do anything
 		that could mess up the system like calling malloc() or free().
@@ -42,15 +42,25 @@ namespace engine {
 
 		Audio::Audio()
 		{
+			init();
+		}
+
+
+		Audio::~Audio()
+		{
+		}
+
+		bool Audio::init() {
+			bool success = true;
+
 			PaError err = Pa_Initialize();
-			if (err != paNoError) std::cout << err << std::endl;
+			if (err != paNoError) { std::cout << err << std::endl; success = false; }
 
 #define SAMPLE_RATE (44100)
 			static paTestData data;
 
-			PaStream *stream;
 			/* Open an audio I/O stream. */
-			err = Pa_OpenDefaultStream(&stream,
+			err = Pa_OpenDefaultStream(&m_Stream,
 				0,          /* no input channels */
 				2,          /* stereo output */
 				paFloat32,  /* 32 bit floating point output */
@@ -65,24 +75,33 @@ namespace engine {
 				patestCallback, /* this is your callback function */
 				&data); /*This is a pointer that will be passed to
 						your callback*/
-			if (err != paNoError) std::cout << err << std::endl;
-
-			//start stream
-			err = Pa_StartStream(stream);
-			if (err != paNoError) std::cout << err << std::endl;
-
-			// stop stream
-			err = Pa_StopStream(stream);
-			if (err != paNoError) std::cout << err << std::endl;
-
+			if (err != paNoError) { std::cout << err << std::endl; success = false; }
+			
+			return success;
 		}
 
-
-		Audio::~Audio()
-		{
+		bool Audio::destroy() {
+			bool success = true;
 			PaError err = Pa_Terminate();
-			if (err != paNoError)
-				printf("PortAudio error: %s\n", Pa_GetErrorText(err));
+			if (err != paNoError) { std::cout << Pa_GetErrorText(err) << std::endl; success = false; }
+			return success;
 		}
+
+		void Audio::update(float msec) {
+			
+		}
+
+		void Audio::play() {
+			//start stream
+			PaError err = Pa_StartStream(m_Stream);
+			if (err != paNoError) { std::cout << err << std::endl; }
+		}
+		
+		void Audio::stop() {
+			// stop stream
+			PaError err = Pa_StopStream(m_Stream);
+			if (err != paNoError) { std::cout << err << std::endl; }
+		}
+
 	}
 }
