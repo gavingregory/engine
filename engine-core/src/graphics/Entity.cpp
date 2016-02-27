@@ -5,7 +5,7 @@ namespace engine {
 
 		Entity::Entity(vec3 position, vec3 velocity, vec3 acceleration, Mesh* mesh, Shader* shader, string name) {
 			m_RenderObject = new RenderObject(mesh, shader);
-			m_PhysicsObject = new PhysicsObject(position, velocity, acceleration, m_RenderObject);
+			m_PhysicsObject = new PhysicsObject(position, velocity, acceleration, m_RenderObject, nullptr);
 			m_Name = name;
 		}
 

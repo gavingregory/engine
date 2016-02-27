@@ -1,19 +1,17 @@
 #include "PhysicsObject.h"
 
-
-
 namespace engine {
 	namespace graphics {
 		using namespace glm;
 		using namespace engine::physics;
 		
 		PhysicsObject::PhysicsObject(vec3 position, vec3 velocity, vec3 acceleration)
-			: m_Position(position), m_Velocity(velocity), m_Acceleration(acceleration), m_RenderObject(nullptr) {
+			: m_Position(position), m_Velocity(velocity), m_Acceleration(acceleration), m_RenderObject(nullptr), m_CollisionShape(nullptr) {
 			updateRenderObject();
 		}
 
-		PhysicsObject::PhysicsObject(vec3 position, vec3 velocity, vec3 acceleration, RenderObject* renderObject)
-			: m_Position(position), m_Velocity(velocity), m_Acceleration(acceleration), m_RenderObject(renderObject) {
+		PhysicsObject::PhysicsObject(vec3 position, vec3 velocity, vec3 acceleration, RenderObject* renderObject, Shape* collisionShape)
+			: m_Position(position), m_Velocity(velocity), m_Acceleration(acceleration), m_RenderObject(renderObject), m_CollisionShape(collisionShape) {
 			updateRenderObject();
 		}
 

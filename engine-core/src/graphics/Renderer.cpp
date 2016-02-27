@@ -10,9 +10,6 @@ namespace engine {
 
 		Renderer::~Renderer() { }
 
-		void Renderer::RenderScene() {
-		}
-
 		void Renderer::Render(RenderObject* o) {
 			glUseProgram(o->GetShader()->GetShaderProgram());
 			o->UpdateShaderMatrices();
@@ -24,10 +21,6 @@ namespace engine {
 			//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			o->Draw();
 			//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		}
-
-		void Renderer::UpdateScene(float msec) {
-			cout << "SHOULD NOT BE IN THIS FUNCTION" << endl;
 		}
 
 		void Renderer::AddRenderObject(RenderObject &r) {

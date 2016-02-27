@@ -21,6 +21,9 @@
     <ClCompile Include="src\input\SnookerInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\BallEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\BasicFrag.glsl" />
@@ -32,6 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\input\SnookerInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\BallEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

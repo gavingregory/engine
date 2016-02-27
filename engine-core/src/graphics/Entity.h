@@ -27,6 +27,7 @@ namespace engine {
 			virtual void render(Renderer* renderer);
 
 			void addChild(Entity* e);
+			vector<Entity*>* getChildren() { return &children; }
 
 		protected:
 			string m_Name;

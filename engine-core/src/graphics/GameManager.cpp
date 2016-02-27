@@ -29,6 +29,7 @@ namespace engine {
 		}
 
 		void GameManager::run() {
+
 			while (!m_Window.closed()) {
 				m_Window.clear();
 				
@@ -40,8 +41,18 @@ namespace engine {
 
 				if (m_InputHandler) m_InputHandler->handleInput(msec);
 
+				// UPDATE
 				for (int i = 0; i < m_Entities.size(); i++)
 					m_Entities[i]->update(msec);
+
+				for (int i = 0; i < m_Entities.size(); i++)
+					for (int j = 0; j < m_Entities.size(); j++)
+						if (i != j) {
+							if (Collision::Detect((Circle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), (Circle*)m_Entities[j]->getPhysicsObject()->getCollisionShape()))
+								std::cout << "something" << std::endl;
+						}
+
+				// RENDER
 				for (int i = 0; i < m_Entities.size(); i++)
 					m_Entities[i]->render(m_Renderer);
 				m_Window.update();

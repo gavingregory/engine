@@ -13,9 +13,7 @@ namespace engine {
 		public:
 			Renderer();
 			~Renderer();
-			virtual void RenderScene();
 			virtual void Render(RenderObject* o);
-			virtual void UpdateScene(float msec);
 			void AddRenderObject(RenderObject &r);
 		protected:
 			std::vector<RenderObject*> renderObjects;
