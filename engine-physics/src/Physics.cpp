@@ -34,25 +34,44 @@ namespace engine {
 			velocity = newvelocity;
 		}
 
-		void Physics::resolveCollision(vec3* firstBall, float firstMass, vec3* secondBall, float secondMass) {
-			//float newVelX1 = (firstBall->x * (firstMass - secondMass) + (2 * secondMass * secondBall->x)) / (firstMass + secondMass);
-			//float newVelY1 = (firstBall->y * (firstMass - secondMass) + (2 * secondMass * secondBall->y)) / (firstMass + secondMass);
-			//float newVelZ1 = (firstBall->z * (firstMass - secondMass) + (2 * secondMass * secondBall->z)) / (firstMass + secondMass);
-			//float newVelX2 = (secondBall->x * (secondMass - firstMass) + (2 * firstMass * firstBall->x)) / (firstMass + secondMass);
-			//float newVelY2 = (secondBall->y * (secondMass - firstMass) + (2 * firstMass * firstBall->y)) / (firstMass + secondMass);
-			//float newVelZ2 = (secondBall->z * (secondMass - firstMass) + (2 * firstMass * firstBall->z)) / (firstMass + secondMass);
-			//firstBall->x = newVelX1;
-			//firstBall->y = newVelY1;
-			//firstBall->z = newVelZ1;
-			//secondBall->x = newVelX2;
-			//secondBall->y = newVelY2;
-			//secondBall->z = newVelZ2;
-			firstBall->x = 0.0f;
-			firstBall->y = 0.0f;
-			firstBall->z = 0.0f;
-			secondBall->x = 0.0f;
-			secondBall->y = 0.0f;
-			secondBall->z = 0.0f;
+		void Physics::resolveCollision(vec3& v1, float m1, vec3& v2, float m2) {
+
+
+			v1 = ((m1 - m2)*v1 + 2 * m2*v2) / (m1 + m2);
+			v2 = ((m2 - m1)*v2 + 2 * m1*v1) / (m1 + m2);
+
+
+			//float xDistance = (second.x - first.x);
+			//float yDistance = (second.y - first.y);
+			//float zDistance = (second.z - first.z);
+			//
+			//vec3 normalVector = vec3(xDistance, yDistance, zDistance);
+			//normalVector = normalize(normalVector);
+			//
+			//vec3 tangentVector = vec3(normalVector.y * -1, normalVector.x, normalVector.z);
+			//
+			//// create ball scalar normal direction.
+			//float ball1scalarNormal = dot(normalVector, first);
+			//float ball2scalarNormal = dot(normalVector, second);
+			//
+			//// create scalar velocity in the tagential direction.
+			//float ball1scalarTangential = dot(tangentVector, first);
+			//float ball2scalarTangential = dot(tangentVector, second);
+			//
+			//
+			//float ball1ScalarNormalAfter = (ball1scalarNormal * (firstMass - secondMass) +
+			//	2 * secondMass * ball2scalarNormal) / (firstMass + secondMass);
+			//float ball2ScalarNormalAfter = (ball2scalarNormal * (secondMass - firstMass) +
+			//	2 * firstMass * ball1scalarNormal) / (firstMass + secondMass);
+			//
+			//vec3 ball1scalarNormalAfter_vector = normalVector * ball1ScalarNormalAfter;
+			//vec3 ball2scalarNormalAfter_vector = normalVector * ball2ScalarNormalAfter;
+			//
+			//vec3 ball1ScalarNormalVector = tangentVector * ball1scalarTangential;
+			//vec3 ball2ScalarNormalVector = tangentVector * ball2scalarTangential;
+			//
+			//first = ball1ScalarNormalVector + ball1scalarNormalAfter_vector;
+			//second = ball2ScalarNormalVector + ball2scalarNormalAfter_vector;
 		}
 
 	}

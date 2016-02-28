@@ -5,6 +5,7 @@
 namespace engine {
 	namespace physics {
 		using namespace glm;
+		using namespace engine;
 
 		class Physics
 		{
@@ -17,7 +18,7 @@ namespace engine {
 			static void implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
 			static void semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
 			
-			static void resolveCollision(vec3* velocity1, float firstMass, vec3* velocity2, float secondMass);
+			static void resolveCollision(vec3&, float, vec3&, float);
 		};
 
 	}

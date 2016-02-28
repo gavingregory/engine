@@ -5,6 +5,7 @@ namespace engine {
 
 		glm::mat4 Camera::vw_matrix;
 		glm::mat4 Camera::pr_matrix;
+		glm::vec2 Camera::light_src;
 
 		Camera::Camera() {
 			yaw = 0.0f;

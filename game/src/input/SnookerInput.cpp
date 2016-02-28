@@ -18,7 +18,7 @@ void SnookerInput::handleInput(float msec) {
 	int state = glfwGetKey(glfwWindow, GLFW_KEY_ENTER);
 	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_ENTER]) { 
 		m_KeysHeld[GLFW_KEY_ENTER] = true;
-		m_CueBall->applyForce(vec3(0.1f, 0.0f, 0.0f), vec3(-0.0001, -0.0000, 0.0f));
+		m_CueBall->applyForce(vec3(0.1f, 0.03f, 0.0f));
 	}
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_ENTER] = false;
@@ -32,7 +32,6 @@ void SnookerInput::handleInput(float msec) {
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_O] = false;
 
-
 	// handle the 'p' key
 	state = glfwGetKey(glfwWindow, GLFW_KEY_P);
 	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_P]) {
@@ -42,7 +41,8 @@ void SnookerInput::handleInput(float msec) {
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_P] = false;
 
-
-
+	// move a light source
+	Camera::light_src = glm::vec2(window->getMouseX(), window->getMouseY());
+	
 
 }

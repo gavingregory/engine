@@ -16,6 +16,7 @@ namespace engine {
 			m_Camera = new Camera(0.0f, 0.0f, glm::vec3(0, 0, 300));
 			Camera::vw_matrix = m_Camera->BuildViewMatrix();
 			Camera::pr_matrix = glm::perspective(45.0f, 800.0f / 600.0f, 1.0f, 1000.0f);
+			Camera::light_src = vec2(0, 0);
 		}
 
 		GameManager::~GameManager() {
@@ -48,26 +49,16 @@ namespace engine {
 				for (int i = 0; i < m_Entities.size(); i++)
 					m_Entities[i]->update(msec);
 
-				bool collision = false;
-				bool playing = false;
-
 				for (int i = 0; i < m_Entities.size(); i++) {
 					for (int j = 0; j < m_Entities.size(); j++) {
 						if (i != j) {
 							if (m_CollisionManager->detect((Circle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), (Circle*)m_Entities[j]->getPhysicsObject()->getCollisionShape())) {
-								Physics::resolveCollision(m_Entities[i]->getPhysicsObject()->getVelocityPtr(), 1, m_Entities[j]->getPhysicsObject()->getVelocityPtr(), 1);
+								Physics::resolveCollision(m_Entities[i]->getPhysicsObject()->m_Velocity, 1, m_Entities[j]->getPhysicsObject()->m_Velocity, 1);
 								std::cout << "Collision between " + m_Entities[i]->getName() << " and " << m_Entities[j]->getName() << std::endl;
-								//if (!playing) m_Audio->play();
-								//playing = true;
-								//collision = true;
 							}
 						}
 					}
 				}
-
-				//if (!collision && playing) {
-				//	m_Audio->stop(); playing = false;
-				//}
 
 				// RENDER
 				for (int i = 0; i < m_Entities.size(); i++)

@@ -153,15 +153,18 @@ Mesh* Mesh::GenerateCircle(const float r, const int count, const glm::vec4 colou
 
 	m->colours  = new glm::vec4[m->numVertices];
 	m->vertices = new glm::vec3[m->numVertices];
+	m->normals = new glm::vec3[m->numVertices];
 
 	m->vertices[0] = glm::vec3(0.0f, 0.0f, 0.0f);
-	m->colours[0] = colour;
+	m->colours[0]  = colour;
+	m->normals[0] = glm::vec3(0.0f, 0.0f, 1.0f);
 
 	glm::vec3 v = glm::vec3(0, r, 0);
 	float angle = 360.0f / count;
 	for (int i = 1; i <= count+1; i++) {
 		m->vertices[i] = v;
 		m->colours[i] = colour;
+		m->normals[i] = v;
 		v = rotateVector(v, angle);
 	}
 
