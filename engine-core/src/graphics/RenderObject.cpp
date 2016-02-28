@@ -45,7 +45,7 @@ void RenderObject::UpdateShaderMatrices() {
 	glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "ml_matrix"), 1, GL_FALSE, glm::value_ptr(worldTransform));
 	glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "vw_matrix"), 1, GL_FALSE, glm::value_ptr(Camera::vw_matrix));
 	glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "pr_matrix"), 1, GL_FALSE, glm::value_ptr(Camera::pr_matrix));
-	glUniform3f(glGetUniformLocation(shader->GetShaderProgram(), "light_src"), Camera::light_src.x, Camera::light_src.y, 300);
+	glUniform3f(glGetUniformLocation(shader->GetShaderProgram(), "light_src"), Camera::light_src.x, Camera::light_src.y, Camera::light_src.z);
 	glUniform3f(glGetUniformLocation(shader->GetShaderProgram(), "camera_pos"), 0, 0, 300);
 	//glUniform2f(glGetUniformLocation(shader->GetShaderProgram(), "light_src"), Camera::light_src.x, Camera::light_src.y);
 }

@@ -16,7 +16,7 @@ namespace engine {
 			m_Camera = new Camera(0.0f, 0.0f, glm::vec3(0, 0, 300));
 			Camera::vw_matrix = m_Camera->BuildViewMatrix();
 			Camera::pr_matrix = glm::perspective(45.0f, 800.0f / 600.0f, 1.0f, 1000.0f);
-			Camera::light_src = vec2(0, 0);
+			Camera::light_src = vec3(0, 0, 200);
 		}
 
 		GameManager::~GameManager() {

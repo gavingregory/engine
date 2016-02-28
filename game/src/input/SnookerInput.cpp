@@ -41,8 +41,23 @@ void SnookerInput::handleInput(float msec) {
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_P] = false;
 
+	// Camera controls
+	state = glfwGetKey(glfwWindow, GLFW_KEY_E);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_E]) {
+		Camera::vw_matrix *= glm::translate(vec3(0, 0, 1));
+	}
+	state = glfwGetKey(glfwWindow, GLFW_KEY_Q);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_Q]) {
+		Camera::vw_matrix *= glm::translate(vec3(0, 0, -1));
+	}
+
 	// move a light source
-	Camera::light_src = glm::vec2(window->getMouseX(), window->getMouseY());
+#define WIDTH 800
+#define HEIGHT 600
+	Camera::light_src = glm::vec3(
+		window->getMouseX() - WIDTH / 2,
+		(HEIGHT-window->getMouseY()) - HEIGHT / 2,
+		-300.0f);
 	
 
 }

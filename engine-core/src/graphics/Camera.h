@@ -43,7 +43,7 @@ namespace engine {
 
 			static glm::mat4 pr_matrix;
 			static glm::mat4 vw_matrix;
-			static glm::vec2 light_src;
+			static glm::vec3 light_src;
 
 		protected:
 			float	yaw;
