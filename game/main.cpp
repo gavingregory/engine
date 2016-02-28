@@ -63,6 +63,8 @@
 #define RED14_BALL_X RED13_BALL_X
 #define RED14_BALL_Y RED13_BALL_Y - (BALL_RADIUS*2)
 
+#define CUSHION_WIDTH 10
+
 int main()
 {
 	using namespace engine;
@@ -83,6 +85,9 @@ int main()
 	Mesh* brownMesh  = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.545f, 0.271f, 0.075f, 0.500f)); // brown
 	Mesh* greenMesh  = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.596f, 0.984f, 0.596f, 0.500f)); // green
 	Mesh* redMesh    = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.000f, 0.000f, 0.500f)); // red
+
+	Mesh* cushionHorizontalMesh = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, CUSHION_WIDTH, vec4(0, 0, 0, 1));
+	Mesh* cushionVerticalMesh = Mesh::GenerateQuad(CUSHION_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0, 0, 0, 1));
 
 	Shader* defaultShader = new Shader("res/shader/BasicVert.glsl", "res/shader/BasicFrag.glsl");
 
@@ -116,6 +121,11 @@ int main()
 	table->addChild(new BallEntity(vec3( RED12_BALL_X,  RED12_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, BALL_RADIUS, "redBall13"));
 	table->addChild(new BallEntity(vec3( RED13_BALL_X,  RED13_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, BALL_RADIUS, "redBall14"));
 	table->addChild(new BallEntity(vec3( RED14_BALL_X,  RED14_BALL_Y, BALL_RADIUS), vec3(0), vec3(0),    redMesh, defaultShader, BALL_RADIUS, "redBall15"));
+
+	table->addChild(new Entity(vec3(0, SNOOKER_TABLE_HEIGHT / 2, 0), vec3(0), vec3(0), cushionHorizontalMesh, defaultShader, "topCushion"));
+	table->addChild(new Entity(vec3(0, -(SNOOKER_TABLE_HEIGHT/2), 0), vec3(0), vec3(0), cushionHorizontalMesh, defaultShader, "bottomCushion"));
+	table->addChild(new Entity(vec3(-(SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), cushionVerticalMesh, defaultShader, "leftCushion"));
+	table->addChild(new Entity(vec3((SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), cushionVerticalMesh, defaultShader, "rightCushion"));
 
 	g->run();
 

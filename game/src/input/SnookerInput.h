@@ -7,7 +7,6 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
-
 #define MAX_KEYS 1024
 
 using namespace engine;
