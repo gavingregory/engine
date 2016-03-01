@@ -16,7 +16,6 @@ _-_-_-_-_-_-_-""  ""
 
 #pragma once
 
-
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -24,6 +23,9 @@ _-_-_-_-_-_-_-""  ""
 #include "GL/glew.h"
 #include "Mesh.h"
 #include <glm/ext.hpp>
+
+using std::cout;
+using std::endl;
 
 enum ShaderStage {
 	SHADER_VERTEX = 0,
@@ -34,10 +36,17 @@ enum ShaderStage {
 	SHADER_MAX
 };
 
-using namespace std;
+struct ShaderParams {
+	string vertex;
+	string fragment;
+	string geometry;
+	string tcs;
+	string tes;
+};
+
 class Shader {
 public:
-	Shader(string vertex, string fragment, string geometry = "", string tcs = "", string tes = "");
+	Shader(ShaderParams params);
 	~Shader();
 	inline GLuint GetShaderProgram() const { return shaderId; }
 	inline bool	ShaderLinked() const { return linkSuccess; }

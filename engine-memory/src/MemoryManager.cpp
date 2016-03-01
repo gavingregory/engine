@@ -1,35 +1,56 @@
 #include "MemoryManager.h"
 
+MemoryManager::MemoryManager() {}
 
-namespace engine {
-	namespace system {
+MemoryManager::~MemoryManager() {}
 
-		MemoryManager::MemoryManager() {}
+Entity* MemoryManager::createEntity(EntityParams params) {
+	Entity* e = new Entity(params);
+	m_Objects.push_back(e);
+	return e;
+}
 
-		MemoryManager::~MemoryManager() {}
+RenderObject* MemoryManager::createRenderObject(RenderObjectParams params) {
+	RenderObject* r = new RenderObject(params);
+	m_Objects.push_back(r);
+	return r;
+}
 
-		Entity* MemoryManager::createEntity() {
-			if (m_BlockPointer) free(m_BlockPointer);
-			m_BlockPointer = nullptr;
-			return nullptr;
-		}
+PhysicsObject* MemoryManager::createPhysicsObject(PhysicsObjectParams params) {
+	PhysicsObject* p = new PhysicsObject(params);
+	m_Objects.push_back(p);
+	return p;
+}
 
-		bool MemoryManager::init() {
-			// allocate new memory
-			m_BlockPointer = malloc(GIGABYTE);
-			memset(m_BlockPointer, 0, GIGABYTE);
-			return true;
-		}
 
-		bool MemoryManager::destroy() {
-			free (m_BlockPointer);
-			m_BlockPointer = nullptr;
-			return true;
-		}
+Mesh* MemoryManager::createMesh(string path) {
+	Mesh* m = Mesh::LoadMeshFile(path);
+	m_Objects.push_back(m);
+	return m;
+}
 
-		void MemoryManager::update(float msec) {
-			
-		}
+Shader* MemoryManager::createShader(ShaderParams params) {
+	Shader* s = new Shader(params);
+	m_Objects.push_back(s);
+	return s;
+}
 
+bool MemoryManager::init() {
+	// allocate new memory
+	//m_BlockPointer = malloc(GIGABYTE);
+	//memset(m_BlockPointer, 0, GIGABYTE);
+	return true;
+}
+
+bool MemoryManager::destroy() {
+	//free (m_BlockPointer);
+	//m_BlockPointer = nullptr;
+	for (int i = 0; i < m_Objects.size(); i++) {
+		delete m_Objects[i];
 	}
+	return true;
+}
+
+void MemoryManager::update(float msec) {
+	// do nothing
 }

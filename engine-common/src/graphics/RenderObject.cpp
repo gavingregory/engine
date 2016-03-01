@@ -1,8 +1,6 @@
 #include "RenderObject.h"
 
-using namespace engine::graphics;
-
-RenderObject::RenderObject(void) {
+RenderObject::RenderObject() {
 	mesh	= NULL;
 	shader	= NULL;
 	texture = vector<GLuint>();
@@ -10,21 +8,13 @@ RenderObject::RenderObject(void) {
 	parent  = NULL;
 }
 
-RenderObject::RenderObject(Mesh*m, Shader*s) {
-	mesh	= m;
-	shader	= s;
-	texture = vector<GLuint>();
-	textureName = vector<string>();
-	parent  = NULL;
-}
-
-RenderObject::RenderObject(Mesh*m, Shader*s, glm::vec3 pos) {
-	mesh = m;
-	shader = s;
+RenderObject::RenderObject(RenderObjectParams params) {
+	mesh = params.mesh;
+	shader = params.shader;
 	texture = vector<GLuint>();
 	textureName = vector<string>();
 	parent = NULL;
-	modelMatrix = glm::translate(pos);
+	modelMatrix = glm::translate(params.position);
 }
 
 RenderObject::~RenderObject() { }

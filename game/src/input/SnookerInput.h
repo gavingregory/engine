@@ -9,10 +9,6 @@
 
 #define MAX_KEYS 1024
 
-using namespace engine;
-using namespace graphics;
-using namespace audio;
-
 class SnookerInput : public InputHandler
 {
 public:
@@ -21,6 +17,9 @@ public:
 	void handleInput(float msec) override;
 	inline void setCueBall(PhysicsObject* cueBall) { m_CueBall = cueBall; }
 	inline void setAudio(Audio* audio) { m_Audio = audio; }
+	virtual bool init();
+	virtual bool destroy();
+	virtual void update(float msec);
 private:
 	bool m_KeysHeld[MAX_KEYS];
 	PhysicsObject* m_CueBall;

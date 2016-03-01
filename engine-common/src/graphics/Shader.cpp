@@ -19,25 +19,25 @@ will be a value suitable for using as an array size to keep all of the previous
 entries. I use this to create a compile-time array large enough to store all of
 the possible shader objects we might need, using an easy-to-read variable name.
 */
-Shader::Shader(string vFile, string fFile, string gFile, string tcsFile, string tesFile) {
+Shader::Shader(ShaderParams params) {
 	linkSuccess = true;
 	loadSuccess = true;
 
 	shaderId = glCreateProgram();
-	objects[SHADER_VERTEX] = GenerateShader(vFile, GL_VERTEX_SHADER);
-	objects[SHADER_FRAGMENT] = GenerateShader(fFile, GL_FRAGMENT_SHADER);
+	objects[SHADER_VERTEX] = GenerateShader(params.vertex, GL_VERTEX_SHADER);
+	objects[SHADER_FRAGMENT] = GenerateShader(params.fragment, GL_FRAGMENT_SHADER);
 	objects[SHADER_GEOMETRY] = 0;
 	objects[SHADER_TCS] = 0;
 	objects[SHADER_TES] = 0;
 
-	if (!gFile.empty()) {
-		objects[SHADER_GEOMETRY] = GenerateShader(gFile, GL_GEOMETRY_SHADER);
+	if (!params.geometry.empty()) {
+		objects[SHADER_GEOMETRY] = GenerateShader(params.geometry, GL_GEOMETRY_SHADER);
 	}
-	if (!tcsFile.empty()) {
-		objects[SHADER_TCS] = GenerateShader(tcsFile, GL_TESS_CONTROL_SHADER);
+	if (!params.tcs.empty()) {
+		objects[SHADER_TCS] = GenerateShader(params.tcs, GL_TESS_CONTROL_SHADER);
 	}
-	if (!tesFile.empty()) {
-		objects[SHADER_TES] = GenerateShader(tesFile, GL_TESS_EVALUATION_SHADER);
+	if (!params.tes.empty()) {
+		objects[SHADER_TES] = GenerateShader(params.tes, GL_TESS_EVALUATION_SHADER);
 	}
 
 	for (int i = 0; i < SHADER_MAX; ++i) {

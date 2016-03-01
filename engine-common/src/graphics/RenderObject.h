@@ -7,11 +7,22 @@
 #include "Shader.h"
 #include "Camera.h"
 
+using glm::vec3;
+using glm::vec4;
+using std::vector;
+using std::map;
+using std::pair;
+
+struct RenderObjectParams {
+	vec3 position;
+	Mesh* mesh;
+	Shader* shader;
+};
+
 class RenderObject	{
 public:
 	RenderObject();
-	RenderObject(Mesh* m, Shader* s);
-	RenderObject(Mesh* m, Shader* s, glm::vec3 pos);
+	RenderObject(RenderObjectParams params);
 	~RenderObject();
 	Mesh* GetMesh() const { return mesh; }
 	void SetMesh(Mesh*m) { mesh = m; }
@@ -23,7 +34,7 @@ public:
 	inline void pushTexture(GLuint texture, string tName) { this->texture.push_back(texture); this->textureName.push_back(tName); }
 	inline void SetModelMatrix(glm::mat4 mat) { modelMatrix = mat; }
 	inline glm::mat4 GetModelMatrix() const { return modelMatrix; }
-	void pushUniformVec4(string name, glm::vec4 u) { m_UniformVec4.insert(std::pair<string, glm::vec4>(name, u)); }
+	void pushUniformVec4(string name, glm::vec4 u) { m_UniformVec4.insert(pair<string, vec4>(name, u)); }
 	virtual void Update(float msec);
 	virtual void Draw() const;
 

@@ -1,7 +1,5 @@
 #include "SnookerInput.h"
 
-using namespace engine::graphics;
-
 SnookerInput::SnookerInput() {
 	for (int i = 0; i < MAX_KEYS; i++)
 		m_KeysHeld[i] = false;
@@ -59,4 +57,18 @@ void SnookerInput::handleInput(float msec) {
 		(HEIGHT-window->getMouseY()) - HEIGHT / 2,
 		-300.0f);
 	
+}
+
+bool SnookerInput::init() {
+	// init
+	return 0;
+}
+
+bool SnookerInput::destroy() {
+	// destroy
+	return 0;
+}
+
+void SnookerInput::update(float msec) {
+	// do nothing
 }

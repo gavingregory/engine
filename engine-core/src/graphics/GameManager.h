@@ -15,35 +15,30 @@
 #define HEIGHT 600
 #define TITLE "The Engine"
 
-namespace engine {
-	namespace graphics {
-		using namespace utils;
-		using namespace system;
-		using namespace audio;
+struct GameManagerParams {
+	MemoryManager* memoryManager;
+	InputHandler* inputHandler;
+};
 
-		class GameManager
-		{
-		public:
-			GameManager();
-			virtual ~GameManager();
+class GameManager
+{
+public:
+	GameManager(GameManagerParams params);
+	virtual ~GameManager();
+	void addEntity(Entity* e);
+	Audio* getAudio() const { return m_Audio; }
+	MemoryManager* getMemoryManager() const { return m_MemoryManager; }
+	void run();
 
-			void addEntity(Entity* e);
-			void setInputHandler(InputHandler* i) { m_InputHandler = i; }
-			Audio* getAudio() const { return m_Audio; }
-			void run();
+private:
+	Window m_Window;
+	Renderer* m_Renderer;
+	CollisionManager* m_CollisionManager;
+	vector<Entity*> m_Entities;
+	GameTimer m_Timer;
+	InputHandler* m_InputHandler;
+	MemoryManager* m_MemoryManager;
+	Audio* m_Audio;
+	Camera* m_Camera;
 
-		private:
-			Window m_Window;
-			Renderer* m_Renderer;
-			CollisionManager* m_CollisionManager;
-			vector<Entity*> m_Entities;
-			GameTimer m_Timer;
-			InputHandler* m_InputHandler;
-			MemoryManager m_MemoryManager;
-			Audio* m_Audio;
-			Camera* m_Camera;
-
-		};
-
-	}
-}
+};

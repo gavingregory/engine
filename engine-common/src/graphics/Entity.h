@@ -6,37 +6,40 @@
 #include "Renderer.h"
 #include "../../../engine-physics/src/Physics.h"
 
-namespace engine {
-	namespace graphics {
-		using namespace glm;
-		using namespace engine::physics;
+using std::vector;
 
-		class Entity
-		{
-		public:
-			Entity(vec3 p, vec3 v, vec3 a, Mesh* m, Shader* s, string n);
-			virtual ~Entity();
+struct EntityParams {
+	vec3 position;
+	vec3 velocity;
+	vec3 acceleration;
+	Mesh* mesh;
+	Shader* shader;
+	string name;
+};
 
-			inline vec3 getPosition() const { return m_PhysicsObject->m_Position; }
-			inline vec3 getAcceleration() const { return m_PhysicsObject->m_Acceleration; }
-			inline vec3 getVelocity() const { return m_PhysicsObject->m_Velocity; }
-			inline RenderObject* getRenderObject() const { return m_RenderObject; }
-			inline PhysicsObject* getPhysicsObject() const { return m_PhysicsObject; }
-			inline string getName() const { return m_Name; }
+class Entity
+{
+public:
+	Entity(EntityParams params);
+	virtual ~Entity();
 
-			virtual void update(float dt);
-			virtual void render(Renderer* renderer);
+	inline vec3 getPosition() const { return m_PhysicsObject->m_Position; }
+	inline vec3 getAcceleration() const { return m_PhysicsObject->m_Acceleration; }
+	inline vec3 getVelocity() const { return m_PhysicsObject->m_Velocity; }
+	inline RenderObject* getRenderObject() const { return m_RenderObject; }
+	inline PhysicsObject* getPhysicsObject() const { return m_PhysicsObject; }
+	inline string getName() const { return m_Name; }
 
-			void addChild(Entity* e);
-			vector<Entity*>* getChildren() { return &children; }
+	virtual void update(float dt);
+	virtual void render(Renderer* renderer);
 
-		protected:
-			string m_Name;
-			RenderObject* m_RenderObject;
-			PhysicsObject* m_PhysicsObject;
-			Entity* parent;
-			vector<Entity*> children;
-		};
+	void addChild(Entity* e);
+	vector<Entity*>* getChildren() { return &children; }
 
-	}
-}
+protected:
+	string m_Name;
+	RenderObject* m_RenderObject;
+	PhysicsObject* m_PhysicsObject;
+	Entity* parent;
+	vector<Entity*> children;
+};
