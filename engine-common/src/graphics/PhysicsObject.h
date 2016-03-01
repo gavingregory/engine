@@ -31,12 +31,16 @@ namespace engine {
 			inline vec3 getPosition() { return m_Position; }
 			inline vec3 getVelocity() { return m_Velocity; }
 			inline void setPosition(vec3 position) { m_Position = position; }
+			void collide(PhysicsObject*);
+			void noCollide(PhysicsObject*);
+			bool isColliding(PhysicsObject*);
 		private:
 			inline void updateRenderObject();
 			vec3 m_Position;
 			vec3 m_Velocity;
 			vec3 m_Acceleration;
 			vec3 m_PreviousDisplacement;
+			map<PhysicsObject*, bool> m_Collisions;
 			RenderObject* m_RenderObject;
 			Shape* m_CollisionShape;
 		};

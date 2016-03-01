@@ -56,10 +56,20 @@ namespace engine {
 				for (int i = 0; i < m_Entities.size(); i++) {
 					for (int j = 0; j < m_Entities.size(); j++) {
 						if (i != j) {
-							Physics::handleCollision(
+							if (!m_Entities[i]->getPhysicsObject()->isColliding(m_Entities[j]->getPhysicsObject()))
+							if (Physics::handleCollision(
 								m_Entities[i]->getPhysicsObject()->m_Velocity, 1, (Circle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), m_Entities[i]->getPhysicsObject()->m_Position,
 								m_Entities[j]->getPhysicsObject()->m_Velocity, 1, (Circle*)m_Entities[j]->getPhysicsObject()->getCollisionShape(), m_Entities[j]->getPhysicsObject()->m_Position,
-								1.0f);
+								1.0f)) {
+								m_Entities[i]->getPhysicsObject()->collide(m_Entities[j]->getPhysicsObject());
+								m_Entities[j]->getPhysicsObject()->collide(m_Entities[i]->getPhysicsObject());
+							}
+							else {
+								m_Entities[i]->getPhysicsObject()->noCollide(m_Entities[j]->getPhysicsObject());
+								m_Entities[j]->getPhysicsObject()->noCollide(m_Entities[i]->getPhysicsObject());
+							}
+
+
 						}
 					}
 				}
