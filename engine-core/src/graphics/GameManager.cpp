@@ -24,6 +24,7 @@ GameManager::~GameManager() {
 	if (m_InputHandler) delete m_InputHandler;
 	if (m_Camera) delete m_Camera;
 	if (m_Renderer) delete m_Renderer;
+	if (m_Audio) delete m_Audio;
 	m_MemoryManager->destroy();
 	if (m_MemoryManager) delete m_MemoryManager;
 	for (int i = 0; i < m_Entities.size(); i++)
