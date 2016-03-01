@@ -19,8 +19,6 @@ namespace engine {
 			vec3 displacement = updateDisplacement(newvelocity, acceleration, dt);
 			position += displacement;
 			velocity = newvelocity;
-
-			
 		}
 
 		void Physics::implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt) {
@@ -50,6 +48,7 @@ namespace engine {
 			vec3 P = c0->getPosition() - N * (c1->get_radius() - p);
 
 			pos0 += -(N*(p));
+
 
 
 			vel0 = vec3(0);

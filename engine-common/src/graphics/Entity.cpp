@@ -16,7 +16,7 @@ namespace engine {
 
 		void Entity::update(float msec) {
 			m_PhysicsObject->update(msec);
-			m_RenderObject->Update(msec); // do i need this?
+			m_RenderObject->Update(msec);
 			for (int i = 0; i < children.size(); i++)
 				children[i]->update(msec);
 		}

@@ -17,6 +17,9 @@ namespace engine {
 			Camera::vw_matrix = m_Camera->BuildViewMatrix();
 			Camera::pr_matrix = glm::perspective(45.0f, 800.0f / 600.0f, 1.0f, 1000.0f);
 			Camera::light_src = vec3(0, 0, 200);
+
+			m_MemoryManager = MemoryManager();
+			m_MemoryManager.init();
 		}
 
 		GameManager::~GameManager() {
@@ -24,6 +27,7 @@ namespace engine {
 			if (m_InputHandler) delete m_InputHandler;
 			if (m_Camera) delete m_Camera;
 			if (m_Renderer) delete m_Renderer;
+			m_MemoryManager.destroy();
 			for (int i = 0; i < m_Entities.size(); i++)
 				delete m_Entities[i];
 		}

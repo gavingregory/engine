@@ -59,6 +59,4 @@ void SnookerInput::handleInput(float msec) {
 		(HEIGHT-window->getMouseY()) - HEIGHT / 2,
 		-300.0f);
 	
-
-
 }

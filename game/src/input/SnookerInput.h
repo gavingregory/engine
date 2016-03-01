@@ -1,8 +1,8 @@
 #pragma once
-#include "../../../engine-core/src/graphics/PhysicsObject.h"
-#include "../../../engine-core/src/input/InputHandler.h"
-#include "../../../engine-core/src/graphics/Window.h"
-#include "../../../engine-core/src/graphics/Camera.h"
+#include "../../../engine-common/src/graphics/PhysicsObject.h"
+#include "../../../engine-common/src/input/InputHandler.h"
+#include "../../../engine-common/src/graphics/Window.h"
+#include "../../../engine-common/src/graphics/Camera.h"
 #include "../../../engine-audio/src/Audio.h"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>

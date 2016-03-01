@@ -3,12 +3,12 @@
 #include <time.h>
 
 #include "../engine-core/src/graphics/GameManager.h"
-#include "../engine-core/src/graphics/Shader.h"
+#include "../engine-common/src/graphics/Shader.h"
 #include "../../../engine-physics/src/Physics.h"
 #include "src/input/SnookerInput.h"
-#include "../engine-core/src/graphics/RenderObject.h"
-#include "../engine-core/src/graphics/Renderer.h"
-#include "../engine-core/src/graphics/Mesh.h"
+#include "../engine-common/src/graphics/RenderObject.h"
+#include "../engine-common/src/graphics/Renderer.h"
+#include "../engine-common/src/graphics/Mesh.h"
 #include "src/entities/BallEntity.h"
 
 #define WIDTH 800

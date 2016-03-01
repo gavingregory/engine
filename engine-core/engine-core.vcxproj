@@ -139,31 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\graphics\PhysicsObject.cpp" />
-    <ClCompile Include="src\graphics\Camera.cpp" />
-    <ClCompile Include="src\graphics\Entity.cpp" />
     <ClCompile Include="src\graphics\GameManager.cpp" />
-    <ClCompile Include="src\graphics\Mesh.cpp" />
-    <ClCompile Include="src\graphics\Renderer.cpp" />
-    <ClCompile Include="src\graphics\RenderObject.cpp" />
-    <ClCompile Include="src\graphics\Shader.cpp" />
-    <ClCompile Include="src\graphics\Window.cpp" />
-    <ClCompile Include="src\utils\File.cpp" />
-    <ClCompile Include="src\utils\GameTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\graphics\PhysicsObject.h" />
-    <ClInclude Include="src\graphics\Camera.h" />
-    <ClInclude Include="src\graphics\Entity.h" />
-    <ClInclude Include="src\input\InputHandler.h" />
     <ClInclude Include="src\graphics\GameManager.h" />
-    <ClInclude Include="src\graphics\Mesh.h" />
-    <ClInclude Include="src\graphics\Renderer.h" />
-    <ClInclude Include="src\graphics\RenderObject.h" />
-    <ClInclude Include="src\graphics\Shader.h" />
-    <ClInclude Include="src\graphics\Window.h" />
-    <ClInclude Include="src\utils\File.h" />
-    <ClInclude Include="src\utils\GameTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\meshes\cube.asciimesh" />

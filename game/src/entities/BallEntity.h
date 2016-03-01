@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../../engine-core/src/graphics/Entity.h"
-#include "../../../engine-core/src/graphics/Window.h"
+#include "../../../engine-common/src/graphics/Entity.h"
+#include "../../../engine-common/src/graphics/Window.h"
 
 using namespace engine;
 using namespace graphics;
