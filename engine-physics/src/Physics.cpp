@@ -29,7 +29,7 @@ void Physics::semiImplicitEuler(vec3& position, vec3& velocity, const vec3 accel
 	position += displacement;
 }
 
-bool Physics::handleCollision(vec3& vel0, float m0, Circle* c0, vec3& pos0, vec3& vel1, float m1, Circle* c1, vec3& pos1, float coeffElasticity) {
+bool Physics::handleCollision(vec3& vel0, float m0, CollisionCircle* c0, vec3& pos0, vec3& vel1, float m1, CollisionCircle* c1, vec3& pos1, float coeffElasticity) {
 	float distance;
 	if (!detectCollision(c0, c1, distance)) return false;
 	std::cout << "collision detected" << std::endl;
@@ -62,7 +62,7 @@ bool Physics::handleCollision(vec3& vel0, float m0, Circle* c0, vec3& pos0, vec3
 	return true;
 }
 
-bool Physics::detectCollision(Circle* left, Circle* right, float& distance) {
+bool Physics::detectCollision(CollisionCircle* left, CollisionCircle* right, float& distance) {
 	if (left == nullptr || right == nullptr) return false;
 	distance = glm::distance(*left->getPositionPtr(), *right->getPositionPtr());
 	if (distance < left->get_radius() || distance < right->get_radius())

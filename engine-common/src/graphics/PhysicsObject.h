@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include "../../../engine-physics/src/Physics.h"
 #include "../../../engine-physics/src/collision/Shape.h"
-#include "../../../engine-physics/src/collision/Circle.h"
+#include "../../../engine-physics/src/collision/CollisionCircle.h"
 #include "RenderObject.h"
 
 #define DAMPING_FACTOR 0.999f

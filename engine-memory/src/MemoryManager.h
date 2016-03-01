@@ -24,7 +24,8 @@ public:
 	PhysicsObject* createPhysicsObject(PhysicsObjectParams params);
 	Mesh* createMesh(string path);
 	Shader* createShader(ShaderParams params);
-			
+	CollisionCircle* createCollisionCircle(CollisionCircleParams);
+	
 	virtual bool init();
 	
 	virtual bool destroy();

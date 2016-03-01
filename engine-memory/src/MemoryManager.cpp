@@ -24,6 +24,11 @@ PhysicsObject* MemoryManager::createPhysicsObject(PhysicsObjectParams params) {
 	return p;
 }
 
+CollisionCircle* MemoryManager::createCollisionCircle(CollisionCircleParams params) {
+	CollisionCircle* c = new CollisionCircle(params);
+	m_Objects.push_back(c);
+	return c;
+}
 
 Mesh* MemoryManager::createMesh(string path) {
 	Mesh* m = Mesh::LoadMeshFile(path);

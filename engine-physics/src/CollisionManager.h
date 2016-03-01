@@ -1,12 +1,11 @@
 #pragma once
 
-#include "collision\Circle.h"
+#include "collision\CollisionCircle.h"
 
 class CollisionManager
 {
 public:
 	CollisionManager();
 	virtual ~CollisionManager();
-	bool detect(Circle* left, Circle* right);
+	bool detect(CollisionCircle* left, CollisionCircle* right);
 };
-

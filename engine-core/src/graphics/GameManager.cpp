@@ -57,8 +57,8 @@ void GameManager::run() {
 				if (i != j) {
 					if (!m_Entities[i]->getPhysicsObject()->isColliding(m_Entities[j]->getPhysicsObject()))
 					if (Physics::handleCollision(
-						m_Entities[i]->getPhysicsObject()->m_Velocity, 1, (Circle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), m_Entities[i]->getPhysicsObject()->m_Position,
-						m_Entities[j]->getPhysicsObject()->m_Velocity, 1, (Circle*)m_Entities[j]->getPhysicsObject()->getCollisionShape(), m_Entities[j]->getPhysicsObject()->m_Position,
+						m_Entities[i]->getPhysicsObject()->m_Velocity, 1, (CollisionCircle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), m_Entities[i]->getPhysicsObject()->m_Position,
+						m_Entities[j]->getPhysicsObject()->m_Velocity, 1, (CollisionCircle*)m_Entities[j]->getPhysicsObject()->getCollisionShape(), m_Entities[j]->getPhysicsObject()->m_Position,
 						1.0f)) {
 						m_Entities[i]->getPhysicsObject()->collide(m_Entities[j]->getPhysicsObject());
 						m_Entities[j]->getPhysicsObject()->collide(m_Entities[i]->getPhysicsObject());
