@@ -5,7 +5,9 @@ MemoryManager::MemoryManager() {}
 MemoryManager::~MemoryManager() {}
 
 Entity* MemoryManager::createEntity(EntityParams params) {
-	Entity* e = new Entity(params);
+	RenderObject* ro = createRenderObject(RenderObjectParams{ params.position, params.mesh, params.shader });
+	PhysicsObject* po = createPhysicsObject(PhysicsObjectParams{ params.position, params.velocity, params.acceleration, ro, nullptr });
+	Entity* e = new Entity(params, ro, po);
 	m_Objects.push_back(e);
 	return e;
 }

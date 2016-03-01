@@ -20,7 +20,7 @@ struct EntityParams {
 class Entity
 {
 public:
-	Entity(EntityParams params);
+	Entity(EntityParams params, RenderObject* ro, PhysicsObject* po);
 	virtual ~Entity();
 
 	inline vec3 getPosition() const { return m_PhysicsObject->m_Position; }

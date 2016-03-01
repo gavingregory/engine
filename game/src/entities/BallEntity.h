@@ -16,6 +16,6 @@ struct BallEntityParams {
 class BallEntity : public Entity
 {
 public:
-	BallEntity(BallEntityParams params);
+	BallEntity(BallEntityParams params, RenderObject* ro, PhysicsObject* po);
 	virtual ~BallEntity();
 };

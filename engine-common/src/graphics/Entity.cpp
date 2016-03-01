@@ -1,18 +1,8 @@
 #include "Entity.h"
 
-Entity::Entity(EntityParams params) {
-	RenderObjectParams roParams;
-	roParams.mesh = params.mesh;
-	roParams.shader = params.shader;
-	roParams.position = params.position;
-	m_RenderObject = new RenderObject(roParams);
-	PhysicsObjectParams poParams;
-	poParams.acceleration = params.acceleration;
-	poParams.position = params.position;
-	poParams.renderObject = m_RenderObject;
-	poParams.velocity = params.velocity;
-	poParams.collisionShape = nullptr;
-	m_PhysicsObject = new PhysicsObject(poParams);
+Entity::Entity(EntityParams params, RenderObject* ro, PhysicsObject* po) {
+	m_RenderObject = ro;
+	m_PhysicsObject = po;
 	m_Name = params.name;
 }
 
