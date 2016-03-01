@@ -88,7 +88,7 @@ int main()
 	Mesh* cushionVerticalMesh = Mesh::GenerateQuad(CUSHION_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0, 0, 0, 1));
 
 	ShaderParams shaderParams = { "res/shader/BasicVert.glsl", "res/shader/BasicFrag.glsl", "", "", "" };
-	Shader* defaultShader = new Shader(shaderParams);
+	Shader* defaultShader = memory->createShader(shaderParams);
 
 	Entity* table = memory->createEntity(EntityParams{ vec3(0), vec3(0), vec3(0), tableMesh, defaultShader, "table" });
 
