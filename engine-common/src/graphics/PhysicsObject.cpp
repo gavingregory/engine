@@ -43,4 +43,6 @@ bool PhysicsObject::isColliding(PhysicsObject* o) {
 	return false;
 }
 
-PhysicsObject::~PhysicsObject() {}
+PhysicsObject::~PhysicsObject() {
+	if (m_CollisionShape) delete m_CollisionShape;
+}
