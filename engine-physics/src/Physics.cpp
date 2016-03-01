@@ -6,12 +6,12 @@ namespace engine {
 		Physics::Physics() {}
 		Physics::~Physics() {}
 
-		vec3 Physics::updateVelocity(vec3 initialVelocity, vec3 acceleration, float time) {
-			return initialVelocity + (acceleration*time);
+		vec3 Physics::updateVelocity(vec3 initialVelocity, vec3 acceleration, float dt) {
+			return initialVelocity + (acceleration*dt);
 		}
 
-		vec3 Physics::updateDisplacement(vec3 initialVelocity, vec3 acceleration, float time) {
-			return (initialVelocity*time) + (0.5f*acceleration*time*time);
+		vec3 Physics::updateDisplacement(vec3 initialVelocity, vec3 acceleration, float dt) {
+			return (initialVelocity*dt) + (0.5f*acceleration*dt*dt);
 		}
 
 		void Physics::explicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt) {
@@ -22,16 +22,14 @@ namespace engine {
 		}
 
 		void Physics::implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt) {
-			velocity = velocity + acceleration * dt;
+			velocity = updateVelocity(velocity, acceleration, dt);
 			position += updateDisplacement(velocity, acceleration, dt) + (velocity * dt);
 		}
 
-		void Physics::semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt) {
-			vec3 newvelocity = velocity + (acceleration * dt);
-			vec3 displacement = updateDisplacement(velocity, acceleration, dt);
-			vec3 newdisplacement = displacement + (newvelocity * dt);
-			position += newdisplacement;
-			velocity = newvelocity;
+		void Physics::semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, vec3& displacement, const float dt) {
+			velocity = updateVelocity(velocity, acceleration, dt);
+			displacement = updateDisplacement(velocity, acceleration, dt);
+			position += displacement;
 		}
 
 		void Physics::handleCollision(vec3& vel0, float m0, Circle* c0, vec3& pos0, vec3& vel1, float m1, Circle* c1, vec3& pos1, float coeffElasticity) {

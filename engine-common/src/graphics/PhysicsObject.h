@@ -36,6 +36,7 @@ namespace engine {
 			vec3 m_Position;
 			vec3 m_Velocity;
 			vec3 m_Acceleration;
+			vec3 m_PreviousDisplacement;
 			RenderObject* m_RenderObject;
 			Shape* m_CollisionShape;
 		};

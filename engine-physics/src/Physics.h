@@ -18,7 +18,7 @@ namespace engine {
 			static vec3 updateDisplacement(vec3 initialVelocity, vec3 acceleration, float time);
 			static void explicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
 			static void implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
-			static void semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
+			static void semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, vec3& displacement, const float dt);
 
 			static void handleCollision(vec3& vec0, float m0, Circle* c0, vec3& pos0, vec3& v1, float m1, Circle* c1, vec3& pos1, float coeffElasticity);
 			static bool detectCollision(Circle* left, Circle* right, float& distance);
