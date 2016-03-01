@@ -19,7 +19,8 @@ class Circle : public Shape {
 public:
     Circle(glm::vec3* position, float radius);
     ~Circle();
-    float get_radius() const;
+	inline float get_radius() const { return radius; }
+
 private:
     float radius;
 };

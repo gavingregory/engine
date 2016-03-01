@@ -12,7 +12,8 @@ class Shape {
 public:
     Shape(glm::vec3* position);
     virtual ~Shape();
-	glm::vec3* getPositionPtr() { return m_Position; }
+	inline glm::vec3* getPositionPtr() { return m_Position; }
+	inline glm::vec3 getPosition() { return *m_Position; }
 protected:
 	glm::vec3* m_Position;
 };

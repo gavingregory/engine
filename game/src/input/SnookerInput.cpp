@@ -18,7 +18,7 @@ void SnookerInput::handleInput(float msec) {
 	int state = glfwGetKey(glfwWindow, GLFW_KEY_ENTER);
 	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_ENTER]) { 
 		m_KeysHeld[GLFW_KEY_ENTER] = true;
-		m_CueBall->applyForce(vec3(0.1f, 0.03f, 0.0f));
+		m_CueBall->applyForce(vec3(0.1f, 0.0f, 0.0f));
 	}
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_ENTER] = false;
@@ -59,5 +59,6 @@ void SnookerInput::handleInput(float msec) {
 		(HEIGHT-window->getMouseY()) - HEIGHT / 2,
 		-300.0f);
 	
+
 
 }
