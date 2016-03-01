@@ -30,6 +30,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-audio", "engine-audi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-common", "engine-common\engine-common.vcxproj", "{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-memory", "engine-memory\engine-memory.vcxproj", "{5DF667B3-7793-4D89-A813-503085CC8021}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E78CB02E-ACCE-48AF-9D8F-F103AC4467A1} = {E78CB02E-ACCE-48AF-9D8F-F103AC4467A1}
+		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245} = {FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}
+		{7F48A190-124A-49E4-8FB0-A7ABEFDFBE85} = {7F48A190-124A-49E4-8FB0-A7ABEFDFBE85}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +97,16 @@ Global
 		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Release|x64.Build.0 = Release|x64
 		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Release|x86.ActiveCfg = Release|Win32
 		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}.Release|x86.Build.0 = Release|Win32
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Debug|x64.ActiveCfg = Debug|x64
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Debug|x64.Build.0 = Debug|x64
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Debug|x86.ActiveCfg = Debug|Win32
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Debug|x86.Build.0 = Debug|Win32
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Release|Any CPU.ActiveCfg = Release|Win32
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Release|x64.ActiveCfg = Release|x64
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Release|x64.Build.0 = Release|x64
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Release|x86.ActiveCfg = Release|Win32
+		{5DF667B3-7793-4D89-A813-503085CC8021}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
