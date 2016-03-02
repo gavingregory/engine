@@ -14,14 +14,14 @@ struct CushionEntityParams {
 	Mesh* mesh;
 	Shader* shader;
 	string name;
-	float width;
-	float height;
+	vec3 normal;
+	vec3 distance;
 };
 
 class CushionEntity : public Entity
 {
 public:
-	CushionEntity(CushionEntityParams params, RenderObject* ro, PhysicsObject* po, CollisionRectangle* r);
+	CushionEntity(CushionEntityParams params, RenderObject* ro, PhysicsObject* po, CollisionPlane* r);
 	virtual ~CushionEntity();
 };
 

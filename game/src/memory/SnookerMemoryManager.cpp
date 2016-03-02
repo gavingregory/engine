@@ -16,7 +16,7 @@ Entity* SnookerMemoryManager::createBallEntity(BallEntityParams params) {
 Entity* SnookerMemoryManager::createCushionEntity(CushionEntityParams params) {
 	RenderObject* ro = createRenderObject(RenderObjectParams{ params.position, params.mesh, params.shader });
 	PhysicsObject* po = createPhysicsObject(PhysicsObjectParams{ params.position, params.velocity, params.acceleration, ro, nullptr });
-	CollisionRectangle* r = createCollisionRectangle(CollisionRectangleParams{ po->getPositionPtr() , params.width, params.height });
+	CollisionPlane* r = createCollisionPlane(CollisionPlaneParams{ po->getPositionPtr() , params.normal, params.distance });
 	CushionEntity* e = new CushionEntity(params, ro, po, r);
 	m_Objects.push_back(e);
 	return e;

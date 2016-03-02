@@ -76,7 +76,9 @@ void SnookerInput::handleInput(float msec) {
 	m_Cue->setRotation(-angle);
 
 	// set light source to follow mouse
-	Camera::light_src = vec3(mouse, 300);
+	vec3 cueBallPos = m_CueBall->getPosition(); //vec3(mouse, 300);
+	cueBallPos.z = 100;
+	Camera::light_src = cueBallPos;
 }
 
 bool SnookerInput::init() {

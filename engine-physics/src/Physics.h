@@ -5,7 +5,7 @@
 #include <iostream>
 #include "collision\CollisionCircle.h"
 #include "collision\CollisionShape.h"
-#include "collision\CollisionRectangle.h"
+#include "collision\CollisionPlane.h"
 
 using glm::vec3;
 
@@ -22,6 +22,5 @@ public:
 
 	static bool detectCollision(vec3& vec0, float m0, CollisionShape* c0, vec3& pos0, vec3& v1, float m1, CollisionShape* c1, vec3& pos1, float coeffElasticity);
 	static bool handleCircleCircle(vec3& vel0, float m0, CollisionCircle* c0, vec3& pos0, vec3& vel1, float m1, CollisionCircle* c1, vec3& pos1, float coeffElasticity);
-	static bool handleCircleRect(vec3& vel0, float m0, CollisionCircle* c0, vec3& pos0, vec3& vel1, float m1, CollisionRectangle* c1, vec3& pos1, float coeffElasticity);
-	static bool handleRectRect(vec3& vel0, float m0, CollisionRectangle* c0, vec3& pos0, vec3& vel1, float m1, CollisionRectangle* c1, vec3& pos1, float coeffElasticity);
+	static bool handleCirclePlane(vec3& vel0, float m0, CollisionCircle* c0, vec3& pos0, vec3& vel1, float m1, CollisionPlane* c1, vec3& pos1, float coeffElasticity);
 };

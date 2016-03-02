@@ -29,7 +29,7 @@ GameManager::~GameManager() {
 	if (m_Audio) delete m_Audio;
 	m_MemoryManager->destroy();
 	if (m_MemoryManager) delete m_MemoryManager;
-	for (int i = 0; i < m_Entities.size(); i++)
+	for (unsigned int i = 0; i < m_Entities.size(); i++)
 		delete m_Entities[i];
 }
 
@@ -51,12 +51,12 @@ void GameManager::run() {
 		if (m_InputHandler) m_InputHandler->handleInput(msec);
 
 		// UPDATE
-		for (int i = 0; i < m_Entities.size(); i++)
+		for (unsigned int i = 0; i < m_Entities.size(); i++)
 			m_Entities[i]->update(msec);
 
 		// COLLISION
-		for (int i = 0; i < PhysicsObject::m_Colliders.size(); i++) {
-			for (int j = 0; j < PhysicsObject::m_Colliders.size(); j++) {
+		for (unsigned int i = 0; i < PhysicsObject::m_Colliders.size(); i++) {
+			for (unsigned int j = 0; j < PhysicsObject::m_Colliders.size(); j++) {
 				if (i != j) {
 					if (!PhysicsObject::m_Colliders[i]->isColliding(PhysicsObject::m_Colliders[j])) {
 						if (Physics::detectCollision(
@@ -78,7 +78,7 @@ void GameManager::run() {
 		}
 
 		// RENDER
-		for (int i = 0; i < m_Entities.size(); i++)
+		for (unsigned int i = 0; i < m_Entities.size(); i++)
 			m_Entities[i]->render(m_Renderer);
 		m_Window.update();
 	}

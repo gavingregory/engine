@@ -30,8 +30,8 @@ CollisionCircle* MemoryManager::createCollisionCircle(CollisionCircleParams para
 	return c;
 }
 
-CollisionRectangle* MemoryManager::createCollisionRectangle(CollisionRectangleParams params) {
-	CollisionRectangle* r = new CollisionRectangle(params);
+CollisionPlane* MemoryManager::createCollisionPlane(CollisionPlaneParams params) {
+	CollisionPlane* r = new CollisionPlane(params);
 	m_Objects.push_back(r);
 	return r;
 }
@@ -58,7 +58,7 @@ bool MemoryManager::init() {
 bool MemoryManager::destroy() {
 	//free (m_BlockPointer);
 	//m_BlockPointer = nullptr;
-	for (int i = 0; i < m_Objects.size(); i++) {
+	for (unsigned int i = 0; i < m_Objects.size(); i++) {
 		delete m_Objects[i];
 	}
 	return true;

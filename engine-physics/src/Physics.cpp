@@ -35,16 +35,16 @@ bool Physics::detectCollision(vec3& vel0, float m0, CollisionShape* c0, vec3& po
 		if (CollisionCircle* derived1 = dynamic_cast<CollisionCircle*>(c1)) {
 			return handleCircleCircle(vel0, m0, derived0, pos0, vel1, m1, derived1, pos1, coeffElasticity);
 		}
-		else if (CollisionRectangle* derived1 = dynamic_cast<CollisionRectangle*>(c1)) {
-			return handleCircleRect(vel0, m0, derived0, pos0, vel1, m1, derived1, pos1, coeffElasticity);
+		else if (CollisionPlane* derived1 = dynamic_cast<CollisionPlane*>(c1)) {
+			return handleCirclePlane(vel0, m0, derived0, pos0, vel1, m1, derived1, pos1, coeffElasticity);
 		}
 	}
-	else if (CollisionRectangle* derived0 = dynamic_cast<CollisionRectangle*>(c0)) {
+	else if (CollisionPlane* derived0 = dynamic_cast<CollisionPlane*>(c0)) {
 		if (CollisionCircle* derived1 = dynamic_cast<CollisionCircle*>(c1)) {
-			return handleCircleRect(vel0, m0, derived1, pos0, vel1, m1, derived0, pos1, coeffElasticity);
+			return handleCirclePlane(vel0, m0, derived1, pos0, vel1, m1, derived0, pos1, coeffElasticity);
 		}
-		else if (CollisionRectangle* derived1 = dynamic_cast<CollisionRectangle*>(c1)) {
-			return handleRectRect(vel0, m0, derived0, pos0, vel1, m1, derived1, pos1, coeffElasticity);
+		else if (CollisionPlane* derived1 = dynamic_cast<CollisionPlane*>(c1)) {
+			return false; // don't need to worry about plane/plane collisions
 		}
 	}
 	return false;
@@ -87,42 +87,30 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 }
 
 
-bool Physics::handleCircleRect(vec3& vel0, float m0, CollisionCircle* left, vec3& pos0, vec3& vel1, float m1, CollisionRectangle* right, vec3& pos1, float coeffElasticity) {
-	if (left == nullptr || right == nullptr) return false;
+bool Physics::handleCirclePlane(vec3& vel0, float m0, CollisionCircle* left, vec3& pos0, vec3& vel1, float m1, CollisionPlane* right, vec3& pos1, float coeffElasticity) {
+	
+	vec3 N = right->getNormal();
+	vec3 D = right->getDistance();
 
-	float r0_l = left->getPosition().x - left->get_radius();
-	float r0_r = left->getPosition().x + left->get_radius();
-	float r0_t = left->getPosition().y + left->get_radius();
-	float r0_b = left->getPosition().y - left->get_radius();
-	float r1_l = right->getPosition().x - (right->getWidth() / 2);
-	float r1_r = right->getPosition().x + (right->getWidth() / 2);
-	float r1_t = right->getPosition().y + (right->getHeight() / 2);
-	float r1_b = right->getPosition().y - (right->getHeight() / 2);
+	float distance = glm::dot(left->getPosition() - D, N);
+	std::cout << distance << std::endl;
+	if (distance < left->get_radius()) {
 
-	// first check for bounding box collision. If this occurs, we perform a second check to check if an actual
-	// collision has occurred.
-	if (!(r1_l > r0_r || r1_r < r0_l || r1_t > r0_b || r1_b < r0_t)) {
-		// bounding box collision! Perform detailed checked:
+		vec3 mab = (vel0 * m0) + (vel1 * m1);
+		std::cout << mab.x << ", " << mab.y << ", " << mab.z << ", " << glm::length(mab) << " : ";
 
-		// find closest point to the circle within the rectangle
-		float closestX = glm::clamp(left->getPosition().x, r1_l, r1_r);
-		float closestY = glm::clamp(left->getPosition().y, r1_t, r1_b);
+		vec3 vAB = vel0 + vel1;
 
-		// calculate the distance between the circle's center and this closest point
-		float distanceX = left->getPosition().x - closestX;
-		float distanceY = left->getPosition().y - closestY;
+		float vN = glm::dot(vAB, N);
 
-		// If the distance is less than the circle's radius, an intersection occurs
-		float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
-		if (distanceSquared < (left->get_radius() * left->get_radius())) {
-			// collision for defo
-			std::cout << "circle rect collision for defo" << std::endl;
-			return true;
-		}
+		float J = (-(1 + coeffElasticity)* vN) / (dot(N, N) * (m0 + m1));
+
+		vel0 = vel0 + ((J*m0) * N);
+		vel1 = vel1 - ((J*m1) * N);
+
+		mab = (vel0 * m0) + (vel1 * m1);
+		std::cout << mab.x << ", " << mab.y << ", " << mab.z << ", " << glm::length(mab) << std::endl;
+		return true;
 	}
-	return false;
-}
-
-bool Physics::handleRectRect(vec3& vel0, float m0, CollisionRectangle* c0, vec3& pos0, vec3& vel1, float m1, CollisionRectangle* c1, vec3& pos1, float coeffElasticity) {
 	return false;
 }
