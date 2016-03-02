@@ -72,7 +72,7 @@ void SnookerInput::handleInput(float msec) {
 
 bool SnookerInput::init() {
 	// init
-	return 0;
+	return true;
 }
 
 bool SnookerInput::destroy() {
