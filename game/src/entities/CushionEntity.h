@@ -11,6 +11,8 @@ struct CushionEntityParams {
 	vec3 position;
 	vec3 velocity;
 	vec3 acceleration;
+	float rotation;
+	float mass;
 	Mesh* mesh;
 	Shader* shader;
 	string name;

@@ -7,6 +7,8 @@
 #include "collision\CollisionShape.h"
 #include "collision\CollisionPlane.h"
 
+#define DAMPING_FACTOR 0.8f
+
 using glm::vec3;
 
 class Physics

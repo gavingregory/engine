@@ -54,8 +54,6 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 	if (left == nullptr || right == nullptr) return false;
 	float distance = glm::distance(*left->getPositionPtr(), *right->getPositionPtr());
 	if (distance < left->get_radius() + right->get_radius()) {
-		std::cout << "circle/circle collision detected" << std::endl;
-
 		// calculate p (penetration depth)
 		//float p = c0->get_radius() + c1->get_radius() - distance;
 
@@ -68,7 +66,6 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 		// NEW STUFF 
 
 		vec3 mab = (vel0 * m0) + (vel1 * m1);
-		std::cout << mab.x << ", " << mab.y << ", " << mab.z << ", " << glm::length(mab) << " : ";
 
 		vec3 vAB = vel0 + vel1;
 
@@ -76,11 +73,10 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 
 		float J = (-(1 + coeffElasticity)* vN) / (dot(N, N) * (m0 + m1));
 
-		vel0 = vel0 + ((J*m0) * N);
-		vel1 = vel1 - ((J*m1) * N);
+		vel0 = DAMPING_FACTOR * (vel0 + ((J*m0) * N));
+		vel1 = DAMPING_FACTOR * (vel1 - ((J*m1) * N));
 
 		mab = (vel0 * m0) + (vel1 * m1);
-		std::cout << mab.x << ", " << mab.y << ", " << mab.z << ", " << glm::length(mab) << std::endl;
 		return true;
 	}
 	return false;
@@ -93,11 +89,9 @@ bool Physics::handleCirclePlane(vec3& vel0, float m0, CollisionCircle* left, vec
 	vec3 D = right->getDistance();
 
 	float distance = glm::dot(left->getPosition() - D, N);
-	std::cout << distance << std::endl;
 	if (distance < left->get_radius()) {
 
 		vec3 mab = (vel0 * m0) + (vel1 * m1);
-		std::cout << mab.x << ", " << mab.y << ", " << mab.z << ", " << glm::length(mab) << " : ";
 
 		vec3 vAB = vel0 + vel1;
 
@@ -105,11 +99,10 @@ bool Physics::handleCirclePlane(vec3& vel0, float m0, CollisionCircle* left, vec
 
 		float J = (-(1 + coeffElasticity)* vN) / (dot(N, N) * (m0 + m1));
 
-		vel0 = vel0 + ((J*m0) * N);
-		vel1 = vel1 - ((J*m1) * N);
+		vel1 = DAMPING_FACTOR * (vel1 - ((J*m1) * N));
+		vel0 = DAMPING_FACTOR * (vel0 + ((J*m0) * N));
 
 		mab = (vel0 * m0) + (vel1 * m1);
-		std::cout << mab.x << ", " << mab.y << ", " << mab.z << ", " << glm::length(mab) << std::endl;
 		return true;
 	}
 	return false;

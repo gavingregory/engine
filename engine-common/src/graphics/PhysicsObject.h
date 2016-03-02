@@ -15,6 +15,8 @@ struct PhysicsObjectParams {
 	vec3 position;
 	vec3 velocity;
 	vec3 acceleration;
+	float rotation;
+	float mass;
 	RenderObject* renderObject;
 	CollisionShape* collisionShape;
 };
@@ -44,6 +46,7 @@ public:
 	inline float getRotation() { return m_Rotation; }
 	inline void setPosition(vec3 position) { m_Position = position; }
 	inline void setRotation(float rotation) { m_Rotation = rotation; }
+	inline float getMass() const { return m_Mass; }
 	void collide(PhysicsObject*);
 	void noCollide(PhysicsObject*);
 	bool isColliding(PhysicsObject*);
@@ -51,6 +54,7 @@ public:
 private:
 	inline void updateRenderObject();
 	float m_Rotation;
+	float m_Mass;
 	vec3 m_Position;
 	vec3 m_Velocity;
 	vec3 m_Acceleration;
