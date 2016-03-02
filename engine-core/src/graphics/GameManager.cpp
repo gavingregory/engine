@@ -56,21 +56,23 @@ void GameManager::run() {
 		for (int i = 0; i < m_Entities.size(); i++)
 			m_Entities[i]->update(msec);
 
-		for (int i = 0; i < m_Entities.size(); i++) {
-			for (int j = 0; j < m_Entities.size(); j++) {
+		// COLLISION
+		for (int i = 0; i < PhysicsObject::m_Colliders.size(); i++) {
+			for (int j = 0; j < PhysicsObject::m_Colliders.size(); j++) {
 				if (i != j) {
-					if (!m_Entities[i]->getPhysicsObject()->isColliding(m_Entities[j]->getPhysicsObject())) {
+					if (!PhysicsObject::m_Colliders[i]->isColliding(PhysicsObject::m_Colliders[j])) {
 						if (Physics::handleCollision(
-							m_Entities[i]->getPhysicsObject()->m_Velocity, 1, (CollisionCircle*)m_Entities[i]->getPhysicsObject()->getCollisionShape(), m_Entities[i]->getPhysicsObject()->m_Position,
-							m_Entities[j]->getPhysicsObject()->m_Velocity, 1, (CollisionCircle*)m_Entities[j]->getPhysicsObject()->getCollisionShape(), m_Entities[j]->getPhysicsObject()->m_Position,
+							PhysicsObject::m_Colliders[i]->m_Velocity, 1, (CollisionCircle*)PhysicsObject::m_Colliders[i]->getCollisionShape(), PhysicsObject::m_Colliders[i]->m_Position,
+							PhysicsObject::m_Colliders[j]->m_Velocity, 1, (CollisionCircle*)PhysicsObject::m_Colliders[j]->getCollisionShape(), PhysicsObject::m_Colliders[j]->m_Position,
 							1.0f)) {
-							m_Entities[i]->getPhysicsObject()->collide(m_Entities[j]->getPhysicsObject());
-							m_Entities[j]->getPhysicsObject()->collide(m_Entities[i]->getPhysicsObject());
+							cout << "collision " << endl;
+							PhysicsObject::m_Colliders[i]->collide(PhysicsObject::m_Colliders[j]);
+							PhysicsObject::m_Colliders[j]->collide(PhysicsObject::m_Colliders[i]);
 						}
 					}
 					else {
-						m_Entities[i]->getPhysicsObject()->noCollide(m_Entities[j]->getPhysicsObject());
-						m_Entities[j]->getPhysicsObject()->noCollide(m_Entities[i]->getPhysicsObject());
+						PhysicsObject::m_Colliders[i]->noCollide(PhysicsObject::m_Colliders[j]);
+						PhysicsObject::m_Colliders[j]->noCollide(PhysicsObject::m_Colliders[i]);
 					}
 
 				}

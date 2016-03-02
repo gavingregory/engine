@@ -30,7 +30,13 @@ public:
 	void update(float msec);
 	void applyForce(vec3 velocity);
 	inline Shape* getCollisionShape() const { return m_CollisionShape; }
-	inline void setCollisionShape(Shape* collisionShape) { m_CollisionShape = collisionShape;  }
+	inline void setCollisionShape(Shape* collisionShape) {
+		m_CollisionShape = collisionShape;
+		// add this shape to colliders if it has a collision shape
+		if (m_CollisionShape != nullptr) {
+			cout << "adding a collision object " << endl; m_Colliders.push_back(this);
+		}
+	}
 	inline vec3* getPositionPtr() { return &m_Position; }
 	inline vec3* getVelocityPtr() { return &m_Velocity; }
 	inline vec3 getPosition() { return m_Position; }
@@ -39,6 +45,7 @@ public:
 	void collide(PhysicsObject*);
 	void noCollide(PhysicsObject*);
 	bool isColliding(PhysicsObject*);
+	static vector<PhysicsObject*> m_Colliders;
 private:
 	inline void updateRenderObject();
 	vec3 m_Position;

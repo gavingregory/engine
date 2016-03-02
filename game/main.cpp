@@ -93,7 +93,6 @@ int main()
 	Entity* table = memory->createEntity(EntityParams{ vec3(0,0,0), vec3(0), vec3(0), tableMesh, defaultShader, "table" });
 
 	g->addEntity(table);
-	g->addEntity(memory->createBallEntity(BallEntityParams{vec3(15, 0, BALL_RADIUS), vec3(0.001, 0, 0), vec3(0), pinkMesh, defaultShader, "testBall", BALL_RADIUS}));
 	Entity* cueBall = memory->createBallEntity(BallEntityParams{ vec3(25, -2.0f, BALL_RADIUS), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), cueMesh, defaultShader, "cueBall", BALL_RADIUS});
 	g->addEntity(cueBall);
 	input->setCueBall(cueBall->getPhysicsObject());

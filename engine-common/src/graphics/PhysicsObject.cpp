@@ -1,8 +1,14 @@
 #include "PhysicsObject.h"
 
+vector<PhysicsObject*> PhysicsObject::m_Colliders;
+
 PhysicsObject::PhysicsObject(PhysicsObjectParams params)
 	: m_Position(params.position), m_Velocity(params.velocity), m_Acceleration(params.acceleration), m_RenderObject(params.renderObject), m_CollisionShape(params.collisionShape) {
 	updateRenderObject();
+	// add this shape to colliders if it has a collision shape
+	if (m_CollisionShape != nullptr) {
+		cout << "adding a collision object " << endl; m_Colliders.push_back(this);
+	}
 }
 
 void PhysicsObject::update(float msec) {

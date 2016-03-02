@@ -67,7 +67,6 @@ void SnookerInput::handleInput(float msec) {
 		Camera::pr_matrix = glm::ortho(-(Camera::width / 2), (Camera::width / 2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	}
 
-	cout << window->getMouseX() << ", " << window->getMouseY() << ", " << endl;
 	Camera::light_src = vec3(Camera::calculateWorldPositionFromMouseCoords(vec2(window->getMouseX(), window->getMouseY())), 300);
 }
 
