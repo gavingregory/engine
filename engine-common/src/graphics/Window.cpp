@@ -4,9 +4,13 @@
 #include "glm/glm.hpp";
 
 Window* Window::WindowPointer;
+int Window::Width;
+int Window::Height;
 
 Window::Window(const char* title, const int width, const int height)
-	: m_Title(title), m_Width(width), m_Height(height) {
+	: m_Title(title) {
+	Window::Width = width;
+	Window::Height = height;
 	if (!init())
 		glfwTerminate();
 }
@@ -33,7 +37,7 @@ bool Window::init() {
 		std::cout << "Failed to init GLFW" << std::endl;
 		return false;
 	}
-	m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
+	m_Window = glfwCreateWindow(Window::Width, Window::Height, m_Title, NULL, NULL);
 	if (!m_Window) {
 		std::cout << "Failed to create GLFW window" << std::endl;
 		return false;
@@ -68,8 +72,8 @@ void Window::clear() const {
 
 void window_resize(GLFWwindow* window, int width, int height) {
 	Window* win = (Window*)glfwGetWindowUserPointer(window);
-	win->m_Width = width;
-	win->m_Height = height;
+	Window::Width = width;
+	Window::Height = height;
 	glViewport(0, 0, width, height);
 	std::cout << "Window Resized: " << width << ", " << height << std::endl;
 }

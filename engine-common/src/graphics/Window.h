@@ -10,7 +10,6 @@
 class Window {
 private:
     const char* m_Title;
-    int m_Width, m_Height;
 	GLFWwindow* m_Window;
 	bool m_Closed;
 
@@ -32,8 +31,8 @@ public:
 	void clear() const;
 	bool closed() const;
 
-	inline int getWidth() const { return m_Width; }
-	inline int getHeight() const { return m_Height; }
+	static int Width;
+	static int Height;
 
 	inline int getMouseX() const { return m_MouseX; }
 	inline int getMouseY() const { return m_MouseY; }

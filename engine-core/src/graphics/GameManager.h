@@ -28,6 +28,7 @@ public:
 	void addEntity(Entity* e);
 	Audio* getAudio() const { return m_Audio; }
 	MemoryManager* getMemoryManager() const { return m_MemoryManager; }
+	Camera* getCamera() const { return m_Camera; }
 	void run();
 
 private:

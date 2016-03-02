@@ -42,21 +42,17 @@ void SnookerInput::handleInput(float msec) {
 	// Camera controls
 	state = glfwGetKey(glfwWindow, GLFW_KEY_E);
 	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_E]) {
-		Camera::vw_matrix *= glm::translate(vec3(0, 0, 1));
+		Camera::width -= 0.15f;
+		Camera::pr_matrix = glm::ortho(-(Camera::width / 2), (Camera::width / 2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	}
 	state = glfwGetKey(glfwWindow, GLFW_KEY_Q);
 	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_Q]) {
-		Camera::vw_matrix *= glm::translate(vec3(0, 0, -1));
+		Camera::width += 0.15f;
+		Camera::pr_matrix = glm::ortho(-(Camera::width / 2), (Camera::width / 2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	}
 
-	// move a light source
-#define WIDTH 800
-#define HEIGHT 600
-	Camera::light_src = glm::vec3(
-		window->getMouseX() - WIDTH / 2,
-		(HEIGHT-window->getMouseY()) - HEIGHT / 2,
-		-300.0f);
-	
+	cout << window->getMouseX() << ", " << window->getMouseY() << ", " << endl;
+	Camera::light_src = vec3(Camera::calculateWorldPositionFromMouseCoords(vec2(window->getMouseX(), window->getMouseY())), 300);
 }
 
 bool SnookerInput::init() {

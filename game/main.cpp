@@ -75,14 +75,14 @@ int main()
 	GameManager* g = new GameManager(GameManagerParams{ memory, input });
 
 	Mesh* tableMesh = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0.0f, 1.0f, 0.0f, 0.5f));
-	Mesh* cueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 1.000f, 0.500f)); // cue
-	Mesh* blackMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.000f, 0.000f, 0.000f, 0.500f)); // black
-	Mesh* pinkMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.412f, 0.706f, 0.500f)); // pink
-	Mesh* blueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.118f, 0.565f, 1.000f, 0.500f)); // blue
-	Mesh* yellowMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 0.000f, 0.500f)); // yellow
-	Mesh* brownMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.545f, 0.271f, 0.075f, 0.500f)); // brown
-	Mesh* greenMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.596f, 0.984f, 0.596f, 0.500f)); // green
-	Mesh* redMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.000f, 0.000f, 0.500f)); // red
+	Mesh* cueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 1.000f, 0.999f)); // cue
+	Mesh* blackMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.000f, 0.000f, 0.000f, 0.999f)); // black
+	Mesh* pinkMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.412f, 0.706f, 0.999f)); // pink
+	Mesh* blueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.118f, 0.565f, 1.000f, 0.999f)); // blue
+	Mesh* yellowMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 0.000f, 0.999f)); // yellow
+	Mesh* brownMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.545f, 0.271f, 0.075f, 0.999f)); // brown
+	Mesh* greenMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.596f, 0.984f, 0.596f, 0.999f)); // green
+	Mesh* redMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.000f, 0.000f, 0.999f)); // red
 
 	Mesh* cushionHorizontalMesh = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, CUSHION_WIDTH, vec4(0, 0, 0, 1));
 	Mesh* cushionVerticalMesh = Mesh::GenerateQuad(CUSHION_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0, 0, 0, 1));
@@ -90,7 +90,7 @@ int main()
 	ShaderParams shaderParams = { "res/shader/BasicVert.glsl", "res/shader/BasicFrag.glsl", "", "", "" };
 	Shader* defaultShader = memory->createShader(shaderParams);
 
-	Entity* table = memory->createEntity(EntityParams{ vec3(0), vec3(0), vec3(0), tableMesh, defaultShader, "table" });
+	Entity* table = memory->createEntity(EntityParams{ vec3(0,0,0), vec3(0), vec3(0), tableMesh, defaultShader, "table" });
 
 	g->addEntity(table);
 	g->addEntity(memory->createBallEntity(BallEntityParams{vec3(15, 0, BALL_RADIUS), vec3(0.001, 0, 0), vec3(0), pinkMesh, defaultShader, "testBall", BALL_RADIUS}));
@@ -98,6 +98,7 @@ int main()
 	g->addEntity(cueBall);
 	input->setCueBall(cueBall->getPhysicsObject());
 	input->setAudio(g->getAudio());
+	input->setCamera(g->getCamera());
 	table->addChild(memory->createBallEntity(BallEntityParams{vec3(BLACK_BALL_X, BLACK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), blackMesh, defaultShader, "blackBall", BALL_RADIUS}));
 	table->addChild(memory->createBallEntity(BallEntityParams{vec3(PINK_BALL_X, PINK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), pinkMesh, defaultShader, "pinkBall", BALL_RADIUS }));
 	table->addChild(memory->createBallEntity(BallEntityParams{vec3(BLUE_BALL_X, BLUE_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), blueMesh, defaultShader, "blueBall", BALL_RADIUS }));

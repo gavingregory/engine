@@ -3,6 +3,7 @@
 glm::mat4 Camera::vw_matrix;
 glm::mat4 Camera::pr_matrix;
 glm::vec3 Camera::light_src;
+float Camera::width;
 
 Camera::Camera() {
 	yaw = 0.0f;
@@ -57,14 +58,6 @@ void Camera::UpdateCameraRight(float msec) {
 	//position -= glm::rotate(yaw, glm::vec3(0, 1, 0)) * glm::vec3(-1, 0, 0) * msec;
 }
 
-
-//if (Window::GetKeyboard()->KeyDown(KEYBOARD_SHIFT)) {
-//	position.y += msec;
-//}
-//if (Window::GetKeyboard()->KeyDown(KEYBOARD_SPACE)) {
-//	position.y -= msec;
-//}
-
 /*
 Generates a view matrix for the camera's viewpoint. This matrix can be sent
 straight to the shader...it's already an 'inverse camera' matrix.
@@ -76,3 +69,15 @@ glm::mat4 Camera::BuildViewMatrix() {
 		glm::rotate(-yaw, glm::vec3(0, 1, 0)) *
 		glm::translate(-position);
 };
+
+vec2 Camera::calculateWorldPositionFromMouseCoords(vec2 mouseCoords) {
+	vec2 position;
+	
+	position.x = mouseCoords.x / Window::Width;
+	position.y = mouseCoords.y / Window::Height;
+
+	position.x = position.x * (Camera::width * 2) - Camera::width;
+	position.y = - (position.y * (Camera::width * 2) - Camera::width);
+	
+	return position;
+}

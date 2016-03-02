@@ -3,6 +3,15 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <algorithm>
+#include "Window.h"
+
+static const float PI = 3.14159265358979323846f;
+static const float PI_OVER_360 = PI / 360.0f;
+
+using glm::vec2;
+using glm::vec3;
+using glm::vec4;
+using glm::mat4;
 
 class Camera
 {
@@ -41,6 +50,9 @@ public:
 	static glm::mat4 pr_matrix;
 	static glm::mat4 vw_matrix;
 	static glm::vec3 light_src;
+	static float width;
+
+	static vec2 calculateWorldPositionFromMouseCoords(vec2 mouseCoords);
 
 protected:
 	float	yaw;
