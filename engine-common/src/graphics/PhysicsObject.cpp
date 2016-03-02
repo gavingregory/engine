@@ -9,6 +9,7 @@ PhysicsObject::PhysicsObject(PhysicsObjectParams params)
 	if (m_CollisionShape != nullptr) {
 		cout << "adding a collision object " << endl; m_Colliders.push_back(this);
 	}
+	m_Rotation = 0.0f;
 }
 
 void PhysicsObject::update(float msec) {
@@ -22,7 +23,7 @@ void PhysicsObject::update(float msec) {
 }
 
 void PhysicsObject::updateRenderObject() {
-	m_RenderObject->SetModelMatrix(glm::translate(m_Position));
+	m_RenderObject->SetModelMatrix(glm::rotate(m_Rotation, vec3(0,0,1)) * glm::translate(m_Position));
 }
 
 void PhysicsObject::applyForce(vec3 velocity) {

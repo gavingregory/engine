@@ -67,7 +67,17 @@ void SnookerInput::handleInput(float msec) {
 		Camera::pr_matrix = glm::ortho(-(Camera::width / 2), (Camera::width / 2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	}
 
-	Camera::light_src = vec3(Camera::calculateWorldPositionFromMouseCoords(vec2(window->getMouseX(), window->getMouseY())), 300);
+	// get mouse position
+	vec2 mouse = Camera::calculateWorldPositionFromMouseCoords(vec2(window->getMouseX(), window->getMouseY()));
+
+	// rotate cue depending on mouse coords
+	vec3 mouseFromCueVector = vec3(mouse, 0) - m_CueBall->getPosition();
+	float angle = glm::angle(glm::normalize(mouseFromCueVector), glm::normalize(vec3(0, 1, 0)));
+	m_Cue->setRotation(-angle);
+
+
+	// set light source to follow mouse
+	Camera::light_src = vec3(mouse, 300);
 }
 
 bool SnookerInput::init() {

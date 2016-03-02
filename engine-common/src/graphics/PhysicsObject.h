@@ -41,13 +41,16 @@ public:
 	inline vec3* getVelocityPtr() { return &m_Velocity; }
 	inline vec3 getPosition() { return m_Position; }
 	inline vec3 getVelocity() { return m_Velocity; }
+	inline float getRotation() { return m_Rotation; }
 	inline void setPosition(vec3 position) { m_Position = position; }
+	inline void setRotation(float rotation) { m_Rotation = rotation; }
 	void collide(PhysicsObject*);
 	void noCollide(PhysicsObject*);
 	bool isColliding(PhysicsObject*);
 	static vector<PhysicsObject*> m_Colliders;
 private:
 	inline void updateRenderObject();
+	float m_Rotation;
 	vec3 m_Position;
 	vec3 m_Velocity;
 	vec3 m_Acceleration;

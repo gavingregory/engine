@@ -125,6 +125,11 @@ int main()
 	table->addChild(g->getMemoryManager()->createEntity(EntityParams{vec3(-(SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), cushionVerticalMesh, defaultShader, "leftCushion"}));
 	table->addChild(g->getMemoryManager()->createEntity(EntityParams{vec3((SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), cushionVerticalMesh, defaultShader, "rightCushion"}));
 
+	Mesh* snookerCueMesh = g->getMemoryManager()->createMesh("res/mesh/cue.mesh");
+	Entity* cue = g->getMemoryManager()->createEntity(EntityParams{ vec3(0,0,0.1f) , vec3(0,0,0) , vec3(0,0,0), snookerCueMesh, defaultShader, "cue" });
+	cueBall->addChild(cue);
+	input->setCue(cue->getPhysicsObject());
+	if (cue == nullptr) cout << "NO cue!!!!!!!!!!!!!!!!!!" << endl;
 	g->run();
 
 	return 0;

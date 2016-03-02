@@ -195,6 +195,9 @@ Mesh* Mesh::LoadMeshFile(const string &filename) {
 		m->textureCoords = new glm::vec2[m->numVertices];
 		m->colours		 = new glm::vec4[m->numVertices];
 	}
+	else {
+		m->colours = new glm::vec4[m->numVertices];
+	}
 
 	for (unsigned int i = 0; i < m->numVertices; ++i) {
 		f >> m->vertices[i].x;
@@ -213,7 +216,7 @@ Mesh* Mesh::LoadMeshFile(const string &filename) {
 			//OpenGL can use floats for colours directly - this will take up 4x as
 			//much space, but could avoid any byte / float conversions happening
 			//behind the scenes in our shader executions
-			m->colours[i] = glm::vec4(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
+			m->colours[i] = glm::vec4((float)r, (float)g, (float)b, (float)a);
 		}
 	}
 

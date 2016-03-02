@@ -17,6 +17,7 @@ public:
 	virtual ~SnookerInput();
 	void handleInput(float msec) override;
 	inline void setCueBall(PhysicsObject* cueBall) { m_CueBall = cueBall; }
+	inline void setCue(PhysicsObject* cue) { m_Cue = cue; }
 	inline void setCamera(Camera* camera) { m_Camera = camera; }
 	inline void setAudio(Audio* audio) { m_Audio = audio; }
 	virtual bool init();
@@ -26,6 +27,7 @@ private:
 	bool m_KeysHeld[MAX_KEYS];
 	bool m_MouseButtonsHeld[MAX_BUTTONS];
 	PhysicsObject* m_CueBall;
+	PhysicsObject* m_Cue;
 	Camera* m_Camera;
 	Audio* m_Audio;
 };
