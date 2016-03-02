@@ -123,6 +123,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\level\SceneLogic.h" />
+    <ClInclude Include="src\level\Scene.h" />
     <ClInclude Include="src\graphics\Camera.h" />
     <ClInclude Include="src\graphics\Entity.h" />
     <ClInclude Include="src\graphics\Mesh.h" />
@@ -137,6 +139,8 @@
     <ClInclude Include="src\utils\GameTimer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SceneLogic.cpp" />
+    <ClCompile Include="src\level\Scene.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\graphics\Entity.cpp" />
     <ClCompile Include="src\graphics\Mesh.cpp" />
