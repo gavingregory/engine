@@ -65,7 +65,7 @@ bool Physics::handleCollision(vec3& vel0, float m0, CollisionCircle* c0, vec3& p
 bool Physics::detectCollision(CollisionCircle* left, CollisionCircle* right, float& distance) {
 	if (left == nullptr || right == nullptr) return false;
 	distance = glm::distance(*left->getPositionPtr(), *right->getPositionPtr());
-	if (distance < left->get_radius() || distance < right->get_radius())
+	if (distance < left->get_radius() + right->get_radius())
 		return true;
 	return false;
 }
