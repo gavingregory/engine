@@ -1,7 +1,7 @@
 #pragma once
 
 #include <math.h>
-#include "Shape.h"
+#include "CollisionShape.h"
 
 //
 // Circle Class, extends Shape
@@ -15,7 +15,7 @@ struct CollisionCircleParams {
 	float radius;
 };
 
-class CollisionCircle : public Shape {
+class CollisionCircle : public CollisionShape {
 public:
 	CollisionCircle(CollisionCircleParams params);
     ~CollisionCircle();

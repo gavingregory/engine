@@ -25,7 +25,7 @@ public:
 	Mesh* createMesh(string path);
 	Shader* createShader(ShaderParams params);
 	CollisionCircle* createCollisionCircle(CollisionCircleParams);
-	
+	CollisionRectangle* createCollisionRectangle(CollisionRectangleParams);
 	virtual bool init();
 	
 	virtual bool destroy();

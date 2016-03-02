@@ -5,7 +5,6 @@
 #include "../../../engine-common/src/utils/GameTimer.h"
 #include "../../../engine-common/src/input/InputHandler.h"
 #include "../../../engine-audio/src/Audio.h"
-#include "../../../engine-physics/src/CollisionManager.h"
 #include "../../../engine-common/src/system/SubSystem.h"
 #include "../../../engine-common/src/graphics/Camera.h"
 #include <stack>
@@ -34,7 +33,6 @@ public:
 private:
 	Window m_Window;
 	Renderer* m_Renderer;
-	CollisionManager* m_CollisionManager;
 	vector<Entity*> m_Entities;
 	GameTimer m_Timer;
 	InputHandler* m_InputHandler;

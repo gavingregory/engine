@@ -75,7 +75,6 @@ void SnookerInput::handleInput(float msec) {
 	float angle = glm::angle(glm::normalize(mouseFromCueVector), glm::normalize(vec3(0, 1, 0)));
 	m_Cue->setRotation(-angle);
 
-
 	// set light source to follow mouse
 	Camera::light_src = vec3(mouse, 300);
 }

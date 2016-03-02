@@ -120,10 +120,10 @@ int main()
 	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED13_BALL_X, RED13_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), redMesh, defaultShader, "redBall14", BALL_RADIUS}));
 	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED14_BALL_X, RED14_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), redMesh, defaultShader, "redBall15", BALL_RADIUS}));
 
-	table->addChild(g->getMemoryManager()->createEntity(EntityParams{vec3(0, SNOOKER_TABLE_HEIGHT / 2, 0), vec3(0), vec3(0), cushionHorizontalMesh, defaultShader, "topCushion" }));
-	table->addChild(g->getMemoryManager()->createEntity(EntityParams{vec3(0, -(SNOOKER_TABLE_HEIGHT / 2), 0), vec3(0), vec3(0), cushionHorizontalMesh, defaultShader, "bottomCushion"}));
-	table->addChild(g->getMemoryManager()->createEntity(EntityParams{vec3(-(SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), cushionVerticalMesh, defaultShader, "leftCushion"}));
-	table->addChild(g->getMemoryManager()->createEntity(EntityParams{vec3((SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), cushionVerticalMesh, defaultShader, "rightCushion"}));
+	table->addChild(memory->createCushionEntity(CushionEntityParams{vec3(0, SNOOKER_TABLE_HEIGHT / 2, 0), vec3(0), vec3(0), cushionHorizontalMesh, defaultShader, "topCushion", SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT }));
+	table->addChild(memory->createCushionEntity(CushionEntityParams{vec3(0, -(SNOOKER_TABLE_HEIGHT / 2), 0), vec3(0), vec3(0), cushionHorizontalMesh, defaultShader, "bottomCushion", SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT }));
+	table->addChild(memory->createCushionEntity(CushionEntityParams{vec3(-(SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), cushionVerticalMesh, defaultShader, "leftCushion", SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT }));
+	table->addChild(memory->createCushionEntity(CushionEntityParams{vec3((SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), cushionVerticalMesh, defaultShader, "rightCushion", SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT }));
 
 	Mesh* snookerCueMesh = g->getMemoryManager()->createMesh("res/mesh/cue.mesh");
 	Entity* cue = g->getMemoryManager()->createEntity(EntityParams{ vec3(0,0,0.1f) , vec3(0,0,0) , vec3(0,0,0), snookerCueMesh, defaultShader, "cue" });

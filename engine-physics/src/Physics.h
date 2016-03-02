@@ -4,6 +4,8 @@
 #include <glm/ext.hpp>
 #include <iostream>
 #include "collision\CollisionCircle.h"
+#include "collision\CollisionShape.h"
+#include "collision\CollisionRectangle.h"
 
 using glm::vec3;
 
@@ -18,7 +20,8 @@ public:
 	static void implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
 	static void semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, vec3& displacement, const float dt);
 
-	static bool handleCollision(vec3& vec0, float m0, CollisionCircle* c0, vec3& pos0, vec3& v1, float m1, CollisionCircle* c1, vec3& pos1, float coeffElasticity);
-	static bool detectCollision(CollisionCircle* left, CollisionCircle* right, float& distance);
-	static void resolveCollision(vec3 P, vec3 N, float p, vec3& v0, float m0, vec3& v1, float m1, float coeffElasticity);
+	static bool detectCollision(vec3& vec0, float m0, CollisionShape* c0, vec3& pos0, vec3& v1, float m1, CollisionShape* c1, vec3& pos1, float coeffElasticity);
+	static bool handleCircleCircle(vec3& vel0, float m0, CollisionCircle* c0, vec3& pos0, vec3& vel1, float m1, CollisionCircle* c1, vec3& pos1, float coeffElasticity);
+	static bool handleCircleRect(vec3& vel0, float m0, CollisionCircle* c0, vec3& pos0, vec3& vel1, float m1, CollisionRectangle* c1, vec3& pos1, float coeffElasticity);
+	static bool handleRectRect(vec3& vel0, float m0, CollisionRectangle* c0, vec3& pos0, vec3& vel1, float m1, CollisionRectangle* c1, vec3& pos1, float coeffElasticity);
 };

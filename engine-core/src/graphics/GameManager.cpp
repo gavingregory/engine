@@ -59,7 +59,7 @@ void GameManager::run() {
 			for (int j = 0; j < PhysicsObject::m_Colliders.size(); j++) {
 				if (i != j) {
 					if (!PhysicsObject::m_Colliders[i]->isColliding(PhysicsObject::m_Colliders[j])) {
-						if (Physics::handleCollision(
+						if (Physics::detectCollision(
 							PhysicsObject::m_Colliders[i]->m_Velocity, 1, (CollisionCircle*)PhysicsObject::m_Colliders[i]->getCollisionShape(), PhysicsObject::m_Colliders[i]->m_Position,
 							PhysicsObject::m_Colliders[j]->m_Velocity, 1, (CollisionCircle*)PhysicsObject::m_Colliders[j]->getCollisionShape(), PhysicsObject::m_Colliders[j]->m_Position,
 							1.0f)) {

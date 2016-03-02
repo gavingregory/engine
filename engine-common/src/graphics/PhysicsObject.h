@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 #include "../../../engine-physics/src/Physics.h"
-#include "../../../engine-physics/src/collision/Shape.h"
+#include "../../../engine-physics/src/collision/CollisionShape.h"
 #include "../../../engine-physics/src/collision/CollisionCircle.h"
 #include "RenderObject.h"
 
@@ -16,7 +16,7 @@ struct PhysicsObjectParams {
 	vec3 velocity;
 	vec3 acceleration;
 	RenderObject* renderObject;
-	Shape* collisionShape;
+	CollisionShape* collisionShape;
 };
 
 class Entity;
@@ -29,8 +29,8 @@ public:
 	virtual ~PhysicsObject();
 	void update(float msec);
 	void applyForce(vec3 velocity);
-	inline Shape* getCollisionShape() const { return m_CollisionShape; }
-	inline void setCollisionShape(Shape* collisionShape) {
+	inline CollisionShape* getCollisionShape() const { return m_CollisionShape; }
+	inline void setCollisionShape(CollisionShape* collisionShape) {
 		m_CollisionShape = collisionShape;
 		// add this shape to colliders if it has a collision shape
 		if (m_CollisionShape != nullptr) {
@@ -57,5 +57,5 @@ private:
 	vec3 m_PreviousDisplacement;
 	map<PhysicsObject*, bool> m_Collisions;
 	RenderObject* m_RenderObject;
-	Shape* m_CollisionShape;
+	CollisionShape* m_CollisionShape;
 };

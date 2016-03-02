@@ -30,6 +30,12 @@ CollisionCircle* MemoryManager::createCollisionCircle(CollisionCircleParams para
 	return c;
 }
 
+CollisionRectangle* MemoryManager::createCollisionRectangle(CollisionRectangleParams params) {
+	CollisionRectangle* r = new CollisionRectangle(params);
+	m_Objects.push_back(r);
+	return r;
+}
+
 Mesh* MemoryManager::createMesh(string path) {
 	Mesh* m = Mesh::LoadMeshFile(path);
 	m_Objects.push_back(m);

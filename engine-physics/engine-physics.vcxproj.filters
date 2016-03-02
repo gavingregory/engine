@@ -18,10 +18,13 @@
     <ClCompile Include="src\Physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\collision\Shape.cpp">
+    <ClCompile Include="src\collision\CollisionCircle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\collision\CollisionCircle.cpp">
+    <ClCompile Include="src\collision\CollisionShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision\CollisionRectangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,10 +32,13 @@
     <ClInclude Include="src\Physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\collision\Shape.h">
+    <ClInclude Include="src\collision\CollisionCircle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\collision\CollisionCircle.h">
+    <ClInclude Include="src\collision\CollisionShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision\CollisionRectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
