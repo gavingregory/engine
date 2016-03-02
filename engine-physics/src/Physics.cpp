@@ -82,7 +82,6 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 	return false;
 }
 
-
 bool Physics::handleCirclePlane(vec3& vel0, float m0, CollisionCircle* left, vec3& pos0, vec3& vel1, float m1, CollisionPlane* right, vec3& pos1, float coeffElasticity) {
 	
 	vec3 N = right->getNormal();

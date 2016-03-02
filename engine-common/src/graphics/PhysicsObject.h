@@ -6,7 +6,7 @@
 #include "../../../engine-physics/src/collision/CollisionCircle.h"
 #include "RenderObject.h"
 
-#define DAMPING_FACTOR 0.999f
+#define DAMPING_FACTOR 0.98f
 
 using glm::vec3;
 using std::map;
