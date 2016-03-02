@@ -73,11 +73,11 @@ glm::mat4 Camera::BuildViewMatrix() {
 vec2 Camera::calculateWorldPositionFromMouseCoords(vec2 mouseCoords) {
 	vec2 position;
 	
-	position.x = mouseCoords.x / Window::Width;
-	position.y = mouseCoords.y / Window::Height;
+	position.x = (float)mouseCoords.x / (float)Window::Width;
+	position.y = (float)mouseCoords.y / (float)Window::Height;
 
-	position.x = position.x * (Camera::width * 2) - Camera::width;
-	position.y = - (position.y * (Camera::width * 2) - Camera::width);
+	position.x = position.x * Camera::width - (Camera::width/2);
+	position.y = - (position.y * Camera::width - (Camera::width/2));
 	
 	return position;
 }

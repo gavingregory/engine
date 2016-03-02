@@ -3,6 +3,8 @@
 SnookerInput::SnookerInput() {
 	for (int i = 0; i < MAX_KEYS; i++)
 		m_KeysHeld[i] = false;
+	for (int i = 0; i < MAX_BUTTONS; i++)
+		m_MouseButtonsHeld[i] = false;
 }
 
 SnookerInput::~SnookerInput() {}
@@ -38,6 +40,20 @@ void SnookerInput::handleInput(float msec) {
 	}
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_P] = false;
+	
+	// handle the left click
+	state = glfwGetMouseButton(glfwWindow, GLFW_MOUSE_BUTTON_LEFT);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_MOUSE_BUTTON_LEFT]) {
+		vec2 clickPosition = Camera::calculateWorldPositionFromMouseCoords(vec2(window->getMouseX(), window->getMouseY()));
+		vec3 cueBallPosition = m_CueBall->getPosition();
+		vec3 click3Position = vec3(clickPosition, cueBallPosition.z);
+		vec3 direction = click3Position - cueBallPosition;
+		direction /= 10000;
+		m_CueBall->applyForce(direction);
+	}
+	else if (state == GLFW_RELEASE) {
+		m_MouseButtonsHeld[GLFW_MOUSE_BUTTON_LEFT] = false;
+	}
 
 	// Camera controls
 	state = glfwGetKey(glfwWindow, GLFW_KEY_E);
