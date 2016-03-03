@@ -74,7 +74,8 @@ void SnookerInput::handleInput(float msec) {
 	// rotate cue depending on mouse coords
 	vec3 mouseFromCueVector = vec3(mouse, 0) - m_CueBall->getPosition();
 	float angle = glm::angle(glm::normalize(mouseFromCueVector), glm::normalize(vec3(0, 1, 0)));
-	m_Cue->setRotation(-angle);
+	cout << glm::degrees(angle) << endl;
+	m_Cue->setRotation(-glm::degrees(angle));
 
 	// set light source to follow mouse
 	vec3 cueBallPos = m_CueBall->getPosition(); //vec3(mouse, 300);

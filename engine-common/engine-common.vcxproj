@@ -139,7 +139,7 @@
     <ClInclude Include="src\utils\GameTimer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SceneLogic.cpp" />
+    <ClCompile Include="src\level\SceneLogic.cpp" />
     <ClCompile Include="src\level\Scene.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\graphics\Entity.cpp" />

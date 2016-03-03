@@ -65,7 +65,7 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 
 		// NEW STUFF 
 
-		vec3 mab = (vel0 * m0) + (vel1 * m1);
+		float mabbefore = glm::length((vel0 * m0) + (vel1 * m1));
 
 		vec3 vAB = vel0 + vel1;
 
@@ -76,7 +76,11 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 		vel0 = DAMPING_FACTOR * (vel0 + ((J*m0) * N));
 		vel1 = DAMPING_FACTOR * (vel1 - ((J*m1) * N));
 
-		mab = (vel0 * m0) + (vel1 * m1);
+		float mabafter = glm::length((vel0 * m0) + (vel1 * m1));
+		if (mabbefore < mabafter) {
+			std::cout << "before: " << mabbefore;
+			std::cout << ", after: " << mabafter << std::endl;
+		}
 		return true;
 	}
 	return false;
@@ -90,7 +94,7 @@ bool Physics::handleCirclePlane(vec3& vel0, float m0, CollisionCircle* left, vec
 	float distance = glm::dot(left->getPosition() - D, N);
 	if (distance < left->get_radius()) {
 
-		vec3 mab = (vel0 * m0) + (vel1 * m1);
+		float mabbefore = glm::length((vel0 * m0) + (vel1 * m1));
 
 		vec3 vAB = vel0 + vel1;
 
@@ -101,7 +105,11 @@ bool Physics::handleCirclePlane(vec3& vel0, float m0, CollisionCircle* left, vec
 		vel1 = DAMPING_FACTOR * (vel1 - ((J*m1) * N));
 		vel0 = DAMPING_FACTOR * (vel0 + ((J*m0) * N));
 
-		mab = (vel0 * m0) + (vel1 * m1);
+		float mabafter = glm::length((vel0 * m0) + (vel1 * m1));
+		if (mabbefore < mabafter) {
+			std::cout << "before: " << mabbefore;
+			std::cout << ", after: " << mabafter << std::endl;
+		}
 		return true;
 	}
 	return false;

@@ -92,7 +92,7 @@
     <ClCompile Include="src\level\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneLogic.cpp">
+    <ClCompile Include="src\level\SceneLogic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,7 +7,7 @@
 #include "collision\CollisionShape.h"
 #include "collision\CollisionPlane.h"
 
-#define DAMPING_FACTOR 0.8f
+#define DAMPING_FACTOR 0.99f
 
 using glm::vec3;
 
