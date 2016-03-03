@@ -11,6 +11,7 @@
 #include "../engine-common/src/graphics/Renderer.h"
 #include "../engine-common/src/graphics/Mesh.h"
 #include "src/entities/BallEntity.h"
+#include "../engine-io/src/io/Loader.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -70,9 +71,15 @@ using glm::vec4;
 
 int main()
 {
+	Json::Value gameData;
+	try {
+		gameData = Loader::LoadJson("res/json/game.json");
+	}
+	catch (const char* msg) { cout << msg << endl; }
+
 	SnookerInput* input = new SnookerInput();
 	SnookerMemoryManager* memory = new SnookerMemoryManager();
-	GameManager* g = new GameManager(GameManagerParams{ memory, input });
+	GameManager* g = new GameManager(GameManagerParams{ memory, input, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
 
 	Mesh* tableMesh = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0.0f, 1.0f, 0.0f, 0.5f));
 	Mesh* cueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 1.000f, 0.999f)); // cue

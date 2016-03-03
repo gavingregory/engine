@@ -26,6 +26,7 @@
     <ClCompile Include="src\input\SnookerInput.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\json\game.json" />
     <None Include="res\mesh\cube.mesh" />
     <None Include="res\mesh\table.mesh" />
     <None Include="res\shader\ball.frag" />
@@ -90,13 +91,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\lib\portaudio\include;$(SolutionDir)\lib\glm;$(SolutionDir)\lib\glew-1.13.0\include;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\lib\portaudio\include;$(SolutionDir)\lib\jsoncpp\include;$(SolutionDir)\lib\glm;$(SolutionDir)\lib\glew-1.13.0\include;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>$(SolutionDir)\lib\portaudio\lib;$(SolutionDir)\bin\Debug;$(SolutionDir)\lib\glew-1.13.0\lib\Release\Win32;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\lib-vc2015;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\bin\$(Configuration)\intermediates\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\lib\portaudio\include;$(SolutionDir)\lib\glm;$(SolutionDir)\lib\glew-1.13.0\include;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\lib\portaudio\include;$(SolutionDir)\lib\jsoncpp\include;$(SolutionDir)\lib\glm;$(SolutionDir)\lib\glew-1.13.0\include;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>$(SolutionDir)\lib\portaudio\lib;$(SolutionDir)\bin\Debug;$(SolutionDir)\lib\glew-1.13.0\lib\Release\Win32;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\lib-vc2015;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\bin\$(Configuration)\intermediates\</IntDir>

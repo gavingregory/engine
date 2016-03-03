@@ -38,6 +38,7 @@
     <None Include="res\shader\ball.vert" />
     <None Include="res\mesh\cube.mesh" />
     <None Include="res\mesh\table.mesh" />
+    <None Include="res\json\game.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\input\SnookerInput.h">

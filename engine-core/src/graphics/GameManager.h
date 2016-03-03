@@ -8,6 +8,7 @@
 #include "../../../engine-common/src/system/SubSystem.h"
 #include "../../../engine-common/src/graphics/Camera.h"
 #include <stack>
+#include <string>
 #include "../../../engine-memory/src/MemoryManager.h"
 
 #define WIDTH 800
@@ -17,6 +18,10 @@
 struct GameManagerParams {
 	MemoryManager* memoryManager;
 	InputHandler* inputHandler;
+	string title;
+	int width;
+	int height;
+
 };
 
 class GameManager

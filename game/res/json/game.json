@@ -1,0 +1,20 @@
+{
+  "title": "Snooker",
+  "width": 800,
+  "height": 600,
+  "main-menu": "menu.json",
+  "levels": [
+    {
+      "title": "Level One",
+      "entities": []
+    },
+    {
+      "title": "Level Two",
+      "entities": []
+    },
+    {
+      "title": "Level Three",
+      "entities": []
+    }
+  ]
+}

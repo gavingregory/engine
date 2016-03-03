@@ -1,7 +1,7 @@
 #include "GameManager.h"
 
 GameManager::GameManager(GameManagerParams params)
-	: m_Window(Window(TITLE, WIDTH, HEIGHT)) {
+	: m_Window(Window(params.title.c_str(), params.width, params.height)) {
 	m_Renderer = new Renderer();
 	m_Audio = new Audio();
 	if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
