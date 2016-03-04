@@ -3,8 +3,6 @@
 GameManager::GameManager(GameManagerParams params)
 	: m_Window(Window(params.title.c_str(), params.width, params.height)) {
 	m_Renderer = new Renderer();
-	m_Audio = new Audio();
-	if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
 	m_Entities = vector<Entity*>();
 	Window::WindowPointer = &m_Window;
 	m_Camera = new Camera(0.0f, 0.0f, glm::vec3(0, 0, 300));
@@ -14,11 +12,14 @@ GameManager::GameManager(GameManagerParams params)
 	Camera::pr_matrix = glm::ortho(-(Camera::width/2), (Camera::width/2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	Camera::light_src = vec3(0, 0, 200);
 
+	//m_Audio = new Audio();
+	//if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
+
 	m_InputHandler = params.inputHandler;
-	if (!m_InputHandler->init()) std::cout << "Input Handler init failed!" << std::endl;
+	if (!m_InputHandler->init()) cout << "Input Handler init failed!" << endl;
 
 	m_MemoryManager = params.memoryManager;
-	if (!m_MemoryManager->init()) std::cout << "Memory manager init failed!" << std::endl;
+	if (!m_MemoryManager->init()) cout << "Memory manager init failed!" << endl;
 }
 
 GameManager::~GameManager() {

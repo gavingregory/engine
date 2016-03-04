@@ -81,62 +81,93 @@ int main()
 	SnookerMemoryManager* memory = new SnookerMemoryManager();
 	GameManager* g = new GameManager(GameManagerParams{ memory, input, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
 
-	Mesh* tableMesh = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0.0f, 1.0f, 0.0f, 0.5f));
-	Mesh* cueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 1.000f, 0.999f)); // cue
-	Mesh* blackMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.000f, 0.000f, 0.000f, 0.999f)); // black
-	Mesh* pinkMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.412f, 0.706f, 0.999f)); // pink
-	Mesh* blueMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.118f, 0.565f, 1.000f, 0.999f)); // blue
-	Mesh* yellowMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 1.000f, 0.000f, 0.999f)); // yellow
-	Mesh* brownMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.545f, 0.271f, 0.075f, 0.999f)); // brown
-	Mesh* greenMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(0.596f, 0.984f, 0.596f, 0.999f)); // green
-	Mesh* redMesh = Mesh::GenerateCircle(BALL_RADIUS, 30, vec4(1.000f, 0.000f, 0.000f, 0.999f)); // red
+	Json::Value levelData = gameData["levels"];
+	Json::Value levelOneData = levelData[0];
+	
+	// create meshes from game.json
+	map<string, Mesh*> meshes;
+	for (int i = 0; i < gameData["levels"][0]["meshes"].size(); i++) {
+		Json::Value jsonMesh = gameData["levels"][0]["meshes"][i];
+		if (jsonMesh["type"] == "QUAD") {
+			meshes.insert(pair<string, Mesh*>(jsonMesh["title"].asString(), Mesh::GenerateQuad(jsonMesh["width"].asFloat(), jsonMesh["height"].asFloat(), vec4(jsonMesh["colour"][0].asFloat(), jsonMesh["colour"][1].asFloat(), jsonMesh["colour"][2].asFloat(), jsonMesh["colour"][3].asFloat()))));
+		}
+		else if (jsonMesh["type"] == "CIRCLE") {
+			meshes.insert(pair<string, Mesh*>(jsonMesh["title"].asString(), Mesh::GenerateCircle(jsonMesh["radius"].asFloat(), jsonMesh["tri-count"].asFloat(), vec4(jsonMesh["colour"][0].asFloat(), jsonMesh["colour"][1].asFloat(), jsonMesh["colour"][2].asFloat(), jsonMesh["colour"][3].asFloat()))));
+		}
+	}
 
-	Mesh* cushionHorizontalMesh = Mesh::GenerateQuad(SNOOKER_TABLE_WIDTH, CUSHION_WIDTH, vec4(0, 0, 0, 1));
-	Mesh* cushionVerticalMesh = Mesh::GenerateQuad(CUSHION_WIDTH, SNOOKER_TABLE_HEIGHT, vec4(0, 0, 0, 1));
-
-	ShaderParams shaderParams = { "res/shader/BasicVert.glsl", "res/shader/BasicFrag.glsl", "", "", "" };
-	Shader* defaultShader = memory->createShader(shaderParams);
-
-	Entity* table = memory->createEntity(EntityParams{ vec3(0,0,0), vec3(0), vec3(0), 0.0f, 1.0f, tableMesh, defaultShader, "table" });
-
-	g->addEntity(table);
-	Entity* cueBall = memory->createBallEntity(BallEntityParams{ vec3(25, -2.0f, BALL_RADIUS), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), 0.0f, 1.0f, cueMesh, defaultShader, "cueBall", BALL_RADIUS});
-	g->addEntity(cueBall);
+	// create shaders from game.json
+	map<string, Shader*> shaders;
+	for (int i = 0; i < gameData["levels"][0]["shaders"].size(); i++) {
+		Json::Value jsonShader = gameData["levels"][0]["shaders"][i];
+		shaders.insert(pair<string, Shader*>(jsonShader["title"].asString(), memory->createShader(ShaderParams{ jsonShader["vertex"].asString(), jsonShader["fragment"].asString(), jsonShader["geometry"].asString(), jsonShader["tcs"].asString(), jsonShader["tes"].asString() })));
+	}
+	
+	// create entities from game.json
+	map<string, Entity*> entities;
+	for (int i = 0; i < gameData["levels"][0]["entities"].size(); i++){
+		Json::Value jsonEntity = gameData["levels"][0]["entities"][i];
+		Mesh* m = meshes.at(jsonEntity["mesh"].asString());
+		Shader* s = shaders.at(jsonEntity["shader"].asString());
+	
+		// create entity
+		Entity* e = nullptr;
+		cout << "adding entity " << i << jsonEntity["title"].asString() << endl;
+		if (jsonEntity["type"].asString() == "entity")
+			e = memory->createEntity(EntityParams{ vec3(jsonEntity["position"][0].asFloat(),jsonEntity["position"][1].asFloat(),jsonEntity["position"][2].asFloat()), vec3(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat(),jsonEntity["velocity"][2].asFloat()), vec3(jsonEntity["acceleration"][0].asFloat(),jsonEntity["acceleration"][1].asFloat(),jsonEntity["acceleration"][2].asFloat()), jsonEntity["rotation"].asFloat(), jsonEntity["mass"].asFloat(), m, s, jsonEntity["title"].asString() });
+		else if (jsonEntity["type"].asString() == "ball") {
+			e = memory->createBallEntity(
+				BallEntityParams{
+					vec3(jsonEntity["position"][0].asFloat(),jsonEntity["position"][1].asFloat(),jsonEntity["position"][2].asFloat()),
+					vec3(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat(),jsonEntity["velocity"][2].asFloat()),
+					vec3(jsonEntity["acceleration"][0].asFloat(),jsonEntity["acceleration"][1].asFloat(),jsonEntity["acceleration"][2].asFloat()),
+					jsonEntity["rotation"].asFloat(),
+					jsonEntity["mass"].asFloat(),
+					m,
+					s,
+					jsonEntity["title"].asString(),
+					jsonEntity["radius"].asFloat()
+			});
+		}
+		else if (jsonEntity["type"].asString() == "cushion") {
+			e = memory->createCushionEntity(
+				CushionEntityParams{
+					vec3(jsonEntity["position"][0].asFloat(),jsonEntity["position"][1].asFloat(),jsonEntity["position"][2].asFloat()),
+					vec3(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat(),jsonEntity["velocity"][2].asFloat()),
+					vec3(jsonEntity["acceleration"][0].asFloat(),jsonEntity["acceleration"][1].asFloat(),jsonEntity["acceleration"][2].asFloat()),
+					jsonEntity["rotation"].asFloat(),
+					jsonEntity["mass"].asFloat(),
+					m,
+					s,
+					jsonEntity["title"].asString(),
+					vec3(jsonEntity["normal"][0].asFloat(),jsonEntity["normal"][1].asFloat(),jsonEntity["normal"][2].asFloat()),
+					vec3(jsonEntity["distance"][0].asFloat(),jsonEntity["distance"][1].asFloat(),jsonEntity["distance"][2].asFloat())
+			});
+		} else {
+			cout << "Invalid entity detected! Exiting..." << endl;
+			return 1;
+		};
+	
+		// assign as child or into map if no parent
+		Json::Value parent = jsonEntity["parent"].asString();
+		entities.insert(pair<string, Entity*>(jsonEntity["title"].asString(), e));
+		if (parent != "null") {
+			Entity* parent = entities.at(jsonEntity["parent"].asString());
+			assert(parent != nullptr);
+			parent->addChild(e);
+		}
+		else g->addEntity(e);
+	}
+	Entity* cueBall = entities["cueBall"];
 	input->setCueBall(cueBall->getPhysicsObject());
 	input->setAudio(g->getAudio());
 	input->setCamera(g->getCamera());
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(BLACK_BALL_X, BLACK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, blackMesh, defaultShader, "blackBall", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(PINK_BALL_X, PINK_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, pinkMesh, defaultShader, "pinkBall", BALL_RADIUS }));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(BLUE_BALL_X, BLUE_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, blueMesh, defaultShader, "blueBall", BALL_RADIUS }));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(YELLOW_BALL_X, YELLOW_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, yellowMesh, defaultShader, "yellowBall", BALL_RADIUS }));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(BROWN_BALL_X, BROWN_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, brownMesh, defaultShader, "brownBall", BALL_RADIUS }));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(GREEN_BALL_X, GREEN_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, greenMesh, defaultShader, "greenBall", BALL_RADIUS }));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED00_BALL_X, RED00_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall01", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED01_BALL_X, RED01_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall02", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED02_BALL_X, RED02_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall03", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED03_BALL_X, RED03_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall04", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED04_BALL_X, RED04_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall05", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED05_BALL_X, RED05_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall06", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED06_BALL_X, RED06_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall07", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED07_BALL_X, RED07_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall08", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED08_BALL_X, RED08_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall09", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED09_BALL_X, RED09_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall10", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED10_BALL_X, RED10_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall11", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED11_BALL_X, RED11_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall12", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED12_BALL_X, RED12_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall13", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED13_BALL_X, RED13_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall14", BALL_RADIUS}));
-	table->addChild(memory->createBallEntity(BallEntityParams{vec3(RED14_BALL_X, RED14_BALL_Y, BALL_RADIUS), vec3(0), vec3(0), 0.0f, 1.0f, redMesh, defaultShader, "redBall15", BALL_RADIUS}));
-
-	table->addChild(memory->createCushionEntity(CushionEntityParams{vec3(0, SNOOKER_TABLE_HEIGHT / 2, 0), vec3(0), vec3(0), 0.0f, 0.0f, cushionHorizontalMesh, defaultShader, "topCushion", vec3(0,-1,0), vec3(0,SNOOKER_TABLE_HEIGHT / 2, 0) }));
-	table->addChild(memory->createCushionEntity(CushionEntityParams{vec3(0, -(SNOOKER_TABLE_HEIGHT / 2), 0), vec3(0), vec3(0), 0.0f, 0.0f, cushionHorizontalMesh, defaultShader, "bottomCushion", vec3(0,1,0), vec3(0,-SNOOKER_TABLE_HEIGHT / 2, 0) }));
-	table->addChild(memory->createCushionEntity(CushionEntityParams{vec3(-(SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), 0.0f, 0.0f, cushionVerticalMesh, defaultShader, "leftCushion", vec3(1,0,0), vec3(-SNOOKER_TABLE_WIDTH / 2, 0, 0) }));
-	table->addChild(memory->createCushionEntity(CushionEntityParams{vec3((SNOOKER_TABLE_WIDTH / 2), 0, 0), vec3(0), vec3(0), 0.0f, 0.0f, cushionVerticalMesh, defaultShader, "rightCushion", vec3(-1,0,0), vec3(SNOOKER_TABLE_WIDTH / 2, 0, 0) }));
-
+	
 	Mesh* snookerCueMesh = g->getMemoryManager()->createMesh("res/mesh/cue.mesh");
-	Entity* cue = g->getMemoryManager()->createEntity(EntityParams{ vec3(0,0,0.1f) , vec3(0,0,0) , vec3(0,0,0), 0.0f, 1.0f, snookerCueMesh, defaultShader, "cue" });
+	Entity* cue = g->getMemoryManager()->createEntity(EntityParams{ vec3(0,0,0.1f) , vec3(0,0,0) , vec3(0,0,0), 0.0f, 1.0f, snookerCueMesh, shaders.at("default"), "cue" });
 	cueBall->addChild(cue);
 	input->setCue(cue->getPhysicsObject());
-	if (cue == nullptr) cout << "NO cue!!!!!!!!!!!!!!!!!!" << endl;
+	
 	g->run();
 
 	return 0;

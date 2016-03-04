@@ -2,19 +2,472 @@
   "title": "Snooker",
   "width": 800,
   "height": 600,
-  "main-menu": "menu.json",
   "levels": [
     {
+      "id":  1,
       "title": "Level One",
-      "entities": []
+      "meshes": [
+        {
+          "title": "tableMesh",
+          "type": "QUAD",
+          "width": 356.87,
+          "height": 177.8,
+          "colour": [ 0.0, 1.0, 0.0, 0.5 ]
+        },
+        {
+          "title": "cueBallMesh",
+          "type": "CIRCLE",
+          "radius": 2.625,
+          "tri-count": 30,
+          "colour": [ 1.0, 1.0, 1.0, 0.8 ]
+        },
+        {
+          "title": "blackBallMesh",
+          "type": "CIRCLE",
+          "radius": 2.625,
+          "tri-count": 30,
+          "colour": [ 0.0, 0.0, 0.0, 0.8 ]
+        },
+        {
+          "title": "pinkBallMesh",
+          "type": "CIRCLE",
+          "radius": 2.625,
+          "tri-count": 30,
+          "colour": [ 1.0, 0.412, 0.706, 0.8 ]
+        },
+        {
+          "title": "blueBallMesh",
+          "type": "CIRCLE",
+          "radius": 2.625,
+          "tri-count": 30,
+          "colour": [ 0.118, 0.565, 1.0, 0.8 ]
+        },
+        {
+          "title": "yellowBallMesh",
+          "type": "CIRCLE",
+          "radius": 2.625,
+          "tri-count": 30,
+          "colour": [ 1.0, 1.0, 0.0, 0.8 ]
+        },
+        {
+          "title": "brownBallMesh",
+          "type": "CIRCLE",
+          "radius": 2.625,
+          "tri-count": 30,
+          "colour": [ 0.545, 0.271, 0.075, 0.8 ]
+        },
+        {
+          "title": "greenBallMesh",
+          "type": "CIRCLE",
+          "radius": 2.625,
+          "tri-count": 30,
+          "colour": [ 0.596, 0.984, 0.596, 0.8 ]
+        },
+        {
+          "title": "redBallMesh",
+          "type": "CIRCLE",
+          "radius": 2.625,
+          "tri-count": 30,
+          "colour": [ 1.0, 0.0, 0.0, 0.8 ]
+        },
+        {
+          "title": "cushionHorizontalMesh",
+          "type": "QUAD",
+          "width": 356.87,
+          "height": 10.0,
+          "colour": [ 0.3, 0.3, 0.3, 0.5 ]
+        },
+        {
+          "title": "cushionVerticalMesh",
+          "type": "QUAD",
+          "width": 10.0,
+          "height": 356.87,
+          "colour": [ 0.3, 0.3, 0.3, 0.5 ]
+        }
+      ],
+      "shaders": [
+        {
+          "title": "default",
+          "vertex": "res/shader/BasicVert.glsl",
+          "fragment": "res/shader/BasicFrag.glsl",
+          "geometry": "",
+          "tcs": "",
+          "tes":  ""
+        }
+      ],
+      "textures": [ ],
+      "entities": [
+        {
+          "title": "table",
+          "type":  "entity",
+          "parent": "null",
+          "position": [ 0.0, 0.0, 0.0 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 0.0,
+          "mesh": "tableMesh",
+          "shader": "default"
+        },
+        {
+          "title": "cueBall",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 25.0, -2.0, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "cueBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "blackBall",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 146.685, 0.0, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "blackBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "pinkBall",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 89.535, 0.0, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "pinkBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "blueBall",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 0.0, 0.0, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "blueBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "yellowBall",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ -104.775, -29.21, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "yellowBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "brownBall",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ -104.775, 0.0, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "brownBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "greenBall",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ -104.775, 29.21, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "greenBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall01",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 94.785, 0.0, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall02",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 99.335, 2.625, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall03",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 99.335, -2.625, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall04",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 103.885, 5.25, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall05",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 103.885, 0.0, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall06",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 103.885, -5.25, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall07",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 108.435, 7.875, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall08",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 108.435, 2.625, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall09",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 108.435, -2.625, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall10",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 108.435, -7.875, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall11",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 112.985, 10.85, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall12",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 112.985, 5.25, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall13",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 112.985, 0, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall14",
+          "type":  "ball",
+          "parent": "table",
+          "position": [ 112.985, -5.25, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius":  2.625
+        },
+        {
+          "title": "redBall15",
+          "type": "ball",
+          "parent": "table",
+          "position": [ 112.985, -10.5, 2.625 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "redBallMesh",
+          "shader": "default",
+          "radius": 2.625
+        },
+        {
+          "title": "cushionTop",
+          "type": "cushion",
+          "parent": "table",
+          "position": [ 0.0, 88.9, 0.0 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 0.0,
+          "mesh": "cushionHorizontalMesh",
+          "shader": "default",
+          "normal": [ 0.0, -1.0, 0.0 ],
+          "distance": [ 0.0, 88.9, 0.0 ]
+        },
+        {
+          "title": "cushionBottom",
+          "type": "cushion",
+          "parent": "table",
+          "position": [ 0.0, -88.9, 0.0 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 0.0,
+          "mesh": "cushionHorizontalMesh",
+          "shader": "default",
+          "normal": [ 0.0, 1.0, 0.0 ],
+          "distance": [ 0.0, -88.9, 0.0 ]
+        },
+        {
+          "title": "cushionLeft",
+          "type": "cushion",
+          "parent": "table",
+          "position": [ -178.435, 0.0, 0.0 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 0.0,
+          "mesh": "cushionVerticalMesh",
+          "shader": "default",
+          "normal": [ 1.0, 0.0, 0.0 ],
+          "distance": [ -178.435, 0.0, 0.0 ]
+        },
+        {
+          "title": "cushionRight",
+          "type": "cushion",
+          "parent": "table",
+          "position": [ 178.435, 0.0, 0.0 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 0.0,
+          "mesh": "cushionVerticalMesh",
+          "shader": "default",
+          "normal": [ -1.0, 0.0, 0.0 ],
+          "distance": [ 178.435, 0.0, 0.0 ]
+        }
+      ]
     },
     {
+      "id":  2,
       "title": "Level Two",
-      "entities": []
+      "meshes": [ ],
+      "shaders": [ ],
+      "textures": [ ],
+      "entities": [ ]
     },
     {
+      "id":  3,
       "title": "Level Three",
-      "entities": []
+      "meshes": [ ],
+      "shaders": [ ],
+      "textures": [ ],
+      "entities": [ ]
     }
   ]
 }
