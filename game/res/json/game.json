@@ -104,7 +104,11 @@
       "textures": [
         {
           "title": "miner",
-          "path":  "res/texture/miner.png"
+          "path": "res/texture/miner.png"
+        },
+        {
+          "title": "miner2",
+          "path": "res/texture/miner2.png"
         }
       ],
       "entities": [
