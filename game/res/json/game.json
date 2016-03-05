@@ -107,7 +107,7 @@
           "path": "res/texture/miner.png"
         },
         {
-          "title": "miner2",
+          "title": "felt",
           "path": "res/texture/miner2.png"
         }
       ],
@@ -115,7 +115,7 @@
         {
           "title": "table",
           "type": "entity",
-          "textures":  ["miner"],
+          "textures":  ["felt"],
           "parent": "null",
           "position": [ 0.0, 0.0, 0.0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],

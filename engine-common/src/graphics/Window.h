@@ -34,8 +34,8 @@ public:
 	static int Width;
 	static int Height;
 
-	inline int getMouseX() const { return m_MouseX; }
-	inline int getMouseY() const { return m_MouseY; }
+	inline double getMouseX() const { return m_MouseX; }
+	inline double getMouseY() const { return m_MouseY; }
 
 	GLFWwindow* getGlfwWindow() { return m_Window; }
 

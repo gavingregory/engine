@@ -1,7 +1,7 @@
 #include "Window.h"
 #include <iostream>
 
-#include "glm/glm.hpp";
+#include "glm/glm.hpp"
 
 Window* Window::WindowPointer;
 int Window::Width;

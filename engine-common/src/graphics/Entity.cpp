@@ -14,13 +14,13 @@ Entity::~Entity() {
 void Entity::update(float msec) {
 	m_PhysicsObject->update(msec);
 	m_RenderObject->Update(msec);
-	for (int i = 0; i < children.size(); i++)
+	for (unsigned int i = 0; i < children.size(); i++)
 		children[i]->update(msec);
 }
 
 void Entity::render(Renderer* renderer) {
 	renderer->Render(m_RenderObject);
-	for (int i = 0; i < children.size(); i++)
+	for (unsigned int i = 0; i < children.size(); i++)
 		children[i]->render(renderer);
 }
 

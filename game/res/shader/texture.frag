@@ -1,6 +1,6 @@
 #version 150 core
 
-uniform sampler2D miner;
+uniform sampler2D felt;
 
 uniform vec2 light_pos;
 uniform vec4 col;
@@ -14,6 +14,6 @@ in Vertex{
 out vec4 gl_FragColor;
 
 void main(void)	{
-	vec4 texCol = texture ( miner , IN.texCoord );
+	vec4 texCol = texture ( felt , IN.texCoord );
 	gl_FragColor = texCol;
 }

@@ -39,13 +39,13 @@ int main()
 
 	// create meshes from game.json
 	map<string, Mesh*> meshes;
-	for (int i = 0; i < gameData["levels"][0]["meshes"].size(); i++) {
+	for (unsigned int i = 0; i < gameData["levels"][0]["meshes"].size(); i++) {
 		Json::Value jsonMesh = gameData["levels"][0]["meshes"][i];
 		if (jsonMesh["type"] == "QUAD") {
 			meshes.insert(pair<string, Mesh*>(jsonMesh["title"].asString(), Mesh::GenerateQuad(jsonMesh["width"].asFloat(), jsonMesh["height"].asFloat(), vec4(jsonMesh["colour"][0].asFloat(), jsonMesh["colour"][1].asFloat(), jsonMesh["colour"][2].asFloat(), jsonMesh["colour"][3].asFloat()))));
 		}
 		else if (jsonMesh["type"] == "CIRCLE") {
-			meshes.insert(pair<string, Mesh*>(jsonMesh["title"].asString(), Mesh::GenerateCircle(jsonMesh["radius"].asFloat(), jsonMesh["tri-count"].asFloat(), vec4(jsonMesh["colour"][0].asFloat(), jsonMesh["colour"][1].asFloat(), jsonMesh["colour"][2].asFloat(), jsonMesh["colour"][3].asFloat()))));
+			meshes.insert(pair<string, Mesh*>(jsonMesh["title"].asString(), Mesh::GenerateCircle(jsonMesh["radius"].asFloat(), jsonMesh["tri-count"].asInt(), vec4(jsonMesh["colour"][0].asFloat(), jsonMesh["colour"][1].asFloat(), jsonMesh["colour"][2].asFloat(), jsonMesh["colour"][3].asFloat()))));
 		}
 		else if (jsonMesh["type"] == "FILE") {
 			meshes.insert(pair<string, Mesh*>(jsonMesh["title"].asString(), Mesh::LoadMeshFile(jsonMesh["path"].asString())));
@@ -57,21 +57,21 @@ int main()
 
 	// create shaders from game.json
 	map<string, Shader*> shaders;
-	for (int i = 0; i < gameData["levels"][0]["shaders"].size(); i++) {
+	for (unsigned int i = 0; i < gameData["levels"][0]["shaders"].size(); i++) {
 		Json::Value jsonShader = gameData["levels"][0]["shaders"][i];
 		shaders.insert(pair<string, Shader*>(jsonShader["title"].asString(), memory->createShader(ShaderParams{ jsonShader["vertex"].asString(), jsonShader["fragment"].asString(), jsonShader["geometry"].asString(), jsonShader["tcs"].asString(), jsonShader["tes"].asString() })));
 	}
 	
 	// create textures from game.json
 	map<string, GLuint> textures;
-	for (int i = 0; i < gameData["levels"][0]["textures"].size(); i++) {
+	for (unsigned int i = 0; i < gameData["levels"][0]["textures"].size(); i++) {
 		Json::Value jsonTexture = gameData["levels"][0]["textures"][i];
 		textures.insert(pair<string, GLuint>(jsonTexture["title"].asString(), Texture::Load(jsonTexture["path"].asString())));
 	}
 
 	// create entities from game.json
 	map<string, Entity*> entities;
-	for (int i = 0; i < gameData["levels"][0]["entities"].size(); i++){
+	for (unsigned int i = 0; i < gameData["levels"][0]["entities"].size(); i++){
 		Json::Value jsonEntity = gameData["levels"][0]["entities"][i];
 		Mesh* m = meshes.at(jsonEntity["mesh"].asString());
 		Shader* s = shaders.at(jsonEntity["shader"].asString());
@@ -114,7 +114,7 @@ int main()
 		};
 
 		// assign textures
-		for (int j = 0; j < gameData["levels"][0]["entities"][i]["textures"].size(); j++) {
+		for (unsigned int j = 0; j < gameData["levels"][0]["entities"][i]["textures"].size(); j++) {
 			string texture = gameData["levels"][0]["entities"][i]["textures"][j].asString();
 			e->getRenderObject()->getTextures()->insert(pair<string, GLuint>(texture, textures[texture]));
 		}
