@@ -10,7 +10,7 @@ int Window::Height;
 Window::Window(const char* title, const int width, const int height)
 	: m_Title(title) {
 	Window::Width = width;
-	Window::Height = height;
+	Window::Height = height;	
 	if (!init())
 		glfwTerminate();
 }
