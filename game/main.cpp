@@ -5,6 +5,7 @@
 #include "../engine-core/src/graphics/GameManager.h"
 #include "../engine-common/src/graphics/Shader.h"
 #include "../../../engine-physics/src/Physics.h"
+#include "../engine-common/src/graphics/Texture.h"
 #include "src/input/SnookerInput.h"
 #include "src/memory/SnookerMemoryManager.h"
 #include "../engine-common/src/graphics/RenderObject.h"
@@ -105,6 +106,13 @@ int main()
 		shaders.insert(pair<string, Shader*>(jsonShader["title"].asString(), memory->createShader(ShaderParams{ jsonShader["vertex"].asString(), jsonShader["fragment"].asString(), jsonShader["geometry"].asString(), jsonShader["tcs"].asString(), jsonShader["tes"].asString() })));
 	}
 	
+	// create textures from game.json
+	map<string, GLuint> textures;
+	for (int i = 0; i < gameData["levels"][0]["textures"].size(); i++) {
+		Json::Value jsonTexture = gameData["levels"][0]["textures"][i];
+		textures.insert(pair<string, GLuint>(jsonTexture["title"].asString(), Texture::Load(jsonTexture["path"].asString())));
+	}
+
 	// create entities from game.json
 	map<string, Entity*> entities;
 	for (int i = 0; i < gameData["levels"][0]["entities"].size(); i++){
@@ -170,6 +178,10 @@ int main()
 	cueBall->addChild(cue);
 	input->setCue(cue->getPhysicsObject());
 	
+	Mesh* triangle = Mesh::GenerateTriangle();
+
+
+
 	g->run();
 
 	return 0;

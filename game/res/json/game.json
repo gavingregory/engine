@@ -95,7 +95,12 @@
           "tes":  ""
         }
       ],
-      "textures": [ ],
+      "textures": [
+        {
+          "title": "miner",
+          "path":  "/res/texture/miner.gif"
+        }
+      ],
       "entities": [
         {
           "title": "table",

@@ -3,16 +3,14 @@
 RenderObject::RenderObject() {
 	mesh	= NULL;
 	shader	= NULL;
-	texture = vector<GLuint>();
-	textureName = vector<string>();
+	m_Textures = map<string, GLuint>();
 	parent  = NULL;
 }
 
 RenderObject::RenderObject(RenderObjectParams params) {
 	mesh = params.mesh;
 	shader = params.shader;
-	texture = vector<GLuint>();
-	textureName = vector<string>();
+	m_Textures = map<string, GLuint>();
 	parent = NULL;
 	modelMatrix = glm::translate(params.position);
 }

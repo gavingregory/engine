@@ -28,10 +28,7 @@ public:
 	void SetMesh(Mesh*m) { mesh = m; }
 	inline Shader* GetShader() const { return shader; }
 	inline void SetShader(Shader*s) { shader = s; }
-	inline string GetTextureNames(int index) const { return textureName[index]; }
-	inline GLuint GetTextures(int index) const { return texture[index]; }
-	inline int GetTexturesSize() const { return texture.size();  }
-	inline void pushTexture(GLuint texture, string tName) { this->texture.push_back(texture); this->textureName.push_back(tName); }
+	inline map<string, GLuint>* getTextures() { return &m_Textures; }
 	inline void SetModelMatrix(glm::mat4 mat) { modelMatrix = mat; }
 	inline glm::mat4 GetModelMatrix() const { return modelMatrix; }
 	void pushUniformVec4(string name, glm::vec4 u) { m_UniformVec4.insert(pair<string, vec4>(name, u)); }
@@ -49,10 +46,7 @@ public:
 protected:
 	Mesh*	mesh;
 	Shader*	shader;
-
-	vector<GLuint> texture;
-	vector<string> textureName;
-
+	map<string, GLuint> m_Textures;
 	glm::mat4 modelMatrix;
 	glm::mat4 worldTransform;
 
