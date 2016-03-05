@@ -77,7 +77,6 @@ void GameManager::run() {
 							PhysicsObject::m_Colliders[i]->m_Velocity, PhysicsObject::m_Colliders[i]->m_Mass, (CollisionCircle*)PhysicsObject::m_Colliders[i]->getCollisionShape(), PhysicsObject::m_Colliders[i]->m_Position,
 							PhysicsObject::m_Colliders[j]->m_Velocity, PhysicsObject::m_Colliders[j]->m_Mass, (CollisionCircle*)PhysicsObject::m_Colliders[j]->getCollisionShape(), PhysicsObject::m_Colliders[j]->m_Position,
 							1.0f)) {
-							cout << "collision " << endl;
 							PhysicsObject::m_Colliders[i]->collide(PhysicsObject::m_Colliders[j]);
 							PhysicsObject::m_Colliders[j]->collide(PhysicsObject::m_Colliders[i]);
 						}

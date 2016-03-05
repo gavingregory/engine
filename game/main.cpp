@@ -18,56 +18,6 @@
 #define WIDTH 800
 #define HEIGHT 600
 
-#define SNOOKER_TABLE_WIDTH 356.87f
-#define SNOOKER_TABLE_HEIGHT 177.8f
-#define BALL_RADIUS 2.625f
-#define BAULK_LINE 283.21f
-#define SEMI_CIRCLE_RADIUS 29.21f
-#define   BLUE_BALL_X 0
-#define   BLUE_BALL_Y 0
-#define  BLACK_BALL_X (SNOOKER_TABLE_WIDTH/2) - 31.75f
-#define  BLACK_BALL_Y 0
-#define   PINK_BALL_X (SNOOKER_TABLE_WIDTH/2) - 88.9f
-#define   PINK_BALL_Y 0
-#define  GREEN_BALL_X (SNOOKER_TABLE_WIDTH/2) - BAULK_LINE
-#define  GREEN_BALL_Y SEMI_CIRCLE_RADIUS
-#define YELLOW_BALL_X (SNOOKER_TABLE_WIDTH/2) - BAULK_LINE
-#define YELLOW_BALL_Y -SEMI_CIRCLE_RADIUS
-#define  BROWN_BALL_X (SNOOKER_TABLE_WIDTH/2) - BAULK_LINE
-#define  BROWN_BALL_Y 0
-#define RED_BALL_OFFSET 4.55f
-#define RED00_BALL_X PINK_BALL_X + (BALL_RADIUS*2)
-#define RED00_BALL_Y 0
-#define RED01_BALL_X RED00_BALL_X + RED_BALL_OFFSET
-#define RED01_BALL_Y BALL_RADIUS
-#define RED02_BALL_X RED01_BALL_X
-#define RED02_BALL_Y RED01_BALL_Y - (BALL_RADIUS*2)
-#define RED03_BALL_X RED01_BALL_X + RED_BALL_OFFSET
-#define RED03_BALL_Y RED01_BALL_Y + BALL_RADIUS
-#define RED04_BALL_X RED03_BALL_X
-#define RED04_BALL_Y RED03_BALL_Y - (BALL_RADIUS*2)
-#define RED05_BALL_X RED03_BALL_X
-#define RED05_BALL_Y RED04_BALL_Y - (BALL_RADIUS*2)
-#define RED06_BALL_X RED03_BALL_X + RED_BALL_OFFSET
-#define RED06_BALL_Y RED03_BALL_Y + BALL_RADIUS
-#define RED07_BALL_X RED06_BALL_X
-#define RED07_BALL_Y RED06_BALL_Y - (BALL_RADIUS*2)
-#define RED08_BALL_X RED07_BALL_X
-#define RED08_BALL_Y RED07_BALL_Y - (BALL_RADIUS*2)
-#define RED09_BALL_X RED08_BALL_X
-#define RED09_BALL_Y RED08_BALL_Y - (BALL_RADIUS*2)
-#define RED10_BALL_X RED06_BALL_X + RED_BALL_OFFSET
-#define RED10_BALL_Y RED06_BALL_Y + BALL_RADIUS
-#define RED11_BALL_X RED10_BALL_X
-#define RED11_BALL_Y RED10_BALL_Y - (BALL_RADIUS*2)
-#define RED12_BALL_X RED11_BALL_X
-#define RED12_BALL_Y RED11_BALL_Y - (BALL_RADIUS*2)
-#define RED13_BALL_X RED12_BALL_X
-#define RED13_BALL_Y RED12_BALL_Y - (BALL_RADIUS*2)
-#define RED14_BALL_X RED13_BALL_X
-#define RED14_BALL_Y RED13_BALL_Y - (BALL_RADIUS*2)
-
-#define CUSHION_WIDTH 10
 
 using glm::vec4;
 
@@ -97,6 +47,12 @@ int main()
 		else if (jsonMesh["type"] == "CIRCLE") {
 			meshes.insert(pair<string, Mesh*>(jsonMesh["title"].asString(), Mesh::GenerateCircle(jsonMesh["radius"].asFloat(), jsonMesh["tri-count"].asFloat(), vec4(jsonMesh["colour"][0].asFloat(), jsonMesh["colour"][1].asFloat(), jsonMesh["colour"][2].asFloat(), jsonMesh["colour"][3].asFloat()))));
 		}
+		else if (jsonMesh["type"] == "FILE") {
+			meshes.insert(pair<string, Mesh*>(jsonMesh["title"].asString(), Mesh::LoadMeshFile(jsonMesh["path"].asString())));
+		}
+		else {
+			exit(1); // mesh could not be loaded
+		}
 	}
 
 	// create shaders from game.json
@@ -122,7 +78,6 @@ int main()
 
 		// create entity
 		Entity* e = nullptr;
-		cout << "adding entity " << i << jsonEntity["title"].asString() << endl;
 		if (jsonEntity["type"].asString() == "entity")
 			e = memory->createEntity(EntityParams{ vec3(jsonEntity["position"][0].asFloat(),jsonEntity["position"][1].asFloat(),jsonEntity["position"][2].asFloat()), vec3(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat(),jsonEntity["velocity"][2].asFloat()), vec3(jsonEntity["acceleration"][0].asFloat(),jsonEntity["acceleration"][1].asFloat(),jsonEntity["acceleration"][2].asFloat()), jsonEntity["rotation"].asFloat(), jsonEntity["mass"].asFloat(), m, s, jsonEntity["title"].asString() });
 		else if (jsonEntity["type"].asString() == "ball") {
@@ -157,7 +112,13 @@ int main()
 			cout << "Invalid entity detected! Exiting..." << endl;
 			return 1;
 		};
-	
+
+		// assign textures
+		for (int j = 0; j < gameData["levels"][0]["entities"][i]["textures"].size(); j++) {
+			string texture = gameData["levels"][0]["entities"][i]["textures"][j].asString();
+			e->getRenderObject()->getTextures()->insert(pair<string, GLuint>(texture, textures[texture]));
+		}
+
 		// assign as child or into map if no parent
 		Json::Value parent = jsonEntity["parent"].asString();
 		entities.insert(pair<string, Entity*>(jsonEntity["title"].asString(), e));
@@ -173,7 +134,7 @@ int main()
 	input->setAudio(g->getAudio());
 	input->setCamera(g->getCamera());
 	
-	Mesh* snookerCueMesh = g->getMemoryManager()->createMesh("res/mesh/cue.mesh");
+	Mesh* snookerCueMesh = g->getMemoryManager()->createMesh("res/mesh/cue.json");
 	Entity* cue = g->getMemoryManager()->createEntity(EntityParams{ vec3(0,0,0.1f) , vec3(0,0,0) , vec3(0,0,0), 0.0f, 1.0f, snookerCueMesh, shaders.at("default"), "cue" });
 	cueBall->addChild(cue);
 	input->setCue(cue->getPhysicsObject());

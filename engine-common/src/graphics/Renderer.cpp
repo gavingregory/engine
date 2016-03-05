@@ -9,12 +9,12 @@ void Renderer::Render(RenderObject* o) {
 	o->UpdateShaderMatrices();
 
 	// bind textures, if any exist
-	int index = 0;
-	for (map<string, GLuint>::iterator it = o->getTextures()->begin(); it != o->getTextures()->end(); ++it) {
-		glUniform1i(glGetUniformLocation(o->GetShader()->GetShaderProgram(), (it->first).c_str()), (it->second));
-		glActiveTexture(GL_TEXTURE0 + index++);
-		glBindTexture(GL_TEXTURE_2D, it->second);
-	}
+	//int index = 0;
+	//for (map<string, GLuint>::iterator it = o->getTextures()->begin(); it != o->getTextures()->end(); ++it) {
+	//	glUniform1i(glGetUniformLocation(o->GetShader()->GetShaderProgram(), (it->first).c_str()), (it->second));
+	//	glActiveTexture(GL_TEXTURE0 + index++);
+	//	glBindTexture(GL_TEXTURE_2D, it->second);
+	//}
 
 	// transparency stuff
 	glEnable(GL_BLEND);

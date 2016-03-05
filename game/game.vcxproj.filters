@@ -35,13 +35,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shader\BasicFrag.glsl" />
-    <None Include="res\shader\BasicVert.glsl" />
-    <None Include="res\shader\ball.frag" />
-    <None Include="res\shader\ball.vert" />
-    <None Include="res\mesh\cube.mesh" />
-    <None Include="res\mesh\table.mesh" />
     <None Include="res\json\game.json" />
+    <None Include="res\shader\texture.vert" />
+    <None Include="res\shader\texture.frag" />
+    <None Include="res\shader\basic.vert" />
+    <None Include="res\shader\basic.frag" />
+    <None Include="res\mesh\table.json" />
+    <None Include="res\mesh\cue.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\input\SnookerInput.h">

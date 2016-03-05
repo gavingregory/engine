@@ -9,10 +9,8 @@
       "meshes": [
         {
           "title": "tableMesh",
-          "type": "QUAD",
-          "width": 356.87,
-          "height": 177.8,
-          "colour": [ 0.0, 1.0, 0.0, 0.5 ]
+          "type": "FILE",
+          "path": "res/mesh/table.json"
         },
         {
           "title": "cueBallMesh",
@@ -88,23 +86,32 @@
       "shaders": [
         {
           "title": "default",
-          "vertex": "res/shader/BasicVert.glsl",
-          "fragment": "res/shader/BasicFrag.glsl",
+          "vertex": "res/shader/basic.vert",
+          "fragment": "res/shader/basic.frag",
           "geometry": "",
           "tcs": "",
-          "tes":  ""
+          "tes": ""
+        },
+        {
+          "title": "texture",
+          "vertex": "res/shader/texture.vert",
+          "fragment": "res/shader/texture.frag",
+          "geometry": "",
+          "tcs": "",
+          "tes": ""
         }
       ],
       "textures": [
         {
           "title": "miner",
-          "path":  "/res/texture/miner.gif"
+          "path":  "res/texture/miner.png"
         }
       ],
       "entities": [
         {
           "title": "table",
-          "type":  "entity",
+          "type": "entity",
+          "textures":  ["miner"],
           "parent": "null",
           "position": [ 0.0, 0.0, 0.0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -112,11 +119,12 @@
           "rotation": 0.0,
           "mass": 0.0,
           "mesh": "tableMesh",
-          "shader": "default"
+          "shader": "texture"
         },
         {
           "title": "cueBall",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 25.0, -2.0, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -130,6 +138,7 @@
         {
           "title": "blackBall",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 146.685, 0.0, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -143,6 +152,7 @@
         {
           "title": "pinkBall",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 89.535, 0.0, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -156,6 +166,7 @@
         {
           "title": "blueBall",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 0.0, 0.0, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -169,6 +180,7 @@
         {
           "title": "yellowBall",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ -104.775, -29.21, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -182,6 +194,7 @@
         {
           "title": "brownBall",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ -104.775, 0.0, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -195,6 +208,7 @@
         {
           "title": "greenBall",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ -104.775, 29.21, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -208,6 +222,7 @@
         {
           "title": "redBall01",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 94.785, 0.0, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -221,6 +236,7 @@
         {
           "title": "redBall02",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 99.335, 2.625, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -234,6 +250,7 @@
         {
           "title": "redBall03",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 99.335, -2.625, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -247,6 +264,7 @@
         {
           "title": "redBall04",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 103.885, 5.25, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -260,6 +278,7 @@
         {
           "title": "redBall05",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 103.885, 0.0, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -273,6 +292,7 @@
         {
           "title": "redBall06",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 103.885, -5.25, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -286,6 +306,7 @@
         {
           "title": "redBall07",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 108.435, 7.875, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -299,6 +320,7 @@
         {
           "title": "redBall08",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 108.435, 2.625, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -312,6 +334,7 @@
         {
           "title": "redBall09",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 108.435, -2.625, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -325,6 +348,7 @@
         {
           "title": "redBall10",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 108.435, -7.875, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -338,6 +362,7 @@
         {
           "title": "redBall11",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 112.985, 10.85, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -351,6 +376,7 @@
         {
           "title": "redBall12",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 112.985, 5.25, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -364,6 +390,7 @@
         {
           "title": "redBall13",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 112.985, 0, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -377,6 +404,7 @@
         {
           "title": "redBall14",
           "type":  "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 112.985, -5.25, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -390,6 +418,7 @@
         {
           "title": "redBall15",
           "type": "ball",
+          "textures":  [],
           "parent": "table",
           "position": [ 112.985, -10.5, 2.625 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -403,6 +432,7 @@
         {
           "title": "cushionTop",
           "type": "cushion",
+          "textures":  [],
           "parent": "table",
           "position": [ 0.0, 88.9, 0.0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -417,6 +447,7 @@
         {
           "title": "cushionBottom",
           "type": "cushion",
+          "textures":  [],
           "parent": "table",
           "position": [ 0.0, -88.9, 0.0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -431,6 +462,7 @@
         {
           "title": "cushionLeft",
           "type": "cushion",
+          "textures":  [],
           "parent": "table",
           "position": [ -178.435, 0.0, 0.0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
@@ -445,6 +477,7 @@
         {
           "title": "cushionRight",
           "type": "cushion",
+          "textures":  [],
           "parent": "table",
           "position": [ 178.435, 0.0, 0.0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],

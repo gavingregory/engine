@@ -134,9 +134,9 @@ Mesh* Mesh::GenerateQuad(const float width, const float height, const glm::vec4 
 		m->colours[i] = colour;
 
 	m->textureCoords[0] = glm::vec2(0.0f, 1.0f);
-	m->textureCoords[1] = glm::vec2(0.0f, 0.0f);
-	m->textureCoords[2] = glm::vec2(1.0f, 1.0f);
-	m->textureCoords[3] = glm::vec2(1.0f, 0.0f);
+	m->textureCoords[1] = glm::vec2(1.0f, 1.0f);
+	m->textureCoords[2] = glm::vec2(1.0f, 0.0f);
+	m->textureCoords[3] = glm::vec2(0.0f, 0.0f);
 
 
 
@@ -174,58 +174,36 @@ Mesh* Mesh::GenerateCircle(const float r, const int count, const glm::vec4 colou
 }
 
 Mesh* Mesh::LoadMeshFile(const string &filename) {
-	ifstream f(filename);
-
-	if(!f) {
-		return NULL;
+	Json::Value meshData;
+	try {
+		meshData = Loader::LoadJson(filename);
 	}
+	catch (const char* msg) { cout << msg << endl; }
 
 	Mesh*m = new Mesh();
-	f >> m->numVertices;
-
-	int hasTex = 0;
-	int hasColour = 0;
-
-	f >> hasTex;
-	f >> hasColour;
-
+	m->numVertices = meshData["vertices"].size();
 	m->vertices = new glm::vec3[m->numVertices];
+	m->colours = new glm::vec4[m->numVertices];
+	if (meshData["texcoords"].size()) m->textureCoords = new glm::vec2[m->numVertices];
 
-	if(hasTex) {
-		m->textureCoords = new glm::vec2[m->numVertices];
-		m->colours		 = new glm::vec4[m->numVertices];
-	}
-	else {
-		m->colours = new glm::vec4[m->numVertices];
-	}
-
-	for (unsigned int i = 0; i < m->numVertices; ++i) {
-		f >> m->vertices[i].x;
-		f >> m->vertices[i].y;
-		f >> m->vertices[i].z;
+	for (unsigned int i = 0; i < meshData["vertices"].size(); i++) {
+		m->vertices[i].x = meshData["vertices"][i][0].asFloat();
+		m->vertices[i].y = meshData["vertices"][i][1].asFloat();
+		m->vertices[i].z = meshData["vertices"][i][2].asFloat();
 	}
 
-	if (hasColour) {
-		for (unsigned int i = 0; i < m->numVertices; ++i) {
-			unsigned int r, g, b, a;
-
-			f >> r;
-			f >> g;
-			f >> b;
-			f >> a;
-			//OpenGL can use floats for colours directly - this will take up 4x as
-			//much space, but could avoid any byte / float conversions happening
-			//behind the scenes in our shader executions
-			m->colours[i] = glm::vec4((float)r, (float)g, (float)b, (float)a);
-		}
+	for (unsigned int i = 0; i < meshData["colours"].size(); i++) {
+		m->colours[i].r = meshData["colours"][i][0].asFloat();
+		m->colours[i].g = meshData["colours"][i][1].asFloat();
+		m->colours[i].b = meshData["colours"][i][2].asFloat();
+		m->colours[i].a = meshData["colours"][i][3].asFloat();
 	}
 
-	if (hasTex) {
-		for (unsigned int i = 0; i < m->numVertices; ++i) {
-			f >> m->textureCoords[i].x;
-			f >> m->textureCoords[i].y;
-		}
+	for (unsigned int i = 0; i < meshData["texcoords"].size(); i++) {
+		m->textureCoords[i].x = meshData["texcoords"][i][0].asFloat();
+		m->textureCoords[i].y = meshData["texcoords"][i][1].asFloat();
 	}
+
 	m->GenerateNormals();
 	m->BufferData();
 	return m;

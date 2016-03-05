@@ -7,7 +7,7 @@ PhysicsObject::PhysicsObject(PhysicsObjectParams params)
 	updateRenderObject();
 	// add this shape to colliders if it has a collision shape
 	if (m_CollisionShape != nullptr) {
-		cout << "adding a collision object " << endl; m_Colliders.push_back(this);
+		m_Colliders.push_back(this);
 	}
 }
 
