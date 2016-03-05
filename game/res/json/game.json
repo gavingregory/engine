@@ -73,7 +73,7 @@
         {
           "title": "cushionHorizontalMesh",
           "type": "QUAD",
-          "width": 356.87,
+          "width": 366.87,
           "height": 10.0,
           "colour": [ 0.3, 0.3, 0.3, 0.5 ]
         },
@@ -81,7 +81,7 @@
           "title": "cushionVerticalMesh",
           "type": "QUAD",
           "width": 10.0,
-          "height": 356.87,
+          "height": 187.8,
           "colour": [ 0.3, 0.3, 0.3, 0.5 ]
         }
       ],

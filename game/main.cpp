@@ -109,7 +109,7 @@ int main()
 		Json::Value jsonEntity = gameData["levels"][0]["entities"][i];
 		Mesh* m = meshes.at(jsonEntity["mesh"].asString());
 		Shader* s = shaders.at(jsonEntity["shader"].asString());
-	
+
 		// create entity
 		Entity* e = nullptr;
 		cout << "adding entity " << i << jsonEntity["title"].asString() << endl;
