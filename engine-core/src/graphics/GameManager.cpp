@@ -16,18 +16,31 @@ GameManager::GameManager(GameManagerParams params)
 	//if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
 
 	m_InputHandler = params.inputHandler;
-	if (!m_InputHandler->init()) cout << "Input Handler init failed!" << endl;
+	if (!m_InputHandler->init()) { cout << "Input Handler init failed!" << endl; exit(1); }
 
 	m_MemoryManager = params.memoryManager;
-	if (!m_MemoryManager->init()) cout << "Memory manager init failed!" << endl;
+	if (!m_MemoryManager->init()) { cout << "Memory manager init failed!" << endl; exit(1); }
+
+	m_GameLogic = params.gameLogic;
+	if (!m_GameLogic->init()) { cout << "Game logic init failed!" << endl; exit(1); }
 }
 
 GameManager::~GameManager() {
 	Window::WindowPointer = nullptr;
+	m_InputHandler->destroy();
 	if (m_InputHandler) delete m_InputHandler;
+	
 	if (m_Camera) delete m_Camera;
+	
 	if (m_Renderer) delete m_Renderer;
+	
+	m_Audio->destroy();
 	if (m_Audio) delete m_Audio;
+	
+	m_GameLogic->destroy();
+	if (m_GameLogic) delete m_GameLogic;
+	m_MemoryManager->destroy();
+
 	m_MemoryManager->destroy();
 	if (m_MemoryManager) delete m_MemoryManager;
 	for (unsigned int i = 0; i < m_Entities.size(); i++)
@@ -77,6 +90,9 @@ void GameManager::run() {
 				}
 			}
 		}
+
+		// GAME LOGIC
+		m_GameLogic->update(msec);
 
 		// RENDER
 		for (unsigned int i = 0; i < m_Entities.size(); i++)

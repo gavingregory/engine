@@ -12,6 +12,7 @@
 #include "../engine-common/src/graphics/Mesh.h"
 #include "src/entities/BallEntity.h"
 #include "../engine-io/src/io/Loader.h"
+#include "src/game/SnookerLogic.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -79,11 +80,12 @@ int main()
 
 	SnookerInput* input = new SnookerInput();
 	SnookerMemoryManager* memory = new SnookerMemoryManager();
-	GameManager* g = new GameManager(GameManagerParams{ memory, input, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
+	GameLogic* logic = new SnookerLogic();
+	GameManager* g = new GameManager(GameManagerParams{ memory, input, logic, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
 
 	Json::Value levelData = gameData["levels"];
 	Json::Value levelOneData = levelData[0];
-	
+
 	// create meshes from game.json
 	map<string, Mesh*> meshes;
 	for (int i = 0; i < gameData["levels"][0]["meshes"].size(); i++) {

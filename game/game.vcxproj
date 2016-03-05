@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\game\SnookerLogic.cpp" />
     <ClCompile Include="src\entities\CushionEntity.cpp" />
     <ClCompile Include="src\memory\SnookerMemoryManager.cpp" />
     <ClCompile Include="src\entities\BallEntity.cpp" />
@@ -35,6 +36,7 @@
     <None Include="res\shader\BasicVert.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\SnookerLogic.h" />
     <ClInclude Include="src\entities\CushionEntity.h" />
     <ClInclude Include="src\memory\SnookerMemoryManager.h" />
     <ClInclude Include="src\entities\BallEntity.h" />
