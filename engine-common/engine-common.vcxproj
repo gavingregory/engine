@@ -126,8 +126,6 @@
     <ClInclude Include="src\level\Level.h" />
     <ClInclude Include="src\game\GameLogic.h" />
     <ClInclude Include="src\graphics\Texture.h" />
-    <ClInclude Include="src\level\SceneLogic.h" />
-    <ClInclude Include="src\level\Scene.h" />
     <ClInclude Include="src\graphics\Camera.h" />
     <ClInclude Include="src\graphics\Entity.h" />
     <ClInclude Include="src\graphics\Mesh.h" />
@@ -144,8 +142,6 @@
   <ItemGroup>
     <ClCompile Include="src\level\Level.cpp" />
     <ClCompile Include="src\game\GameLogic.cpp" />
-    <ClCompile Include="src\level\SceneLogic.cpp" />
-    <ClCompile Include="src\level\Scene.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\graphics\Entity.cpp" />
     <ClCompile Include="src\graphics\Mesh.cpp" />

@@ -4,11 +4,11 @@ GameManager::GameManager(GameManagerParams params)
 	: m_Window(Window(params.title.c_str(), params.width, params.height)) {
 	m_Renderer = params.renderer;
 	Window::WindowPointer = &m_Window;
-	m_Camera = new Camera(0.0f, 0.0f, glm::vec3(0, 0, 300));
+	m_Camera = new Camera(vec3(0, 0, 300));
 	Camera::width = 400.0f;
-	Camera::vw_matrix = glm::lookAt(glm::vec3(0.f, 0.f, 3.0f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.0f, 1.0f, 0.0f));
+	Camera::vw_matrix = lookAt(vec3(0.f, 0.f, 3.0f), vec3(0.f, 0.f, 0.f), vec3(0.0f, 1.0f, 0.0f));
 
-	Camera::pr_matrix = glm::ortho(-(Camera::width/2), (Camera::width/2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
+	Camera::pr_matrix = ortho(-(Camera::width/2), (Camera::width/2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	Camera::light_src = vec3(0, 0, 200);
 
 	//m_Audio = new Audio();

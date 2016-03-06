@@ -27,6 +27,7 @@ struct GameManagerParams {
 };
 
 using std::stack;
+using glm::ortho;
 
 class GameManager
 {
