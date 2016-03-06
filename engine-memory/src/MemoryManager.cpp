@@ -12,6 +12,12 @@ Entity* MemoryManager::createEntity(EntityParams params) {
 	return e;
 }
 
+Level* MemoryManager::createLevel(LevelParams params) {
+	Level* level = new Level(params);
+	m_Objects.push_back(level);
+	return level;
+}
+
 RenderObject* MemoryManager::createRenderObject(RenderObjectParams params) {
 	RenderObject* r = new RenderObject(params);
 	m_Objects.push_back(r);

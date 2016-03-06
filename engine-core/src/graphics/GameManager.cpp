@@ -2,8 +2,7 @@
 
 GameManager::GameManager(GameManagerParams params)
 	: m_Window(Window(params.title.c_str(), params.width, params.height)) {
-	m_Renderer = new Renderer();
-	m_Entities = vector<Entity*>();
+	m_Renderer = params.renderer;
 	Window::WindowPointer = &m_Window;
 	m_Camera = new Camera(0.0f, 0.0f, glm::vec3(0, 0, 300));
 	Camera::width = 400.0f;
@@ -43,12 +42,6 @@ GameManager::~GameManager() {
 
 	m_MemoryManager->destroy();
 	if (m_MemoryManager) delete m_MemoryManager;
-	for (unsigned int i = 0; i < m_Entities.size(); i++)
-		delete m_Entities[i];
-}
-
-void GameManager::addEntity(Entity* e) {
-	m_Entities.push_back(e);
 }
 
 void GameManager::run() {
@@ -64,38 +57,9 @@ void GameManager::run() {
 
 		if (m_InputHandler) m_InputHandler->handleInput(msec);
 
-		// UPDATE
-		for (unsigned int i = 0; i < m_Entities.size(); i++)
-			m_Entities[i]->update(msec);
+		// call update on the top level on the stack
+		m_LevelStack.top()->update(msec);
 
-		// COLLISION
-		for (unsigned int i = 0; i < PhysicsObject::m_Colliders.size(); i++) {
-			for (unsigned int j = 0; j < PhysicsObject::m_Colliders.size(); j++) {
-				if (i != j) {
-					if (!PhysicsObject::m_Colliders[i]->isColliding(PhysicsObject::m_Colliders[j])) {
-						if (Physics::detectCollision(
-							PhysicsObject::m_Colliders[i]->m_Velocity, PhysicsObject::m_Colliders[i]->m_Mass, (CollisionCircle*)PhysicsObject::m_Colliders[i]->getCollisionShape(), PhysicsObject::m_Colliders[i]->m_Position,
-							PhysicsObject::m_Colliders[j]->m_Velocity, PhysicsObject::m_Colliders[j]->m_Mass, (CollisionCircle*)PhysicsObject::m_Colliders[j]->getCollisionShape(), PhysicsObject::m_Colliders[j]->m_Position,
-							1.0f)) {
-							PhysicsObject::m_Colliders[i]->collide(PhysicsObject::m_Colliders[j]);
-							PhysicsObject::m_Colliders[j]->collide(PhysicsObject::m_Colliders[i]);
-						}
-					}
-					else {
-						PhysicsObject::m_Colliders[i]->noCollide(PhysicsObject::m_Colliders[j]);
-						PhysicsObject::m_Colliders[j]->noCollide(PhysicsObject::m_Colliders[i]);
-					}
-
-				}
-			}
-		}
-
-		// GAME LOGIC
-		m_GameLogic->update(msec);
-
-		// RENDER
-		for (unsigned int i = 0; i < m_Entities.size(); i++)
-			m_Entities[i]->render(m_Renderer);
 		m_Window.update();
 	}
 }

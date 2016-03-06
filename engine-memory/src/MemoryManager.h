@@ -3,6 +3,7 @@
 #include "../../engine-common/src/graphics/Entity.h"
 #include "../../engine-common/src/graphics/RenderObject.h"
 #include "../../engine-common/src/system/SubSystem.h"
+#include "../../engine-common/src/level/Level.h"
 
 #define GIGABYTE 1073741824
 
@@ -26,6 +27,7 @@ public:
 	Shader* createShader(ShaderParams params);
 	CollisionCircle* createCollisionCircle(CollisionCircleParams);
 	CollisionPlane* createCollisionPlane(CollisionPlaneParams);
+	Level* createLevel(LevelParams);
 	virtual bool init();
 	
 	virtual bool destroy();

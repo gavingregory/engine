@@ -1,5 +1,5 @@
 {
-  "title": "Snooker",
+  "title": "Space",
   "width": 800,
   "height": 600,
   "levels": [
@@ -494,22 +494,6 @@
           "distance": [ 178.435, 0.0, 0.0 ]
         }
       ]
-    },
-    {
-      "id":  2,
-      "title": "Level Two",
-      "meshes": [ ],
-      "shaders": [ ],
-      "textures": [ ],
-      "entities": [ ]
-    },
-    {
-      "id":  3,
-      "title": "Level Three",
-      "meshes": [ ],
-      "shaders": [ ],
-      "textures": [ ],
-      "entities": [ ]
     }
   ]
 }

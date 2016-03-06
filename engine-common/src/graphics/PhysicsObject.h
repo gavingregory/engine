@@ -24,6 +24,7 @@ class PhysicsObject
 {
 	friend class Entity;
 	friend class GameManager;
+	friend class Level;
 public:
 	PhysicsObject(PhysicsObjectParams params);
 	virtual ~PhysicsObject();

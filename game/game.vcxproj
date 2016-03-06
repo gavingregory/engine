@@ -20,11 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\game\SnookerLogic.cpp" />
+    <ClCompile Include="src\game\SpaceLogic.cpp" />
     <ClCompile Include="src\entities\CushionEntity.cpp" />
-    <ClCompile Include="src\memory\SnookerMemoryManager.cpp" />
-    <ClCompile Include="src\entities\BallEntity.cpp" />
-    <ClCompile Include="src\input\SnookerInput.cpp" />
+    <ClCompile Include="src\memory\SpaceMemoryManager.cpp" />
+    <ClCompile Include="src\entities\NodeEntity.cpp" />
+    <ClCompile Include="src\input\SpaceInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\json\game.json" />
@@ -36,11 +36,11 @@
     <None Include="res\shader\basic.vert" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\game\SnookerLogic.h" />
+    <ClInclude Include="src\game\SpaceLogic.h" />
     <ClInclude Include="src\entities\CushionEntity.h" />
-    <ClInclude Include="src\memory\SnookerMemoryManager.h" />
-    <ClInclude Include="src\entities\BallEntity.h" />
-    <ClInclude Include="src\input\SnookerInput.h" />
+    <ClInclude Include="src\memory\SpaceMemoryManager.h" />
+    <ClInclude Include="src\entities\NodeEntity.h" />
+    <ClInclude Include="src\input\SpaceInput.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CED10A13-C267-42BB-93D7-3AC5D2FEF109}</ProjectGuid>
