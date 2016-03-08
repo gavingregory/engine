@@ -1,7 +1,12 @@
 #pragma once
-#include "../../lib/portaudio/include/portaudio.h"
 #include "../../engine-common/src/system/SubSystem.h"
+#include <irrKlang.h>
 #include <iostream>
+#include <iostream>
+
+using std::cout;
+using std::endl;
+using namespace irrklang;
 
 class Audio : public SubSystem
 {
@@ -14,5 +19,5 @@ public:
 	void play();
 	void stop();
 private:
-	PaStream *m_Stream;
+	ISoundEngine* m_SoundEngine;
 };
