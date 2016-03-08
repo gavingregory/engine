@@ -36,6 +36,7 @@ public:
 	virtual ~GameManager();
 	Audio* getAudio() const { return m_Audio; }
 	MemoryManager* getMemoryManager() const { return m_MemoryManager; }
+	Audio* getAudioManager() const { return m_Audio; }
 	Camera* getCamera() const { return m_Camera; }
 	void run();
 	stack<Level*>* getLevelStack() { return &m_LevelStack; }

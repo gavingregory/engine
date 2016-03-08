@@ -2,6 +2,7 @@
 
 #include "../system/SubSystem.h"
 #include "../graphics/Entity.h"
+#include "../../../engine-audio/src/Audio.h"
 #include "../../../engine-common/src/game/GameLogic.h"
 
 struct LevelParams {
@@ -20,11 +21,13 @@ public:
 	map<string, Mesh*>* getMeshes() { return &m_Meshes; }
 	map<string, Shader*>* getShaders() { return &m_Shaders; }
 	map<string, GLuint>* getTextures() { return &m_Textures; }
+	map<string, ISoundSource*>* getAudios() { return &m_Audios; }
 private:
 	map<string, Entity*> m_Entities;
 	map<string, Mesh*> m_Meshes;
 	map<string, Shader*> m_Shaders;
 	map<string, GLuint> m_Textures;
+	map<string, ISoundSource*> m_Audios;
 	GameLogic* m_GameLogic;
 	Renderer* m_Renderer;
 

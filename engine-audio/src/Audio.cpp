@@ -2,13 +2,11 @@
 
 Audio::Audio() { }
 
-
 Audio::~Audio() { }
 
 bool Audio::init() {
 	m_SoundEngine = createIrrKlangDevice();
-	m_SoundEngine->play2D("res/audio/breakout.mp3", true);
-	return 1;
+	return (m_SoundEngine == nullptr);
 }
 
 bool Audio::destroy() {
@@ -16,13 +14,23 @@ bool Audio::destroy() {
 }
 
 void Audio::update(float msec) {
-			
+	// do nothing
 }
 
-void Audio::play() {
-	
+ISound* Audio::play(string path, bool loop) {
+	ISound* s = m_SoundEngine->play2D(path.c_str(), loop);
+	assert(s != nullptr);
+	return s;
 }
-		
-void Audio::stop() {
 
+ISound* Audio::play(ISoundSource* source) {
+	return m_SoundEngine->play2D(source);
+}
+
+ISoundSource* Audio::createSoundSource(string path) {
+	return m_SoundEngine->addSoundSourceFromFile(path.c_str(), ESM_AUTO_DETECT, true);
+}
+
+void Audio::stop(ISound* sound) {
+	sound->stop();
 }

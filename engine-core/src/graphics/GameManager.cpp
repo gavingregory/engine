@@ -46,10 +46,15 @@ GameManager::~GameManager() {
 
 void GameManager::run() {
 
+	ISound* s = m_Audio->play("res/audio/breakout.mp3", true);
+	bool playing = true;
+
 	while (!m_Window.closed()) {
 		m_Window.clear();
 
 		float msec = m_Timer.GetTimedMS();
+		float m = m_Timer.GetMS();
+		if (m > 2000 && playing) { m_Audio->stop(s);  playing = false; }
 
 		// update camera
 		//m_Camera->UpdateCamera(msec, m_InputHandler->getMouseRelative());

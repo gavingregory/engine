@@ -37,6 +37,12 @@
           "path": "res/texture/asteroid.png"
         }
       ],
+      "audio": [
+        {
+          "title": "bgm001",
+          "path": "res/audio/breakout.mp3"
+        }
+      ],
       "entities": [
         {
           "title": "asteroid1",
