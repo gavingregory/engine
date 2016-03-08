@@ -76,6 +76,10 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 		vel0 = DAMPING_FACTOR * (vel0 + ((J*m0) * N));
 		vel1 = DAMPING_FACTOR * (vel1 - ((J*m1) * N));
 
+		// clamp
+		if (glm::length(vel0) > 0.4f) vel0 = glm::normalize(vel0) * 0.1f;
+		if (glm::length(vel1) > 0.4f) vel1 = glm::normalize(vel1) * 0.1f;
+
 		float mabafter = glm::length((vel0 * m0) + (vel1 * m1));
 		if (mabbefore < mabafter) {
 			std::cout << "before: " << mabbefore;
