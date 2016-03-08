@@ -40,8 +40,7 @@
     <None Include="res\shader\texture.frag" />
     <None Include="res\shader\basic.vert" />
     <None Include="res\shader\basic.frag" />
-    <None Include="res\mesh\table.json" />
-    <None Include="res\mesh\cue.json" />
+    <None Include="res\mesh\asteroid.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\CushionEntity.h">
@@ -57,6 +56,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\memory\SpaceMemoryManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\states\PlayerState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

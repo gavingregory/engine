@@ -28,14 +28,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\json\game.json" />
-    <None Include="res\mesh\cue.json" />
-    <None Include="res\mesh\table.json" />
+    <None Include="res\mesh\asteroid.json" />
     <None Include="res\shader\texture.frag" />
     <None Include="res\shader\texture.vert" />
     <None Include="res\shader\basic.frag" />
     <None Include="res\shader\basic.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\states\PlayerState.h" />
     <ClInclude Include="src\game\SpaceLogic.h" />
     <ClInclude Include="src\entities\CushionEntity.h" />
     <ClInclude Include="src\memory\SpaceMemoryManager.h" />

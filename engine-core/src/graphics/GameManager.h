@@ -50,5 +50,4 @@ private:
 	GameLogic* m_GameLogic;
 	Audio* m_Audio;
 	Camera* m_Camera;
-
 };

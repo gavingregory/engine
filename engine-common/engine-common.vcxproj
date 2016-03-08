@@ -138,6 +138,7 @@
     <ClInclude Include="src\system\SubSystem.h" />
     <ClInclude Include="src\utils\File.h" />
     <ClInclude Include="src\utils\GameTimer.h" />
+    <ClInclude Include="src\game\State.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\level\Level.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="src\graphics\Window.cpp" />
     <ClCompile Include="src\utils\File.cpp" />
     <ClCompile Include="src\utils\GameTimer.cpp" />
+    <ClCompile Include="src\game\State.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

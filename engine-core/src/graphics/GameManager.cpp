@@ -11,8 +11,8 @@ GameManager::GameManager(GameManagerParams params)
 	Camera::pr_matrix = ortho(-(Camera::width/2), (Camera::width/2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	Camera::light_src = vec3(0, 0, 200);
 
-	//m_Audio = new Audio();
-	//if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
+	m_Audio = new Audio();
+	if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
 
 	m_InputHandler = params.inputHandler;
 	if (!m_InputHandler->init()) { cout << "Input Handler init failed!" << endl; exit(1); }

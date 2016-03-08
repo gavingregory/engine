@@ -49,7 +49,7 @@ bool Window::init() {
 	glfwSetCursorPosCallback(m_Window, cursor_position_callback);
 	glfwSetInputMode(m_Window, GLFW_STICKY_KEYS, 1); // set sticky keys to ON, so that when we POLL the key presses we don't miss a key press
 	glfwSetScrollCallback(m_Window, scroll_callback);
-	glClearColor(0.5f, 0.1f, 0.4f, 1.0f);
+	glClearColor(0.f, 0.f, 0.f, 1.0f);
 	// glfwSwapInterval(0.0f); // disable vsync
 
 	if (glewInit() != GLEW_OK) {
