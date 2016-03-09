@@ -39,6 +39,7 @@ public:
 	MemoryManager* getMemoryManager() const { return m_MemoryManager; }
 	Audio* getAudioManager() const { return m_Audio; }
 	Camera* getCamera() const { return m_Camera; }
+	void init();
 	void run();
 	stack<Level*>* getLevelStack() { return &m_LevelStack; }
 

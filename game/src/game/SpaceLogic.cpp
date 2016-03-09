@@ -1,13 +1,24 @@
 #include "SpaceLogic.h"
 
-SpaceLogic::SpaceLogic() {
-	m_GameState = SELECT_MODE;
+SpaceLogic::SpaceLogic(SpaceMemoryManager* memory) {
+	m_MemoryManager = memory;
+
+	m_GameState = GS_SELECT;
 	m_BuildState = BASIC_NODE;
 }
 
 SpaceLogic::~SpaceLogic() {}
 
 bool SpaceLogic::init() {
+	map<string, Mesh*>* meshes = Level::currentLevel->getMeshes();
+	map<string, Shader*>* shaders = Level::currentLevel->getShaders();
+
+	Mesh* m = (*meshes)["asteroid"];
+	Shader* s = (*shaders)["texture"];
+	m_BuildEntity = m_MemoryManager->createEntity(EntityParams{ vec3(m_MousePosition, 0.0f), vec3(), vec3(), 0.0f, 1.0f, m, s, "buildingItem" });
+
+	Level::currentLevel->getEntities()->insert(pair<string, Entity*>("buildingItem", m_BuildEntity));
+	
 	return 1;
 }
 
@@ -16,9 +27,10 @@ bool SpaceLogic::destroy() {
 }
 
 void SpaceLogic::update(float msec) {
-
 	switch (m_GameState) {
-	case BUILD_MODE:
+	case GS_BUILD:
+		(*Level::currentLevel->getEntities()).insert_or_assign("buildingItem", m_BuildEntity);
+		m_BuildEntity->getPhysicsObject()->setPosition(vec3(m_MousePosition, 0));
 		switch (m_BuildState) {
 		case BASIC_NODE:
 			cout << "building basic node" << endl;
@@ -37,7 +49,8 @@ void SpaceLogic::update(float msec) {
 			break;
 		}
 		break;
-	case SELECT_MODE:
+	case GS_SELECT:
+		(*Level::currentLevel->getEntities()).erase("buildingItem");
 		cout << "select mode" << endl;
 	}
 }

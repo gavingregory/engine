@@ -22,6 +22,8 @@ public:
 	map<string, Shader*>* getShaders() { return &m_Shaders; }
 	map<string, GLuint>* getTextures() { return &m_Textures; }
 	map<string, ISoundSource*>* getSounds() { return &m_Sounds; }
+
+	static Level* currentLevel;
 private:
 	map<string, Entity*> m_Entities;
 	map<string, Mesh*> m_Meshes;

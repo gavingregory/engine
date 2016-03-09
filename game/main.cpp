@@ -30,9 +30,9 @@ int main()
 	catch (const char* msg) { cout << msg << endl; }
 
 	Audio* audio = new Audio();
-	GameLogic* logic = new SpaceLogic();
-	SpaceInput* input = new SpaceInput(audio, (SpaceLogic*)logic);
 	SpaceMemoryManager* memory = new SpaceMemoryManager();
+	GameLogic* logic = new SpaceLogic(memory);
+	SpaceInput* input = new SpaceInput(audio, (SpaceLogic*)logic);
 	Renderer* renderer = new Renderer();
 	GameManager* g = new GameManager(GameManagerParams{ memory, input, logic, audio, renderer, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
 
@@ -41,6 +41,7 @@ int main()
 
 		// Create a new Level
 		Level* lvl = memory->createLevel(LevelParams{renderer});
+		Level::currentLevel = lvl; // level contains a pointer to the current level - FOR NOW
 		g->getLevelStack()->push(lvl); // push this level?
 		map<string, Mesh*>* meshes = lvl->getMeshes();
 		map<string, Shader*>* shaders = lvl->getShaders();
@@ -152,6 +153,7 @@ int main()
 			else entities->insert(pair<string, Entity*>(jsonEntity["title"].asString(), e));
 		}
 	}
+	g->init();
 	g->run();
 	return 0;
 }

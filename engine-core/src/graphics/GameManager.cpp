@@ -12,16 +12,9 @@ GameManager::GameManager(GameManagerParams params)
 	Camera::light_src = vec3(0, 0, 200);
 
 	m_Audio = params.audio;
-	if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
-
 	m_InputHandler = params.inputHandler;
-	if (!m_InputHandler->init()) { cout << "Input Handler init failed!" << endl; exit(1); }
-
 	m_MemoryManager = params.memoryManager;
-	if (!m_MemoryManager->init()) { cout << "Memory manager init failed!" << endl; exit(1); }
-
 	m_GameLogic = params.gameLogic;
-	if (!m_GameLogic->init()) { cout << "Game logic init failed!" << endl; exit(1); }
 }
 
 GameManager::~GameManager() {
@@ -42,6 +35,13 @@ GameManager::~GameManager() {
 
 	m_MemoryManager->destroy();
 	if (m_MemoryManager) delete m_MemoryManager;
+}
+void GameManager::init() {
+
+	if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
+	if (!m_InputHandler->init()) { cout << "Input Handler init failed!" << endl; exit(1); }
+	if (!m_MemoryManager->init()) { cout << "Memory manager init failed!" << endl; exit(1); }
+	if (!m_GameLogic->init()) { cout << "Game logic init failed!" << endl; exit(1); }
 }
 
 void GameManager::run() {

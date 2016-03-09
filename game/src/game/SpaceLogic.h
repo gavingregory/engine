@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../../engine-common/src/game/GameLogic.h"
+#include "../memory/SpaceMemoryManager.h"
 #include "../states/PlayerState.h"
 #include <iostream>
 
@@ -8,8 +9,9 @@ using std::cout;
 using std::endl;
 
 enum GameState {
-	BUILD_MODE,
-	SELECT_MODE
+	GS_BUILD,
+	GS_SELECT,
+	GS_PAUSED
 };
 
 enum BuildState {
@@ -24,7 +26,7 @@ class SpaceLogic : public GameLogic
 {
 	friend class SpaceInput;
 public:
-	SpaceLogic();
+	SpaceLogic(SpaceMemoryManager* memory);
 	virtual ~SpaceLogic();
 	bool init();
 	bool destroy();
@@ -32,4 +34,7 @@ public:
 private:
 	GameState m_GameState;
 	BuildState m_BuildState;
+	Entity* m_BuildEntity;
+	SpaceMemoryManager* m_MemoryManager;
+	vec2 m_MousePosition;
 };

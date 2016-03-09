@@ -1,5 +1,8 @@
 #include "Level.h"
 
+// static pointer to the current level
+Level* Level::currentLevel;
+
 Level::Level(LevelParams params) {
 	m_Renderer = params.renderer;
 }
