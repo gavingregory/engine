@@ -11,6 +11,7 @@ using std::endl;
 enum GameState {
 	GS_BUILD,
 	GS_SELECT,
+	GS_PLACING,
 	GS_PAUSED
 };
 
@@ -32,6 +33,7 @@ public:
 	bool destroy();
 	void update(float msec);
 private:
+	void buildBasicNode();
 	GameState m_GameState;
 	BuildState m_BuildState;
 	Entity* m_BuildEntity;

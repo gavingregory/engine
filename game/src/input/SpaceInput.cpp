@@ -72,6 +72,15 @@ void SpaceInput::handleInput(float msec) {
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_ESCAPE] = false;
 
+	// PLACE THE BUILDING
+	state = glfwGetMouseButton(m_GlfwWindow, GLFW_MOUSE_BUTTON_1);
+	if (state == GLFW_PRESS && !m_MouseButtonsHeld[GLFW_MOUSE_BUTTON_1] && m_GameLogic->m_GameState == GS_BUILD) {
+		m_MouseButtonsHeld[GLFW_MOUSE_BUTTON_1] = true;
+		m_GameLogic->m_GameState = GS_PLACING;
+	}
+	else if (state == GLFW_RELEASE)
+		m_MouseButtonsHeld[GLFW_MOUSE_BUTTON_1] = false;
+
 	// get mouse position
 	vec2 mouse = Camera::calculateWorldPositionFromMouseCoords(vec2(m_Window->getMouseX(), m_Window->getMouseY()));
 	m_GameLogic->m_MousePosition = mouse;
