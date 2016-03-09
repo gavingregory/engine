@@ -1,6 +1,8 @@
 #include "SpaceInput.h"
 
-SpaceInput::SpaceInput() {
+SpaceInput::SpaceInput(Audio* audio, SpaceLogic* logic) {
+	this->m_Audio = audio;
+	this->m_GameLogic = logic;
 	for (int i = 0; i < MAX_KEYS; i++)
 		m_KeysHeld[i] = false;
 	for (int i = 0; i < MAX_BUTTONS; i++)
@@ -14,10 +16,63 @@ void SpaceInput::handleInput(float msec) {
 	int state = glfwGetKey(m_GlfwWindow, GLFW_KEY_1);
 	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_1]) {
 		m_KeysHeld[GLFW_KEY_1] = true;
-		// do something
+		m_GameLogic->m_GameState = BUILD_MODE;
+		m_GameLogic->m_BuildState = BASIC_NODE;
 	}
 	else if (state == GLFW_RELEASE)
 		m_KeysHeld[GLFW_KEY_1] = false;
+
+	// BUILD
+	state = glfwGetKey(m_GlfwWindow, GLFW_KEY_2);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_2]) {
+		m_KeysHeld[GLFW_KEY_2] = true;
+		m_GameLogic->m_GameState = BUILD_MODE;
+		m_GameLogic->m_BuildState = HARVESTER_NODE;
+	}
+	else if (state == GLFW_RELEASE)
+		m_KeysHeld[GLFW_KEY_2] = false;
+
+
+	// BUILD
+	state = glfwGetKey(m_GlfwWindow, GLFW_KEY_3);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_3]) {
+		m_KeysHeld[GLFW_KEY_3] = true;
+		m_GameLogic->m_GameState = BUILD_MODE;
+		m_GameLogic->m_BuildState = ENERGY_NODE;
+	}
+	else if (state == GLFW_RELEASE)
+		m_KeysHeld[GLFW_KEY_3] = false;
+
+	// BUILD
+	state = glfwGetKey(m_GlfwWindow, GLFW_KEY_4);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_4]) {
+		m_KeysHeld[GLFW_KEY_4] = true;
+		m_GameLogic->m_GameState = BUILD_MODE;
+		m_GameLogic->m_BuildState = STORAGE_NODE;
+	}
+	else if (state == GLFW_RELEASE)
+		m_KeysHeld[GLFW_KEY_4] = false;
+
+	// BUILD
+	state = glfwGetKey(m_GlfwWindow, GLFW_KEY_5);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_5]) {
+		m_KeysHeld[GLFW_KEY_5] = true;
+		m_GameLogic->m_GameState = BUILD_MODE;
+		m_GameLogic->m_BuildState = LASER_NODE;
+	}
+	else if (state == GLFW_RELEASE)
+		m_KeysHeld[GLFW_KEY_5] = false;
+
+	// BUILD
+	state = glfwGetKey(m_GlfwWindow, GLFW_KEY_ESCAPE);
+	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_ESCAPE]) {
+		m_KeysHeld[GLFW_KEY_ESCAPE] = true;
+		m_GameLogic->m_GameState = SELECT_MODE;
+	}
+	else if (state == GLFW_RELEASE)
+		m_KeysHeld[GLFW_KEY_ESCAPE] = false;
+
+
 
 	// get mouse position
 	vec2 mouse = Camera::calculateWorldPositionFromMouseCoords(vec2(m_Window->getMouseX(), m_Window->getMouseY()));

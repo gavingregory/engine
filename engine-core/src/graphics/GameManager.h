@@ -20,6 +20,7 @@ struct GameManagerParams {
 	MemoryManager* memoryManager;
 	InputHandler* inputHandler;
 	GameLogic* gameLogic;
+	Audio* audio;
 	Renderer* renderer;
 	string title;
 	int width;

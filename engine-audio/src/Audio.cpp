@@ -19,7 +19,7 @@ void Audio::update(float msec) {
 
 ISound* Audio::play(string path, bool loop) {
 	ISound* s = m_SoundEngine->play2D(path.c_str(), loop);
-	assert(s != nullptr);
+	//assert(s != nullptr);
 	return s;
 }
 

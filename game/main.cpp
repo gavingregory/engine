@@ -29,11 +29,12 @@ int main()
 	}
 	catch (const char* msg) { cout << msg << endl; }
 
-	SpaceInput* input = new SpaceInput();
-	SpaceMemoryManager* memory = new SpaceMemoryManager();
+	Audio* audio = new Audio();
 	GameLogic* logic = new SpaceLogic();
+	SpaceInput* input = new SpaceInput(audio, (SpaceLogic*)logic);
+	SpaceMemoryManager* memory = new SpaceMemoryManager();
 	Renderer* renderer = new Renderer();
-	GameManager* g = new GameManager(GameManagerParams{ memory, input, logic, renderer, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
+	GameManager* g = new GameManager(GameManagerParams{ memory, input, logic, audio, renderer, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
 
 	// For each level in JSON
 	for (unsigned int level = 0; level < gameData["levels"].size(); level++) {
@@ -45,7 +46,7 @@ int main()
 		map<string, Shader*>* shaders = lvl->getShaders();
 		map<string, GLuint>* textures = lvl->getTextures();
 		map<string, Entity*>* entities = lvl->getEntities();
-		map<string, ISoundSource*>* audios = lvl->getAudios();
+		map<string, ISoundSource*>* sounds = lvl->getSounds();
 
 		// create meshes from game.json
 		for (unsigned int i = 0; i < gameData["levels"][level]["meshes"].size(); i++) {
@@ -77,9 +78,9 @@ int main()
 		}
 
 		// load audio files from game.json
-		for (unsigned int i = 0; i < gameData["levels"][level]["audio"].size(); ++i) {
-			Json::Value jsonAudio = gameData["levels"][level]["audio"][i];
-			audios->insert(pair<string, ISoundSource*>(jsonAudio["title"].asString(), g->getAudioManager()->createSoundSource(jsonAudio["path"].asString())));
+		for (unsigned int i = 0; i < gameData["levels"][level]["sounds"].size(); ++i) {
+			Json::Value jsonAudio = gameData["levels"][level]["sounds"][i];
+			sounds->insert(pair<string, ISoundSource*>(jsonAudio["title"].asString(), g->getAudioManager()->createSoundSource(jsonAudio["path"].asString())));
 		}
 
 		// create entities from game.json
@@ -126,10 +127,18 @@ int main()
 				return 1;
 			};
 
-			// assign textures
+			// assign entity textures
 			for (unsigned int j = 0; j < gameData["levels"][level]["entities"][i]["textures"].size(); j++) {
 				string texture = gameData["levels"][level]["entities"][i]["textures"][j].asString();
 				e->getRenderObject()->getTextures()->insert(pair<string, GLuint>(texture, (*textures)[texture]));
+			}
+
+			map<string, ISoundSource*>* sounds = lvl->getSounds();
+			// assign entity sounds
+			map<string, ISoundSource*>* entitySounds = e->getSounds();
+			for (unsigned int j = 0; j < gameData["levels"][level]["entities"][i]["sounds"].size(); j++) {
+				string sound = gameData["levels"][level]["entities"][i]["sounds"][j].asString();
+				entitySounds->insert(pair<string, ISoundSource*>(sound, (*sounds)[sound]));
 			}
 
 			// assign as child or into map if no parent
@@ -143,8 +152,6 @@ int main()
 			else entities->insert(pair<string, Entity*>(jsonEntity["title"].asString(), e));
 		}
 	}
-
 	g->run();
-
 	return 0;
 }

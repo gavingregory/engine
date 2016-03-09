@@ -41,13 +41,18 @@
         {
           "title": "bgm001",
           "path": "res/audio/breakout.mp3"
+        },
+        {
+          "title": "shotgun",
+          "path": "res/audio/shotgun.mp3"
         }
       ],
       "entities": [
         {
           "title": "asteroid1",
           "type":  "entity",
-          "textures":  ["asteroid"],
+          "textures": [ "asteroid" ],
+          "sounds":  [ "shotgun" ],
           "parent": "null",
           "position": [ -25.0, -48.0, 0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],

@@ -4,6 +4,7 @@
 #include "RenderObject.h"
 #include "PhysicsObject.h"
 #include "Renderer.h"
+#include "../../../engine-audio/src/Audio.h"
 #include "../../../engine-physics/src/Physics.h"
 
 using std::vector;
@@ -31,6 +32,7 @@ public:
 	inline RenderObject* getRenderObject() const { return m_RenderObject; }
 	inline PhysicsObject* getPhysicsObject() const { return m_PhysicsObject; }
 	inline string getName() const { return m_Name; }
+	inline map<string, ISoundSource*>* getSounds() { return &m_Sounds; }
 
 	virtual void update(float dt);
 	virtual void render(Renderer* renderer);
@@ -44,4 +46,5 @@ protected:
 	PhysicsObject* m_PhysicsObject;
 	Entity* parent;
 	vector<Entity*> children;
+	map<string, ISoundSource*> m_Sounds;
 };

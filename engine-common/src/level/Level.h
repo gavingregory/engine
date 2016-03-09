@@ -21,13 +21,13 @@ public:
 	map<string, Mesh*>* getMeshes() { return &m_Meshes; }
 	map<string, Shader*>* getShaders() { return &m_Shaders; }
 	map<string, GLuint>* getTextures() { return &m_Textures; }
-	map<string, ISoundSource*>* getAudios() { return &m_Audios; }
+	map<string, ISoundSource*>* getSounds() { return &m_Sounds; }
 private:
 	map<string, Entity*> m_Entities;
 	map<string, Mesh*> m_Meshes;
 	map<string, Shader*> m_Shaders;
 	map<string, GLuint> m_Textures;
-	map<string, ISoundSource*> m_Audios;
+	map<string, ISoundSource*> m_Sounds;
 	GameLogic* m_GameLogic;
 	Renderer* m_Renderer;
 

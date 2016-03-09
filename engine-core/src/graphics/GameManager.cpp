@@ -11,7 +11,7 @@ GameManager::GameManager(GameManagerParams params)
 	Camera::pr_matrix = ortho(-(Camera::width/2), (Camera::width/2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	Camera::light_src = vec3(0, 0, 200);
 
-	m_Audio = new Audio();
+	m_Audio = params.audio;
 	if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
 
 	m_InputHandler = params.inputHandler;
@@ -53,8 +53,6 @@ void GameManager::run() {
 		m_Window.clear();
 
 		float msec = m_Timer.GetTimedMS();
-		float m = m_Timer.GetMS();
-		if (m > 2000 && playing) { m_Audio->stop(s);  playing = false; }
 
 		// update camera
 		//m_Camera->UpdateCamera(msec, m_InputHandler->getMouseRelative());
@@ -64,6 +62,8 @@ void GameManager::run() {
 
 		// call update on the top level on the stack
 		m_LevelStack.top()->update(msec);
+
+		m_GameLogic->update(msec);
 
 		m_Window.update();
 	}
