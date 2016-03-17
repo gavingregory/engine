@@ -1,5 +1,7 @@
 #include "SpaceLogic.h"
 
+int SpaceLogic::UniqueId = 0;
+
 SpaceLogic::SpaceLogic(SpaceMemoryManager* memory) {
 	m_MemoryManager = memory;
 
@@ -30,10 +32,10 @@ void SpaceLogic::update(float msec) {
 	switch (m_GameState) {
 	case GS_BUILD:
 		(*Level::currentLevel->getEntities()).insert_or_assign("buildingItem", m_BuildEntity);
-		m_BuildEntity->getPhysicsObject()->setPosition(vec3(m_MousePosition, 0));
+		m_BuildEntity->getPhysicsObject()->SetTransform(b2Vec2(m_MousePosition.x, m_MousePosition.y), m_BuildEntity->getPhysicsObject()->GetAngle());
 		switch (m_BuildState) {
 		case BASIC_NODE:
-			cout << "building basic node" << endl;
+			m_BuildEntity->getRenderObject()->getTextures()->insert_or_assign("tex", (*Level::currentLevel->getTextures())["node"]);
 			break;
 		case HARVESTER_NODE:
 			cout << "building harvester node" << endl;
@@ -77,12 +79,18 @@ void SpaceLogic::update(float msec) {
 }
 
 void SpaceLogic::buildBasicNode() {
+	// create a new unique name (and increment the unique id counter)
+	string name = "NodeEntity" + to_string(UniqueId++);
+
+	// create the new entity through the memory manager
 	Entity* e = m_MemoryManager->createNodeEntity(NodeEntityParams{
 		vec3(m_MousePosition, 0), vec3(0), vec3(0), 0.0f, 1.0f,
 		(*Level::currentLevel->getMeshes())["asteroid"],
 		(*Level::currentLevel->getShaders())["texture"],
-		"NodeEntity",
+		name,
 		1.0f
 	});
-	(*Level::currentLevel->getEntities()).insert(pair<string, Entity*>(e->getName(), e));
+
+	// insert into the level entities
+	(*Level::currentLevel->getEntities()).insert(pair<string, Entity*>(name, e));
 }

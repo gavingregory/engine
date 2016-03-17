@@ -13,11 +13,12 @@ struct NodeEntityParams {
 	Shader* shader;
 	string name;
 	float radius;
+	bool isDynamic;
 };
 
 class NodeEntity : public Entity
 {
 public:
-	NodeEntity(NodeEntityParams params, RenderObject* ro, PhysicsObject* po, CollisionCircle* c);
+	NodeEntity(NodeEntityParams params, RenderObject* ro);
 	virtual ~NodeEntity();
 };

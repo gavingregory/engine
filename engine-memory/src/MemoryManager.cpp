@@ -6,8 +6,7 @@ MemoryManager::~MemoryManager() {}
 
 Entity* MemoryManager::createEntity(EntityParams params) {
 	RenderObject* ro = createRenderObject(RenderObjectParams{ params.position, params.mesh, params.shader });
-	PhysicsObject* po = createPhysicsObject(PhysicsObjectParams{ params.position, params.velocity, params.acceleration, params.rotation, params.mass, ro, nullptr });
-	Entity* e = new Entity(params, ro, po);
+	Entity* e = new Entity(params, ro);
 	m_Objects.push_back(e);
 	return e;
 }
@@ -20,24 +19,6 @@ Level* MemoryManager::createLevel(LevelParams params) {
 
 RenderObject* MemoryManager::createRenderObject(RenderObjectParams params) {
 	RenderObject* r = new RenderObject(params);
-	m_Objects.push_back(r);
-	return r;
-}
-
-PhysicsObject* MemoryManager::createPhysicsObject(PhysicsObjectParams params) {
-	PhysicsObject* p = new PhysicsObject(params);
-	m_Objects.push_back(p);
-	return p;
-}
-
-CollisionCircle* MemoryManager::createCollisionCircle(CollisionCircleParams params) {
-	CollisionCircle* c = new CollisionCircle(params);
-	m_Objects.push_back(c);
-	return c;
-}
-
-CollisionPlane* MemoryManager::createCollisionPlane(CollisionPlaneParams params) {
-	CollisionPlane* r = new CollisionPlane(params);
 	m_Objects.push_back(r);
 	return r;
 }

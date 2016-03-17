@@ -35,6 +35,14 @@
         {
           "title": "asteroid",
           "path": "res/texture/asteroid.png"
+        },
+        {
+          "title": "node",
+          "path": "res/texture/node.png"
+        },
+        {
+          "title": "energy",
+          "path": "res/texture/supernova.png"
         }
       ],
       "audio": [
@@ -61,7 +69,8 @@
           "mass": 1.0,
           "mesh": "asteroid",
           "shader": "texture",
-          "radius":  15.0
+          "radius": 15.0,
+          "dynamic": true
         },
         {
           "title": "asteroid2",
@@ -75,7 +84,8 @@
           "mass": 1.0,
           "mesh": "asteroid",
           "shader": "texture",
-          "radius":  5.0
+          "radius":  5.0,
+          "dynamic": true
         },
         {
           "title": "asteroid3",
@@ -89,7 +99,8 @@
           "mass": 1.0,
           "mesh": "asteroid",
           "shader": "texture",
-          "radius":  5.0
+          "radius":  5.0,
+          "dynamic": true
         },
         {
           "title": "asteroid4",
@@ -103,7 +114,8 @@
           "mass": 1.0,
           "mesh": "asteroid",
           "shader": "texture",
-          "radius":  5.0
+          "radius":  5.0,
+          "dynamic": true
         },
         {
           "title": "asteroid5",
@@ -117,7 +129,8 @@
           "mass": 1.0,
           "mesh": "asteroid",
           "shader": "texture",
-          "radius":  5.0
+          "radius":  5.0,
+          "dynamic": true
         },
         {
           "title": "asteroid6",
@@ -131,7 +144,8 @@
           "mass": 1.0,
           "mesh": "asteroid",
           "shader": "texture",
-          "radius":  5.0
+          "radius":  5.0,
+          "dynamic": true
         },
         {
           "title": "asteroid7",
@@ -145,7 +159,8 @@
           "mass": 1.0,
           "mesh": "asteroid",
           "shader": "texture",
-          "radius":  5.0
+          "radius":  5.0,
+          "dynamic": true
         },
         {
           "title": "asteroid8",
@@ -159,7 +174,8 @@
           "mass": 1.0,
           "mesh": "asteroid",
           "shader": "texture",
-          "radius":  5.0
+          "radius":  5.0,
+          "dynamic": true
         }
       ]
     }

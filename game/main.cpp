@@ -1,7 +1,7 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <time.h>
-
+#include <Box2D/Box2D.h>
 #include "../engine-core/src/graphics/GameManager.h"
 #include "../engine-common/src/graphics/Shader.h"
 #include "../../../engine-physics/src/Physics.h"
@@ -17,7 +17,6 @@
 
 #define WIDTH 800
 #define HEIGHT 600
-
 
 using glm::vec4;
 
@@ -40,7 +39,8 @@ int main()
 	for (unsigned int level = 0; level < gameData["levels"].size(); level++) {
 
 		// Create a new Level
-		Level* lvl = memory->createLevel(LevelParams{renderer});
+		b2World world(b2Vec2(0.0f, -10.0f));
+		Level* lvl = memory->createLevel(LevelParams{renderer, vec2(0.0f, -10.0f)});
 		Level::currentLevel = lvl; // level contains a pointer to the current level - FOR NOW
 		g->getLevelStack()->push(lvl); // push this level?
 		map<string, Mesh*>* meshes = lvl->getMeshes();
@@ -93,8 +93,24 @@ int main()
 
 			// create entity
 			Entity* e = nullptr;
+
+			// box2d
+			b2BodyDef def;
+			if (jsonEntity["dynamic"].asBool()) def.type = b2_dynamicBody; // otherwise static
+			def.position.Set(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat());
+
 			if (jsonEntity["type"].asString() == "entity")
-				e = memory->createEntity(EntityParams{ vec3(jsonEntity["position"][0].asFloat(),jsonEntity["position"][1].asFloat(),jsonEntity["position"][2].asFloat()), vec3(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat(),jsonEntity["velocity"][2].asFloat()), vec3(jsonEntity["acceleration"][0].asFloat(),jsonEntity["acceleration"][1].asFloat(),jsonEntity["acceleration"][2].asFloat()), jsonEntity["rotation"].asFloat(), jsonEntity["mass"].asFloat(), m, s, jsonEntity["title"].asString() });
+				e = memory->createEntity(EntityParams{
+					vec3(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat(), jsonEntity["position"][2].asFloat()),
+					vec3(jsonEntity["velocity"][0].asFloat(), jsonEntity["velocity"][1].asFloat(), jsonEntity["velocity"][2].asFloat()),
+					vec3(jsonEntity["acceleration"][0].asFloat(), jsonEntity["acceleration"][1].asFloat(), jsonEntity["acceleration"][2].asFloat()),
+					jsonEntity["rotation"].asFloat(),
+					jsonEntity["mass"].asFloat(),
+					m,
+					s,
+					jsonEntity["title"].asString(),
+					def
+				});
 			else if (jsonEntity["type"].asString() == "ball") {
 				e = memory->createNodeEntity(
 					NodeEntityParams{
@@ -106,22 +122,8 @@ int main()
 						m,
 						s,
 						jsonEntity["title"].asString(),
-						jsonEntity["radius"].asFloat()
-				});
-			}
-			else if (jsonEntity["type"].asString() == "cushion") {
-				e = memory->createCushionEntity(
-					CushionEntityParams{
-						vec3(jsonEntity["position"][0].asFloat(),jsonEntity["position"][1].asFloat(),jsonEntity["position"][2].asFloat()),
-						vec3(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat(),jsonEntity["velocity"][2].asFloat()),
-						vec3(jsonEntity["acceleration"][0].asFloat(),jsonEntity["acceleration"][1].asFloat(),jsonEntity["acceleration"][2].asFloat()),
-						jsonEntity["rotation"].asFloat(),
-						jsonEntity["mass"].asFloat(),
-						m,
-						s,
-						jsonEntity["title"].asString(),
-						vec3(jsonEntity["normal"][0].asFloat(),jsonEntity["normal"][1].asFloat(),jsonEntity["normal"][2].asFloat()),
-						vec3(jsonEntity["distance"][0].asFloat(),jsonEntity["distance"][1].asFloat(),jsonEntity["distance"][2].asFloat())
+						jsonEntity["radius"].asFloat(),
+						jsonEntity["dynamic"].asBool()
 				});
 			} else {
 				cout << "Invalid entity detected! Exiting..." << endl;

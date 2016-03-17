@@ -7,6 +7,7 @@
 
 using std::cout;
 using std::endl;
+using std::to_string;
 
 enum GameState {
 	GS_BUILD,
@@ -33,6 +34,7 @@ public:
 	bool destroy();
 	void update(float msec);
 private:
+	static int UniqueId;
 	void buildBasicNode();
 	GameState m_GameState;
 	BuildState m_BuildState;

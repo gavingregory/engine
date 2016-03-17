@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Box2D/Box2D.h>
 #include "../system/SubSystem.h"
 #include "../graphics/Entity.h"
 #include "../../../engine-audio/src/Audio.h"
@@ -7,6 +8,7 @@
 
 struct LevelParams {
 	Renderer* renderer;
+	vec2 gravity;
 };
 
 class Level : public SubSystem
@@ -32,5 +34,5 @@ private:
 	map<string, ISoundSource*> m_Sounds;
 	GameLogic* m_GameLogic;
 	Renderer* m_Renderer;
-
+	b2World m_World;
 };

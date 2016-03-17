@@ -1,8 +1,8 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <box2d/Box2D.h>
 #include "RenderObject.h"
-#include "PhysicsObject.h"
 #include "Renderer.h"
 #include "../../../engine-audio/src/Audio.h"
 #include "../../../engine-physics/src/Physics.h"
@@ -18,19 +18,18 @@ struct EntityParams {
 	Mesh* mesh;
 	Shader* shader;
 	string name;
+	b2BodyDef bodyDef;
 };
 
 class Entity
 {
 public:
-	Entity(EntityParams params, RenderObject* ro, PhysicsObject* po);
+	Entity(EntityParams params, RenderObject* ro);
 	virtual ~Entity();
-
-	inline vec3 getPosition() const { return m_PhysicsObject->m_Position; }
-	inline vec3 getAcceleration() const { return m_PhysicsObject->m_Acceleration; }
-	inline vec3 getVelocity() const { return m_PhysicsObject->m_Velocity; }
+	inline vec3 getPosition() const { return vec3(m_PhysicsObject->GetPosition().x, m_PhysicsObject->GetPosition().y, 0); }
+	inline vec3 getVelocity() const { return glm::vec3(m_PhysicsObject->GetLinearVelocity().x, m_PhysicsObject->GetLinearVelocity().y, 0); }
 	inline RenderObject* getRenderObject() const { return m_RenderObject; }
-	inline PhysicsObject* getPhysicsObject() const { return m_PhysicsObject; }
+	inline b2Body* getPhysicsObject() const { return m_PhysicsObject; }
 	inline string getName() const { return m_Name; }
 	inline map<string, ISoundSource*>* getSounds() { return &m_Sounds; }
 
@@ -40,10 +39,12 @@ public:
 	void addChild(Entity* e);
 	vector<Entity*>* getChildren() { return &children; }
 
+	static b2World* currentWorld;
+
 protected:
 	string m_Name;
 	RenderObject* m_RenderObject;
-	PhysicsObject* m_PhysicsObject;
+	b2Body* m_PhysicsObject;
 	Entity* parent;
 	vector<Entity*> children;
 	map<string, ISoundSource*> m_Sounds;

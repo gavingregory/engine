@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\CushionEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\entities\NodeEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,9 +40,6 @@
     <None Include="res\mesh\asteroid.json" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\entities\CushionEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\entities\NodeEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -71,8 +71,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\bin\$(Configuration)\intermediates\engine-common\</IntDir>
-    <IncludePath>$(SolutionDir)\lib\irrKlang-1.5.0\include;$(SolutionDir)\lib\jsoncpp\include;$(SolutionDir)\lib\Simple OpenGL Image Library\src;$(SolutionDir)\lib\glm;$(SolutionDir)\lib\glew-1.13.0\include;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>$(SolutionDir)\lib\irrKlang-1.5.0\lib\Win32-visualStudio;$(SolutionDir)\lib\Simple OpenGL Image Library\lib;$(SolutionDir)\lib\glew-1.13.0\lib\Release\Win32;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\lib-vc2015;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <IncludePath>$(SolutionDir)\lib\box2d;$(SolutionDir)\lib\irrKlang-1.5.0\include;$(SolutionDir)\lib\jsoncpp\include;$(SolutionDir)\lib\Simple OpenGL Image Library\src;$(SolutionDir)\lib\glm;$(SolutionDir)\lib\glew-1.13.0\include;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib\box2d\bin\Release\x86;$(SolutionDir)\lib\irrKlang-1.5.0\lib\Win32-visualStudio;$(SolutionDir)\lib\Simple OpenGL Image Library\lib;$(SolutionDir)\lib\glew-1.13.0\lib\Release\Win32;$(SolutionDir)\lib\glfw-3.1.2.bin.WIN32\lib-vc2015;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
@@ -129,7 +129,6 @@
     <ClInclude Include="src\graphics\Camera.h" />
     <ClInclude Include="src\graphics\Entity.h" />
     <ClInclude Include="src\graphics\Mesh.h" />
-    <ClInclude Include="src\graphics\PhysicsObject.h" />
     <ClInclude Include="src\graphics\Renderer.h" />
     <ClInclude Include="src\graphics\RenderObject.h" />
     <ClInclude Include="src\graphics\Shader.h" />
@@ -146,7 +145,6 @@
     <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\graphics\Entity.cpp" />
     <ClCompile Include="src\graphics\Mesh.cpp" />
-    <ClCompile Include="src\graphics\PhysicsObject.cpp" />
     <ClCompile Include="src\graphics\Renderer.cpp" />
     <ClCompile Include="src\graphics\RenderObject.cpp" />
     <ClCompile Include="src\graphics\Shader.cpp" />

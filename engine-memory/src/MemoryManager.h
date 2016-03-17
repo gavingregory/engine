@@ -22,11 +22,8 @@ public:
 
 	Entity* createEntity(EntityParams params);
 	RenderObject* createRenderObject(RenderObjectParams params);
-	PhysicsObject* createPhysicsObject(PhysicsObjectParams params);
 	Mesh* createMesh(string path);
 	Shader* createShader(ShaderParams params);
-	CollisionCircle* createCollisionCircle(CollisionCircleParams);
-	CollisionPlane* createCollisionPlane(CollisionPlaneParams);
 	Level* createLevel(LevelParams);
 	virtual bool init();
 	
@@ -35,8 +32,4 @@ public:
 	virtual void update(float msec);
 protected:
 	vector<void*> m_Objects;
-	//void*   m_BlockPointer;
-	//void*	m_MemoryPointer[OBJECT_END];
-	//int		m_Size[OBJECT_END];
-	//int		m_Count[OBJECT_END];
 };
