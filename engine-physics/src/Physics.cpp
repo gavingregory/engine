@@ -54,18 +54,9 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 	if (left == nullptr || right == nullptr) return false;
 	float distance = glm::distance(*left->getPositionPtr(), *right->getPositionPtr());
 	if (distance < left->get_radius() + right->get_radius()) {
-		// calculate p (penetration depth)
-		//float p = c0->get_radius() + c1->get_radius() - distance;
 
 		// calculate N (collision normal)
 		vec3 N = glm::normalize(glm::abs(left->getPosition() - right->getPosition()));
-
-		// calculate P (point of collision)
-		//vec3 P = c0->getPosition() - N * (c1->get_radius() - p);
-
-		// NEW STUFF 
-
-		float mabbefore = glm::length((vel0 * m0) + (vel1 * m1));
 
 		vec3 vAB = vel0 + vel1;
 
@@ -80,11 +71,6 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 		if (glm::length(vel0) > 0.4f) vel0 = glm::normalize(vel0) * 0.1f;
 		if (glm::length(vel1) > 0.4f) vel1 = glm::normalize(vel1) * 0.1f;
 
-		float mabafter = glm::length((vel0 * m0) + (vel1 * m1));
-		if (mabbefore < mabafter) {
-			std::cout << "before: " << mabbefore;
-			std::cout << ", after: " << mabafter << std::endl;
-		}
 		return true;
 	}
 	return false;
@@ -97,9 +83,6 @@ bool Physics::handleCirclePlane(vec3& vel0, float m0, CollisionCircle* left, vec
 
 	float distance = glm::dot(left->getPosition() - D, N);
 	if (distance < left->get_radius()) {
-
-		float mabbefore = glm::length((vel0 * m0) + (vel1 * m1));
-
 		vec3 vAB = vel0 + vel1;
 
 		float vN = glm::dot(vAB, N);
@@ -108,12 +91,6 @@ bool Physics::handleCirclePlane(vec3& vel0, float m0, CollisionCircle* left, vec
 
 		vel1 = DAMPING_FACTOR * (vel1 - ((J*m1) * N));
 		vel0 = DAMPING_FACTOR * (vel0 + ((J*m0) * N));
-
-		float mabafter = glm::length((vel0 * m0) + (vel1 * m1));
-		if (mabbefore < mabafter) {
-			std::cout << "before: " << mabbefore;
-			std::cout << ", after: " << mabafter << std::endl;
-		}
 		return true;
 	}
 	return false;

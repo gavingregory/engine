@@ -74,18 +74,17 @@ void GameManager::run() {
 				if (i != j) {
 					if (!PhysicsObject::m_Colliders[i]->isColliding(PhysicsObject::m_Colliders[j])) {
 						if (Physics::detectCollision(
-							PhysicsObject::m_Colliders[i]->m_Velocity, PhysicsObject::m_Colliders[i]->m_Mass, (CollisionCircle*)PhysicsObject::m_Colliders[i]->getCollisionShape(), PhysicsObject::m_Colliders[i]->m_Position,
-							PhysicsObject::m_Colliders[j]->m_Velocity, PhysicsObject::m_Colliders[j]->m_Mass, (CollisionCircle*)PhysicsObject::m_Colliders[j]->getCollisionShape(), PhysicsObject::m_Colliders[j]->m_Position,
+							PhysicsObject::m_Colliders[i]->m_Velocity, PhysicsObject::m_Colliders[i]->m_Mass, PhysicsObject::m_Colliders[i]->getCollisionShape(), PhysicsObject::m_Colliders[i]->m_Position,
+							PhysicsObject::m_Colliders[j]->m_Velocity, PhysicsObject::m_Colliders[j]->m_Mass, PhysicsObject::m_Colliders[j]->getCollisionShape(), PhysicsObject::m_Colliders[j]->m_Position,
 							1.0f)) {
-							PhysicsObject::m_Colliders[i]->collide(PhysicsObject::m_Colliders[j]);
-							PhysicsObject::m_Colliders[j]->collide(PhysicsObject::m_Colliders[i]);
+								PhysicsObject::m_Colliders[i]->collide(PhysicsObject::m_Colliders[j]);
+								PhysicsObject::m_Colliders[j]->collide(PhysicsObject::m_Colliders[i]);
 						}
 					}
 					else {
 						PhysicsObject::m_Colliders[i]->noCollide(PhysicsObject::m_Colliders[j]);
 						PhysicsObject::m_Colliders[j]->noCollide(PhysicsObject::m_Colliders[i]);
 					}
-
 				}
 			}
 		}

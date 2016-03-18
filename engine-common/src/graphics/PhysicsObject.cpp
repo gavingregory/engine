@@ -29,11 +29,12 @@ void PhysicsObject::applyForce(vec3 velocity) {
 	m_Velocity += velocity;
 }
 
-
+// two objects are colliding
 void PhysicsObject::collide(PhysicsObject* o) {
 	m_Collisions.insert_or_assign(o, true);
 }
 
+// objects are not colliding
 void PhysicsObject::noCollide(PhysicsObject* o) {
 	std::map<PhysicsObject*, bool>::iterator it;
 	it = m_Collisions.find(o);
@@ -41,6 +42,7 @@ void PhysicsObject::noCollide(PhysicsObject* o) {
 		m_Collisions.erase(it);
 }
 
+// determine whether two objects are currently colliding or not
 bool PhysicsObject::isColliding(PhysicsObject* o) {
 	std::map<PhysicsObject*, bool>::iterator it;
 	it = m_Collisions.find(o);
