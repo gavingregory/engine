@@ -76,7 +76,7 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 		vel0 = DAMPING_FACTOR * (vel0 + ((J*m0) * N));
 		vel1 = DAMPING_FACTOR * (vel1 - ((J*m1) * N));
 
-		// clamp
+		// clamp velocity to fix bug where balls started flying around
 		if (glm::length(vel0) > 0.4f) vel0 = glm::normalize(vel0) * 0.1f;
 		if (glm::length(vel1) > 0.4f) vel1 = glm::normalize(vel1) * 0.1f;
 
