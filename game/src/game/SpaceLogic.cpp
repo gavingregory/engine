@@ -38,6 +38,8 @@ void SpaceLogic::update(float msec) {
 			m_BuildEntity->getRenderObject()->getTextures()->insert_or_assign("tex", (*Level::currentLevel->getTextures())["node"]);
 			break;
 		case HARVESTER_NODE:
+			m_BuildEntity->getRenderObject()->getTextures()->insert_or_assign("tex", (*Level::currentLevel->getTextures())["energy"]);
+			
 			cout << "building harvester node" << endl;
 			break;
 		case ENERGY_NODE:

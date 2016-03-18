@@ -54,10 +54,6 @@ void GameManager::run() {
 
 		float msec = m_Timer.GetTimedMS();
 
-		// update camera
-		//m_Camera->UpdateCamera(msec, m_InputHandler->getMouseRelative());
-		//Camera::vw_matrix = m_Camera->BuildViewMatrix();
-
 		if (m_InputHandler) m_InputHandler->handleInput(msec);
 
 		// call update on the top level on the stack

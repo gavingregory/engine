@@ -11,6 +11,10 @@ Entity::Entity(EntityParams params, RenderObject* ro) {
 Entity::~Entity() { }
 
 void Entity::update(float msec) {
+	// update render object position from box2d position
+	b2Vec2 pos = m_PhysicsObject->GetPosition();
+	m_RenderObject->SetModelMatrix(m_RenderObject->GetModelMatrix() * translate(vec3(pos.x, pos.y, 0)));
+
 	m_RenderObject->Update(msec);
 	for (unsigned int i = 0; i < children.size(); i++)
 		children[i]->update(msec);

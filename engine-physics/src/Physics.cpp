@@ -65,6 +65,7 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 
 		// NEW STUFF 
 
+		// DEBUG: Calculate energy before
 		float mabbefore = glm::length((vel0 * m0) + (vel1 * m1));
 
 		vec3 vAB = vel0 + vel1;
@@ -76,6 +77,7 @@ bool Physics::handleCircleCircle(vec3& vel0, float m0, CollisionCircle* left, ve
 		vel0 = DAMPING_FACTOR * (vel0 + ((J*m0) * N));
 		vel1 = DAMPING_FACTOR * (vel1 - ((J*m1) * N));
 
+		// DEBUG: Should not have more energy after
 		float mabafter = glm::length((vel0 * m0) + (vel1 * m1));
 		if (mabbefore < mabafter) {
 			std::cout << "before: " << mabbefore;

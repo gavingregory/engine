@@ -39,8 +39,7 @@ int main()
 	for (unsigned int level = 0; level < gameData["levels"].size(); level++) {
 
 		// Create a new Level
-		b2World world(b2Vec2(0.0f, -10.0f));
-		Level* lvl = memory->createLevel(LevelParams{renderer, vec2(0.0f, -10.0f)});
+		Level* lvl = memory->createLevel(LevelParams{renderer, vec2(0.0f, 0.0f)});
 		Level::currentLevel = lvl; // level contains a pointer to the current level - FOR NOW
 		g->getLevelStack()->push(lvl); // push this level?
 		map<string, Mesh*>* meshes = lvl->getMeshes();

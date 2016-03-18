@@ -19,6 +19,8 @@ void Level::update(float msec) {
 
 	int32 velocityIterations = 6;
 	int32 positionIterations = 2;
+	
+	// Advance Box2d world
 	m_World.Step(msec, velocityIterations, positionIterations);
 
 	// UPDATE
