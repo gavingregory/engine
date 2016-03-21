@@ -39,6 +39,9 @@ public:
 		}
 	}
 
+	// function gets called on a collision with another entity
+	virtual void collisionEvent(Entity* other) { }
+
 	virtual void update(float dt);
 	virtual void render(Renderer* renderer);
 

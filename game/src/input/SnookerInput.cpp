@@ -59,12 +59,12 @@ void SnookerInput::handleInput(float msec) {
 	// Camera controls
 	state = glfwGetKey(glfwWindow, GLFW_KEY_E);
 	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_E]) {
-		Camera::width -= 0.15f;
+		Camera::width -= 0.99f;
 		Camera::pr_matrix = glm::ortho(-(Camera::width / 2), (Camera::width / 2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	}
 	state = glfwGetKey(glfwWindow, GLFW_KEY_Q);
 	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_Q]) {
-		Camera::width += 0.15f;
+		Camera::width += 0.99f;
 		Camera::pr_matrix = glm::ortho(-(Camera::width / 2), (Camera::width / 2), -(Camera::width / 2), (Camera::width / 2), 0.0f, 100.0f);
 	}
 

@@ -5,6 +5,7 @@ RenderObject::RenderObject() {
 	shader	= NULL;
 	m_Textures = map<string, GLuint>();
 	parent  = NULL;
+	m_Drawable = true;
 }
 
 RenderObject::RenderObject(RenderObjectParams params) {
@@ -13,6 +14,7 @@ RenderObject::RenderObject(RenderObjectParams params) {
 	m_Textures = map<string, GLuint>();
 	parent = NULL;
 	modelMatrix = glm::translate(params.position);
+	m_Drawable = true;
 }
 
 RenderObject::~RenderObject() { }
@@ -23,7 +25,7 @@ void RenderObject::Update(float msec) {
 }
 
 void RenderObject::Draw() const {
-	if(mesh) mesh->Draw();
+	if(mesh) if (m_Drawable) mesh->Draw();
 }
 
 void RenderObject::UpdateShaderMatrices() {

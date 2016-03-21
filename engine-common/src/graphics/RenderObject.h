@@ -35,6 +35,9 @@ public:
 	virtual void Update(float msec);
 	virtual void Draw() const;
 
+	bool isDrawable() { return m_Drawable; }
+	void setDrawable(bool d) { m_Drawable = d; }
+
 	void UpdateShaderMatrices();
 
 	void AddChild(RenderObject* child) {
@@ -49,7 +52,7 @@ protected:
 	map<string, GLuint> m_Textures;
 	glm::mat4 modelMatrix;
 	glm::mat4 worldTransform;
-
+	bool m_Drawable;
 	RenderObject*			parent;
 
 	// a map of vector 4 uniforms

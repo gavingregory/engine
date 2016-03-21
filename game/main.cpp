@@ -108,6 +108,21 @@ int main()
 					vec3(jsonEntity["normal"][0].asFloat(),jsonEntity["normal"][1].asFloat(),jsonEntity["normal"][2].asFloat()),
 					vec3(jsonEntity["distance"][0].asFloat(),jsonEntity["distance"][1].asFloat(),jsonEntity["distance"][2].asFloat())
 			});
+		}
+		else if (jsonEntity["type"].asString() == "pocket") {
+			e = memory->createPocketEntity(
+				PocketEntityParams{
+				vec3(jsonEntity["position"][0].asFloat(),jsonEntity["position"][1].asFloat(),jsonEntity["position"][2].asFloat()),
+				vec3(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat(),jsonEntity["velocity"][2].asFloat()),
+				vec3(jsonEntity["acceleration"][0].asFloat(),jsonEntity["acceleration"][1].asFloat(),jsonEntity["acceleration"][2].asFloat()),
+				jsonEntity["rotation"].asFloat(),
+				jsonEntity["mass"].asFloat(),
+				m,
+				s,
+				jsonEntity["title"].asString(),
+				vec3(jsonEntity["normal"][0].asFloat(),jsonEntity["normal"][1].asFloat(),jsonEntity["normal"][2].asFloat()),
+				vec3(jsonEntity["distance"][0].asFloat(),jsonEntity["distance"][1].asFloat(),jsonEntity["distance"][2].asFloat())
+			});
 		} else {
 			cout << "Invalid entity detected! Exiting..." << endl;
 			return 1;

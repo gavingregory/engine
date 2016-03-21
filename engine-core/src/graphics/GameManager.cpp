@@ -77,8 +77,12 @@ void GameManager::run() {
 							Entity::CollidingEntities[i]->getPhysicsObject()->m_Velocity, Entity::CollidingEntities[i]->getPhysicsObject()->m_Mass, Entity::CollidingEntities[i]->getPhysicsObject()->getCollisionShape(), Entity::CollidingEntities[i]->getPhysicsObject()->m_Position,
 							Entity::CollidingEntities[j]->getPhysicsObject()->m_Velocity, Entity::CollidingEntities[j]->getPhysicsObject()->m_Mass, Entity::CollidingEntities[j]->getPhysicsObject()->getCollisionShape(), Entity::CollidingEntities[j]->getPhysicsObject()->m_Position,
 							1.0f)) {
-							Entity::CollidingEntities[i]->getPhysicsObject()->collide(Entity::CollidingEntities[j]->getPhysicsObject());
-							Entity::CollidingEntities[j]->getPhysicsObject()->collide(Entity::CollidingEntities[i]->getPhysicsObject());
+								Entity::CollidingEntities[i]->getPhysicsObject()->collide(Entity::CollidingEntities[j]->getPhysicsObject());
+								Entity::CollidingEntities[j]->getPhysicsObject()->collide(Entity::CollidingEntities[i]->getPhysicsObject());
+
+								// Pass the collision event to BOTH entities so they can handle collision logic
+								Entity::CollidingEntities[i]->collisionEvent(Entity::CollidingEntities[j]);
+								Entity::CollidingEntities[j]->collisionEvent(Entity::CollidingEntities[i]);
 						}
 					}
 					else {
