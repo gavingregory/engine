@@ -3,6 +3,9 @@
 #include "../../../engine-common/src/graphics/Entity.h"
 #include "../../../engine-common/src/graphics/Window.h"
 
+/**
+ * Ball Entity Parameters (a struct of params used when constructing ball entities)
+ */
 struct BallEntityParams {
 	vec3 position;
 	vec3 velocity;

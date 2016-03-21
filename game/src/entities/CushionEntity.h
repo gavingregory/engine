@@ -6,7 +6,9 @@
 
 using glm::vec3;
 
-
+/**
+* Cushion Entity Parameters (a struct of params used when constructing cushion entities)
+*/
 struct CushionEntityParams {
 	vec3 position;
 	vec3 velocity;

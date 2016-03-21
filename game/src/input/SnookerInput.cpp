@@ -45,12 +45,11 @@ void SnookerInput::handleInput(float msec) {
 	state = glfwGetMouseButton(glfwWindow, GLFW_MOUSE_BUTTON_LEFT);
 	if (state == GLFW_PRESS && !m_MouseButtonsHeld[GLFW_MOUSE_BUTTON_LEFT]) {
 		m_MouseButtonsHeld[GLFW_MOUSE_BUTTON_LEFT] = true;
-		vec2 clickPosition = Camera::calculateWorldPositionFromMouseCoords(vec2(window->getMouseX(), window->getMouseY()));
 		vec3 cueBallPosition = m_CueBall->getPosition();
-		vec3 click3Position = vec3(clickPosition, cueBallPosition.z);
-		vec3 direction = click3Position - cueBallPosition;
-		direction /= 100;
-		m_CueBall->applyForce(direction);
+		vec3 clickPosition(Camera::calculateWorldPositionFromMouseCoords(vec2(window->getMouseX(), window->getMouseY())), cueBallPosition.z);
+		vec3 direction = clickPosition - cueBallPosition;
+		vec3 force = glm::normalize(direction) * (glm::length(direction) / 500.0f);
+		m_CueBall->applyForce(force);
 	}
 	else if (state == GLFW_RELEASE) {
 		m_MouseButtonsHeld[GLFW_MOUSE_BUTTON_LEFT] = false;

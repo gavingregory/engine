@@ -1,12 +1,5 @@
 #include "SnookerLogic.h"
 
+SnookerLogic::SnookerLogic() {}
 
-
-SnookerLogic::SnookerLogic()
-{
-}
-
-
-SnookerLogic::~SnookerLogic()
-{
-}
+SnookerLogic::~SnookerLogic() {}

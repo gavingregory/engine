@@ -144,21 +144,20 @@ int main()
 		}
 		else g->addEntity(e);
 	}
+
+	// Wire up the cue ball to the input handler
 	Entity* cueBall = entities["cueBall"];
 	input->setCueBall(cueBall->getPhysicsObject());
 	input->setAudio(g->getAudio());
 	input->setCamera(g->getCamera());
 	
+	// Manually create the snooker cue entity
 	Mesh* snookerCueMesh = g->getMemoryManager()->createMesh("res/mesh/cue.json");
 	Entity* cue = g->getMemoryManager()->createEntity(EntityParams{ vec3(0,0,0.1f) , vec3(0,0,0) , vec3(0,0,0), 0.0f, 1.0f, snookerCueMesh, shaders.at("default"), "cue" });
 	cueBall->addChild(cue);
 	input->setCue(cue->getPhysicsObject());
 	
-	Mesh* triangle = Mesh::GenerateTriangle();
-
-
-
+	// run the game
 	g->run();
-
 	return 0;
 }

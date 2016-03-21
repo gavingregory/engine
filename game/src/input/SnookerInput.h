@@ -9,6 +9,9 @@
 
 #define MAX_KEYS 1024
 
+/**
+ * Snooker Input handles all game input and for this particular game, handles game logic
+ */
 class SnookerInput : public InputHandler
 {
 public:

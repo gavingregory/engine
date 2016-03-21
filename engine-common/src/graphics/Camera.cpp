@@ -70,6 +70,9 @@ glm::mat4 Camera::BuildViewMatrix() {
 		glm::translate(-position);
 };
 
+/**
+ * Calculate the 2d world position coordinates based on the mouse cursor position.
+ */
 vec2 Camera::calculateWorldPositionFromMouseCoords(vec2 mouseCoords) {
 	vec2 position;
 	
