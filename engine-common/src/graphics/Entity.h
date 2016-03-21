@@ -31,13 +31,20 @@ public:
 	inline RenderObject* getRenderObject() const { return m_RenderObject; }
 	inline PhysicsObject* getPhysicsObject() const { return m_PhysicsObject; }
 	inline string getName() const { return m_Name; }
+	inline void setCollisionShape(CollisionShape* collisionShape) {
+		getPhysicsObject()->m_CollisionShape = collisionShape;
+		// add this shape to colliders if it has a collision shape
+		if (collisionShape != nullptr) {
+			CollidingEntities.push_back(this);	
+		}
+	}
 
 	virtual void update(float dt);
 	virtual void render(Renderer* renderer);
 
 	void addChild(Entity* e);
 	vector<Entity*>* getChildren() { return &children; }
-
+	static vector<Entity*> CollidingEntities;
 protected:
 	string m_Name;
 	RenderObject* m_RenderObject;

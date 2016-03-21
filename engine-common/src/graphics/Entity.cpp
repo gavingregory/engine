@@ -1,9 +1,16 @@
 #include "Entity.h"
 
+vector<Entity*> Entity::CollidingEntities;
+
 Entity::Entity(EntityParams params, RenderObject* ro, PhysicsObject* po) {
 	m_RenderObject = ro;
 	m_PhysicsObject = po;
 	m_Name = params.name;
+
+	// add this shape to colliders if it has a collision shape
+	if (m_PhysicsObject->getCollisionShape() != nullptr) {
+		CollidingEntities.push_back(this);
+	}
 }
 
 Entity::~Entity() {

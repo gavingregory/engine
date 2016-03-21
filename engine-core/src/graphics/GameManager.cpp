@@ -69,21 +69,21 @@ void GameManager::run() {
 			m_Entities[i]->update(msec);
 
 		// COLLISION
-		for (unsigned int i = 0; i < PhysicsObject::m_Colliders.size(); i++) {
-			for (unsigned int j = 0; j < PhysicsObject::m_Colliders.size(); j++) {
+		for (unsigned int i = 0; i < Entity::CollidingEntities.size(); i++) {
+			for (unsigned int j = 0; j < Entity::CollidingEntities.size(); j++) {
 				if (i != j) {
-					if (!PhysicsObject::m_Colliders[i]->isColliding(PhysicsObject::m_Colliders[j])) {
+					if (!Entity::CollidingEntities[i]->getPhysicsObject()->isColliding(Entity::CollidingEntities[j]->getPhysicsObject())) {
 						if (Physics::detectCollision(
-							PhysicsObject::m_Colliders[i]->m_Velocity, PhysicsObject::m_Colliders[i]->m_Mass, PhysicsObject::m_Colliders[i]->getCollisionShape(), PhysicsObject::m_Colliders[i]->m_Position,
-							PhysicsObject::m_Colliders[j]->m_Velocity, PhysicsObject::m_Colliders[j]->m_Mass, PhysicsObject::m_Colliders[j]->getCollisionShape(), PhysicsObject::m_Colliders[j]->m_Position,
+							Entity::CollidingEntities[i]->getPhysicsObject()->m_Velocity, Entity::CollidingEntities[i]->getPhysicsObject()->m_Mass, Entity::CollidingEntities[i]->getPhysicsObject()->getCollisionShape(), Entity::CollidingEntities[i]->getPhysicsObject()->m_Position,
+							Entity::CollidingEntities[j]->getPhysicsObject()->m_Velocity, Entity::CollidingEntities[j]->getPhysicsObject()->m_Mass, Entity::CollidingEntities[j]->getPhysicsObject()->getCollisionShape(), Entity::CollidingEntities[j]->getPhysicsObject()->m_Position,
 							1.0f)) {
-								PhysicsObject::m_Colliders[i]->collide(PhysicsObject::m_Colliders[j]);
-								PhysicsObject::m_Colliders[j]->collide(PhysicsObject::m_Colliders[i]);
+							Entity::CollidingEntities[i]->getPhysicsObject()->collide(Entity::CollidingEntities[j]->getPhysicsObject());
+							Entity::CollidingEntities[j]->getPhysicsObject()->collide(Entity::CollidingEntities[i]->getPhysicsObject());
 						}
 					}
 					else {
-						PhysicsObject::m_Colliders[i]->noCollide(PhysicsObject::m_Colliders[j]);
-						PhysicsObject::m_Colliders[j]->noCollide(PhysicsObject::m_Colliders[i]);
+						Entity::CollidingEntities[i]->getPhysicsObject()->noCollide(Entity::CollidingEntities[j]->getPhysicsObject());
+						Entity::CollidingEntities[j]->getPhysicsObject()->noCollide(Entity::CollidingEntities[i]->getPhysicsObject());
 					}
 				}
 			}

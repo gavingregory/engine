@@ -30,13 +30,6 @@ public:
 	void update(float msec);
 	void applyForce(vec3 velocity);
 	inline CollisionShape* getCollisionShape() const { return m_CollisionShape; }
-	inline void setCollisionShape(CollisionShape* collisionShape) {
-		m_CollisionShape = collisionShape;
-		// add this shape to colliders if it has a collision shape
-		if (m_CollisionShape != nullptr) {
-			m_Colliders.push_back(this);
-		}
-	}
 	inline vec3* getPositionPtr() { return &m_Position; }
 	inline vec3* getVelocityPtr() { return &m_Velocity; }
 	inline vec3 getPosition() { return m_Position; }
@@ -48,7 +41,6 @@ public:
 	void collide(PhysicsObject*);
 	void noCollide(PhysicsObject*);
 	bool isColliding(PhysicsObject*);
-	static vector<PhysicsObject*> m_Colliders;
 private:
 	inline void updateRenderObject();
 	float m_Rotation;
