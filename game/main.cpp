@@ -18,23 +18,40 @@
 #define WIDTH 800
 #define HEIGHT 600
 
-
 using glm::vec4;
+
+/**
+ * Snooker Physics Sim
+ * author: Gavin Gregory
+ * 
+ * - Physics has been implemented as semi implicic euler.
+ * - Sphere/sphere collisions work, but balls tend to explode. Couldn't fix this!
+ * - Sphere/plane collisions work.
+ * - Balls do disappear when they go down a pocket.
+ * 
+ * Some of this code originated from the first few videos of the sparky engine tutorial series. Some of this code also originates from
+ * NCLGL. The rest of the code is my own.
+ */
 
 int main()
 {
+	// parse the game.json file
 	Json::Value gameData;
 	try {
 		gameData = Loader::LoadJson("res/json/game.json");
 	}
 	catch (const char* msg) { cout << msg << endl; }
 
+	// create some of the game sub systems
 	SnookerInput* input = new SnookerInput();
 	SnookerMemoryManager* memory = new SnookerMemoryManager();
 	GameLogic* logic = new SnookerLogic();
+	// and the game manager
 	GameManager* g = new GameManager(GameManagerParams{ memory, input, logic, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
 
 	Json::Value levelData = gameData["levels"];
+
+	// load level one (the only level)
 	Json::Value levelOneData = levelData[0];
 
 	// create meshes from game.json

@@ -10,11 +10,11 @@ in Vertex{
 	vec3 normal;
 } IN;
 
-out vec4 gl_FragColor;
+//out vec4 gl_FragColor;
 
 void main(void)	{
 
-	float lightRadius = 500.0;
+	float lightRadius = 250.0;
 	vec4 lightColour = vec4(1,1,1,1);
 
 	vec3 incident = normalize(light_src - IN.position.xyz);
@@ -25,10 +25,10 @@ void main(void)	{
 	float atten = 1.0 - clamp ( dist / lightRadius , 0.0 , 1.0);
 	float lambert = max (0.0 , dot ( incident , IN.normal ));
 	float rFactor = max (0.0 , dot ( halfDir , IN.normal ));
-	float sFactor = pow ( rFactor , 50.0 );
+	float sFactor = pow ( rFactor , 0.1 );
 	//vec4 texCol = texture ( smileyTex , IN.texCoord );
-	vec3 ambient = IN.colour.rgb * lightColour * 0.7;
-	vec3 diffuse = IN.colour.rgb * lightColour * lambert * atten ;
+	vec3 ambient = IN.colour.rgb * lightColour.rgb * 0.7;
+	vec3 diffuse = IN.colour.rgb * lightColour.rgb * lambert * atten ;
 	vec3 specular = lightColour.xyz * sFactor * atten ;
 	gl_FragColor = vec4 ( ambient + diffuse + specular , IN.colour.a );
 }

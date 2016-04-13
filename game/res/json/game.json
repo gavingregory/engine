@@ -100,6 +100,14 @@
           "tes": ""
         },
         {
+          "title": "nolight",
+          "vertex": "res/shader/basic.vert",
+          "fragment": "res/shader/nolight.frag",
+          "geometry": "",
+          "tcs": "",
+          "tes": ""
+        },
+        {
           "title": "texture",
           "vertex": "res/shader/texture.vert",
           "fragment": "res/shader/texture.frag",
@@ -130,7 +138,7 @@
           "rotation": 0.0,
           "mass": 0.0,
           "mesh": "tableMesh",
-          "shader": "default"
+          "shader": "nolight"
         },
         {
           "title": "pocketTopLeft",
