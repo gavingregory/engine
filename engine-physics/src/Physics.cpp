@@ -1,6 +1,6 @@
 #include "Physics.h"
 
-Physics::Physics() {}
+Physics::Physics(float gravity) : m_Gravity(gravity), m_World(b2Vec2(0.0f, gravity)) {}
 Physics::~Physics() {}
 
 bool Physics::init() {
