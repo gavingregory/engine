@@ -3,17 +3,20 @@
 #include "../../../engine-common/src/game/State.h"
 
 enum PlayerStates {
-	Building,
-	NotBuilding
+	PS_MOVE_LEFT,
+	PS_MOVE_RIGHT,
+	PS_STATIONARY
 };
 
 class PlayerState : public State {
 public:
 	void update(float msec) {
 		switch (m_State) {
-		case Building:
+		case PS_MOVE_LEFT:
 			break;
-		case NotBuilding:
+		case PS_MOVE_RIGHT:
+			break;
+		case PS_STATIONARY:
 			break;
 		}
 	}
