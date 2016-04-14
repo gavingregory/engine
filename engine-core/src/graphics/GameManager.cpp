@@ -57,6 +57,9 @@ void GameManager::run() {
 		m_Window.clear();
 
 		float msec = m_Timer.GetTimedMS();
+		
+		// step box2d world
+		Physics::CurrentWorld->Step(msec, 8, 1);
 
 		if (m_InputHandler) m_InputHandler->handleInput(msec);
 

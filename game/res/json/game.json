@@ -8,9 +8,9 @@
       "title": "Level One",
       "meshes": [
         {
-          "title": "asteroid",
+          "title": "platform",
           "type": "FILE",
-          "path": "res/mesh/asteroid.json"
+          "path": "res/mesh/platform.json"
         }
       ],
       "shaders": [
@@ -33,16 +33,8 @@
       ],
       "textures": [
         {
-          "title": "asteroid",
-          "path": "res/texture/asteroid.png"
-        },
-        {
-          "title": "node",
-          "path": "res/texture/node.png"
-        },
-        {
-          "title": "energy",
-          "path": "res/texture/supernova.png"
+          "title": "ground",
+          "path": "res/texture/ground.png"
         }
       ],
       "audio": [
@@ -57,125 +49,22 @@
       ],
       "entities": [
         {
-          "title": "asteroid1",
-          "type":  "entity",
-          "textures": [ "asteroid" ],
-          "sounds":  [ "shotgun" ],
+          "title": "platform",
+          "type": "entity",
+          "textures": [ "ground" ],
+          "sounds": [ "shotgun" ],
           "parent": "null",
           "position": [ -25.0, -48.0, 0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
           "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
+          "rotation": 0.01,
           "mass": 1.0,
-          "mesh": "asteroid",
+          "mesh": "platform",
           "shader": "texture",
           "radius": 15.0,
-          "dynamic": true
-        },
-        {
-          "title": "asteroid2",
-          "type":  "entity",
-          "textures":  ["asteroid"],
-          "parent": "null",
-          "position": [ 92.0, -71.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 1.0,
-          "mesh": "asteroid",
-          "shader": "texture",
-          "radius":  5.0,
-          "dynamic": true
-        },
-        {
-          "title": "asteroid3",
-          "type":  "entity",
-          "textures":  ["asteroid"],
-          "parent": "null",
-          "position": [ 128.0, -30.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 1.0,
-          "mesh": "asteroid",
-          "shader": "texture",
-          "radius":  5.0,
-          "dynamic": true
-        },
-        {
-          "title": "asteroid4",
-          "type":  "entity",
-          "textures":  ["asteroid"],
-          "parent": "null",
-          "position": [ -125.0, -36.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 1.0,
-          "mesh": "asteroid",
-          "shader": "texture",
-          "radius":  5.0,
-          "dynamic": true
-        },
-        {
-          "title": "asteroid5",
-          "type":  "entity",
-          "textures":  ["asteroid"],
-          "parent": "null",
-          "position": [ 88.0, 99.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 1.0,
-          "mesh": "asteroid",
-          "shader": "texture",
-          "radius":  5.0,
-          "dynamic": true
-        },
-        {
-          "title": "asteroid6",
-          "type":  "entity",
-          "textures":  ["asteroid"],
-          "parent": "null",
-          "position": [ 0.0, 0.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 1.0,
-          "mesh": "asteroid",
-          "shader": "texture",
-          "radius":  5.0,
-          "dynamic": true
-        },
-        {
-          "title": "asteroid7",
-          "type":  "entity",
-          "textures":  ["asteroid"],
-          "parent": "null",
-          "position": [ 180.0, 0.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 1.0,
-          "mesh": "asteroid",
-          "shader": "texture",
-          "radius":  5.0,
-          "dynamic": true
-        },
-        {
-          "title": "asteroid8",
-          "type":  "entity",
-          "textures":  ["asteroid"],
-          "parent": "null",
-          "position": [ -99.0, 78.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 1.0,
-          "mesh": "asteroid",
-          "shader": "texture",
-          "radius":  5.0,
-          "dynamic": true
+          "dynamic": true,
+          "width": 5.0,
+          "height": 5.0
         }
       ]
     }

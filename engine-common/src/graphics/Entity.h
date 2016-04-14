@@ -19,6 +19,8 @@ struct EntityParams {
 	Shader* shader;
 	string name;
 	b2BodyDef bodyDef;
+	float width;
+	float height;
 };
 
 class Entity
@@ -38,8 +40,6 @@ public:
 
 	void addChild(Entity* e);
 	vector<Entity*>* getChildren() { return &children; }
-
-	static b2World* currentWorld;
 
 protected:
 	string m_Name;

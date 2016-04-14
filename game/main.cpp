@@ -30,7 +30,7 @@ int main()
 
 	Audio* audio = new Audio();
 	SpaceMemoryManager* memory = new SpaceMemoryManager();
-	Physics* physics = new Physics();
+	Physics* physics = new Physics(-0.001f);
 	SpaceInput* input = new SpaceInput(audio);
 	GameLogic* logic = new SpaceLogic(memory, physics, input);
 	Renderer* renderer = new Renderer();
@@ -40,7 +40,7 @@ int main()
 	for (unsigned int level = 0; level < gameData["levels"].size(); level++) {
 
 		// Create a new Level
-		Level* lvl = memory->createLevel(LevelParams{renderer, vec2(0.0f, 0.0f)});
+		Level* lvl = memory->createLevel(LevelParams{renderer});
 		Level::currentLevel = lvl; // level contains a pointer to the current level - FOR NOW
 		g->getLevelStack()->push(lvl); // push this level?
 		map<string, Mesh*>* meshes = lvl->getMeshes();
@@ -96,8 +96,14 @@ int main()
 
 			// box2d
 			b2BodyDef def;
-			if (jsonEntity["dynamic"].asBool()) def.type = b2_dynamicBody; // otherwise static
+			def.type = (jsonEntity["dynamic"].asBool() ? b2_dynamicBody : b2_staticBody);
+			def.fixedRotation = jsonEntity["rotation"].asFloat();
+			def.linearVelocity = b2Vec2(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat());
+			def.fixedRotation = true;
 			def.position.Set(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat());
+
+			float width = jsonEntity["width"].asFloat();
+			float height = jsonEntity["height"].asFloat();
 
 			if (jsonEntity["type"].asString() == "entity")
 				e = memory->createEntity(EntityParams{
@@ -109,7 +115,9 @@ int main()
 					m,
 					s,
 					jsonEntity["title"].asString(),
-					def
+					def,
+					width,
+					height
 				});
 			else if (jsonEntity["type"].asString() == "ball") {
 				e = memory->createNodeEntity(

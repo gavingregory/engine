@@ -18,10 +18,9 @@ public:
 	bool destroy();
 	void update(float msec);
 	void registerCollisionEventCallback(CollisionEventCallback cb) { this->m_CollisionEventCallback = cb; }
-	b2World getWorld() { return m_World; }
+	static b2World* CurrentWorld;
 private:
 	CollisionEventCallback m_CollisionEventCallback; // call this function when a collision occurs!
 	float m_Gravity;
 	b2World m_World;
-
 };

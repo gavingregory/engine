@@ -36,6 +36,7 @@ public:
 	bool init();
 	bool destroy();
 	void update(float msec);
+	void InputCallback(bool key, bool mouse, int id);
 private:
 	static int UniqueId;
 	void buildBasicNode();
