@@ -30,10 +30,11 @@ int main()
 
 	Audio* audio = new Audio();
 	SpaceMemoryManager* memory = new SpaceMemoryManager();
-	GameLogic* logic = new SpaceLogic(memory);
-	SpaceInput* input = new SpaceInput(audio, (SpaceLogic*)logic);
+	Physics* physics = new Physics();
+	SpaceInput* input = new SpaceInput(audio);
+	GameLogic* logic = new SpaceLogic(memory, physics, input);
 	Renderer* renderer = new Renderer();
-	GameManager* g = new GameManager(GameManagerParams{ memory, input, logic, audio, renderer, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
+	GameManager* g = new GameManager(GameManagerParams{ memory, input, logic, audio, physics, renderer, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
 
 	// For each level in JSON
 	for (unsigned int level = 0; level < gameData["levels"].size(); level++) {

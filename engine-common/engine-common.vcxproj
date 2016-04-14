@@ -134,6 +134,7 @@
     <ClInclude Include="src\graphics\Shader.h" />
     <ClInclude Include="src\graphics\Window.h" />
     <ClInclude Include="src\input\InputHandler.h" />
+    <ClInclude Include="src\system\CallbackFunctions.h" />
     <ClInclude Include="src\system\SubSystem.h" />
     <ClInclude Include="src\utils\File.h" />
     <ClInclude Include="src\utils\GameTimer.h" />

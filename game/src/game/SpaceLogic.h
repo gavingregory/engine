@@ -2,7 +2,9 @@
 
 #include "../../../engine-common/src/game/GameLogic.h"
 #include "../memory/SpaceMemoryManager.h"
+#include "../input/SpaceInput.h"
 #include "../states/PlayerState.h"
+#include "GameStates.h"
 #include <iostream>
 
 using std::cout;
@@ -24,11 +26,12 @@ enum BuildState {
 	LASER_NODE
 };
 
+
 class SpaceLogic : public GameLogic
 {
 	friend class SpaceInput;
 public:
-	SpaceLogic(SpaceMemoryManager* memory);
+	SpaceLogic(SpaceMemoryManager* memory, Physics* physics, InputHandler* inputHandler);
 	virtual ~SpaceLogic();
 	bool init();
 	bool destroy();

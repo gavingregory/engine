@@ -60,6 +60,9 @@
     <ClInclude Include="src\game\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\system\CallbackFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\graphics\Camera.cpp">

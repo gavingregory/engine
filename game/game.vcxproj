@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\game\SpaceLogic.cpp" />
+    <ClCompile Include="src\game\GameStates.h" />
     <ClCompile Include="src\memory\SpaceMemoryManager.cpp" />
     <ClCompile Include="src\entities\NodeEntity.cpp" />
     <ClCompile Include="src\input\SpaceInput.cpp" />

@@ -12,6 +12,7 @@ GameManager::GameManager(GameManagerParams params)
 	Camera::light_src = vec3(0, 0, 200);
 
 	m_Audio = params.audio;
+	m_Physics = params.physics;
 	m_InputHandler = params.inputHandler;
 	m_MemoryManager = params.memoryManager;
 	m_GameLogic = params.gameLogic;
@@ -35,6 +36,9 @@ GameManager::~GameManager() {
 
 	m_MemoryManager->destroy();
 	if (m_MemoryManager) delete m_MemoryManager;
+
+	m_Physics->destroy();
+	if (m_Physics) delete m_Physics;
 }
 void GameManager::init() {
 

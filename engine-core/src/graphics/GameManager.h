@@ -21,6 +21,7 @@ struct GameManagerParams {
 	InputHandler* inputHandler;
 	GameLogic* gameLogic;
 	Audio* audio;
+	Physics* physics;
 	Renderer* renderer;
 	string title;
 	int width;
@@ -53,4 +54,5 @@ private:
 	GameLogic* m_GameLogic;
 	Audio* m_Audio;
 	Camera* m_Camera;
+	Physics* m_Physics;
 };

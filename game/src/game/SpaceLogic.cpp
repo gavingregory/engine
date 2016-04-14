@@ -2,8 +2,23 @@
 
 int SpaceLogic::UniqueId = 0;
 
-SpaceLogic::SpaceLogic(SpaceMemoryManager* memory) {
+void CollisionCallback(pair<void*, void*> entities) {
+	// do nothing at the moment
+	cout << "something" << endl;
+}
+
+void InputCallback(bool key, bool mouse, int id) {
+	// do nothing at the moment
+	cout << "something" << endl;
+}
+
+SpaceLogic::SpaceLogic(SpaceMemoryManager* memory, Physics* physics, InputHandler* inputHandler)
+	: GameLogic(physics, inputHandler) {
 	m_MemoryManager = memory;
+
+	// set the callback functions
+	setCollisionEventCallback(CollisionCallback);
+	setInputEventCallback(InputCallback);
 
 	m_GameState = GS_SELECT;
 	m_BuildState = BASIC_NODE;

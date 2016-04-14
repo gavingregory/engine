@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../system/CallbackFunctions.h"
 #include "../graphics/Window.h"
 #include "../system/SubSystem.h"
 #include <glm/glm.hpp>
@@ -12,4 +13,7 @@ public:
 		Window* window = Window::WindowPointer;
 		return window->getMouseOffset();
 	}
+	void registerInputEventCallback(InputEventCallback cb) { m_InputEventCallback = cb; }
+protected:
+	InputEventCallback m_InputEventCallback; // call this function when an input event occurs!
 };

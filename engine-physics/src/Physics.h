@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../../engine-common/src/system/CallbackFunctions.h"
+#include "../../engine-common/src/system/SubSystem.h"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <iostream>
@@ -11,18 +13,15 @@
 
 using glm::vec3;
 
-class Physics
+class Physics : public SubSystem
 {
 public:
 	Physics();
 	virtual ~Physics();
-	static vec3 updateVelocity(vec3 initialVelocity, vec3 acceleration, float time);
-	static vec3 updateDisplacement(vec3 initialVelocity, vec3 acceleration, float time);
-	static void explicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
-	static void implicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, const float dt);
-	static void semiImplicitEuler(vec3& position, vec3& velocity, const vec3 acceleration, vec3& displacement, const float dt);
-
-	static bool detectCollision(vec3& vec0, float m0, CollisionShape* c0, vec3& pos0, vec3& v1, float m1, CollisionShape* c1, vec3& pos1, float coeffElasticity);
-	static bool handleCircleCircle(vec3& vel0, float m0, CollisionCircle* c0, vec3& pos0, vec3& vel1, float m1, CollisionCircle* c1, vec3& pos1, float coeffElasticity);
-	static bool handleCirclePlane(vec3& vel0, float m0, CollisionCircle* c0, vec3& pos0, vec3& vel1, float m1, CollisionPlane* c1, vec3& pos1, float coeffElasticity);
+	bool init();
+	bool destroy();
+	void update(float msec);
+	void registerCollisionEventCallback(CollisionEventCallback cb) { this->m_CollisionEventCallback = cb; }
+private:
+	CollisionEventCallback m_CollisionEventCallback; // call this function when a collision occurs!
 };
