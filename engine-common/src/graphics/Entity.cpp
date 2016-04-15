@@ -6,9 +6,7 @@ Entity::Entity(EntityParams params, RenderObject* ro) {
 	m_PhysicsObject->SetUserData(this); // set a pointer to THIS entity
 
 	// create FIXTURE for box 2d physics objects
-	b2PolygonShape shape;
-	shape.SetAsBox(params.width, params.height);
-	m_PhysicsObject->CreateFixture(&shape, 1.0f);
+	m_PhysicsObject->CreateFixture(&params.shape, 1.0f);
 
 	m_Name = params.name;
 }
@@ -18,7 +16,9 @@ Entity::~Entity() { }
 void Entity::update(float msec) {
 	// update render object position from box2d position
 	b2Vec2 pos = m_PhysicsObject->GetPosition();
-	m_RenderObject->SetModelMatrix(translate(vec3(pos.x, pos.y, 0)));
+	float angle = m_PhysicsObject->GetAngle();
+	cout << angle << endl;
+	m_RenderObject->SetModelMatrix(translate(vec3(pos.x, pos.y, 0)) * glm::rotate(angle, vec3(0, 0, 1)));
 
 	m_RenderObject->Update(msec);
 	for (unsigned int i = 0; i < children.size(); i++)

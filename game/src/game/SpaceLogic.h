@@ -37,6 +37,7 @@ public:
 	bool destroy();
 	void update(float msec);
 	static SpaceLogic* GameLogicInstance;
+	static InputTypes PlayerMovementState;
 private:
 	static int UniqueId;
 	void buildBasicNode();

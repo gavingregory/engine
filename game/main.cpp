@@ -85,9 +85,10 @@ int main()
 		}
 
 		// create entities from game.json
-		for (unsigned int i = 0; i < gameData["levels"][level]["entities"].size(); i++){
+		for (unsigned int i = 0; i < gameData["levels"][level]["entities"].size(); i++) {
 
 			Json::Value jsonEntity = gameData["levels"][level]["entities"][i];
+			Json::Value jsonCollision = jsonEntity["collision"];
 			Mesh* m = meshes->at(jsonEntity["mesh"].asString());
 			Shader* s = shaders->at(jsonEntity["shader"].asString());
 
@@ -97,14 +98,15 @@ int main()
 			// box2d
 			b2BodyDef def;
 			def.type = (jsonEntity["dynamic"].asBool() ? b2_dynamicBody : b2_staticBody);
-			def.fixedRotation = jsonEntity["rotation"].asFloat();
-			def.linearVelocity = b2Vec2(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat());
+			def.angle = jsonEntity["rotation"].asFloat();
+			def.linearVelocity = b2Vec2(jsonEntity["velocity"][0].asFloat(), jsonEntity["velocity"][1].asFloat());
 			def.fixedRotation = true;
 			def.position.Set(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat());
 
-			float width = jsonEntity["width"].asFloat();
-			float height = jsonEntity["height"].asFloat();
-
+			// create polygon shape
+			b2PolygonShape shape;
+			shape.SetAsBox(jsonCollision["width"].asFloat(), jsonCollision["height"].asFloat());
+			
 			if (jsonEntity["type"].asString() == "entity")
 				e = memory->createEntity(EntityParams{
 					vec3(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat(), jsonEntity["position"][2].asFloat()),
@@ -116,24 +118,9 @@ int main()
 					s,
 					jsonEntity["title"].asString(),
 					def,
-					width,
-					height
+					shape
 				});
-			else if (jsonEntity["type"].asString() == "ball") {
-				e = memory->createNodeEntity(
-					NodeEntityParams{
-						vec3(jsonEntity["position"][0].asFloat(),jsonEntity["position"][1].asFloat(),jsonEntity["position"][2].asFloat()),
-						vec3(jsonEntity["velocity"][0].asFloat(),jsonEntity["velocity"][1].asFloat(),jsonEntity["velocity"][2].asFloat()),
-						vec3(jsonEntity["acceleration"][0].asFloat(),jsonEntity["acceleration"][1].asFloat(),jsonEntity["acceleration"][2].asFloat()),
-						jsonEntity["rotation"].asFloat(),
-						jsonEntity["mass"].asFloat(),
-						m,
-						s,
-						jsonEntity["title"].asString(),
-						jsonEntity["radius"].asFloat(),
-						jsonEntity["dynamic"].asBool()
-				});
-			} else {
+			else {
 				cout << "Invalid entity detected! Exiting..." << endl;
 				return 1;
 			};

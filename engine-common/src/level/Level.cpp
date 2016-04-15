@@ -19,12 +19,13 @@ void Level::update(float msec) {
 	for (map<string, Entity*>::iterator it = m_Entities.begin(); it != m_Entities.end(); ++it) {
 		(it->second)->update(msec);
 	}
-	
+
+	// GAME LOGIC
+	m_GameLogic->update(msec);
+
 	// RENDER
 	for (map<string, Entity*>::iterator it = m_Entities.begin(); it != m_Entities.end(); ++it) {
 		(it->second)->render(m_Renderer);
 	}
 
-	// GAME LOGIC
-	//m_GameLogic->update(msec);
 }

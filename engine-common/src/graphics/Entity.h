@@ -19,8 +19,7 @@ struct EntityParams {
 	Shader* shader;
 	string name;
 	b2BodyDef bodyDef;
-	float width;
-	float height;
+	b2PolygonShape shape;
 };
 
 class Entity

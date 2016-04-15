@@ -1,16 +1,30 @@
 #include "SpaceLogic.h"
 
 int SpaceLogic::UniqueId = 0;
+
 SpaceLogic* SpaceLogic::GameLogicInstance;
+InputTypes SpaceLogic::PlayerMovementState;
 
 void CollisionCallback(pair<void*, void*> entities) {
 	// do nothing at the moment
 	cout << "something" << endl;
 }
 
-void InputCallback(bool key, bool mouse, int id) {
-	// do nothing at the moment
-	cout << "something" << endl;
+void InputCallback(bool isKeyboard, bool isPressed, int id) {
+	// modify the player movement state
+	if (isKeyboard && id == GLFW_KEY_W) {
+		if (isPressed) SpaceLogic::PlayerMovementState = IT_PLAYER_UP;
+		else SpaceLogic::PlayerMovementState = IT_PLAYER_STOP;
+	} else if (isKeyboard && id == GLFW_KEY_S) {
+		if (isPressed) SpaceLogic::PlayerMovementState = IT_PLAYER_DOWN;
+		else SpaceLogic::PlayerMovementState = IT_PLAYER_STOP;
+	} else if (isKeyboard && id == GLFW_KEY_A) {
+		if (isPressed) SpaceLogic::PlayerMovementState = IT_PLAYER_LEFT;
+		else SpaceLogic::PlayerMovementState = IT_PLAYER_STOP;
+	} else if (isKeyboard && id == GLFW_KEY_D) {
+		if (isPressed) SpaceLogic::PlayerMovementState = IT_PLAYER_RIGHT;
+		else SpaceLogic::PlayerMovementState = IT_PLAYER_STOP;
+	}
 }
 
 SpaceLogic::SpaceLogic(SpaceMemoryManager* memory, Physics* physics, InputHandler* inputHandler)
@@ -22,9 +36,9 @@ SpaceLogic::SpaceLogic(SpaceMemoryManager* memory, Physics* physics, InputHandle
 	// set the callback functions
 	setCollisionEventCallback(&CollisionCallback);
 	setInputEventCallback(&InputCallback);
-
-	m_GameState = GS_SELECT;
-	m_BuildState = BASIC_NODE;
+	
+	// initialise game states
+	SpaceLogic::PlayerMovementState = IT_PLAYER_STOP;
 }
 
 SpaceLogic::~SpaceLogic() {}
@@ -32,6 +46,10 @@ SpaceLogic::~SpaceLogic() {}
 bool SpaceLogic::init() {
 	map<string, Mesh*>* meshes = Level::currentLevel->getMeshes();
 	map<string, Shader*>* shaders = Level::currentLevel->getShaders();
+
+
+	// set the level's logic controller
+	Level::currentLevel->setLogic(this);
 
 	Mesh* m = (*meshes)["asteroid"];
 	Shader* s = (*shaders)["texture"];
@@ -47,53 +65,28 @@ bool SpaceLogic::destroy() {
 }
 
 void SpaceLogic::update(float msec) {
-	switch (m_GameState) {
-	case GS_BUILD:
-		(*Level::currentLevel->getEntities()).insert_or_assign("buildingItem", m_BuildEntity);
-		m_BuildEntity->getPhysicsObject()->SetTransform(b2Vec2(m_MousePosition.x, m_MousePosition.y), m_BuildEntity->getPhysicsObject()->GetAngle());
-		switch (m_BuildState) {
-		case BASIC_NODE:
-			m_BuildEntity->getRenderObject()->getTextures()->insert_or_assign("tex", (*Level::currentLevel->getTextures())["node"]);
-			break;
-		case HARVESTER_NODE:
-			m_BuildEntity->getRenderObject()->getTextures()->insert_or_assign("tex", (*Level::currentLevel->getTextures())["energy"]);
-			
-			cout << "building harvester node" << endl;
-			break;
-		case ENERGY_NODE:
-			cout << "building energy node" << endl;
-			break;
-		case STORAGE_NODE:
-			cout << "building storage node" << endl;
-			break;
-		case LASER_NODE:
-			cout << "building laser node" << endl;
-			break;
-		}
+
+	map<string, Entity*>* entities = Level::currentLevel->getEntities();
+	Entity* ship = entities->at("ship");
+
+	float magnitude = 0.1f;
+	b2Vec2 force = b2Vec2(cos(ship->getPhysicsObject()->GetAngle()) * magnitude, sin(ship->getPhysicsObject()->GetAngle()) * magnitude);
+	
+	switch (SpaceLogic::PlayerMovementState) {
+	case IT_PLAYER_STOP:
 		break;
-	case GS_SELECT:
-		(*Level::currentLevel->getEntities()).erase("buildingItem");
-		cout << "select mode" << endl;
+	case IT_PLAYER_UP:
+		ship->getPhysicsObject()->ApplyForce(force, ship->getPhysicsObject()->GetPosition(), true);
 		break;
-	case GS_PLACING:
-		switch (m_BuildState) {
-		case BASIC_NODE:
-			buildBasicNode();
-			break;
-		case HARVESTER_NODE:
-			cout << "building harvester node" << endl;
-			break;
-		case ENERGY_NODE:
-			cout << "building energy node" << endl;
-			break;
-		case STORAGE_NODE:
-			cout << "building storage node" << endl;
-			break;
-		case LASER_NODE:
-			cout << "building laser node" << endl;
-			break;
-		}
-		m_GameState = GS_SELECT; // reset game state
+	case IT_PLAYER_DOWN:
+		break;
+	case IT_PLAYER_LEFT:
+		ship->getPhysicsObject()->SetAngularDamping(0.001f);
+		ship->getPhysicsObject()->SetAngularVelocity(0.001f);
+		break;
+	case IT_PLAYER_RIGHT:
+		ship->getPhysicsObject()->SetAngularDamping(0.001f);
+		ship->getPhysicsObject()->SetAngularVelocity(-0.001f);
 		break;
 	}
 }

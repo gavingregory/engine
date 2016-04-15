@@ -16,8 +16,10 @@
         },
         {
           "title": "ship",
-          "type": "FILE",
-          "path": "res/mesh/ship.json"
+          "type": "QUAD",
+          "width": 10.0,
+          "height": 10.0,
+          "colour": [ 0.3, 0.3, 0.3, 0.5 ]
         }
       ],
       "shaders": [
@@ -45,7 +47,7 @@
         },
         {
           "title": "ship",
-          "path": "res/texture/supernova.png"
+          "path": "res/texture/viper.png"
         }
       ],
       "audio": [
@@ -68,14 +70,16 @@
           "position": [ -25.0, -48.0, 0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
           "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.01,
+          "rotation": 0.0,
           "mass": 1.0,
           "mesh": "platform",
           "shader": "texture",
-          "radius": 15.0,
           "dynamic": false,
-          "width": 5.0,
-          "height": 5.0
+          "collision": {
+            "type": "rect",
+            "width": 100.0,
+            "height": 10.0
+          }
         },
         {
           "title": "ship",
@@ -83,17 +87,19 @@
           "textures": [ "ship" ],
           "sounds": [ "shotgun" ],
           "parent": "null",
-          "position": [ -25.0, 0.0, 0 ],
+          "position": [ -25.0, 100.0, 0 ],
           "velocity": [ 0.0, 0.0, 0.0 ],
           "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.01,
+          "rotation": 90.0,
           "mass": 1.0,
           "mesh": "ship",
           "shader": "texture",
-          "radius": 15.0,
           "dynamic": true,
-          "width": 5.0,
-          "height": 5.0
+          "collision": {
+            "type": "rect",
+            "width": 10.0,
+            "height": 10.0
+          }
         }
       ]
     }

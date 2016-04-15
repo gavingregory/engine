@@ -10,8 +10,6 @@ in Vertex{
 	vec3 normal;
 } IN;
 
-out vec4 gl_FragColor;
-
 void main(void)	{
 
 	float lightRadius = 500.0;
@@ -27,8 +25,8 @@ void main(void)	{
 	float rFactor = max (0.0 , dot ( halfDir , IN.normal ));
 	float sFactor = pow ( rFactor , 50.0 );
 	//vec4 texCol = texture ( smileyTex , IN.texCoord );
-	vec3 ambient = IN.colour.rgb * lightColour * 0.7;
-	vec3 diffuse = IN.colour.rgb * lightColour * lambert * atten ;
+	vec3 ambient = IN.colour.rgb * lightColour.rgb * 0.7;
+	vec3 diffuse = IN.colour.rgb * lightColour.rgb * lambert * atten ;
 	vec3 specular = lightColour.xyz * sFactor * atten ;
 	gl_FragColor = vec4 ( ambient + diffuse + specular , IN.colour.a );
 }
