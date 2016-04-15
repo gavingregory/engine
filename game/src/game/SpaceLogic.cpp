@@ -1,13 +1,14 @@
 #include "SpaceLogic.h"
 
 int SpaceLogic::UniqueId = 0;
+SpaceLogic* SpaceLogic::GameLogicInstance;
 
 void CollisionCallback(pair<void*, void*> entities) {
 	// do nothing at the moment
 	cout << "something" << endl;
 }
 
-void SpaceLogic::InputCallback(bool key, bool mouse, int id) {
+void InputCallback(bool key, bool mouse, int id) {
 	// do nothing at the moment
 	cout << "something" << endl;
 }
@@ -16,9 +17,11 @@ SpaceLogic::SpaceLogic(SpaceMemoryManager* memory, Physics* physics, InputHandle
 	: GameLogic(physics, inputHandler) {
 	m_MemoryManager = memory;
 
+	SpaceLogic::GameLogicInstance = this;
+
 	// set the callback functions
-	setCollisionEventCallback(CollisionCallback);
-	setInputEventCallback(m_InputEventCallback);
+	setCollisionEventCallback(&CollisionCallback);
+	setInputEventCallback(&InputCallback);
 
 	m_GameState = GS_SELECT;
 	m_BuildState = BASIC_NODE;

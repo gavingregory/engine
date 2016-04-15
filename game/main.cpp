@@ -30,7 +30,7 @@ int main()
 
 	Audio* audio = new Audio();
 	SpaceMemoryManager* memory = new SpaceMemoryManager();
-	Physics* physics = new Physics(-0.001f);
+	Physics* physics = new Physics(-0.0001f);
 	SpaceInput* input = new SpaceInput(audio);
 	GameLogic* logic = new SpaceLogic(memory, physics, input);
 	Renderer* renderer = new Renderer();

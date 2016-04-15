@@ -36,7 +36,7 @@ public:
 	bool init();
 	bool destroy();
 	void update(float msec);
-	void InputCallback(bool key, bool mouse, int id);
+	static SpaceLogic* GameLogicInstance;
 private:
 	static int UniqueId;
 	void buildBasicNode();

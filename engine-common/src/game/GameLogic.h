@@ -14,16 +14,12 @@ public:
 	virtual bool destroy() = 0;
 	virtual void update(float msec) = 0;
 	void setInputEventCallback(InputEventCallback cb) {
-		m_InputEventCallback = cb;
-		m_InputHandler->registerInputEventCallback(m_InputEventCallback);
+		m_InputHandler->registerInputEventCallback(cb);
 	}
 	void setCollisionEventCallback(CollisionEventCallback cb) {
-		m_CollisionEventCallback = cb;
-		m_Physics->registerCollisionEventCallback(m_CollisionEventCallback);
+		m_Physics->registerCollisionEventCallback(cb);
 	}
 protected:
-	InputEventCallback m_InputEventCallback;
-	CollisionEventCallback m_CollisionEventCallback;
 	Physics* m_Physics;
 	InputHandler* m_InputHandler;
 };

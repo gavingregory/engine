@@ -9,8 +9,15 @@
       "meshes": [
         {
           "title": "platform",
+          "type": "QUAD",
+          "width": 200.0,
+          "height": 10.0,
+          "colour": [ 0.3, 0.3, 0.3, 0.5 ]
+        },
+        {
+          "title": "ship",
           "type": "FILE",
-          "path": "res/mesh/platform.json"
+          "path": "res/mesh/ship.json"
         }
       ],
       "shaders": [
@@ -35,6 +42,10 @@
         {
           "title": "ground",
           "path": "res/texture/ground.png"
+        },
+        {
+          "title": "ship",
+          "path": "res/texture/supernova.png"
         }
       ],
       "audio": [
@@ -60,6 +71,24 @@
           "rotation": 0.01,
           "mass": 1.0,
           "mesh": "platform",
+          "shader": "texture",
+          "radius": 15.0,
+          "dynamic": false,
+          "width": 5.0,
+          "height": 5.0
+        },
+        {
+          "title": "ship",
+          "type": "entity",
+          "textures": [ "ship" ],
+          "sounds": [ "shotgun" ],
+          "parent": "null",
+          "position": [ -25.0, 0.0, 0 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.01,
+          "mass": 1.0,
+          "mesh": "ship",
           "shader": "texture",
           "radius": 15.0,
           "dynamic": true,
