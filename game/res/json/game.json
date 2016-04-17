@@ -17,8 +17,8 @@
         {
           "title": "ship",
           "type": "QUAD",
-          "width": 10.0,
-          "height": 10.0,
+          "width": 20.0,
+          "height": 20.0,
           "colour": [ 0.3, 0.3, 0.3, 0.5 ]
         }
       ],
@@ -47,7 +47,7 @@
         },
         {
           "title": "ship",
-          "path": "res/texture/viper.png"
+          "path": "res/texture/fly.png"
         }
       ],
       "audio": [
@@ -78,7 +78,7 @@
           "collision": {
             "type": "rect",
             "width": 100.0,
-            "height": 10.0
+            "height": 5.0
           }
         },
         {

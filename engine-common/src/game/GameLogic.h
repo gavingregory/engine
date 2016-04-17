@@ -13,12 +13,6 @@ public:
 	virtual bool init() = 0;
 	virtual bool destroy() = 0;
 	virtual void update(float msec) = 0;
-	void setInputEventCallback(InputEventCallback cb) {
-		m_InputHandler->registerInputEventCallback(cb);
-	}
-	void setCollisionEventCallback(CollisionEventCallback cb) {
-		m_Physics->registerCollisionEventCallback(cb);
-	}
 protected:
 	Physics* m_Physics;
 	InputHandler* m_InputHandler;

@@ -17,7 +17,6 @@ void Entity::update(float msec) {
 	// update render object position from box2d position
 	b2Vec2 pos = m_PhysicsObject->GetPosition();
 	float angle = m_PhysicsObject->GetAngle();
-	cout << angle << endl;
 	m_RenderObject->SetModelMatrix(translate(vec3(pos.x, pos.y, 0)) * glm::rotate(angle, vec3(0, 0, 1)));
 
 	m_RenderObject->Update(msec);

@@ -21,9 +21,9 @@ public:
 	virtual bool init();
 	virtual bool destroy();
 	virtual void update(float msec);
+	static bool KeysHeld[MAX_KEYS];
+	static bool MouseButtonsHeld[MAX_BUTTONS];
 private:
-	bool        m_KeysHeld[MAX_KEYS];
-	bool        m_MouseButtonsHeld[MAX_BUTTONS];
 	Audio*      m_Audio;
 	Window*     m_Window;
 	GLFWwindow* m_GlfwWindow;
