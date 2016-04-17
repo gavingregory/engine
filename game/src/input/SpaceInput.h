@@ -1,6 +1,7 @@
 #pragma once
 #include "../../../engine-common/src/input/InputHandler.h"
 #include "../../../engine-common/src/graphics/Window.h"
+#include "../entities/PlayerEntity.h"
 #include "../game/GameStates.h"
 #include "../../../engine-audio/src/Audio.h"
 #include "../../../engine-common/src/graphics/Camera.h"

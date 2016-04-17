@@ -83,7 +83,7 @@
         },
         {
           "title": "ship",
-          "type": "entity",
+          "type": "player",
           "textures": [ "ship" ],
           "sounds": [ "shotgun" ],
           "parent": "null",

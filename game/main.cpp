@@ -1,6 +1,7 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <time.h>
+#include <math.h>
 #include <Box2D/Box2D.h>
 #include "../engine-core/src/graphics/GameManager.h"
 #include "../engine-common/src/graphics/Shader.h"
@@ -11,7 +12,7 @@
 #include "../engine-common/src/graphics/RenderObject.h"
 #include "../engine-common/src/graphics/Renderer.h"
 #include "../engine-common/src/graphics/Mesh.h"
-#include "src/entities/NodeEntity.h"
+#include "src/entities/PlayerEntity.h"
 #include "../engine-io/src/io/Loader.h"
 #include "src/game/SpaceLogic.h"
 
@@ -98,7 +99,7 @@ int main()
 			// box2d
 			b2BodyDef def;
 			def.type = (jsonEntity["dynamic"].asBool() ? b2_dynamicBody : b2_staticBody);
-			def.angle = jsonEntity["rotation"].asFloat();
+			def.angle = jsonEntity["rotation"].asFloat() * ( 3.14159 / 180);
 			def.linearVelocity = b2Vec2(jsonEntity["velocity"][0].asFloat(), jsonEntity["velocity"][1].asFloat());
 			def.fixedRotation = true;
 			def.position.Set(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat());
@@ -120,6 +121,19 @@ int main()
 					def,
 					shape
 				});
+			else if (jsonEntity["type"].asString() == "player")
+				e = memory->createPlayerEntity(PlayerEntityParams{
+				vec3(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat(), jsonEntity["position"][2].asFloat()),
+				vec3(jsonEntity["velocity"][0].asFloat(), jsonEntity["velocity"][1].asFloat(), jsonEntity["velocity"][2].asFloat()),
+					vec3(jsonEntity["acceleration"][0].asFloat(), jsonEntity["acceleration"][1].asFloat(), jsonEntity["acceleration"][2].asFloat()),
+					jsonEntity["rotation"].asFloat(),
+					jsonEntity["mass"].asFloat(),
+					m,
+					s,
+					jsonEntity["title"].asString(),
+					def,
+					shape
+			});
 			else {
 				cout << "Invalid entity detected! Exiting..." << endl;
 				return 1;

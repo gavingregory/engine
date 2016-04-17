@@ -11,46 +11,65 @@ SpaceInput::SpaceInput(Audio* audio) {
 SpaceInput::~SpaceInput() {}
 
 void SpaceInput::handleInput(float msec) {
-	// Player Up Event
-	int state = glfwGetKey(m_GlfwWindow, GLFW_KEY_W);
-	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_W]) {
-		m_KeysHeld[GLFW_KEY_W] = true;
-		m_InputEventCallback(true, true, GLFW_KEY_W);
-	}
-	else if (state == GLFW_RELEASE && m_KeysHeld[GLFW_KEY_W]) {
-		m_InputEventCallback(true, false, GLFW_KEY_W);
-		m_KeysHeld[GLFW_KEY_W] = false;
-	}
 
-	state = glfwGetKey(m_GlfwWindow, GLFW_KEY_S);
-	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_S]) {
-		m_KeysHeld[GLFW_KEY_S] = true;
-		m_InputEventCallback(true, true, GLFW_KEY_S);
-	}
-	else if (state == GLFW_RELEASE && m_KeysHeld[GLFW_KEY_S]) {
-		m_InputEventCallback(true, false, GLFW_KEY_S);
-		m_KeysHeld[GLFW_KEY_S] = false;
+	map<string, Entity*>* entities = Level::currentLevel->getEntities();
+	PlayerEntity* player = (PlayerEntity*)entities->at("ship");
+
+	int state = glfwGetKey(m_GlfwWindow, GLFW_KEY_W);
+	if (state == GLFW_PRESS) {
+		player->boost();
 	}
 
 	state = glfwGetKey(m_GlfwWindow, GLFW_KEY_A);
-	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_A]) {
-		m_KeysHeld[GLFW_KEY_A] = true;
-		m_InputEventCallback(true, true, GLFW_KEY_A);
-	}
-	else if (state == GLFW_RELEASE && m_KeysHeld[GLFW_KEY_A]) {
-		m_InputEventCallback(true, false, GLFW_KEY_A);
-		m_KeysHeld[GLFW_KEY_A] = false;
+	if (state == GLFW_PRESS) {
+		player->rotate(0.001f);
 	}
 
 	state = glfwGetKey(m_GlfwWindow, GLFW_KEY_D);
-	if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_D]) {
-		m_KeysHeld[GLFW_KEY_D] = true;
-		m_InputEventCallback(true, true, GLFW_KEY_D);
+	if (state == GLFW_PRESS) {
+		player->rotate(-0.001f);
 	}
-	else if (state == GLFW_RELEASE && m_KeysHeld[GLFW_KEY_D]) {
-		m_InputEventCallback(true, false, GLFW_KEY_D);
-		m_KeysHeld[GLFW_KEY_D] = false;
-	}
+
+	// Player Up Event
+	//int state = glfwGetKey(m_GlfwWindow, GLFW_KEY_W);
+	//if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_W]) {
+	//	m_KeysHeld[GLFW_KEY_W] = true;
+	//	m_InputEventCallback(true, true, GLFW_KEY_W);
+	//}
+	//else if (state == GLFW_RELEASE && m_KeysHeld[GLFW_KEY_W]) {
+	//	m_InputEventCallback(true, false, GLFW_KEY_W);
+	//	m_KeysHeld[GLFW_KEY_W] = false;
+	//}
+	//
+	//state = glfwGetKey(m_GlfwWindow, GLFW_KEY_S);
+	//if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_S]) {
+	//	m_KeysHeld[GLFW_KEY_S] = true;
+	//	m_InputEventCallback(true, true, GLFW_KEY_S);
+	//}
+	//else if (state == GLFW_RELEASE && m_KeysHeld[GLFW_KEY_S]) {
+	//	m_InputEventCallback(true, false, GLFW_KEY_S);
+	//	m_KeysHeld[GLFW_KEY_S] = false;
+	//}
+	//
+	//state = glfwGetKey(m_GlfwWindow, GLFW_KEY_A);
+	//if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_A]) {
+	//	m_KeysHeld[GLFW_KEY_A] = true;
+	//	m_InputEventCallback(true, true, GLFW_KEY_A);
+	//}
+	//else if (state == GLFW_RELEASE && m_KeysHeld[GLFW_KEY_A]) {
+	//	m_InputEventCallback(true, false, GLFW_KEY_A);
+	//	m_KeysHeld[GLFW_KEY_A] = false;
+	//}
+	//
+	//state = glfwGetKey(m_GlfwWindow, GLFW_KEY_D);
+	//if (state == GLFW_PRESS && !m_KeysHeld[GLFW_KEY_D]) {
+	//	m_KeysHeld[GLFW_KEY_D] = true;
+	//	m_InputEventCallback(true, true, GLFW_KEY_D);
+	//}
+	//else if (state == GLFW_RELEASE && m_KeysHeld[GLFW_KEY_D]) {
+	//	m_InputEventCallback(true, false, GLFW_KEY_D);
+	//	m_KeysHeld[GLFW_KEY_D] = false;
+	//}
 }
 
 bool SpaceInput::init() {
@@ -58,6 +77,7 @@ bool SpaceInput::init() {
 	m_GlfwWindow = m_Window->getGlfwWindow();
 	if (!m_Window) return false;
 	if (!m_GlfwWindow) return false;
+
 	return true;
 }
 

@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\NodeEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\SpaceLogic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,6 +30,9 @@
     <ClCompile Include="src\game\GameStates.h">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\PlayerEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\json\game.json" />
@@ -43,9 +43,6 @@
     <None Include="res\mesh\ship.json" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\entities\NodeEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\SpaceLogic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -56,6 +53,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\states\PlayerState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\PlayerEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
