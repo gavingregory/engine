@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:File
+Author:Gavin Gregory
+Description:Provides static functions related to file IO.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 #include <string>
 #include <fstream>

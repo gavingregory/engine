@@ -6,6 +6,7 @@
 Window* Window::WindowPointer;
 int Window::Width;
 int Window::Height;
+bool Window::quit = false;
 
 Window::Window(const char* title, const int width, const int height)
 	: m_Title(title) {

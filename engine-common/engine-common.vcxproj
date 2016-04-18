@@ -124,7 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\level\Level.h" />
-    <ClInclude Include="src\game\GameLogic.h" />
+    <ClInclude Include="src\game\BaseLogic.h" />
     <ClInclude Include="src\graphics\Texture.h" />
     <ClInclude Include="src\graphics\Camera.h" />
     <ClInclude Include="src\graphics\Entity.h" />
@@ -134,15 +134,13 @@
     <ClInclude Include="src\graphics\Shader.h" />
     <ClInclude Include="src\graphics\Window.h" />
     <ClInclude Include="src\input\InputHandler.h" />
-    <ClInclude Include="src\system\CallbackFunctions.h" />
     <ClInclude Include="src\system\SubSystem.h" />
     <ClInclude Include="src\utils\File.h" />
     <ClInclude Include="src\utils\GameTimer.h" />
-    <ClInclude Include="src\game\State.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\level\Level.cpp" />
-    <ClCompile Include="src\game\GameLogic.cpp" />
+    <ClCompile Include="src\game\BaseLogic.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\graphics\Entity.cpp" />
     <ClCompile Include="src\graphics\Mesh.cpp" />
@@ -152,7 +150,6 @@
     <ClCompile Include="src\graphics\Window.cpp" />
     <ClCompile Include="src\utils\File.cpp" />
     <ClCompile Include="src\utils\GameTimer.cpp" />
-    <ClCompile Include="src\game\State.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

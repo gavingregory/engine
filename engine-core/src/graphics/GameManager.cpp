@@ -51,9 +51,8 @@ void GameManager::init() {
 void GameManager::run() {
 
 	ISound* s = m_Audio->play("res/audio/breakout.mp3", true);
-	bool playing = true;
 
-	while (!m_Window.closed()) {
+	while (!m_Window.closed() && !Window::quit) {
 		m_Window.clear();
 
 		float msec = m_Timer.GetTimedMS();
@@ -70,4 +69,15 @@ void GameManager::run() {
 
 		m_Window.update();
 	}
+
+	Shutdown();
+}
+
+void GameManager::Shutdown() {
+	cout << "SHUTTING DOWN" << endl;
+	m_Physics->destroy();
+	m_Audio->destroy();
+	m_InputHandler->destroy();
+	m_MemoryManager->destroy();
+	Sleep(500);
 }

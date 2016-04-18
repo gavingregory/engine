@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:Mesh
+Author:Rich Davison	<richard.davison4@newcastle.ac.uk>
+Modified by Gavin Gregory
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include <GL/glew.h>

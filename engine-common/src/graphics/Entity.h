@@ -1,3 +1,10 @@
+/******************************************************************************
+Class:Entity
+Author:Gavin Gregory
+Description:All objects in the game world are Entities. Entities have member variables
+such as render objects and physics objects to represent their different properties.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include <glm/glm.hpp>

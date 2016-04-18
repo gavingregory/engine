@@ -1,3 +1,12 @@
+/******************************************************************************
+Class:MemoryManager
+Author:Gavin Gregory
+Description:All objects are instantiated through the memory manager.
+As it stands this is quite basic, and just maintains a list of void pointers.
+Eventually this would allocate memory a bit better, but the structure is in place
+for this to all happen in the memory manager now.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include "../../engine-common/src/graphics/Entity.h"

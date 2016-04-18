@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:Physics
+Author:Gavin Gregory
+Description:The physics subsystem handles physics related functions.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include "../../engine-common/src/system/CallbackFunctions.h"

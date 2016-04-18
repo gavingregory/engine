@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:Renderer
+Author:Rich Davison	<richard.davison4@newcastle.ac.uk>
+Modified by Gavin Gregory
+*//////////////////////////////////////////////////////////////////////////////
+
 #include "Renderer.h"
 
 Renderer::Renderer() { glEnable(GL_DEPTH_TEST); }

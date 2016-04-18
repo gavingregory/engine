@@ -20,11 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\game\SpaceLogic.cpp" />
+    <ClCompile Include="src\game\GameLogic.cpp" />
     <ClCompile Include="src\game\GameStates.h" />
-    <ClCompile Include="src\memory\SpaceMemoryManager.cpp" />
+    <ClCompile Include="src\memory\GameMemoryManager.cpp" />
     <ClCompile Include="src\entities\PlayerEntity.cpp" />
-    <ClCompile Include="src\input\SpaceInput.cpp" />
+    <ClCompile Include="src\input\GameInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\json\game.json" />
@@ -35,11 +35,10 @@
     <None Include="res\shader\basic.vert" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\states\PlayerState.h" />
-    <ClInclude Include="src\game\SpaceLogic.h" />
-    <ClInclude Include="src\memory\SpaceMemoryManager.h" />
+    <ClInclude Include="src\game\GameLogic.h" />
+    <ClInclude Include="src\memory\GameMemoryManager.h" />
     <ClInclude Include="src\entities\PlayerEntity.h" />
-    <ClInclude Include="src\input\SpaceInput.h" />
+    <ClInclude Include="src\input\GameInput.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CED10A13-C267-42BB-93D7-3AC5D2FEF109}</ProjectGuid>

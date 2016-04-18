@@ -6,7 +6,7 @@ Audio::~Audio() { }
 
 bool Audio::init() {
 	m_SoundEngine = createIrrKlangDevice();
-	return (m_SoundEngine == nullptr);
+	return (m_SoundEngine != nullptr);
 }
 
 bool Audio::destroy() {

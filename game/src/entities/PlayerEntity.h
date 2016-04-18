@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:PlayerEntity
+Author:Gavin Gregory
+Description:A subclass of Entity that represents the player in the game.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include "../../../engine-common/src/graphics/Entity.h"

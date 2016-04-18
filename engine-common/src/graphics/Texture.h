@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:Texture
+Author:Gavin Gregory
+Description:A static library of functions related to loading texture information.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include <GL/glew.h>

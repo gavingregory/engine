@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:Audio
+Author:Gavin Gregory
+Description:The audio class provides functionality for playing audio files.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 #include "../../engine-common/src/system/SubSystem.h"
 #include <irrKlang.h>

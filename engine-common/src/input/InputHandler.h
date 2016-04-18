@@ -1,3 +1,10 @@
+/******************************************************************************
+Class:InputHandler
+Author:Gavin Gregory
+Description:base class for input handler. This class must be sub classed by 
+the user when they create their game.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include "../system/CallbackFunctions.h"

@@ -1,7 +1,7 @@
 {
   "title": "Space",
-  "width": 800,
-  "height": 600,
+  "width": 1024,
+  "height": 768,
   "levels": [
     {
       "id":  1,
@@ -10,15 +10,22 @@
         {
           "title": "platform",
           "type": "QUAD",
-          "width": 200.0,
+          "width": 400.0,
           "height": 10.0,
           "colour": [ 0.3, 0.3, 0.3, 0.5 ]
         },
         {
           "title": "ship",
           "type": "QUAD",
-          "width": 20.0,
-          "height": 20.0,
+          "width": 40.0,
+          "height": 40.0,
+          "colour": [ 0.3, 0.3, 0.3, 0.5 ]
+        },
+		{
+          "title": "poo",
+          "type": "QUAD",
+          "width": 40.0,
+          "height": 40.0,
           "colour": [ 0.3, 0.3, 0.3, 0.5 ]
         }
       ],
@@ -47,7 +54,11 @@
         },
         {
           "title": "ship",
-          "path": "res/texture/fly.png"
+          "path": "res/texture/jswt.png"
+        },
+        {
+          "title": "poo",
+          "path": "res/texture/poo.png"
         }
       ],
       "audio": [
@@ -58,7 +69,11 @@
         {
           "title": "shotgun",
           "path": "res/audio/shotgun.mp3"
-        }
+        },
+		{
+		  "title": "win",
+		  "path": "res/audio/fart-4.mp3"
+		}
       ],
       "entities": [
         {
@@ -77,7 +92,7 @@
           "dynamic": false,
           "collision": {
             "type": "rect",
-            "width": 100.0,
+            "width": 200.0,
             "height": 5.0
           }
         },
@@ -99,6 +114,26 @@
             "type": "rect",
             "width": 10.0,
             "height": 10.0
+          }
+        },
+		{
+          "title": "poo",
+          "type": "entity",
+          "textures": [ "poo" ],
+          "sounds": [ "shotgun" ],
+          "parent": "null",
+          "position": [ -25.0, -88.0, 0 ],
+          "velocity": [ 0.0, 0.0, 0.0 ],
+          "acceleration": [ 0.0, 0.0, 0.0 ],
+          "rotation": 0.0,
+          "mass": 1.0,
+          "mesh": "poo",
+          "shader": "texture",
+          "dynamic": false,
+          "collision": {
+            "type": "rect",
+            "width": 20.0,
+            "height": 20.0
           }
         }
       ]

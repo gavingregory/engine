@@ -1,3 +1,10 @@
+/******************************************************************************
+Class:GameManager
+Author:Gavin Gregory
+Description:The main game manager holds instances of all sub systems and contains
+the main game loop.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include <stack>
@@ -19,7 +26,7 @@
 struct GameManagerParams {
 	MemoryManager* memoryManager;
 	InputHandler* inputHandler;
-	GameLogic* gameLogic;
+	BaseLogic* gameLogic;
 	Audio* audio;
 	Physics* physics;
 	Renderer* renderer;
@@ -43,7 +50,7 @@ public:
 	void init();
 	void run();
 	stack<Level*>* getLevelStack() { return &m_LevelStack; }
-
+	void Shutdown();
 private:
 	Window m_Window;
 	Renderer* m_Renderer;
@@ -51,7 +58,7 @@ private:
 	GameTimer m_Timer;
 	InputHandler* m_InputHandler;
 	MemoryManager* m_MemoryManager;
-	GameLogic* m_GameLogic;
+	BaseLogic* m_GameLogic;
 	Audio* m_Audio;
 	Camera* m_Camera;
 	Physics* m_Physics;

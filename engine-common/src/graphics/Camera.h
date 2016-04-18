@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:Camera
+Author:Gavin Gregory
+Description:The camera class represents a camera in the 2d world.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include <glm/glm.hpp>

@@ -1,3 +1,12 @@
+/******************************************************************************
+Class:Window
+Author:Gavin Gregory
+Description:The window class contains all of the properties and functions related
+to the window, which has the gl context for drawing into and provides keyboard and
+mouse input.
+*//////////////////////////////////////////////////////////////////////////////
+
+
 #pragma once
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -22,7 +31,6 @@ private:
 	friend static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	friend static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 	friend static void scroll_callback(GLFWwindow* window, double xOffset, double yOffset);
-
 
 public:
     Window(const char* title, const int width, const int height);
@@ -55,4 +63,5 @@ public:
 	bool isScrolled();
 
 	static Window* WindowPointer;
+	static bool quit;
 };

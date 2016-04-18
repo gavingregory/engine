@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:Loader
+Author:Gavin Gregory
+Description:Contains static methods related to JSON file input.
+*//////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include <json/json.h>

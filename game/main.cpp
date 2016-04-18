@@ -1,3 +1,41 @@
+/******************************************************************************
+Main
+Author:Gavin Gregory
+Description:This currently initialises all of the sub systems and creates a new
+GameManager instance (and executes it with a call to run). currently it also
+reads in game data from the game.json file and creates the game objects. Ideally
+this would be in its own class.
+
+General notes about the "engine":
+
+* Physics implemented with box2d
+* Audio implemented with Irrklang
+* All objects on the heap get instantiated through factory methods in the memory
+  manager. This keeps track of allocated objects and destroys them on program
+  exit. Eventually this would be upgraded to allocate memory more efficiently.
+* Window is provided with glfw.
+* Game input is loaded from JSON files.
+* Meshes are loaded from JSON files.
+* Most objects are associated with a Level class. The idea of this is that you
+  are able to destroy and create a new level between level transitions. 
+
+I started following Sparky tutorial (did about 7 videos?) but at this point I 
+left it and tried to fuse what i'd done with some classes from nclgl. The rest
+of the engine I did myself. I know it's awful, however I had no idea how to 
+make a game engine so the result is a mish mash of failed attempts at achieving 
+things and trying OTHER things. If i did it again, I would have implemented it
+completely differently.
+
+There are A LOT of static pointers. Again, a lot of this was done to fix circular
+references until I could figure out a better way - which I never did. Oh well!
+
+The game demo:
+Obviously not finished, just shows that most functionality of the engine is at
+least hanging on by a thread. Use keys W,A,D to nagivate to the GOAL, at which
+point the level will exit gracefully.
+
+*//////////////////////////////////////////////////////////////////////////////
+
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <time.h>
@@ -7,14 +45,14 @@
 #include "../engine-common/src/graphics/Shader.h"
 #include "../../../engine-physics/src/Physics.h"
 #include "../engine-common/src/graphics/Texture.h"
-#include "src/input/SpaceInput.h"
-#include "src/memory/SpaceMemoryManager.h"
+#include "src/input/GameInput.h"
+#include "src/memory/GameMemoryManager.h"
 #include "../engine-common/src/graphics/RenderObject.h"
 #include "../engine-common/src/graphics/Renderer.h"
 #include "../engine-common/src/graphics/Mesh.h"
 #include "src/entities/PlayerEntity.h"
 #include "../engine-io/src/io/Loader.h"
-#include "src/game/SpaceLogic.h"
+#include "src/game/GameLogic.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -30,12 +68,12 @@ int main()
 	catch (const char* msg) { cout << msg << endl; }
 
 	Audio* audio = new Audio();
-	SpaceMemoryManager* memory = new SpaceMemoryManager();
+	GameMemoryManager* memory = new GameMemoryManager();
 	Physics* physics = new Physics(-0.0001f);
-	SpaceInput* input = new SpaceInput(audio);
-	GameLogic* logic = new SpaceLogic(memory, physics, input);
+	GameInput* input = new GameInput(audio);
+	BaseLogic* logic = new GameLogic(memory, physics, input, audio);
 	Renderer* renderer = new Renderer();
-	GameManager* g = new GameManager(GameManagerParams{ memory, input, logic, audio, physics, renderer, gameData.get("title", "Default Title").asString(), gameData.get("width", 800).asInt(), gameData.get("height", 600).asInt() });
+	GameManager* g = new GameManager(GameManagerParams{ memory, input, logic, audio, physics, renderer, gameData.get("title", "Default Title").asString(), gameData.get("width", 1024).asInt(), gameData.get("height", 768).asInt() });
 
 	// For each level in JSON
 	for (unsigned int level = 0; level < gameData["levels"].size(); level++) {
@@ -99,7 +137,7 @@ int main()
 			// box2d
 			b2BodyDef def;
 			def.type = (jsonEntity["dynamic"].asBool() ? b2_dynamicBody : b2_staticBody);
-			def.angle = jsonEntity["rotation"].asFloat() * ( 3.14159 / 180);
+			def.angle = jsonEntity["rotation"].asFloat() * ( (float)3.14159 / (float)180);
 			def.linearVelocity = b2Vec2(jsonEntity["velocity"][0].asFloat(), jsonEntity["velocity"][1].asFloat());
 			def.fixedRotation = true;
 			def.position.Set(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat());

@@ -1,3 +1,9 @@
+/******************************************************************************
+Class:Mesh
+Author:Rich Davison	<richard.davison4@newcastle.ac.uk>
+Modified by Gavin Gregory
+*//////////////////////////////////////////////////////////////////////////////
+
 #include "Mesh.h"
 
 Mesh::Mesh() {
