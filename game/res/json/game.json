@@ -10,8 +10,8 @@
 		{
 		  "title": "background",
 		  "type": "QUAD",
-		  "width": 1000.0,
-		  "height": 1000.0,
+		  "width": 4000.0,
+		  "height": 4000.0,
           "colour": [ 0.3, 0.3, 0.3, 0.5 ]
 		},
         {
@@ -103,8 +103,8 @@
 		  "hasPhysics": false,
           "collision": {
             "type": "rect",
-            "width": 1000.0,
-            "height": 1000.0
+            "width": 2000.0,
+            "height": 2000.0
           }
 		},
         {
