@@ -18,6 +18,7 @@ struct PlayerEntityParams {
 	Mesh* mesh;
 	Shader* shader;
 	string name;
+	bool hasPhysics;
 	b2BodyDef bodyDef;
 	b2PolygonShape shape;
 };

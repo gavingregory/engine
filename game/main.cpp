@@ -156,6 +156,7 @@ int main()
 					m,
 					s,
 					jsonEntity["title"].asString(),
+					jsonEntity["hasPhysics"].asBool(),
 					def,
 					shape
 				});
@@ -169,6 +170,7 @@ int main()
 					m,
 					s,
 					jsonEntity["title"].asString(),
+					jsonEntity["hasPhysics"].asBool(),
 					def,
 					shape
 			});

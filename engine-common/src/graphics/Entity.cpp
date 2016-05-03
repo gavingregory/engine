@@ -2,12 +2,11 @@
 
 Entity::Entity(EntityParams params, RenderObject* ro) {
 	m_RenderObject = ro;
+	if (!params.hasPhysics) params.bodyDef.active = false;
 	m_PhysicsObject = Physics::CurrentWorld->CreateBody(&params.bodyDef);
 	m_PhysicsObject->SetUserData(this); // set a pointer to THIS entity
-
 	// create FIXTURE for box 2d physics objects
 	m_PhysicsObject->CreateFixture(&params.shape, 1.0f);
-
 	m_Name = params.name;
 }
 

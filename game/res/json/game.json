@@ -99,7 +99,13 @@
           "mass": 0.0,
           "mesh": "background",
           "shader": "texture",
-          "dynamic": false
+          "dynamic": false,
+		  "hasPhysics": false,
+          "collision": {
+            "type": "rect",
+            "width": 1000.0,
+            "height": 1000.0
+          }
 		},
         {
           "title": "platform",
@@ -115,6 +121,7 @@
           "mesh": "platform",
           "shader": "texture",
           "dynamic": false,
+		  "hasPhysics": true,
           "collision": {
             "type": "rect",
             "width": 200.0,
@@ -135,6 +142,7 @@
           "mesh": "ship",
           "shader": "texture",
           "dynamic": true,
+		  "hasPhysics": true,
           "collision": {
             "type": "rect",
             "width": 10.0,
@@ -155,6 +163,7 @@
           "mesh": "poo",
           "shader": "texture",
           "dynamic": false,
+		  "hasPhysics": true,
           "collision": {
             "type": "rect",
             "width": 20.0,

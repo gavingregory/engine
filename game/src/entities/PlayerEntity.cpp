@@ -1,7 +1,7 @@
 #include "PlayerEntity.h"
 
 PlayerEntity::PlayerEntity(PlayerEntityParams params, RenderObject* ro)
-	: Entity(EntityParams{params.position, params.velocity, params.acceleration, params.rotation, params.mass, params.mesh, params.shader, params.name, params.bodyDef, params.shape}, ro) {
+	: Entity(EntityParams{params.position, params.velocity, params.acceleration, params.rotation, params.mass, params.mesh, params.shader, params.name, params.hasPhysics, params.bodyDef, params.shape}, ro) {
 
 	// set box2d stuff
 	m_PhysicsObject->SetAngularDamping(0.0001f);
