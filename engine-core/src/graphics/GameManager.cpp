@@ -40,6 +40,7 @@ GameManager::~GameManager() {
 	m_Physics->destroy();
 	if (m_Physics) delete m_Physics;
 }
+
 void GameManager::init() {
 
 	if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;

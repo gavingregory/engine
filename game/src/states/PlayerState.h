@@ -1,14 +1,12 @@
 #pragma once
 
-#include "../../../engine-common/src/game/State.h"
-
 enum PlayerStates {
 	PS_MOVE_LEFT,
 	PS_MOVE_RIGHT,
 	PS_STATIONARY
 };
 
-class PlayerState : public State {
+class PlayerState {
 public:
 	void update(float msec) {
 		switch (m_State) {
