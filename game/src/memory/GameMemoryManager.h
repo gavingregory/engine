@@ -11,6 +11,7 @@ that I could not find a way to overcome.
 
 #include "../../../engine-memory/src/MemoryManager.h"
 #include "../entities/PlayerEntity.h"
+#include "../entities/EnemyEntity.h"
 
 class GameMemoryManager : public MemoryManager
 {
@@ -18,4 +19,5 @@ public:
 	GameMemoryManager();
 	virtual ~GameMemoryManager();
 	Entity* createPlayerEntity(PlayerEntityParams params);
+	Entity* createEnemyEntity(EnemyEntityParams params);
 };

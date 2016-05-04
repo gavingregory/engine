@@ -183,6 +183,28 @@ int main()
 					def,
 					shape
 			});
+			else if (jsonEntity["type"].asString() == "enemy")
+			{
+				e = memory->createEnemyEntity(EnemyEntityParams{
+					vec3(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat(), jsonEntity["position"][2].asFloat()),
+					vec3(jsonEntity["velocity"][0].asFloat(), jsonEntity["velocity"][1].asFloat(), jsonEntity["velocity"][2].asFloat()),
+					vec3(jsonEntity["acceleration"][0].asFloat(), jsonEntity["acceleration"][1].asFloat(), jsonEntity["acceleration"][2].asFloat()),
+					jsonEntity["rotation"].asFloat(),
+					jsonEntity["mass"].asFloat(),
+					m,
+					s,
+					jsonEntity["title"].asString(),
+					category,
+					jsonEntity["hasPhysics"].asBool(),
+					def,
+					shape,
+					true,
+					b2Vec2(0,0),
+					b2Vec2(100,0),
+					b2Vec2(100,100),
+					b2Vec2(0,100)
+				});
+			}
 			else {
 				cout << "Invalid entity detected! Exiting..." << endl;
 				return 1;

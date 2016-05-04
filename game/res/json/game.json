@@ -42,6 +42,19 @@
             0.3,
             0.5
           ]
+        }
+        ,
+        {
+          "title": "enemy",
+          "type": "QUAD",
+          "width": 20,
+          "height": 20,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
         },
         {
           "title": "poo",
@@ -168,7 +181,7 @@
             0,
             0
           ],
-          "rotation": 0,
+          "rotation": 90,
           "mass": 1,
           "mesh": "platform",
           "shader": "texture",
@@ -215,6 +228,41 @@
             "type": "rect",
             "width": 200,
             "height": 5
+          }
+        },{
+          "title": "enemy1",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "ground"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            100,
+            100,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
           }
         },
         {
