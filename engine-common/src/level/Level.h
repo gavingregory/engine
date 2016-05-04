@@ -9,9 +9,12 @@ calls update on the level, which in turn updates and renders each of its entitie
 
 #include <Box2D/Box2D.h>
 #include "../system/SubSystem.h"
+#include <stack>
 #include "../graphics/Entity.h"
 #include "../../../engine-audio/src/Audio.h"
 #include "../../../engine-common/src/game/BaseLogic.h"
+
+using std::stack;
 
 struct LevelParams {
 	Renderer* renderer;
@@ -31,7 +34,7 @@ public:
 	map<string, GLuint>* getTextures() { return &m_Textures; }
 	map<string, ISoundSource*>* getSounds() { return &m_Sounds; }
 	void setLogic(BaseLogic* logic) { m_GameLogic = logic; }
-	static Level* currentLevel;
+	static stack<Level*> LevelStack;
 private:
 	map<string, Entity*> m_Entities;
 	map<string, Mesh*> m_Meshes;

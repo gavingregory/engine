@@ -49,12 +49,10 @@ public:
 	Camera* getCamera() const { return m_Camera; }
 	void init();
 	void run();
-	stack<Level*>* getLevelStack() { return &m_LevelStack; }
 	void Shutdown();
 private:
 	Window m_Window;
 	Renderer* m_Renderer;
-	stack<Level*> m_LevelStack;
 	GameTimer m_Timer;
 	InputHandler* m_InputHandler;
 	MemoryManager* m_MemoryManager;

@@ -17,7 +17,7 @@ General notes about the "engine":
 * Game input is loaded from JSON files.
 * Meshes are loaded from JSON files.
 * Most objects are associated with a Level class. The idea of this is that you
-  are able to destroy and create a new level between level transitions. 
+  are able to destroy and create a new level between level transitions.
 
 I started following Sparky tutorial (did about 7 videos?) but at this point I 
 left it and tried to fuse what i'd done with some classes from nclgl. The rest
@@ -80,8 +80,7 @@ int main()
 
 		// Create a new Level
 		Level* lvl = memory->createLevel(LevelParams{renderer});
-		Level::currentLevel = lvl; // level contains a pointer to the current level - FOR NOW
-		g->getLevelStack()->push(lvl); // push this level?
+		Level::LevelStack.push(lvl); // push this level?
 		map<string, Mesh*>* meshes = lvl->getMeshes();
 		map<string, Shader*>* shaders = lvl->getShaders();
 		map<string, GLuint>* textures = lvl->getTextures();
@@ -101,6 +100,7 @@ int main()
 				meshes->insert(pair<string, Mesh*>(jsonMesh["title"].asString(), Mesh::LoadMeshFile(jsonMesh["path"].asString())));
 			}
 			else {
+				cout << "Mesh problem!" << endl;
 				exit(1); // mesh could not be loaded
 			}
 		}

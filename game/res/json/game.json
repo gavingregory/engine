@@ -4,36 +4,56 @@
   "height": 768,
   "levels": [
     {
-      "id":  1,
+      "id": 1,
       "title": "Level One",
       "meshes": [
-		{
-		  "title": "background",
-		  "type": "QUAD",
-		  "width": 4000.0,
-		  "height": 4000.0,
-          "colour": [ 0.3, 0.3, 0.3, 0.5 ]
-		},
+        {
+          "title": "background",
+          "type": "QUAD",
+          "width": 4000,
+          "height": 4000,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
         {
           "title": "platform",
           "type": "QUAD",
-          "width": 400.0,
-          "height": 10.0,
-          "colour": [ 0.3, 0.3, 0.3, 0.5 ]
+          "width": 400,
+          "height": 10,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
         },
         {
           "title": "ship",
           "type": "QUAD",
-          "width": 40.0,
-          "height": 40.0,
-          "colour": [ 0.3, 0.3, 0.3, 0.5 ]
+          "width": 40,
+          "height": 40,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
         },
-		{
+        {
           "title": "poo",
           "type": "QUAD",
-          "width": 40.0,
-          "height": 40.0,
-          "colour": [ 0.3, 0.3, 0.3, 0.5 ]
+          "width": 40,
+          "height": 40,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
         }
       ],
       "shaders": [
@@ -67,10 +87,10 @@
           "title": "poo",
           "path": "res/texture/poo.png"
         },
-		{
-		  "title": "background",
-		  "path": "res/texture/asteroid.png"
-		}
+        {
+          "title": "background",
+          "path": "res/texture/asteroid.png"
+        }
       ],
       "audio": [
         {
@@ -81,93 +101,406 @@
           "title": "shotgun",
           "path": "res/audio/shotgun.mp3"
         },
-		{
-		  "title": "win",
-		  "path": "res/audio/fart-4.mp3"
-		}
+        {
+          "title": "win",
+          "path": "res/audio/fart-4.mp3"
+        }
       ],
       "entities": [
-	    {
-		  "title": "background",
+        {
+          "title": "background",
           "type": "entity",
-          "textures": [ "background" ],
+          "textures": [
+            "background"
+          ],
           "parent": "null",
-          "position": [ 0.0, 0.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 0.0,
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "mass": 0,
           "mesh": "background",
           "shader": "texture",
           "dynamic": false,
-		  "hasPhysics": false,
+          "hasPhysics": false,
           "collision": {
             "type": "rect",
-            "width": 2000.0,
-            "height": 2000.0
+            "width": 2000,
+            "height": 2000
           }
-		},
+        },
         {
           "title": "platform",
           "type": "entity",
-          "textures": [ "ground" ],
-          "sounds": [ "shotgun" ],
+          "textures": [
+            "ground"
+          ],
+          "sounds": [
+            "shotgun"
+          ],
           "parent": "null",
-          "position": [ -25.0, -48.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 1.0,
+          "position": [
+            -25,
+            -48,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "mass": 1,
           "mesh": "platform",
           "shader": "texture",
           "dynamic": false,
-		  "hasPhysics": true,
+          "hasPhysics": true,
           "collision": {
             "type": "rect",
-            "width": 200.0,
-            "height": 5.0
+            "width": 200,
+            "height": 5
           }
         },
         {
           "title": "ship",
           "type": "player",
-          "textures": [ "ship" ],
-          "sounds": [ "shotgun" ],
+          "textures": [
+            "ship"
+          ],
+          "sounds": [
+            "shotgun"
+          ],
           "parent": "null",
-          "position": [ -25.0, 100.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 90.0,
-          "mass": 1.0,
+          "position": [
+            -25,
+            100,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 90,
+          "mass": 1,
           "mesh": "ship",
           "shader": "texture",
           "dynamic": true,
-		  "hasPhysics": true,
+          "hasPhysics": true,
           "collision": {
             "type": "rect",
-            "width": 10.0,
-            "height": 10.0
+            "width": 10,
+            "height": 10
           }
         },
-		{
+        {
           "title": "poo",
           "type": "entity",
-          "textures": [ "poo" ],
-          "sounds": [ "shotgun" ],
+          "textures": [
+            "poo"
+          ],
+          "sounds": [
+            "shotgun"
+          ],
           "parent": "null",
-          "position": [ -25.0, -88.0, 0 ],
-          "velocity": [ 0.0, 0.0, 0.0 ],
-          "acceleration": [ 0.0, 0.0, 0.0 ],
-          "rotation": 0.0,
-          "mass": 1.0,
+          "position": [
+            -25,
+            -88,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "mass": 1,
           "mesh": "poo",
           "shader": "texture",
           "dynamic": false,
-		  "hasPhysics": true,
+          "hasPhysics": true,
           "collision": {
             "type": "rect",
-            "width": 20.0,
-            "height": 20.0
+            "width": 20,
+            "height": 20
+          }
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Level Two",
+      "meshes": [
+        {
+          "title": "background",
+          "type": "QUAD",
+          "width": 4000,
+          "height": 4000,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        {
+          "title": "platform",
+          "type": "QUAD",
+          "width": 400,
+          "height": 10,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        {
+          "title": "ship",
+          "type": "QUAD",
+          "width": 40,
+          "height": 40,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        {
+          "title": "poo",
+          "type": "QUAD",
+          "width": 40,
+          "height": 40,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
+        }
+      ],
+      "shaders": [
+        {
+          "title": "default",
+          "vertex": "res/shader/basic.vert",
+          "fragment": "res/shader/basic.frag",
+          "geometry": "",
+          "tcs": "",
+          "tes": ""
+        },
+        {
+          "title": "texture",
+          "vertex": "res/shader/texture.vert",
+          "fragment": "res/shader/texture.frag",
+          "geometry": "",
+          "tcs": "",
+          "tes": ""
+        }
+      ],
+      "textures": [
+        {
+          "title": "ground",
+          "path": "res/texture/ground.png"
+        },
+        {
+          "title": "ship",
+          "path": "res/texture/jswt.png"
+        },
+        {
+          "title": "poo",
+          "path": "res/texture/poo.png"
+        },
+        {
+          "title": "background",
+          "path": "res/texture/asteroid.png"
+        }
+      ],
+      "audio": [
+        {
+          "title": "bgm001",
+          "path": "res/audio/breakout.mp3"
+        },
+        {
+          "title": "shotgun",
+          "path": "res/audio/shotgun.mp3"
+        },
+        {
+          "title": "win",
+          "path": "res/audio/fart-4.mp3"
+        }
+      ],
+      "entities": [
+        {
+          "title": "background",
+          "type": "entity",
+          "textures": [
+            "background"
+          ],
+          "parent": "null",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "mass": 0,
+          "mesh": "background",
+          "shader": "texture",
+          "dynamic": false,
+          "hasPhysics": false,
+          "collision": {
+            "type": "rect",
+            "width": 2000,
+            "height": 2000
+          }
+        },
+        {
+          "title": "platform",
+          "type": "entity",
+          "textures": [
+            "ground"
+          ],
+          "sounds": [
+            "shotgun"
+          ],
+          "parent": "null",
+          "position": [
+            -88,
+            -48,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "mass": 1,
+          "mesh": "platform",
+          "shader": "texture",
+          "dynamic": false,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 200,
+            "height": 5
+          }
+        },
+        {
+          "title": "ship",
+          "type": "player",
+          "textures": [
+            "ship"
+          ],
+          "sounds": [
+            "shotgun"
+          ],
+          "parent": "null",
+          "position": [
+            -25,
+            100,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 90,
+          "mass": 1,
+          "mesh": "ship",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          }
+        },
+        {
+          "title": "poo",
+          "type": "entity",
+          "textures": [
+            "poo"
+          ],
+          "sounds": [
+            "shotgun"
+          ],
+          "parent": "null",
+          "position": [
+            -25,
+            -88,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "mass": 1,
+          "mesh": "poo",
+          "shader": "texture",
+          "dynamic": false,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 20,
+            "height": 20
           }
         }
       ]

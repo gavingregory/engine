@@ -43,7 +43,7 @@ GameManager::~GameManager() {
 
 void GameManager::init() {
 
-	if (!m_Audio->init()) cout << "Audio subsystem init failed." << endl;
+	if (!m_Audio->init()) { cout << "Audio subsystem init failed." << endl; }
 	if (!m_InputHandler->init()) { cout << "Input Handler init failed!" << endl; exit(1); }
 	if (!m_MemoryManager->init()) { cout << "Memory manager init failed!" << endl; exit(1); }
 	if (!m_GameLogic->init()) { cout << "Game logic init failed!" << endl; exit(1); }
@@ -64,7 +64,7 @@ void GameManager::run() {
 		if (m_InputHandler) m_InputHandler->handleInput(msec);
 
 		// call update on the top level on the stack
-		m_LevelStack.top()->update(msec);
+		Level::LevelStack.top()->update(msec);
 
 		m_GameLogic->update(msec);
 

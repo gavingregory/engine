@@ -19,11 +19,11 @@ GameLogic::GameLogic(GameMemoryManager* memory, Physics* physics, InputHandler* 
 GameLogic::~GameLogic() {}
 
 bool GameLogic::init() {
-	map<string, Mesh*>* meshes = Level::currentLevel->getMeshes();
-	map<string, Shader*>* shaders = Level::currentLevel->getShaders();
+	map<string, Mesh*>* meshes = Level::LevelStack.top()->getMeshes();
+	map<string, Shader*>* shaders = Level::LevelStack.top()->getShaders();
 
 	// set the level's logic controller
-	Level::currentLevel->setLogic(this);
+	Level::LevelStack.top()->setLogic(this);
 
 	Mesh* m = (*meshes)["asteroid"];
 	Shader* s = (*shaders)["texture"];
@@ -41,8 +41,9 @@ void GameLogic::update(float msec) {
 		Entity* bodyDataB = (Entity*)contact->GetFixtureB()->GetBody()->GetUserData();
 		if (bodyDataA->getName() == "ship" && bodyDataB->getName() == "poo") {
 			// WIN!
+			Level::LevelStack.pop();
 			ISound* s = m_Audio->play("res/audio/fart-2.wav", false);
-			Window::quit = true;
+			//Window::quit = true;
 		}
 	}
 }

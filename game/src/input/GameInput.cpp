@@ -25,9 +25,8 @@ GameInput::~GameInput() {}
 
 void GameInput::handleInput(float msec) {
 
-	map<string, Entity*>* entities = Level::currentLevel->getEntities();
+	map<string, Entity*>* entities = Level::LevelStack.top()->getEntities();
 	PlayerEntity* player = (PlayerEntity*)entities->at("ship");
-
 	if (GameInput::KeysHeld[GLFW_KEY_W]) { player->boost(); }
 	if (GameInput::KeysHeld[GLFW_KEY_A]) { player->rotate(0.001f); }
 	if (GameInput::KeysHeld[GLFW_KEY_D]) { player->rotate(-0.001f); }
