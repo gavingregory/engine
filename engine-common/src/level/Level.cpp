@@ -13,10 +13,6 @@ bool Level::init() { return 0; }
 
 bool Level::destroy() { return 0; }
 
-Level* Level::LoadLevel() {
-	return new Level({});
-}
-
 void Level::update(float msec) {
 
 	// UPDATE

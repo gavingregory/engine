@@ -5,6 +5,7 @@ GameManager::GameManager(GameManagerParams params)
 	m_Renderer = params.renderer;
 	Window::WindowPointer = &m_Window;
 	m_Camera = new Camera(vec3(0, 0, 300));
+	Camera::Instance = m_Camera; // set the instance
 	Camera::width = 1200.0f;
 	Camera::vw_matrix = lookAt(vec3(0.f, 0.f, 3.0f), vec3(0.f, 0.f, 0.f), vec3(0.0f, 1.0f, 0.0f));
 

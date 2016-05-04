@@ -36,7 +36,6 @@ public:
 	map<string, ISoundSource*>* getSounds() { return &m_Sounds; }
 	void setLogic(BaseLogic* logic) { m_GameLogic = logic; }
 	static stack<Level*> LevelStack;
-	static Level* LoadLevel();
 private:
 	map<string, Entity*> m_Entities;
 	map<string, Mesh*> m_Meshes;

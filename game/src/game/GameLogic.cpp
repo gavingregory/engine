@@ -36,14 +36,33 @@ bool GameLogic::destroy() {
 }
 
 void GameLogic::update(float msec) {
+
+	// update the camera?
+	Camera* cam = Camera::Instance;
+	map<string, Entity*>* entities = Level::LevelStack.top()->getEntities();
+	Entity* player = entities->at("ship");
+	vec3 pos = player->getPosition();
+	Camera::vw_matrix = lookAt(vec3(pos.x, pos.y, pos.z + 3.0f), pos, vec3(0.0f, 1.0f, 0.0f));
+
 	for (b2Contact* contact = Physics::CurrentWorld->GetContactList(); contact; contact = contact->GetNext()) {
 		Entity* bodyDataA = (Entity*)contact->GetFixtureA()->GetBody()->GetUserData();
 		Entity* bodyDataB = (Entity*)contact->GetFixtureB()->GetBody()->GetUserData();
+		
+		// Win collision
 		if (bodyDataA->getName() == "ship" && bodyDataB->getName() == "poo") {
 			// WIN!
-			Level::LevelStack.pop();
 			ISound* s = m_Audio->play("res/audio/fart-2.wav", false);
-			//Window::quit = true;
+			Window::quit = true;
+		} else if (bodyDataA->getName() == "platform" && bodyDataB->getName() == "ship") {
+			player->getPhysicsObject()->SetTransform(b2Vec2(0, 100), 90.f / 57.2958f);
+			cout << "platofmr collision" << endl;
+			player->getPhysicsObject()->SetAngularVelocity(0.f);
+			player->getPhysicsObject()->SetLinearVelocity(b2Vec2(0, 0));
+			player->getPhysicsObject()->SetAwake(true);
 		}
+		else {
+			cout << bodyDataA->getName() << " " << bodyDataB->getName() << endl;
+		}
+
 	}
 }

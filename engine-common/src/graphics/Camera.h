@@ -32,7 +32,7 @@ public:
 	static float width;
 
 	static vec2 calculateWorldPositionFromMouseCoords(vec2 mouseCoords);
-
+	static Camera* Instance;
 protected:
 	vec3 position;
 
