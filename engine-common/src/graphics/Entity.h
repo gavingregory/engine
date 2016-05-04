@@ -16,6 +16,14 @@ such as render objects and physics objects to represent their different properti
 
 using std::vector;
 
+enum EntityCategory {
+	EC_PLAYER = 0,
+	EC_PLATFORM,
+	EC_ENEMY,
+	EC_EXIT,
+	EC_NONE
+};
+
 struct EntityParams {
 	vec3 position;
 	vec3 velocity;
@@ -25,6 +33,7 @@ struct EntityParams {
 	Mesh* mesh;
 	Shader* shader;
 	string name;
+	EntityCategory category;
 	bool hasPhysics;
 	b2BodyDef bodyDef;
 	b2PolygonShape shape;
@@ -41,6 +50,7 @@ public:
 	inline b2Body* getPhysicsObject() const { return m_PhysicsObject; }
 	inline string getName() const { return m_Name; }
 	inline map<string, ISoundSource*>* getSounds() { return &m_Sounds; }
+	inline EntityCategory getCategory() { return m_Category; }
 
 	virtual void update(float dt);
 	virtual void render(Renderer* renderer);
@@ -55,4 +65,5 @@ protected:
 	Entity* parent;
 	vector<Entity*> children;
 	map<string, ISoundSource*> m_Sounds;
+	EntityCategory m_Category;
 };

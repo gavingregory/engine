@@ -146,6 +146,13 @@ int main()
 			b2PolygonShape shape;
 			shape.SetAsBox(jsonCollision["width"].asFloat(), jsonCollision["height"].asFloat());
 			
+			string categoryString = jsonEntity["category"].asString();
+			EntityCategory category = EC_NONE;
+			if (categoryString == "player") category = EC_PLAYER;
+			else if (categoryString == "platform") category = EC_PLATFORM;
+			else if (categoryString == "exit") category = EC_EXIT;
+			else if (categoryString == "none") category = EC_NONE;
+
 			if (jsonEntity["type"].asString() == "entity")
 				e = memory->createEntity(EntityParams{
 					vec3(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat(), jsonEntity["position"][2].asFloat()),
@@ -156,6 +163,7 @@ int main()
 					m,
 					s,
 					jsonEntity["title"].asString(),
+					category,
 					jsonEntity["hasPhysics"].asBool(),
 					def,
 					shape
@@ -170,6 +178,7 @@ int main()
 					m,
 					s,
 					jsonEntity["title"].asString(),
+					category,
 					jsonEntity["hasPhysics"].asBool(),
 					def,
 					shape

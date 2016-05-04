@@ -53,12 +53,17 @@ void GameLogic::update(float msec) {
 			// WIN!
 			ISound* s = m_Audio->play("res/audio/fart-2.wav", false);
 			Window::quit = true;
-		} else if (bodyDataA->getName() == "platform" && bodyDataB->getName() == "ship") {
-			player->getPhysicsObject()->SetTransform(b2Vec2(0, 100), 90.f / 57.2958f);
-			cout << "platofmr collision" << endl;
-			player->getPhysicsObject()->SetAngularVelocity(0.f);
-			player->getPhysicsObject()->SetLinearVelocity(b2Vec2(0, 0));
-			player->getPhysicsObject()->SetAwake(true);
+		} else if (bodyDataA->getName() == "ship" || bodyDataB->getName() == "ship") {
+			if (bodyDataA->getCategory() == EC_PLATFORM || bodyDataB->getCategory() == EC_PLATFORM) {
+
+				player->getPhysicsObject()->SetTransform(b2Vec2(0, 100), 90.f / 57.2958f);
+				cout << "platofmr collision" << endl;
+				player->getPhysicsObject()->SetAngularVelocity(0.f);
+				player->getPhysicsObject()->SetLinearVelocity(b2Vec2(0, 0));
+				player->getPhysicsObject()->SetAwake(true);
+
+			}
+
 		}
 		else {
 			cout << bodyDataA->getName() << " " << bodyDataB->getName() << endl;

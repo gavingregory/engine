@@ -110,6 +110,7 @@
         {
           "title": "background",
           "type": "entity",
+          "category": "none",
           "textures": [
             "background"
           ],
@@ -144,6 +145,7 @@
         {
           "title": "platform",
           "type": "entity",
+          "category": "platform",
           "textures": [
             "ground"
           ],
@@ -177,10 +179,48 @@
             "width": 200,
             "height": 5
           }
+        },{
+          "title": "platform2",
+          "type": "entity",
+          "category": "platform",
+          "textures": [
+            "ground"
+          ],
+          "sounds": [
+            "shotgun"
+          ],
+          "parent": "null",
+          "position": [
+            88,
+            200,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "mass": 1,
+          "mesh": "platform",
+          "shader": "texture",
+          "dynamic": false,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 200,
+            "height": 5
+          }
         },
         {
           "title": "ship",
           "type": "player",
+          "category": "player",
           "textures": [
             "ship"
           ],
@@ -218,6 +258,7 @@
         {
           "title": "poo",
           "type": "entity",
+          "category": "exis",
           "textures": [
             "poo"
           ],

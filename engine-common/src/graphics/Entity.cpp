@@ -8,6 +8,7 @@ Entity::Entity(EntityParams params, RenderObject* ro) {
 	// create FIXTURE for box 2d physics objects
 	m_PhysicsObject->CreateFixture(&params.shape, 1.0f);
 	m_Name = params.name;
+	m_Category = params.category;
 }
 
 Entity::~Entity() { }
