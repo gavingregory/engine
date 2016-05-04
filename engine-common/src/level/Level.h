@@ -11,6 +11,7 @@ calls update on the level, which in turn updates and renders each of its entitie
 #include "../system/SubSystem.h"
 #include <stack>
 #include "../graphics/Entity.h"
+#include "../../../engine-io/src/io/Loader.h"
 #include "../../../engine-audio/src/Audio.h"
 #include "../../../engine-common/src/game/BaseLogic.h"
 
@@ -35,6 +36,7 @@ public:
 	map<string, ISoundSource*>* getSounds() { return &m_Sounds; }
 	void setLogic(BaseLogic* logic) { m_GameLogic = logic; }
 	static stack<Level*> LevelStack;
+	static Level* LoadLevel();
 private:
 	map<string, Entity*> m_Entities;
 	map<string, Mesh*> m_Meshes;

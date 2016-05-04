@@ -80,5 +80,5 @@ void GameManager::Shutdown() {
 	m_Audio->destroy();
 	m_InputHandler->destroy();
 	m_MemoryManager->destroy();
-	Sleep(500);
+	//Sleep(500);
 }

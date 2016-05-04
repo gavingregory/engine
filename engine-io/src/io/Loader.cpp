@@ -1,6 +1,5 @@
 #include "Loader.h"
 
-Loader::Loader() {}
 Loader::~Loader() {}
 
 Json::Value Loader::LoadJson(string path) {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-core", "engine-core\engine-core.vcxproj", "{7F48A190-124A-49E4-8FB0-A7ABEFDFBE85}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -9,7 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-core", "engine-core\
 		{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245} = {FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}
 		{5DF667B3-7793-4D89-A813-503085CC8021} = {5DF667B3-7793-4D89-A813-503085CC8021}
 		{563055BB-3D66-4335-B60A-93AE189A91C4} = {563055BB-3D66-4335-B60A-93AE189A91C4}
-		{A7819AC4-589E-4D83-8E36-843DE3D8FA9F} = {A7819AC4-589E-4D83-8E36-843DE3D8FA9F}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game\game.vcxproj", "{CED10A13-C267-42BB-93D7-3AC5D2FEF109}"
@@ -33,9 +32,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-audio", "engine-audi
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-common", "engine-common\engine-common.vcxproj", "{FD73F149-03EF-4CC6-9F8F-9E89A5CB6245}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A7819AC4-589E-4D83-8E36-843DE3D8FA9F} = {A7819AC4-589E-4D83-8E36-843DE3D8FA9F}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine-memory", "engine-memory\engine-memory.vcxproj", "{5DF667B3-7793-4D89-A813-503085CC8021}"
 	ProjectSection(ProjectDependencies) = postProject

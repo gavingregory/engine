@@ -19,7 +19,7 @@ using std::ifstream;
 class Loader
 {
 private:
-	Loader(); // private, don't instantiate
+	Loader() {} // private, don't instantiate
 public:
 	static Json::Value LoadJson(string path);
 	virtual ~Loader();
