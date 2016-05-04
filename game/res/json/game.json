@@ -42,8 +42,7 @@
             0.3,
             0.5
           ]
-        }
-        ,
+        },
         {
           "title": "enemy",
           "type": "QUAD",
@@ -117,6 +116,10 @@
         {
           "title": "win",
           "path": "res/audio/fart-4.mp3"
+        },
+        {
+          "title": "engine",
+          "path": "res/audio/engine.ogg"
         }
       ],
       "entities": [
@@ -192,7 +195,8 @@
             "width": 200,
             "height": 5
           }
-        },{
+        },
+        {
           "title": "platform2",
           "type": "entity",
           "category": "platform",
@@ -229,7 +233,8 @@
             "width": 200,
             "height": 5
           }
-        },{
+        },
+        {
           "title": "enemy1",
           "type": "enemy",
           "category": "enemy",

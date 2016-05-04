@@ -31,4 +31,6 @@ public:
 	virtual ~PlayerEntity();
 	void rotate(float angleDeg);
 	void boost();
+	void stop();
+	ISound* m_EngineSound;
 };

@@ -36,7 +36,8 @@ class EnemyEntity : public Entity
 public:
 	EnemyEntity(EnemyEntityParams params, RenderObject* ro);
 	virtual ~EnemyEntity();
-	bool loopWaypoints = true; //whether we loop through waypoints or not (go back through them in opposite direction!).
-	b2Vec2 waypoints[MAX_WAYPOINTS];
-	int currentWaypoint = 0;
+	bool m_LoopWaypoints = true; //whether we loop through waypoints or not (go back through them in opposite direction!).
+	b2Vec2 m_Waypoints[MAX_WAYPOINTS];
+	int m_CurrentWaypoint = 0;
+	void update(float msec) override;
 };

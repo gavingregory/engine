@@ -28,6 +28,7 @@ public:
 	ISound* play(ISoundSource* source);
 	ISoundSource* createSoundSource(string path);
 	void stop(ISound* sound);
+	static Audio* Instance;
 private:
 	ISoundEngine* m_SoundEngine;
 };

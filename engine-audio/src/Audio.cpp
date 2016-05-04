@@ -4,6 +4,8 @@ Audio::Audio() { }
 
 Audio::~Audio() { }
 
+Audio* Audio::Instance;
+
 bool Audio::init() {
 	m_SoundEngine = createIrrKlangDevice();
 	return (m_SoundEngine != nullptr);
@@ -18,8 +20,8 @@ void Audio::update(float msec) {
 }
 
 ISound* Audio::play(string path, bool loop) {
-	ISound* s = m_SoundEngine->play2D(path.c_str(), loop);
-	//assert(s != nullptr);
+	ISound* s = m_SoundEngine->play2D(path.c_str(), loop, false, true);
+	assert(s != nullptr);
 	return s;
 }
 

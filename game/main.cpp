@@ -68,6 +68,7 @@ int main()
 	catch (const char* msg) { cout << msg << endl; }
 
 	Audio* audio = new Audio();
+	Audio::Instance = audio;
 	GameMemoryManager* memory = new GameMemoryManager();
 	Physics* physics = new Physics(-0.0001f);
 	GameInput* input = new GameInput(audio);
@@ -198,7 +199,7 @@ int main()
 					jsonEntity["hasPhysics"].asBool(),
 					def,
 					shape,
-					true,
+					false,
 					b2Vec2(0,0),
 					b2Vec2(100,0),
 					b2Vec2(100,100),
