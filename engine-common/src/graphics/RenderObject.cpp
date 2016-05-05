@@ -41,4 +41,6 @@ void RenderObject::UpdateShaderMatrices() {
 	glUniformMatrix4fv(glGetUniformLocation(shader->GetShaderProgram(), "pr_matrix"), 1, GL_FALSE, glm::value_ptr(Camera::pr_matrix));
 	glUniform3f(glGetUniformLocation(shader->GetShaderProgram(), "light_src"), Camera::light_src.x, Camera::light_src.y, Camera::light_src.z);
 	glUniform3f(glGetUniformLocation(shader->GetShaderProgram(), "camera_pos"), 0, 0, 300);
+	static float t = 0.0f;
+	glUniform1f(glGetUniformLocation(shader->GetShaderProgram(), "time"), t += 0.0001f);
 }

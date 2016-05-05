@@ -44,6 +44,8 @@
     <None Include="res\shader\basic.vert" />
     <None Include="res\shader\basic.frag" />
     <None Include="res\mesh\ship.json" />
+    <None Include="res\shader\glow.vert" />
+    <None Include="res\shader\glow.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\PlayerEntity.h">

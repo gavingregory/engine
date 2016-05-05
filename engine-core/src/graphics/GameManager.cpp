@@ -52,7 +52,7 @@ void GameManager::init() {
 
 void GameManager::run() {
 
-	ISound* s = m_Audio->play("res/audio/breakout.mp3", true);
+	//ISound* s = m_Audio->play("res/audio/breakout.mp3", true);
 
 	while (!m_Window.closed() && !Window::quit) {
 		m_Window.clear();

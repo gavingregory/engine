@@ -30,6 +30,8 @@
   <ItemGroup>
     <None Include="res\json\game.json" />
     <None Include="res\mesh\ship.json" />
+    <None Include="res\shader\glow.frag" />
+    <None Include="res\shader\glow.vert" />
     <None Include="res\shader\texture.frag" />
     <None Include="res\shader\texture.vert" />
     <None Include="res\shader\basic.frag" />

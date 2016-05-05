@@ -186,11 +186,17 @@ int main()
 			});
 			else if (jsonEntity["type"].asString() == "enemy")
 			{
+				int numWaypoints = jsonEntity["waypoints"].asInt();
+				b2Vec2 waypoints[4];
+				for (int i = 0; i < 4; i++) waypoints[i] = b2Vec2(0,0); // init all to 0
+				for (int i = 0; i < numWaypoints; i++) waypoints[i] = b2Vec2(jsonEntity["waypoint"+ std::to_string(i)][0].asFloat(), jsonEntity["waypoint"+std::to_string(i)][1].asFloat());
+
 				e = memory->createEnemyEntity(EnemyEntityParams{
 					vec3(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat(), jsonEntity["position"][2].asFloat()),
 					vec3(jsonEntity["velocity"][0].asFloat(), jsonEntity["velocity"][1].asFloat(), jsonEntity["velocity"][2].asFloat()),
 					vec3(jsonEntity["acceleration"][0].asFloat(), jsonEntity["acceleration"][1].asFloat(), jsonEntity["acceleration"][2].asFloat()),
 					jsonEntity["rotation"].asFloat(),
+					jsonEntity["rotates"].asBool(),
 					jsonEntity["mass"].asFloat(),
 					m,
 					s,
@@ -199,11 +205,12 @@ int main()
 					jsonEntity["hasPhysics"].asBool(),
 					def,
 					shape,
-					false,
-					b2Vec2(0,0),
-					b2Vec2(100,0),
-					b2Vec2(100,100),
-					b2Vec2(0,100)
+					jsonEntity["loop"].asBool(),
+					numWaypoints,
+					waypoints[0],
+					waypoints[1],
+					waypoints[2],
+					waypoints[3]
 				});
 			}
 			else {

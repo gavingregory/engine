@@ -16,6 +16,7 @@ struct EnemyEntityParams {
 	vec3 velocity;
 	vec3 acceleration;
 	float rotation;
+	bool rotates;
 	float mass;
 	Mesh* mesh;
 	Shader* shader;
@@ -25,6 +26,7 @@ struct EnemyEntityParams {
 	b2BodyDef bodyDef;
 	b2PolygonShape shape;
 	bool loopWaypoints;
+	int numWaypoints;
 	b2Vec2 waypoints0;
 	b2Vec2 waypoints1;
 	b2Vec2 waypoints2;
@@ -37,7 +39,9 @@ public:
 	EnemyEntity(EnemyEntityParams params, RenderObject* ro);
 	virtual ~EnemyEntity();
 	bool m_LoopWaypoints = true; //whether we loop through waypoints or not (go back through them in opposite direction!).
+	int m_NumWaypoints = 2;
 	b2Vec2 m_Waypoints[MAX_WAYPOINTS];
 	int m_CurrentWaypoint = 0;
 	void update(float msec) override;
+	bool m_Rotates;
 };
