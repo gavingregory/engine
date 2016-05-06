@@ -9,6 +9,8 @@ Entity::Entity(EntityParams params, RenderObject* ro) {
 	m_PhysicsObject->CreateFixture(&params.shape, 1.0f);
 	m_Name = params.name;
 	m_Category = params.category;
+	m_CollisionCategory = COLLISION_OTHER;
+	m_MaskBits = COLLISION_PLAYER;
 }
 
 Entity::~Entity() { }

@@ -19,6 +19,8 @@ EnemyEntity::EnemyEntity(EnemyEntityParams params, RenderObject* ro)
 		m_PhysicsObject->SetAngularVelocity(0.001f);
 		m_PhysicsObject->SetAngularDamping(0.f);
 	}
+	m_CollisionCategory = COLLISION_ENEMY;
+	m_MaskBits = COLLISION_PLAYER;
 }
 
 EnemyEntity::~EnemyEntity() {}
@@ -27,7 +29,7 @@ void EnemyEntity::update(float msec) {
 	Entity::update(msec);
 
 	float distance = b2Distance(m_PhysicsObject->GetPosition(), m_Waypoints[m_CurrentWaypoint]);
-	if (distance < 1.0f) {
+	if (distance < 1.0f && m_NumWaypoints) {
 		if (m_LoopWaypoints) {
 			m_CurrentWaypoint = ((m_CurrentWaypoint + 1) % m_NumWaypoints) % MAX_WAYPOINTS;
 		}
@@ -42,6 +44,5 @@ void EnemyEntity::update(float msec) {
 		velocity.Normalize();
 		velocity *= 0.1f;
 		m_PhysicsObject->SetLinearVelocity(velocity);
-		cout << m_CurrentWaypoint << endl;
 	}
 }

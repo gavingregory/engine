@@ -4,9 +4,11 @@ PlayerEntity::PlayerEntity(PlayerEntityParams params, RenderObject* ro)
 	: Entity(EntityParams{params.position, params.velocity, params.acceleration, params.rotation, params.mass, params.mesh, params.shader, params.name, params.category, params.hasPhysics, params.bodyDef, params.shape}, ro) {
 
 	// set box2d stuff
-	m_PhysicsObject->SetAngularDamping(0.0001f);
+	m_PhysicsObject->SetAngularDamping(0.001f);
 	m_PhysicsObject->SetLinearDamping(0.0001f);
 	m_EngineSound == nullptr;
+	m_CollisionCategory = COLLISION_PLAYER;
+	m_MaskBits = COLLISION_ENEMY | COLLISION_WALL | COLLISION_OTHER;
 }
 
 PlayerEntity::~PlayerEntity() {}

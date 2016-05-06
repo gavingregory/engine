@@ -80,6 +80,30 @@
           ]
         },
         {
+          "title": "platform600",
+          "type": "QUAD",
+          "width": 600,
+          "height": 10,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        {
+          "title": "platform800",
+          "type": "QUAD",
+          "width": 800,
+          "height": 10,
+          "colour": [
+            0.3,
+            0.3,
+            0.3,
+            0.5
+          ]
+        },
+        {
           "title": "ship",
           "type": "QUAD",
           "width": 40,
@@ -209,7 +233,7 @@
           "rotation": 0,
           "mass": 0,
           "mesh": "background",
-          "shader": "texture",
+          "shader": "glow",
           "dynamic": false,
           "hasPhysics": false,
           "collision": {
@@ -245,7 +269,7 @@
           "rotation": 0,
           "mass": 1,
           "mesh": "platform200",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -281,7 +305,7 @@
           "rotation": 90,
           "mass": 1,
           "mesh": "platform400",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -317,7 +341,7 @@
           "rotation": 90,
           "mass": 1,
           "mesh": "platform400",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -353,7 +377,7 @@
           "rotation": 0,
           "mass": 1,
           "mesh": "platform050",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -389,7 +413,7 @@
           "rotation": 90,
           "mass": 1,
           "mesh": "platform100",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -425,7 +449,7 @@
           "rotation": 0,
           "mass": 1,
           "mesh": "platform200",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -461,7 +485,7 @@
           "rotation": 0,
           "mass": 1,
           "mesh": "platform400",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -497,7 +521,7 @@
           "rotation": 0,
           "mass": 1,
           "mesh": "platform400",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -533,7 +557,7 @@
           "rotation": 0,
           "mass": 1,
           "mesh": "platform400",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -569,7 +593,7 @@
           "rotation": 90,
           "mass": 1,
           "mesh": "platform400",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -605,7 +629,7 @@
           "rotation": 90,
           "mass": 1,
           "mesh": "platform400",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -641,7 +665,7 @@
           "rotation": 90,
           "mass": 1,
           "mesh": "platform400",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -677,7 +701,7 @@
           "rotation": 0,
           "mass": 1,
           "mesh": "platform400",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -713,7 +737,7 @@
           "rotation": 0,
           "mass": 1,
           "mesh": "platform200",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -749,7 +773,7 @@
           "rotation": 90,
           "mass": 1,
           "mesh": "platform300",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -785,7 +809,7 @@
           "rotation": 0,
           "mass": 1,
           "mesh": "platform200",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -821,7 +845,7 @@
           "rotation": 90,
           "mass": 1,
           "mesh": "platform300",
-          "shader": "glow",
+          "shader": "texture",
           "dynamic": false,
           "hasPhysics": true,
           "collision": {
@@ -831,7 +855,43 @@
           }
         },
         {
-          "title": "enemy001",
+          "title": "platform018",
+          "type": "entity",
+          "category": "platform",
+          "textures": [
+            "ground"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            700,
+            295,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 90,
+          "mass": 1,
+          "mesh": "platform800",
+          "shader": "texture",
+          "dynamic": false,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 400,
+            "height": 5
+          }
+        },
+        {
+          "title": "enemy-rm01-01",
           "type": "enemy",
           "category": "enemy",
           "textures": [
@@ -872,7 +932,7 @@
           "waypoint1": [ -130, 250 ]
         },
         {
-          "title": "enemy002",
+          "title": "enemy-rm01-02",
           "type": "enemy",
           "category": "enemy",
           "textures": [
@@ -913,7 +973,7 @@
           "waypoint1": [ -130, 220 ]
         },
         {
-          "title": "enemy003",
+          "title": "enemy-rm02-01",
           "type": "enemy",
           "category": "enemy",
           "textures": [
@@ -956,7 +1016,7 @@
           "waypoint3": [ 650, 350 ]
         },
         {
-          "title": "enemy004",
+          "title": "enemy-rm02-02",
           "type": "enemy",
           "category": "enemy",
           "textures": [
@@ -999,7 +1059,7 @@
           "waypoint3": [ 650, 350 ]
         },
         {
-          "title": "enemy005",
+          "title": "enemy-rm02-03",
           "type": "enemy",
           "category": "enemy",
           "textures": [
@@ -1042,7 +1102,7 @@
           "waypoint3": [ 650, 350 ]
         },
         {
-          "title": "enemy006",
+          "title": "enemy-rm02-04",
           "type": "enemy",
           "category": "enemy",
           "textures": [
@@ -1085,7 +1145,7 @@
           "waypoint3": [ 650, 350 ]
         },
         {
-          "title": "enemy007",
+          "title": "enemy-rm02-05",
           "type": "enemy",
           "category": "enemy",
           "textures": [
@@ -1128,7 +1188,7 @@
           "waypoint3": [ 650, 350 ]
         },
         {
-          "title": "enemy008",
+          "title": "enemy-rm02-06",
           "type": "enemy",
           "category": "enemy",
           "textures": [
@@ -1171,7 +1231,7 @@
           "waypoint3": [ 650, 350 ]
         },
         {
-          "title": "enemy009",
+          "title": "enemy-rm03-01",
           "type": "enemy",
           "category": "enemy",
           "textures": [
@@ -1180,51 +1240,8 @@
           "sounds": [],
           "parent": "null",
           "position": [
-            700,
-            550,
-            0
-          ],
-          "velocity": [
             0,
-            0,
-            0
-          ],
-          "acceleration": [
-            0,
-            0,
-            0
-          ],
-          "rotation": 0,
-          "rotates": true,
-          "mass": 0,
-          "mesh": "enemy",
-          "shader": "texture",
-          "dynamic": true,
-          "hasPhysics": true,
-          "collision": {
-            "type": "rect",
-            "width": 10,
-            "height": 10
-          },
-          "loop": true,
-          "waypoints": 0,
-          "waypoint0": [ 350, 350 ],
-          "waypoint1": [ 350, -50 ],
-          "waypoint2": [ 650, -50 ],
-          "waypoint3": [ 650, 350 ]
-        },
-        {
-          "title": "enemy010",
-          "type": "enemy",
-          "category": "enemy",
-          "textures": [
-            "enemy"
-          ],
-          "sounds": [],
-          "parent": "enemy009",
-          "position": [
-            0,
-            50,
+            420,
             0
           ],
           "velocity": [
@@ -1250,11 +1267,337 @@
             "height": 10
           },
           "loop": true,
-          "waypoints": 0,
-          "waypoint0": [ 350, 350 ],
-          "waypoint1": [ 350, -50 ],
-          "waypoint2": [ 650, -50 ],
-          "waypoint3": [ 650, 350 ]
+          "waypoints": 2,
+          "waypoint0": [ 0, 540 ],
+          "waypoint1": [ 0, 420 ]
+        },
+        {
+          "title": "enemy-rm03-02",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            78.75,
+            430,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 2,
+          "waypoint0": [ 78.75, 540 ],
+          "waypoint1": [ 78.75, 420 ]
+        },
+        {
+          "title": "enemy-rm03-03",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            157.5,
+            440,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 2,
+          "waypoint0": [ 157.5, 540 ],
+          "waypoint1": [ 157.5, 420 ]
+        },
+        {
+          "title": "enemy-rm03-04",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            236.25,
+            450,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 2,
+          "waypoint0": [ 236.25, 540 ],
+          "waypoint1": [ 236.25, 420 ]
+        },
+        {
+          "title": "enemy-rm03-05",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            315,
+            460,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 2,
+          "waypoint0": [ 315, 540 ],
+          "waypoint1": [ 315, 420 ]
+        },
+        {
+          "title": "enemy-rm03-06",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            393.75,
+            470,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 2,
+          "waypoint0": [ 393.75, 540 ],
+          "waypoint1": [ 393.75, 420 ]
+        },
+        {
+          "title": "enemy-rm03-07",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            472.5,
+            480,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 2,
+          "waypoint0": [ 472.5, 540 ],
+          "waypoint1": [ 472.5, 420 ]
+        },
+        {
+          "title": "enemy-rm03-08",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            551.25,
+            490,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 2,
+          "waypoint0": [ 551.25, 540 ],
+          "waypoint1": [ 551.25, 420 ]
+        },
+        {
+          "title": "enemy-rm03-09",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            630,
+            500,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 2,
+          "waypoint0": [ 630, 540 ],
+          "waypoint1": [ 630, 420 ]
         },
         {
           "title": "ship",
@@ -1268,8 +1611,8 @@
           ],
           "parent": "null",
           "position": [
-            350,
-            100,
+            850,
+            700,
             0
           ],
           "velocity": [

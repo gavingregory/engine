@@ -16,6 +16,13 @@ such as render objects and physics objects to represent their different properti
 
 using std::vector;
 
+enum EntityCollisionCategory {
+	COLLISION_WALL   = 0x0001,
+	COLLISION_PLAYER = 0x0002,
+	COLLISION_ENEMY  = 0x0004,
+	COLLISION_OTHER  = 0x0008
+};
+
 enum EntityCategory {
 	EC_PLAYER = 0,
 	EC_PLATFORM,
@@ -66,4 +73,6 @@ protected:
 	vector<Entity*> children;
 	map<string, ISoundSource*> m_Sounds;
 	EntityCategory m_Category;
+	EntityCollisionCategory m_CollisionCategory;
+	uint16 m_MaskBits;
 };
