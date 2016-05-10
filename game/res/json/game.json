@@ -169,7 +169,7 @@
       "textures": [
         {
           "title": "ground",
-          "path": "res/texture/fly.png"
+          "path": "res/texture/ground.png"
         },
         {
           "title": "ship",
@@ -242,6 +242,7 @@
             "height": 2000
           }
         },
+
         {
           "title": "platform001",
           "type": "entity",
@@ -879,6 +880,42 @@
             0
           ],
           "rotation": 90,
+          "mass": 1,
+          "mesh": "platform800",
+          "shader": "texture",
+          "dynamic": false,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 400,
+            "height": 5
+          }
+        },
+        {
+          "title": "platform019",
+          "type": "entity",
+          "category": "platform",
+          "textures": [
+            "ground"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            300,
+            575,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
           "mass": 1,
           "mesh": "platform800",
           "shader": "texture",
@@ -1611,8 +1648,8 @@
           ],
           "parent": "null",
           "position": [
-            850,
-            700,
+            665,
+            500,
             0
           ],
           "velocity": [
