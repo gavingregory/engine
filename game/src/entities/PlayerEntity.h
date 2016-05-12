@@ -20,6 +20,7 @@ struct PlayerEntityParams {
 	string name;
 	EntityCategory category;
 	bool hasPhysics;
+	bool isSensor;
 	b2BodyDef bodyDef;
 	b2PolygonShape shape;
 };

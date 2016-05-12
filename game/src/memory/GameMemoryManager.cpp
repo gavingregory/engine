@@ -17,3 +17,10 @@ Entity* GameMemoryManager::createEnemyEntity(EnemyEntityParams params) {
 	m_Objects.push_back(e);
 	return e;
 }
+
+Entity* GameMemoryManager::createTriggerEntity(TriggerEntityParams params) {
+	RenderObject* ro = createRenderObject(RenderObjectParams{ params.position, params.mesh, params.shader });
+	TriggerEntity* e = new TriggerEntity(params, ro);
+	m_Objects.push_back(e);
+	return e;
+}

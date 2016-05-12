@@ -11,6 +11,13 @@ using std::cout;
 using std::endl;
 using std::to_string;
 
+enum SPAWN_STATE {
+	SL_START = 0,
+	SL_ROOM_01,
+	SL_ROOM_02,
+	SL_ROOM_03
+};
+
 class GameLogic : public BaseLogic
 {
 	friend class GameInput;
@@ -27,4 +34,6 @@ private:
 	Audio* m_Audio;
 	GameMemoryManager* m_MemoryManager;
 	vec2 m_MousePosition;
+	SPAWN_STATE m_SpawnState;
+	b2Vec2 m_SpawnLocation;
 };

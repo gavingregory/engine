@@ -22,5 +22,5 @@ void main( void ) {
 	float e = abs(0.1 + length(pos) - 0.5 * abs(sin(time * 0.5 - 2.))) * 10.0;
 	
 	gl_FragColor += vec4(0.1/d, 0.1/d, 0.1/d, 1);
-	gl_FragColor += vec4(0.2/e, 0.2/e, 0.2/e, 1);
+	gl_FragColor += vec4(0.01/e, 0.01/e, 0.01/e, 1);
 }

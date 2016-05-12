@@ -23,6 +23,7 @@ struct EnemyEntityParams {
 	string name;
 	EntityCategory category;
 	bool hasPhysics;
+	bool isSensor;
 	b2BodyDef bodyDef;
 	b2PolygonShape shape;
 	bool loopWaypoints;

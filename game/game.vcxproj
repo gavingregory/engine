@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\entities\EnemyEntity.cpp" />
+    <ClCompile Include="src\entities\TriggerEntity.cpp" />
     <ClCompile Include="src\game\GameLogic.cpp" />
     <ClCompile Include="src\game\GameStates.h" />
     <ClCompile Include="src\memory\GameMemoryManager.cpp" />
@@ -39,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\EnemyEntity.h" />
+    <ClInclude Include="src\entities\TriggerEntity.h" />
     <ClInclude Include="src\game\GameLogic.h" />
     <ClInclude Include="src\memory\GameMemoryManager.h" />
     <ClInclude Include="src\entities\PlayerEntity.h" />

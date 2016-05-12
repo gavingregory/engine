@@ -17,10 +17,11 @@ such as render objects and physics objects to represent their different properti
 using std::vector;
 
 enum EntityCollisionCategory {
-	COLLISION_WALL   = 0x0001,
+	COLLISION_WALL = 0x0001,
 	COLLISION_PLAYER = 0x0002,
-	COLLISION_ENEMY  = 0x0004,
-	COLLISION_OTHER  = 0x0008
+	COLLISION_ENEMY = 0x0004,
+	COLLISION_OTHER = 0x0008,
+	COLLISION_TRIGGER = 0x0016
 };
 
 enum EntityCategory {
@@ -28,6 +29,7 @@ enum EntityCategory {
 	EC_PLATFORM,
 	EC_ENEMY,
 	EC_EXIT,
+	EC_TRIGGER,
 	EC_NONE
 };
 
@@ -42,6 +44,7 @@ struct EntityParams {
 	string name;
 	EntityCategory category;
 	bool hasPhysics;
+	bool isSensor;
 	b2BodyDef bodyDef;
 	b2PolygonShape shape;
 };

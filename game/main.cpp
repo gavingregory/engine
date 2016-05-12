@@ -51,6 +51,7 @@ point the level will exit gracefully.
 #include "../engine-common/src/graphics/Renderer.h"
 #include "../engine-common/src/graphics/Mesh.h"
 #include "src/entities/PlayerEntity.h"
+#include "src/entities/TriggerEntity.h"
 #include "../engine-io/src/io/Loader.h"
 #include "src/game/GameLogic.h"
 
@@ -152,6 +153,8 @@ int main()
 			if (categoryString == "player") category = EC_PLAYER;
 			else if (categoryString == "platform") category = EC_PLATFORM;
 			else if (categoryString == "exit") category = EC_EXIT;
+			else if (categoryString == "enemy") category = EC_ENEMY;
+			else if (categoryString == "trigger") category = EC_TRIGGER;
 			else if (categoryString == "none") category = EC_NONE;
 
 			if (jsonEntity["type"].asString() == "entity")
@@ -166,6 +169,7 @@ int main()
 					jsonEntity["title"].asString(),
 					category,
 					jsonEntity["hasPhysics"].asBool(),
+					true,
 					def,
 					shape
 				});
@@ -181,6 +185,7 @@ int main()
 					jsonEntity["title"].asString(),
 					category,
 					jsonEntity["hasPhysics"].asBool(),
+					true,
 					def,
 					shape
 			});
@@ -203,6 +208,7 @@ int main()
 					jsonEntity["title"].asString(),
 					category,
 					jsonEntity["hasPhysics"].asBool(),
+					false,
 					def,
 					shape,
 					jsonEntity["loop"].asBool(),
@@ -213,6 +219,28 @@ int main()
 					waypoints[3]
 				});
 			}
+
+			else if (jsonEntity["type"].asString() == "trigger")
+			{
+				e = memory->createTriggerEntity(TriggerEntityParams{
+					vec3(jsonEntity["position"][0].asFloat(), jsonEntity["position"][1].asFloat(), jsonEntity["position"][2].asFloat()),
+					vec3(jsonEntity["velocity"][0].asFloat(), jsonEntity["velocity"][1].asFloat(), jsonEntity["velocity"][2].asFloat()),
+					vec3(jsonEntity["acceleration"][0].asFloat(), jsonEntity["acceleration"][1].asFloat(), jsonEntity["acceleration"][2].asFloat()),
+					jsonEntity["rotation"].asFloat(),
+					jsonEntity["rotates"].asBool(),
+					jsonEntity["mass"].asFloat(),
+					m,
+					s,
+					jsonEntity["title"].asString(),
+					category,
+					jsonEntity["hasPhysics"].asBool(),
+					false,
+					def,
+					shape
+				});
+				((TriggerEntity*)e)->getPhysicsObject()->GetFixtureList()->SetSensor(true);
+			}
+
 			else {
 				cout << "Invalid entity detected! Exiting..." << endl;
 				return 1;

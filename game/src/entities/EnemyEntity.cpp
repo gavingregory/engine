@@ -1,7 +1,7 @@
 #include "EnemyEntity.h"
 
 EnemyEntity::EnemyEntity(EnemyEntityParams params, RenderObject* ro)
-	: Entity(EntityParams{params.position, params.velocity, params.acceleration, params.rotation, params.mass, params.mesh, params.shader, params.name, params.category, params.hasPhysics, params.bodyDef, params.shape}, ro) {
+	: Entity(EntityParams{params.position, params.velocity, params.acceleration, params.rotation, params.mass, params.mesh, params.shader, params.name, params.category, params.hasPhysics, params.isSensor, params.bodyDef, params.shape}, ro) {
 
 	// set box2d stuff
 	m_PhysicsObject->SetAngularDamping(0.0001f);
@@ -42,7 +42,7 @@ void EnemyEntity::update(float msec) {
 	if (m_NumWaypoints) {
 		b2Vec2 velocity = m_Waypoints[m_CurrentWaypoint] - m_PhysicsObject->GetPosition();
 		velocity.Normalize();
-		velocity *= 0.1f;
+		velocity *= 0.09f;
 		m_PhysicsObject->SetLinearVelocity(velocity);
 	}
 }
