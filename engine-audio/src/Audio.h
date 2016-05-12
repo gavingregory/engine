@@ -25,6 +25,7 @@ public:
 	virtual bool destroy();
 	virtual void update(float msec);
 	ISound* play(string path, bool loop);
+	ISound* play(string path, bool loop, float volume);
 	ISound* play(ISoundSource* source);
 	ISoundSource* createSoundSource(string path);
 	void stop(ISound* sound);

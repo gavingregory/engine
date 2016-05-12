@@ -25,6 +25,13 @@ ISound* Audio::play(string path, bool loop) {
 	return s;
 }
 
+ISound* Audio::play(string path, bool loop, float volume) {
+	ISound* s = m_SoundEngine->play2D(path.c_str(), loop, false, true);
+	s->setVolume(volume);
+	assert(s != nullptr);
+	return s;
+}
+
 ISound* Audio::play(ISoundSource* source) {
 	return m_SoundEngine->play2D(source);
 }

@@ -169,7 +169,7 @@
       "textures": [
         {
           "title": "ground",
-          "path": "res/texture/ground.png"
+          "path": "res/texture/metal2.bmp"
         },
         {
           "title": "ship",
@@ -186,6 +186,10 @@
         {
           "title": "enemy",
           "path": "res/texture/supernova.png"
+        },
+        {
+          "title": "waypoint",
+          "path": "res/texture/sun.png"
         }
       ],
       "audio": [
@@ -508,7 +512,7 @@
           "sounds": [],
           "parent": "null",
           "position": [
-            450,
+            435,
             395,
             0
           ],
@@ -643,7 +647,7 @@
           }
         },
         {
-          "title": "platform012",
+          "title": "platform-square-room-left",
           "type": "entity",
           "category": "platform",
           "textures": [
@@ -869,7 +873,7 @@
           "parent": "null",
           "position": [
             700,
-            180,
+            295,
             0
           ],
           "velocity": [
@@ -2363,8 +2367,8 @@
           ],
           "parent": "null",
           "position": [
-            -100,
-            850,
+            -50,
+            0,
             0
           ],
           "velocity": [
@@ -2432,7 +2436,7 @@
           "type": "trigger",
           "category": "trigger",
           "textures": [
-            "ship"
+            "waypoint"
           ],
           "sounds": [
             "item"
@@ -2470,7 +2474,7 @@
           "type": "trigger",
           "category": "trigger",
           "textures": [
-            "ship"
+            "waypoint"
           ],
           "sounds": [
             "item"
@@ -2508,7 +2512,7 @@
           "type": "trigger",
           "category": "trigger",
           "textures": [
-            "ship"
+            "waypoint"
           ],
           "sounds": [
             "item"

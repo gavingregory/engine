@@ -52,7 +52,7 @@ void GameManager::init() {
 
 void GameManager::run() {
 
-	//ISound* s = m_Audio->play("res/audio/breakout.mp3", true);
+	ISound* s = m_Audio->play("res/audio/ocean_loader_4.ogg", true, 0.2f);
 
 	while (!m_Window.closed() && !Window::quit) {
 		m_Window.clear();
