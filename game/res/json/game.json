@@ -2189,8 +2189,8 @@
           "sounds": [],
           "parent": "null",
           "position": [
-            700,
-            1000,
+            24,
+            585,
             0
           ],
           "velocity": [
@@ -2216,9 +2216,140 @@
             "height": 10
           },
           "loop": true,
-          "waypoints": 2,
-          "waypoint0": [ 700, 1000 ],
-          "waypoint1": [ 800, 1000 ]
+          "waypoints": 4,
+          "waypoint0": [ 24, 585 ],
+          "waypoint1": [ 24, 1190 ],
+          "waypoint2": [ 193, 585 ],
+          "waypoint3": [ 193, 1190 ]
+        },
+        {
+          "title": "enemy-rm04-02",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            362,
+            1190,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 4,
+          "waypoint1": [ 362, 1190 ],
+          "waypoint2": [ 531, 585 ],
+          "waypoint3": [ 531, 1190 ],
+          "waypoint0": [ 362, 585 ]
+        },
+        {
+          "title": "enemy-rm04-03",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            -140,
+            1195,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": true,
+          "waypoints": 4,
+          "waypoint1": [ -140, 1195 ],
+          "waypoint2": [ 695, 580 ],
+          "waypoint3": [ -140, 580 ],
+          "waypoint0": [ 695, 1195 ]
+        },
+        {
+          "title": "enemy-rm04-04",
+          "type": "enemy",
+          "category": "enemy",
+          "textures": [
+            "enemy"
+          ],
+          "sounds": [],
+          "parent": "null",
+          "position": [
+            0,
+            620,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "acceleration": [
+            0,
+            0,
+            0
+          ],
+          "rotation": 0,
+          "rotates": false,
+          "mass": 0,
+          "mesh": "enemy",
+          "shader": "texture",
+          "dynamic": true,
+          "hasPhysics": true,
+          "collision": {
+            "type": "rect",
+            "width": 10,
+            "height": 10
+          },
+          "loop": false,
+          "waypoints": 4,
+          "waypoint1": [ 0, 620 ],
+          "waypoint2": [ 600, 1000 ],
+          "waypoint3": [ 600, 420 ],
+          "waypoint0": [ 0, 1100  ]
         },
         {
           "title": "ship",
@@ -2233,7 +2364,7 @@
           "parent": "null",
           "position": [
             -100,
-            650,
+            850,
             0
           ],
           "velocity": [

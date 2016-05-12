@@ -66,9 +66,7 @@ void GameManager::run() {
 
 		// call update on the top level on the stack
 		Level::LevelStack.top()->update(msec);
-
 		m_GameLogic->update(msec);
-
 		m_Window.update();
 	}
 
@@ -81,5 +79,5 @@ void GameManager::Shutdown() {
 	m_Audio->destroy();
 	m_InputHandler->destroy();
 	m_MemoryManager->destroy();
-	//Sleep(1200);
+	Sleep(1200);
 }

@@ -27,6 +27,10 @@ Entity::Entity(EntityParams params, RenderObject* ro) {
 		m_CollisionCategory = COLLISION_TRIGGER;
 		m_MaskBits = COLLISION_PLAYER;
 		break;
+	case EC_EXIT:
+		m_CollisionCategory = COLLISION_OTHER;
+		m_MaskBits = COLLISION_PLAYER;
+		break;
 	}
 	fixtureDef.filter.categoryBits = m_CollisionCategory;
 	fixtureDef.filter.maskBits = m_MaskBits;

@@ -102,7 +102,7 @@ void GameLogic::update(float msec) {
 			else if (other->getName() == "set-waypoint-03") {
 				if (m_SpawnState != SL_ROOM_03) {
 					m_SpawnState = SL_ROOM_03;
-					m_SpawnLocation = b2Vec2(800, 800);
+					m_SpawnLocation = b2Vec2(-100, 1100);
 					ISound* s = m_Audio->play("res/audio/Sfx6.wav", false);
 				}
 			}
